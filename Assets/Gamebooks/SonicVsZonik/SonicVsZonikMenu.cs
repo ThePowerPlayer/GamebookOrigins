@@ -5,8 +5,8 @@ using UnityEngine;
 public class SonicVsZonikMenu : MonoBehaviour
 {
 	public static int index;
-	private const int indexMin = 1;
-	private const int indexMax = 7;
+	public const int indexMin = 1;
+	public const int indexMax = 7;
 	[SerializeField] private GameObject ButtonExit;
 	[SerializeField] private GameObject ButtonNext;
 	[SerializeField] private GameObject ButtonPrevious;
@@ -21,12 +21,12 @@ public class SonicVsZonikMenu : MonoBehaviour
 		ButtonNext.SetActive(true);
 		ButtonPrevious.SetActive(false);
 		ButtonStart.SetActive(false);
-		CheckButtons();
+		ChangeButtons();
 		TextObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
 		HeaderObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
     }
 	
-	public void CheckButtons() {
+	public void ChangeButtons() {
 		if (index == indexMin) {
 			ButtonExit.SetActive(true);
 			ButtonPrevious.SetActive(false);
@@ -51,7 +51,7 @@ public class SonicVsZonikMenu : MonoBehaviour
         if (index < indexMax) {
 			index++;
 		}
-		CheckButtons();
+		ChangeButtons();
 		TextObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
 		HeaderObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
     }
@@ -61,7 +61,7 @@ public class SonicVsZonikMenu : MonoBehaviour
         if (index > indexMin) {
 			index--;
 		}
-		CheckButtons();
+		ChangeButtons();
 		TextObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
 		HeaderObject.GetComponent<SonicVsZonikMenuText>().UpdateText();
     }
