@@ -38,14 +38,13 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	public void UpdatePosX(GameObject Button, float x) {
-		// TODO: Why does this transformation require a shift to the right by an additional 800 units?
-		Button.transform.position = new Vector3(x + 800, Button.transform.position.y, Button.transform.position.z);
+		// Shift to the right by an additional 1000 units
+		Button.transform.position = new Vector3(x + 1000, Button.transform.position.y, Button.transform.position.z);
 	}
 	
 	public void ChangeButtons() {
 		// Determine how many choices are possible from the current section,
 		// and update the number, position, and text of the buttons accordingly.
-		// TODO: Make the buttons actually work when pressed.
 		int i = index;
 		
 		ButtonSectionA.SetActive(false);
@@ -53,12 +52,12 @@ public class SonicVsZonikGame : MonoBehaviour
 		ButtonSectionC.SetActive(false);
 		ButtonSectionD.SetActive(false);
 		
-		switch(SVZ.choicesLibrary[i].Length)
+		switch(SVZ.sectionLibrary[i].choices.Length)
 		{
 			case 1:
 				UpdatePosX(ButtonSectionA, 225);
 				
-				ButtonSectionAText.text = SVZ.choicesLibrary[i][0].ToString();
+				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				break;
@@ -66,8 +65,8 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionA, 100);
 				UpdatePosX(ButtonSectionB, 400);
 				
-				ButtonSectionAText.text = SVZ.choicesLibrary[i][0].ToString();
-				ButtonSectionBText.text = SVZ.choicesLibrary[i][1].ToString();
+				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -77,9 +76,9 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionB, 225);
 				UpdatePosX(ButtonSectionC, 500);
 				
-				ButtonSectionAText.text = SVZ.choicesLibrary[i][0].ToString();
-				ButtonSectionBText.text = SVZ.choicesLibrary[i][1].ToString();
-				ButtonSectionCText.text = SVZ.choicesLibrary[i][2].ToString();
+				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionCText.text = SVZ.sectionLibrary[i].choices[2].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -91,10 +90,10 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionC, 380);
 				UpdatePosX(ButtonSectionD, 640);
 				
-				ButtonSectionAText.text = SVZ.choicesLibrary[i][0].ToString();
-				ButtonSectionBText.text = SVZ.choicesLibrary[i][1].ToString();
-				ButtonSectionCText.text = SVZ.choicesLibrary[i][2].ToString();
-				ButtonSectionDText.text = SVZ.choicesLibrary[i][3].ToString();
+				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionCText.text = SVZ.sectionLibrary[i].choices[2].ToString();
+				ButtonSectionDText.text = SVZ.sectionLibrary[i].choices[3].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
