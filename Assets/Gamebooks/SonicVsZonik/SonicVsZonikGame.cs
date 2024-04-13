@@ -38,8 +38,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	public void UpdatePosX(GameObject Button, float x) {
-		// Shift to the right by an additional 1000 units
-		Button.transform.position = new Vector3(x + 1000, Button.transform.position.y, Button.transform.position.z);
+		// Shift to the right by an additional 800 units
+		Button.transform.position = new Vector3(x + 800, Button.transform.position.y, Button.transform.position.z);
 	}
 	
 	public void ChangeButtons() {
