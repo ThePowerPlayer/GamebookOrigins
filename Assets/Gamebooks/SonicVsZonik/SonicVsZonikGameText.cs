@@ -382,272 +382,272 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section61 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The tunnel slowly curves around to the right, its grey metal walls covered in a film of Mega Mack. Here and there, there are even puddles of it on the floor. Being careful to avoid these, Sonic and Tails slowly walk along, trying to think of anything to take their minds off the awful smell! After a little while, they come to another branch in the tunnel. What should Sonic and Tails do:\n\nFollow the left-hand tunnel?\t\t\tTurn to <b>101</b>\nFollow the right-hand tunnel?\t\t\tTurn to <b>89</b>",
+		choices = new int[2] {101, 89}
 	};
 
 	public static Section section62 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails set about the place! Sonic spins around like a maniac, smashing everything within reach. Tails is a little slower, but he manages his fair share and in no time the whole place is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>. If the score is 3 or more, what should Sonic and Tails do:\n\nGo and look in the other room (if they haven't been there already)?\t\t\tTurn to <b>236</b>\nGo through the door labelled 'Production Line'?\t\t\tTurn to<b>248</b>",
+		choices = new int[2] {236, 248}
 	};
 
 	public static Section section63 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The poor post has been well and truly mashed! Even with Sonic's super-strength, he cannot raise it. After half an hour of trying, he decides to leave it where it is. The view from the hilltop is superb and in the distance Sonic can see a little river with a bridge, and beyond that a small wood.\n\n'That looks like a good way to go,' says Sonic out loud. Turn to <b>177</b>.",
+		choices = new int[1] {177}
 	};
 
 	public static Section section64 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails find themselves in a broad, well-lit tunnel. High above them they can hear the hustle and bustle of the city, but down here all is quiet. Which way will they go now:\n\nTo the right?\t\t\tTurn to <b>241</b>To the left?\t\t\tTurn to <b>48</b>",
+		choices = new int[2] {241, 48}
 	};
 
 	public static Section section65 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Tails sees the gate to the Casino Zone first, and points it out to Sonic. The glaring neon signs above are a very welcome sight. Without slowing down at all, Sonic aims the boat straight at the gate.\n\n'We're going to CRASH!!' screams Tails.\n\n'No we're NOT!' shouts Sonic, and a split second before they reach the gate, Sonic grabs Tails and goes into a spin that carries both him and his furry friend flying through the gate. Turn to <b>226</b>.",
+		choices = new int[1] {226}
 	};
 
 	public static Section section66 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Leaving the fruit machine behind, Sonic and Tails walk further into the casino. Surprisingly, the place is deserted. Usually the casino is bustling with creatures from all over Mobius who've come to play the games.\n\n'Let's go and look at the pinball machines,' says Sonic. 'They're cool.'\n\nThe casino was famous for its pinball machines, though even Sonic had to admit that they had been a bit of a pain when Robotnik had had a go at them, but that was all in the past.\n\n'All right then,' says Tails. 'But just a quick look.'\n\nSonic is already charging off towards the pinball hall before Tails finishes speaking. Turn to <b>113</b>.",
+		choices = new int[1] {113}
 	};
 
 	public static Section section67 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "At last the mighty Rexon has been beaten, and he is now just a pile of scrap at Sonic's feet. Rexons are known to be great collectors of rings, and not far away Tails manages to find a hoard of twenty-five of the little beauties. Add them to Sonic's Stuff. Now it's time to get back to the heli-chopper and the Mystic Cave. Turn to <b>121</b>.",
+		choices = new int[1] {121}
 	};
 
 	public static Section section68 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic reaches out and presses the red button. The skimmer's engines spring to life. Sonic pulls the joystick back and the skimmer flies into the air.\n\n'See, old friend, nothing to this flying. Anyone can do it!' The skimmer judders and wobbles as Sonic struggles to control it.\n\n'Push the stick forward!' shouts Tails. Sonic does it and the skimmer moves off after Zonik. Even Sonic thinks it might have been better to have let Tails fly the skimmer! Turn to <b>114</b>.",
+		choices = new int[1] {114}
 	};
 
 	public static Section section69 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The little boat bobs its way quite happily across the sea, apparently just as good at floating on oil as on water. Neither Sonic nor Tails has any idea how long the voyage is going to take. The Aquatic Ruin is huge, and it always took Sonic and Tails ages to get through the normal way.\n\nSonic is pondering this problem, when the sea suddenly bursts into a fountain right in front of the boat. A split second later, it is followed by a sleek silver shape. The shape makes straight for the boat, a huge mouth opening to reveal row upon row of sharp teeth. In an instant the boat is hit, and the prow becomes a radically different shape!\n\n'CHOP CHOP!' exclaims Tails. Should Sonic and Tails stay and fight Chop Chop (turn to <b>193</b>), or should they try and sail the boat away (turn to <b>279</b>)?",
+		choices = new int[2] {193, 279}
 	};
 
 	public static Section section70 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "'Do you know something,' says Sonic, 'when this adventure's over, it would be really cool to spend just a few hours playing a game or something.'\n\n'Too right,' says Tails. 'And get a burger or two in as well!'\n\nSonic and Tails can either go to the left (turn to <b>27</b>) or to the right (turn to <b>268</b>).",
+		choices = new int[2] {27, 268}
 	};
 
 	public static Section section71 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "A brilliant blue beam shoots out of the energy gun and surrounds the hover ship in an odd blue mist. 'Come on, Tails, let's GET OUT OF HERE!!!' Sonic screams, slamming the boat into gear. Thanks to the energy gun, Sonic and Tails have escaped. Turn to <b>65</b>.",
+		choices = new int[1] {65}
 	};
 
 	public static Section section72 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails start destroying the place! Sonic spins around like a maniac, smashing everything in his path. Tails is a little slower, but he manages his fair share and in no time everything is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>.\n\nIf the score is 3 or more, what should Sonic and Tails do?\n\nGo and look in the other room (if they haven't been there already)?\t\t\tTurn to <b>59</b>Go through the door labelled 'Production Line'?\t\t\tTurn to <b>248</b>",
+		choices = new int[3] {275, 59, 248}
 	};
 
 	public static Section section73 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The inside of the hut is very dim, and although Sonic and Tails strain their eyes, they cannot see very far inside. But they can hear something breathing and moving about! Raising his paw, Sonic knocks politely on the door.\n\n'Who is it?' splutters a voice from inside. It was the muffled voice of a person with a cold.\n\n'Sonic -' a sharp nudge in the ribs reminds Sonic to say,'- and Tails, of course.'\n\n'Come in, then,' says the voice.\n\nIt takes a few seconds for their eyes to get used to the darkness of the hut, but then Sonic and Tails can see a small homely room. Sitting in a well-stuffed armchair is the owner of the hut. Turn to <b>91</b>.",
+		choices = new int[1] {91}
 	};
 
 	public static Section section74 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Despite a thorough search of the cave, neither Tails nor Sonic finds anything. It looks like the only way out of this cave is to try and open the steel door. Sonic and Tails look at the lever by its side.\n\n'After you,' says Sonic, gesturing for Tails to try the lever.\n\n'No, after you,' replies Tails.\n\n'No, really,' says Sonic.\n\n'No, you try it, Sonic. I insist!' smiles Tails, bowing gracefully to his friend.\n\nGingerly, Sonic reaches out and pulls the lever, and the door slides open with a faint wooshing sound. 'There you are! Nothing to it,' says Sonic.\n\n'Let's hope you feel the same way about those, then!' says Tails, pointing to the two Guardbots who have suddenly appeared!\n\nSonic and Tails must fight the Guardbots using Strength. The Guardbots have a fighting score of 5, but both can attack Sonic each round. Tails will help Sonic. If our heroes win, turn to <b>256</b>. If Sonic and Tails are beaten by the Guardbots, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
+		choices = new int[1] {256}
 	};
 
 	public static Section section75 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "How will Sonic pick up the needle? If he uses his hands, turn to <b>140</b>. If he uses a pair of tweezers (if he has them ... the Zone Chip might help!), turn to <b>219</b>.",
+		choices = new int[2] {140, 219}
 	};
 
 	public static Section section76 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "As the emerald flies through the air, Tails hovers and reaches out for the gem with both paws. He misses it, and it sails through the air into the paws of the waiting Zonik!\n\n'You want some of this?' says Zonik waving the emerald at Tails.\n\nSonic is back on his feet now and he looks on in horror at what has happened.\n\n'It would be so easy to destroy you now,' snarls Zonik. 'But I think I shall save that pleasure till later.' With that, he goes into a supersonic spin and vanishes.\n\nThe explosion destroyed all of Sonic's rings (if he didn't have any, then he loses a life instead). It also broke the energy gun, though Sonic hangs on to it, in case he meets someone who can fix it! Depressed by this failure, Sonic and Tails make their way out of the cave. Turn to <b>191</b>.",
+		choices = new int[1] {191}
 	};
 
 	public static Section section77 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The door leads into a room so dark that neither Sonic nor Tails can see further than their noses. Groping around, Tails suddenly says, 'I think I've got something here, Sonic.'\n\nTails passes the object to Sonic and a few seconds later the room is lit up by the beam from a torch in Sonic's hand.\n\n'Nice find, Tails,' says Sonic as he plays the beam around the room and to his delight sees a pile of 10 rings in the far corner! Add them and the torch to Sonic's Stuff. The only way out of this room is to leave the way the heroes came in. Turn to <b>101</b>.",
+		choices = new int[1] {101}
 	};
 
 	public static Section section78 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic desperately tries to control the cloud skimmer as it flies through the clouds. One touch and our heroes will be done for! Roll the die and add the result to Quick Wits. Then roll the die again and add the result to Sonic's Agility. If both scores are 7 or more, turn to <b>35</b>. If either score is less than 7, turn to <b>165</b>.",
+		choices = new int[2] {35, 165}
 	};
 
 	public static Section section79 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic pulls out the torch and the passage is illuminated in a bright white light. Up ahead, he can see that the passage opens into a large cavern. Pointing the torch at the ground reveals something strange.\n\n'Look at that. What do you make of it, Tails?' asks Sonic. The floor of the cave is covered in scuffs and scratches.\n\n'Looks like something heavy has been dragged this way,' replies Tails.\n\n'Yes, and look at this!' Sonic stoops and points at the ground.\n\n'It's a spine just like yours!' exclaims Tails.\n\n'Yep. I reckon our friend Zonik is pretty close.'\n\n'What about these scratches though? And look at those lumps of metal,' says Tails, pointing out some jagged pieces of steel a little way up the passage.\n\nShould Sonic and Tails go and look in the big cavern (turn to <b>88</b>), or should they retrace their steps and explore the other passageway (turn to <b>267</b>)?",
+		choices = new int[2] {88, 267}
 	};
 
 	public static Section section80 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "After another short walk, the pathway opens into a large clearing in the jungle. In the middle is a small hut made of twigs, leaves and other bits and pieces from the forest. From the small chimney comes a thin wisp of white smoke. There must be someone at home! Should Sonic and Tails go and see who lives in the hut (turn to <b>73</b>), or should they carry on looking for some way off the island (turn to <b>266</b>)?",
+		choices = new int[2] {73, 266}
 	};
 
 	public static Section section81 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic crouches down and pulls the lever. It's a bit stiff, but eventually it moves. He waits for a second or so, but nothing happens. It looks like the only way out of this cave is to try and open the steel door. Sonic and Tails look at the lever by the side of the door.\n\n'After you,' says Sonic, gesturing for Tails to try the lever.\n\n'No, after you,' replies Tails.\n\n'No, really,' says Sonic.\n\n'No, you try it, Sonic. I insist!' smiles Tails, bowing gracefully to his friend.\n\nGingerly, Sonic reaches out and pulls the lever. The door slides open with a faint wooshing sound.\n\n'There you are. Nothing to it,' says Sonic. Turn to <b>256</b>.",
+		choices = new int[1] {256}
 	};
 
 	public static Section section82 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Soon, the casino is left far behind and the heli-chopper is cruising high above the peaks and volcanoes of the Hilltop Zone.\n\n\'I'm pleased we don't have to get through that lot on foot,' says Tails.\n\n'Yeah, me too,' agrees Sonic, remembering a previous run-in with a Rexon. Down below, something glints among the hills.\n\n'I wonder what that is,' says Sonic, pointing to the object through the window.\n\n'Well, there's a lever here that says \"Land\", if you want to have a look ...' suggests Tails.\n\nShould Sonic land the heli-chopper (turn to <b>105</b>), or should they ignore whatever it is and carry on towards the Mystic Caves (turn to <b>67</b>)?",
+		choices = new int[2] {105, 67}
 	};
 
 	public static Section section83 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "This tunnel only goes on for a few metres before dividing into three. Which tunnel will they follow now:\n\nThe right-hand one?\t\t\tTurn to <b>103</b>The middle one?\t\t\tTurn to <b>141</b>The left-hand one?\t\t\tTurn to <b>224</b>",
+		choices = new int[3] {103, 141, 224}
 	};
 
 	public static Section section84 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>97</b>.",
+		choices = new int[2] {171, 97}
 	};
 
 	public static Section section85 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Tails climbs into the pilot's seat and looks at the controls. As well as the joystick, there are several weird-looking dials and a big red button. This is all very complicated! There isn't time to sit and think things out, but Tails has the advantage of being a natural flyer. Reaching out, he presses the red button, and the skimmer's engines spring to life. Then he pulls the joystick back and the skimmer flies into the air. Turn to <b>68</b>.",
+		choices = new int[1] {68}
 	};
 
 	public static Section section86 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The super duo speed out into the game at terrific speed. Hurtling towards them, they can see a large target flashing with bright green lights. First Sonic, and then Tails, hits the target square in the middle. If this is the first time that Sonic and Tails have been to this target, they have scored 10 points. Add them to Sonic's Point Score.\n\nNow roll the die and add the result to Sonic's Speed. If the score is less than 6, turn to <b>283</b>. If the score is 6 or more, then Sonic and Tails may go to:\n\nA bouncer\t\t\tTurn to <b>20</b>\nAnother bouncer\t\t\tTurn to<b>265</b>\nThe central spinner\t\t\tTurn to <b>124</b>",
+		choices = new int[3] {20, 265, 124}
 	};
 
 	public static Section section87 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic gets out the small bag labelled 'Sky Net'.\n\n'Looks like a good time to try using this thing,' he shouts to Tails. The bag has a small label attached to it marked 'Instructions'. It reads: 'Throw bag at enemy'.\n\n'Oh well, here we go, then,' says Sonic as he throws the bag at Zonik's cloud skimmer. The bag flies through the air. There is a bright flash and a gigantic mega net appears out of nowhere. Zonik flies straight into it and his skimmer is instantly entangled.\n\n'ALL RIGHT!' yells Tails.\n\nZonik's skimmer spirals out of control towards the planet's surface. Sonic and Tails follow. Turn to <b>214</b>.",
+		choices = new int[1] {214}
 	};
 
 	public static Section section88 = new Section()
 	{
-		text = "",
+		text = "The passage walls open out above their heads. The cavern is very large and, even with the torch, its middle is hidden by an inky blackness. Suddenly, Tails' foot hits something hard.\n\n'Grrrrr! Gnssh!' growls the unseen thing.\n\nTails feels something shoot past his leg. 'SONIC! There's something in here!'\n\n'GNSSSH!!!'\n\nSonic can see it now! Dimly lit, a few metres away is the unmistakable outline of a Crawlton! Turn to <b>129</b>.",
 		choices = new int[0] {}
 	};
 
 	public static Section section89 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The tunnel goes on and on, all the time slowly curving to the right. Here and there are odd tangles of pipes, piles of oily rags and other rubbish stacked along the edges of the tunnel. After a few minutes, Tails stops and says, 'Look, Sonic ... a door!'\n\nTails is right. Over on the right-hand wall is a small rusty door, half open. Should Sonic and Tails go through the door (turn to <b>77</b>), or should they continue down the tunnel (turn to <b>101</b>)? '",
+		choices = new int[2] {77, 101}
 	};
 
 	public static Section section90 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The two skimmers twist and turn this way and that all over the sky. Eventually, Sonic and Tails' skimmer can't take any more. It buckles under yet another of Zonik's flying kicks and spirals out of control towards the planet's surface. Zonik follows! Turn to <b>214</b>.",
+		choices = new int[1] {214}
 	};
 
 	public static Section section91 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "'Hi, I'm Whiffy. Pleased to meet you,' the furry black-and-white creature says, holding out a paw towards Sonic.\n\n'Hello,' replies Sonic.\n\n'I've heard a lot about you,' says Whiffy. 'I used to live in the Green Hills a few years ago, but being a skunk doesn't tend to make you very popular, so I came to live here.' Whiffy goes on to tell Sonic and Tails that he has seen lots of Robotnik' s Badniks around lately, and that they seem to be looking for something, though unfortunately he doesn't know what.\n\nAfter a long chat, Whiffy gives Sonic a map. 'This will show you the way to a speedboat that's moored on the other side of the island. There are even instructions on how to drive it on the other side of the map!'\n\nJust as Sonic and Tails are about to leave, Whiffy says, 'Oh, one more thing, take this, it might come in useful sometime.' He hands over a small brown bottle with a cork jammed tightly into it. Add this to Sonic's Stuff and then turn to <b>28</b>.",
+		choices = new int[1] {28}
 	};
 
 	public static Section section92 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Just as they both reach the rings, a large net falls from the roof and catches Sonic and Tails underneath it. A TRAP! They struggle for a few minutes, but it is no use - they are held fast.\n\n'If you don't want to be captured, you'd best come with us,' squeals a high-pitched voice. Several small furry creatures appear. They start to chew away at the net with their small pointed teeth and in no time our heroes are free.\n\n'Come quickly ... very quickly,' warns one of the creatures. Sonic and Tails have been taken by surprise. The creatures don't look very friendly but, then again, they haven't attacked.\n\n'Quickly, quickly. Come with us, or the robots will be here,' warns the leader of the creatures.\n\nShould Sonic and Tails go with the creatures (turn to <b>11</b>), or should they try to run away (turn to <b>213</b>)?",
+		choices = new int[2] {11, 213}
 	};
 
 	public static Section section93 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Our heroes have seen off the Slicer, and they take a short breather. Suddenly, the rubbish around them starts to heave and jerk. Another Slicer appears and then another, and another – there are hundreds of them.\n\n'I don't think this is a good place to be right now,' says Sonic rather obviously. 'Come on, Tails! Run!!!'\n\nLuckily for both of them, the Slicers aren't very fast and they soon manage to escape. Unfortunately, it looks like using the footpath is out of the question. Should Sonic and Tails go to the raft (turn to <b>257</b>), or to the strange-looking pole (turn to <b>44</b>)?",
+		choices = new int[2] {257, 44}
 	};
 
 	public static Section section94 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Quick as a flash, Sonic flips over backwards and catches the bouncer with his foot and Tails with his right paw, dragging himself and his friend round on to the bouncer. They score 5 points if this is the first time they have been here. Now our friends can either bounce back to the spinner (turn to <b>124</b>), or they can jump to another bouncer on the right (turn to <b>37</b>).",
+		choices = new int[2] {124, 37}
 	};
 
 	public static Section section95 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "'This one stops just inside the West Gate. Take your seats, please.'\n\nSonic and Tails sit down, and the bus moves off. 'Well, I suppose it beats walking,' says Tails as he looks out of the window. Outside the landscape rushes past, the bus really is moving very quickly and in no time at all the gates of Metropolis loom in front of them.\n\n'We're going to have to be careful in here, Tails,' says Sonic. 'I think the best thing to do is to pretend I'm Zonik.'\n\n'What about me then?' asks Tails.\n\n'Perhaps you can be Taylz, or something,' replies Sonic.\n\nThe bus finally comes to a stop and its door opens. Metropolis is a very busy place, and there are people and robots everywhere, although none of them seems to be taking any notice of our friends. Where will they go from here?\n\nExplore the area on foot?\t\t\tTurn to <b>259</b>Head for the subway?\t\t\tTurn to <b>64</b>",
+		choices = new int[2] {259, 64}
 	};
 
 	public static Section section96 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Our friends go into a shallow dive to pick up speed, and they are soon directly below Zonik' s cloud skimmer. Then, climbing again, they fly to within touching distance of the enemy! Turn to <b>158</b>.",
+		choices = new int[1] {158}
 	};
 
 	public static Section section97 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Using every bit of charm he's got, Sonic manages to persuade the man. Sonic discovers that he is the casino's commissionaire (a very important person!). Sonic tells the commissionaire that it was Zonik, and not himself, who was responsible for all the damage to the casino. Furthermore, Sonic offers to help the commissionaire put right all the damage. Turn to <b>2</b>.",
+		choices = new int[1] {2}
 	};
 
 	public static Section section98 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic can't believe what is happening. Tails has been his friend ever since he can remember. Determined to catch up with Tails, Sonic leaps off the platform and tumbles expertly on to the floor of the valley with not a single spine out of place.\n\nTails is already a long way off up the valley, and Sonic hares off after him. Sonic moves a lot faster than Tails, and he is catching him up easily when disaster strikes. Roll the die and add the result to Sonic's Quick Wits. If the score is 7 or more, turn to <b>154</b>. If the score is less than 7, turn to <b>284</b>.",
+		choices = new int[2] {154, 284}
 	};
 
 	public static Section section99 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Our heroes decide to go by the normal route, despite the fact that everything is covered in horrible, sticky black oil. The jetty leads slowly down into the tunnel disappearing under the waves. Usually, this tunnel allows excellent views of the teeming fish that live round the city, but today all Sonic and Tails can see is the pitch-black sludge of oil. Turn to <b>56</b>.",
+		choices = new int[1] {56}
 	};
 
 	public static Section section100 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "A hedgehog, even a blue one, could very easily go mad in a place like this. Soon Sonic and Tails find themselves at another junction. Check the number of points you have scored so far. If it's more than 20, turn to <b>288</b>. If you have scored less than 20, where will Sonic and Tails go now?\n\nFollow the left tunnel?\t\t\tTurn to <b>125</b>Stay in this tunnel?\t\t\tTurn to <b>272</b>",
+		choices = new int[2] {125, 272}
 	};
 
 	public static Section section101 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "After what seems like ages, the tunnel opens out into a huge domed room, its walls lined with a maze of pipes. The air is filled with hissing and gurgling and the sound of distant machinery. This is definitely not a nice place! 'I'm beginning to wonder whether it was such a good idea to come in here,' says Tails.\n\nSonic looks around and thinks. So far they haven't seen a single sign of the impostor Sonic since they entered the plant. If it wasn't for the fact that the buggy had been broken, Sonic would have doubted whether the impostor existed at all. Maybe it was just Tails and his imaginations? 'He must have come this way, Tails. All we've got to do is find him.'\n\nTails, who was still holding his nose, replies, 'Well, I hope we find this other Sonic soon. I don't think that I can stand this smell much longer.' Now, since Tails had his nose pinched, the words sounded a little different. Tails had meant to say Sonic, but what he actually said was Zonik. 'At least we've got a name for the impostor now ... we'll call him Zonik!'\n\nTurn to <b>217</b>.",
+		choices = new int[1] {217}
 	};
 
 	public static Section section102 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Somehow the fearless duo have managed to beat the hover ship, which slowly spirals down before crashing into the oil. Sonic and Tails hear the ship hit some rocks, just below the surface of the oil. 'Sparks pierce the darkness and the oil catches light!\n\n'Do you think Robotnik was really in there?' asks Tails. Sonic looks at him and shrugs.\n\n'Come on, Tails, let's GET OUT OF HERE!!!' Sonic screams, slamming the boat into gear. Turn to <b>65</b>.",
+		choices = new int[1] {65}
 	};
 
 	public static Section section103 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The tunnel slowly begins to wind downhill, and become really rather dark. Eventually, our friends find themselves at yet another intersection. Should they go:\n\nTo the right?\t\t\tTurn to <b>83</b>To the left?\t\t\tTurn to <b>224</b>Straight on?\t\t\tTurn to <b>282</b>",
+		choices = new int[3] {83, 224, 282}
 	};
 
 	public static Section section104 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Standing a few paces in front of him is the familiar figure of his friend Tails, who has, it must be said, a rather odd look in his eye. There is a terrible silence, that seems to last ages, before Tails finally reaches out with a tree branch. Sonic gratefully grabs it. Tails pulls the soaking hedgehog out of the water. Turn to <b>3</b>.",
+		choices = new int[1] {3}
 	};
 
 	public static Section section105 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic pulls the lever that says 'Land' and the heli-chopper does just that, gliding slowly down to the ground only a few metres away from the shiny object.\n\nSonic and Tails climb out of the machine to have a closer look at the thing. It's a silver dome, half buried in some mud. The dome is about half a metre across. Something about it is familiar to Sonic, but he can't quite figure out what it is. Suddenly, the dome moves and Sonic and Tails both realize what they've been looking at. The gigantic head of a Rexon slowly rises from the mud. Our heroes have just been looking at its top!\n\nThere might still be time to run to the heli-chopper and get out of here. Should Sonic and Tails do this (turn to <b>263</b>), or should they stand and fight the Rexon (turn to <b>220</b>)?",
+		choices = new int[2] {263, 220}
 	};
 
 	public static Section section106 = new Section()
@@ -658,19 +658,19 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section107 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic reaches for the tube of glue that the rats gave him. With a careful shot he might be able to jam the Badnik' s missile launchers. Sonic takes aim and squeezes the tube. The glue shoots through the air in a graceful arc. A direct hit! The glue seeps into the missile launchers, but it has no effect whatsoever! All the glue has been used (delete it from Sonic's Stuff), and now our friends will have to try something else. What should they do?\n\nFight the Badnik robot?\t\t\tTurn to <b>14</b>Use the energy gun?\t\t\tTurn to <b>14</b>Try to roll the Badnik over?\t\t\tTurn to <b>53</b>'",
+		choices = new int[3] {14, 230, 53}
 	};
 
 	public static Section section108 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Now it's time to fight! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). Tails will help Sonic. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
+		choices = new int[2] {136, 90}
 	};
 
 	public static Section section109 = new Section()
 	{
-		text = "",
+		text = "The platform is only a short drop, and both our friends make it easily. Below them they can see the game, stretching away into the distance. Sonic moves closer to the edge of the platform to have a better look and doesn't notice the trip wire! BOOOOM!!! There is a massive explosion, catapulting Sonic and Tails (none too gracefully) to the ground.\n\n'That's never happened before!' says Sonic, picking himself up, trying to act as if neither his body nor pride has been injured! Remove 5 credits from Sonic's Stuff.\n\nTo the right, Sonic and Tails can see a row of targets. Directly below there is a spinner. Do they:\n\nAim at the targets?\t\t\tTurn to <b>295</b>\nDrop into the spinner?\t\t\tTurn to <b>124</b>",
 		choices = new int[0] {}
 	};
 
