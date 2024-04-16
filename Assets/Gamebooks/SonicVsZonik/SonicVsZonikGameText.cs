@@ -400,7 +400,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section64 = new Section()
 	{
-		text = "Sonic and Tails find themselves in a broad, well-lit tunnel. High above them they can hear the hustle and bustle of the city, but down here all is quiet. Which way will they go now:\n\nTo the right?\t\t\tTurn to <b>241</b>To the left?\t\t\tTurn to <b>48</b>",
+		text = "Sonic and Tails find themselves in a broad, well-lit tunnel. High above them they can hear the hustle and bustle of the city, but down here all is quiet. Which way will they go now:\n\nTo the right?\t\t\tTurn to <b>241</b>\nTo the left?\t\t\tTurn to <b>48</b>",
 		choices = new int[2] {241, 48}
 	};
 
@@ -532,8 +532,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section86 = new Section()
 	{
-		text = "The super duo speed out into the game at terrific speed. Hurtling towards them, they can see a large target flashing with bright green lights. First Sonic, and then Tails, hits the target square in the middle. If this is the first time that Sonic and Tails have been to this target, they have scored 10 points. Add them to Sonic's Point Score.\n\nNow roll the die and add the result to Sonic's Speed. If the score is less than 6, turn to <b>283</b>. If the score is 6 or more, then Sonic and Tails may go to:\n\nA bouncer\t\t\tTurn to <b>20</b>\nAnother bouncer\t\t\tTurn to<b>265</b>\nThe central spinner\t\t\tTurn to <b>124</b>",
-		choices = new int[3] {20, 265, 124}
+		text = "The super duo speed out into the game at terrific speed. Hurtling towards them, they can see a large target flashing with bright green lights. First Sonic, and then Tails, hits the target square in the middle. If this is the first time that Sonic and Tails have been to this target, they have scored 10 points. Add them to Sonic's Point Score.\n\nNow roll the die and add the result to Sonic's Speed. If the score is less than 6, turn to <b>283</b>. If the score is 6 or more, then Sonic and Tails may go to:\n\nA bouncer\t\t\tTurn to <b>20</b>\nAnother bouncer\t\t\tTurn to <b>265</b>\nThe central spinner\t\t\tTurn to <b>124</b>",
+		choices = new int[4] {283, 20, 265, 124}
 	};
 
 	public static Section section87 = new Section()
@@ -616,7 +616,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section100 = new Section()
 	{
-		text = "A hedgehog, even a blue one, could very easily go mad in a place like this. Soon Sonic and Tails find themselves at another junction. Check the number of points you have scored so far. If it's more than 20, turn to <b>288</b>. If you have scored less than 20, where will Sonic and Tails go now?\n\nFollow the left tunnel?\t\t\tTurn to <b>125</b>Stay in this tunnel?\t\t\tTurn to <b>272</b>",
+		text = "A hedgehog, even a blue one, could very easily go mad in a place like this. Soon Sonic and Tails find themselves at another junction. Check the number of points you have scored so far. If it's more than 20, turn to <b>288</b>. If you have scored less than 20, where will Sonic and Tails go now?\n\nFollow the left tunnel?\t\t\tTurn to <b>125</b>\nStay in this tunnel?\t\t\tTurn to <b>272</b>",
 		choices = new int[2] {125, 272}
 	};
 
@@ -634,7 +634,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section103 = new Section()
 	{
-		text = "The tunnel slowly begins to wind downhill, and become really rather dark. Eventually, our friends find themselves at yet another intersection. Should they go:\n\nTo the right?\t\t\tTurn to <b>83</b>To the left?\t\t\tTurn to <b>224</b>Straight on?\t\t\tTurn to <b>282</b>",
+		text = "The tunnel slowly begins to wind downhill, and become really rather dark. Eventually, our friends find themselves at yet another intersection. Should they go:\n\nTo the right?\t\t\tTurn to <b>83</b>\nTo the left?\t\t\tTurn to <b>224</b>\nStraight on?\t\t\tTurn to <b>282</b>",
 		choices = new int[3] {83, 224, 282}
 	};
 
@@ -876,7 +876,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section143 = new Section()
 	{
 		text = "Both of them set off to walk towards the city. They find what looks like a footpath threading its way through the junk and other rubbish and mess that surrounds the Metropolis. The footpath slowly winds its way downhill towards a stinky dirty stream flowing away from the city.\n\n'Look at the state of that stream, Sonic. What a mess,' says Tails, disgusted at the sight before him.\n\n'Well, that's the Metropolis Zone all over, my friend. That's why Robotnik likes the place so much. He loves the filth!' The path follows the stream for a while, and then bends back up the hill.\n\n'Which way now, I wonder,' says Sonic, thinking aloud.\n\n'Why don't I have a little look around?' replies Tails and starts to hover. From up there, Tails can see a lot more than Sonic. 'Well, the path looks like it still goes to the city, but there's a raft moored up just around the bend,' he points down the river.\n\nWill Sonic and Tails follow the footpath (turn to <b>223</b>), or will they have a look at the raft (turn to <b>257</b>)?",
-		choices = new int[0] {}
+		choices = new int[2] {223, 257}
 	};
 
 	public static Section section144 = new Section()
@@ -1679,7 +1679,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section277 = new Section()
 	{
-		text = "Quick as a flash, Sonic realizes that Robotnik has mistaken him for the . evil Zonik. Pushing Tails down out of sight, he replies: 'I am sorry, master, I'll make my way there right now.'\n\n'Make sure you do, I have important business elsewhere to attend to. When I return, you had better be there. And also try and keep out of sight. You've already done far too much damage, especially to the Aquatic Zone.'\n\n'Sorry, master, I got carried away,' says Sonic.\n\nThat's as maybe, but I shall have to put it right, now,' the voice pauses. 'Don't worry, your time will come soon.' The voice tries to sound friendly. 'Now, off to the Metropolis Zone ... and quickly!' With that, the hover ship zooms off. Tails sits up and looks at Sonic.\n\n'The Metropolis Zone?' he says, rather confused.\n\n'Yes, and as quick as we can,' replies Sonic.\n\nTurn to <b>65</b>.",
+		text = "Quick as a flash, Sonic realizes that Robotnik has mistaken him for the evil Zonik. Pushing Tails down out of sight, he replies: 'I am sorry, master, I'll make my way there right now.'\n\n'Make sure you do, I have important business elsewhere to attend to. When I return, you had better be there. And also try and keep out of sight. You've already done far too much damage, especially to the Aquatic Zone.'\n\n'Sorry, master, I got carried away,' says Sonic.\n\n'That's as maybe, but I shall have to put it right, now,' the voice pauses. 'Don't worry, your time will come soon.' The voice tries to sound friendly. 'Now, off to the Metropolis Zone ... and quickly!' With that, the hover ship zooms off. Tails sits up and looks at Sonic.\n\n'The Metropolis Zone?' he says, rather confused.\n\n'Yes, and as quick as we can,' replies Sonic.\n\nTurn to <b>65</b>.",
 		choices = new int[1] {65}
 	};
 
@@ -1763,7 +1763,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section291 = new Section()
 	{
-		text = "Needless to say, Tails had something of a story to tell Sonic!'... so you see, he, it – whatever it is – looked just like you and every time it touched me, it burnt. Look!' Tails pointed to the singe marks all over his fur. 'That's why I knew it was really you when I touched you.'\n\nSonic was baffled. Who on earth would want to go and impersonate him? 'Who can it be?' he said aloud.\n\n'I don't know,' replied Tails, 'but whoever it is, he needs to be stopped. I wouldn't be at all surprised if Robotnik wasn't behind all this.'\n\nThe idea did make sense. All the good creatures of Mobius looked to Sonic as the one thing that could stand up to Robotnik. Make Sonic look bad and Robotnik's job got a lot easier.\n\n'Right! Let's go get him, Tails.' Sonic was on his feet in an instant.\n\n'But we don't know where to look,' said Tails. Now that, annoying as it was, was a very good point.\n\n'Any ideas?' said Sonic.\n\nTails paused and thought for a while. 'I last saw it ... the Bad Sonic ... heading for the Chemical Zone, but that was about an hour ago, I think.'\n\n'Right! Let's go that way, then.' Sonic was already coiling up for a sprint ...\n\n'But when I first saw him, he was hanging around outside that secret cave ...'\n\n'What cave?' said Sonic, not really listening.\n\n'You know, the one where we used to hide rings for safe keeping, over by the little river.'\n\nWhat will they do? Will they go and look in the cave (turn to <b>9</b>)? Or should they hurry on towards the Chemical Zone (turn to <b>201</b>)?",
+		text = "Needless to say, Tails had something of a story to tell Sonic! '... so you see, he, it – whatever it is – looked just like you and every time it touched me, it burnt. Look!' Tails pointed to the singe marks all over his fur. 'That's why I knew it was really you when I touched you.'\n\nSonic was baffled. Who on earth would want to go and impersonate him? 'Who can it be?' he said aloud.\n\n'I don't know,' replied Tails, 'but whoever it is, he needs to be stopped. I wouldn't be at all surprised if Robotnik wasn't behind all this.'\n\nThe idea did make sense. All the good creatures of Mobius looked to Sonic as the one thing that could stand up to Robotnik. Make Sonic look bad and Robotnik's job got a lot easier.\n\n'Right! Let's go get him, Tails.' Sonic was on his feet in an instant.\n\n'But we don't know where to look,' said Tails. Now that, annoying as it was, was a very good point.\n\n'Any ideas?' said Sonic.\n\nTails paused and thought for a while. 'I last saw it ... the Bad Sonic ... heading for the Chemical Zone, but that was about an hour ago, I think.'\n\n'Right! Let's go that way, then.' Sonic was already coiling up for a sprint ...\n\n'But when I first saw him, he was hanging around outside that secret cave ...'\n\n'What cave?' said Sonic, not really listening.\n\n'You know, the one where we used to hide rings for safe keeping, over by the little river.'\n\nWhat will they do? Will they go and look in the cave (turn to <b>9</b>)? Or should they hurry on towards the Chemical Zone (turn to <b>201</b>)?",
 		choices = new int[2] {9, 201}
 	};
 
