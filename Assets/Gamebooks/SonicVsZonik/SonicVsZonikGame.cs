@@ -8,9 +8,10 @@ public class SonicVsZonikGame : MonoBehaviour
 {
     public static int index;
 	private int mostRecentIndex;
+	public static bool backButtonPressed;
 	private const int indexMin = 1;
 	private const int indexMax = 300;
-	Stack sectionHistory = new Stack();
+	public static Stack<int> sectionHistory = new Stack<int>();
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
 	[SerializeField] private GameObject ButtonSectionA;
@@ -25,6 +26,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	void Start()
     {
 		index = 1;
+		mostRecentIndex = 0;
 		TextObject.GetComponent<SVZ>().UpdateText();
 		SectionObject.GetComponent<SVZ>().UpdateText();
 		ChangeButtons();
@@ -50,27 +52,33 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	private void VisitIndex() {
-		AddToSectionHistory();
+		if (backButtonPressed) {
+			backButtonPressed = false;
+		}
+		else {
+			// Add to section history
+			sectionHistory.Push(index);
+		}
+		PrintSectionHistory(); // DEBUG
 		ChangeButtons();
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
     }
 	
-	private void AddToSectionHistory() {
-		sectionHistory.Push(index);
+	private void PrintSectionHistory() {
 		string sectionHistoryStr = "Section History: ";
-		foreach(var section in sectionHistory) {
+		foreach(int section in sectionHistory) {
 			sectionHistoryStr += (section + " ");
 		}
 		Debug.Log(sectionHistoryStr);
 	}
 	
-	public void UpdatePosX(GameObject Button, float x) {
+	private void UpdatePosX(GameObject Button, float x) {
 		// Shift to the right by an additional 800 units
 		Button.transform.position = new Vector3(x + 800, Button.transform.position.y, Button.transform.position.z);
 	}
 	
-	public void ChangeButtons() {
+	private void ChangeButtons() {
 		// Determine how many choices are possible from the current section,
 		// and update the number, position, and text of the buttons accordingly.
 		int i = index;
