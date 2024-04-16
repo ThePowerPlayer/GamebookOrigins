@@ -1685,143 +1685,143 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section278 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Shellcrackers are never an easy opponent, and the fight was a tough one. From the shattered remains, Sonic finds 20 rings and a broken piece of claw. Add these to Sonic's Stuff, and then turn to <b>48</b>.",
+		choices = new int[1] {48}
 	};
 
 	public static Section section279 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Frantically, both Tails and Sonic start to sail the boat away from Chop Chop, but it is no good. Suddenly, Chop Chop leaps from the sea right in front of them and takes another chunk out of the boat with his vicious jaws. Looks like they're going to have to fight him after all!\n\nTurn to <b>193</b>.",
+		choices = new int[1] {193}
 	};
 
 	public static Section section280 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic reaches over and presses the large red button marked Start! He gives it a fairly hard push. There is a click, and then a rumble behind them. Suddenly, there is a loud WHOOOSH, and a blast of air catches Tails and Sonic. It carries them up the ramp towards the start of the game.\n\n'It's a lot gentler than the old spring,' yells Sonic, though judging from Tails' expression, he's not convinced!\n\nAfter a couple of seconds the wind starts to fade away and our heroes slow down as the top of the ramp approaches. Just when it seems they aren't going to make it, the ramp curves back on itself and they find themselves falling. Turn to <b>17</b>.",
+		choices = new int[1] {17}
 	};
 
 	public static Section section281 = new Section()
 	{
-		text = "",
+		text = "Despite all their efforts, our heroes cannot even make a dent in the hover ship. Suddenly, two claw-like arms spring out of its sides and grab both Sonic and Tails in a tight grip. Slowly, the arms drag the helpless friends into the ship. Sonic and Tails have been captured by Robotnik! They have failed in their mission and must start again!\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		choices = new int[0] {}
 	};
 
 	public static Section section282 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The tunnel is made of shiny, almost black metal, and their footsteps echo on and on as they walk.\n\n'This must be the Fak-Tor-Eee basement,' says Sonic. 'I wonder what they make here?'\n\nThe tunnel forks in two again. Will Sonic and Tails go to the left (turn to <b>261</b>) or to the right (turn to <b>122</b>)?",
+		choices = new int[2] {261, 122}
 	};
 
 	public static Section section283 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails mistime their move! Missing their target, they are caught in the game's Gravity Field and are pulled down towards the bottom and the waiting <i>Flippers</i>! BANG!!! A flipper smashes them back towards the top of the game. Ouch, that hurt! Remove 5 credits from Sonic's Stuff. Turn to <b>124</b>. If Sonic doesn't have 5 credits left, turn to <b>126</b>. If the commissionaire has already given Sonic another 20 credits, then you <i>must</i> turn to <b>41</b>.",
+		choices = new int[3] {124, 126, 41}
 	};
 
 	public static Section section284 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic is just too busy trying to catch up with his friend to notice the small stream. When at last he does see it, it is too late. Sonic lands in it, with a loud SPLASH! Turn to <b>244</b>.",
+		choices = new int[1] {244}
 	};
 
 	public static Section section285 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "As Sonic stares at the paper, he suddenly realizes that it is some kind of poem.\n\n'What's it say?' asks Tails.\n\n'Well, it seems to be some kind of poem. Funny, I never took rats to be into all that sort of stuff! Still, looks like it says,\n\n<i>Left,\nRight,\nLeft,\nRight,\nUpside-down,\nThen go to ground.</i>'\n\n'Hmm. That's it then, nothing to worry about at all,' says Tails, with a silly look on his face.\n\n'It's all right. It's a map. Come on!' Sonic steps through the door and finds himself in a tunnel. It is lit by star-shaped lanterns hung along the wall, though the light they give out is very dim.\n\nOn some of the following sections you will see the * symbol. When you see this, roll the die. If the score is 1, then you must turn to <b>211</b>. Remember to make a note of the section number you were on, so that you will know where to return to!\n\nShould Sonic go to the left (turn to <b>282</b>) or to the right (turn to <b>224</b>)?",
+		choices = new int[2] {282, 224}
 	};
 
 	public static Section section286 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Tails walks around the comer, not knowing exactly what he's going to say. The man with the club sees him. It is too late to turn back now!\n\n'Ah,' the man says, 'what a pleasure it is to welcome a new customer. Tell me, sir, is this your first visit to the casino?' Tails is quite taken aback by this. 'I'm afraid we've had a little trouble with vandals recently, but I'm sure sir will still have a good time.'\n\n'Erm, what trouble might that have been?' asks Tails innocently.\n\nThe man tells Tails (at great length) how the the great Sonic the Hedgehog has just smashed up his lovely casino. The man is no less a person than the casino's commissionaire!\n\nTails is now faced with a problem. Will he tell the commissionaire about Zonik (who must be the one who has smashed up the casino) or not? Tails, being Tails, tells him and, after what seems like ages, manages to convince him that the real Sonic will try and put things right for him. Turn to <b>2</b>.",
+		choices = new int[1] {2}
 	};
 
 	public static Section section287 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic realizes that these jars must be smashed as well, otherwise the mini-Zoniks might hatch. Both he and Tails set about the jars and soon all of them lie smashed on the floor. As soon as each jar is broken, the mini-Zonik dissolves into a blobby blue mess. Turn to <b>130</b>.",
+		choices = new int[1] {130}
 	};
 
 	public static Section section288 = new Section()
 	{
-		text = "",
+		text = "Oh dear! The level of the Mack is now so high that it's beginning to lap around the feet of the intrepid heroes. Each extra point you get will now destroy 1 ring in Sonic's Stuff. If you haven't got out of the maze by the time all of the rings have been destroyed, you <i>must</i> turn to <b>25</b>. Write this number down so you do not forget it. Go back to the maze where you left it and carry on.",
 		choices = new int[0] {}
 	};
 
 	public static Section section289 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Grabbing the energy gun, Sonic quickly powers it up with 10 rings (remember to subtract them from Sonic's Stuff), and takes aim at the hover ship. Roll the die; if the score is 1, then turn to <b>159</b>. If the score is 2 or more, turn to <b>71</b>.",
+		choices = new int[2] {159, 71}
 	};
 
 	public static Section section290 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The door opens automatically to reveal a long corridor. It's all white and completely empty. The corridor soon opens into a wide room. Dominating the whole place is a motionless silver robot, standing bang in the middle of the room. Its right hand is outstretched and holds a small bag. On the wall over to the left is a red button labelled Return. Does the robot need a closer look (turn to <b>184</b>)? Or would it be a better idea to press the red Return button (turn to <b>187</b>)?",
+		choices = new int[2] {184, 187}
 	};
 
 	public static Section section291 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Needless to say, Tails had something of a story to tell Sonic!'... so you see, he, it – whatever it is – looked just like you and every time it touched me, it burnt. Look!' Tails pointed to the singe marks all over his fur. 'That's why I knew it was really you when I touched you.'\n\nSonic was baffled. Who on earth would want to go and impersonate him? 'Who can it be?' he said aloud.\n\n'I don't know,' replied Tails, 'but whoever it is, he needs to be stopped. I wouldn't be at all surprised if Robotnik wasn't behind all this.'\n\nThe idea did make sense. All the good creatures of Mobius looked to Sonic as the one thing that could stand up to Robotnik. Make Sonic look bad and Robotnik's job got a lot easier.\n\n'Right! Let's go get him, Tails.' Sonic was on his feet in an instant.\n\n'But we don't know where to look,' said Tails. Now that, annoying as it was, was a very good point.\n\n'Any ideas?' said Sonic.\n\nTails paused and thought for a while. 'I last saw it ... the Bad Sonic ... heading for the Chemical Zone, but that was about an hour ago, I think.'\n\n'Right! Let's go that way, then.' Sonic was already coiling up for a sprint ...\n\n'But when I first saw him, he was hanging around outside that secret cave ...'\n\n'What cave?' said Sonic, not really listening.\n\n'You know, the one where we used to hide rings for safe keeping, over by the little river.'\n\nWhat will they do? Will they go and look in the cave (turn to <b>9</b>)? Or should they hurry on towards the Chemical Zone (turn to <b>201</b>)?",
+		choices = new int[2] {9, 201}
 	};
 
 	public static Section section292 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "The Crawlton disintegrates into a smoking heap of junk on the floor. Although both Tails and Sonic himself search the area thoroughly, they find nothing of any worth. Their only option now is to retrace their steps and explore the other passageway. Turn to <b>267</b>.",
+		choices = new int[1] {267}
 	};
 
 	public static Section section293 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails attack Grabber. Grabber's fighting score is usually 8, but since he's already been smashed up by Zonik, it's now only 6. If you are unsure what to do, look back to the beginning of the book for instructions.\n\nGrabber will now fight to the death, so if they lose this fight, Sonic and Tails will have to start all over again! If they defeat Grabber, turn to <b>243</b>. If Grabber beats Sonic and Tails, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
+		choices = new int[1] {243}
 	};
 
 	public static Section section294 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "It looks like the only way out of this cave is to try and open the steel door. Both of them look at the lever by the side of the door.\n\n'After you,' says Sonic, gesturing for Tails to try the lever.\n\n'No, after you,' replies Tails.\n\n'No, really,' says Sonic.\n\n'No, you try it, Sonic. I insist!' smiles Tails, bowing gracefully to his friend. Gingerly, Sonic reaches out and pulls the lever. The door slides open with a faint whooshing sound.\n\n'There you are,' he says triumphantly. 'Nothing to it.'\n\n'Let's hope you feel the same way about those, then!' says Tails, pointing towards the door. Emerging from beyond it are two Guardbots! Sonic and Tails must fight the Guardbots using Strength. The Guardbots have a fighting score of 6, but both can attack Sonic each round. Tails will help Sonic. If the heroes win, turn to <b>256</b>.\n\nIf the Guardbots beat Sonic and Tails, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
+		choices = new int[1] {256}
 	};
 
 	public static Section section295 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails speed out into the game at terrific speed. Everything is a blur, and only at the very last minute does Sonic see a large target flashing with bright red lights. First Sonic, and then Tails, hits the target square in the middle. If this is the first time that Sonic and Tails have been to this target, they score 10 points (add them to Sonic's Point Score). Now roll the die and add the result to Sonic's Agility. If the score is less than 6, then you <i>must</i> turn to <b>283</b>. If the score is 6 or more, then Sonic and Tails may go either to a bouncer (turn to <b>189</b>), to another bouncer (turn to <b>36</b>), or spring back (turn to <b>124</b>).",
+		choices = new int[4] {283, 189, 36, 124}
 	};
 
 	public static Section section296 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Very soon this tunnel opens up into a small room. Heaped everywhere are dozens of rusting barrels with Mack seeping from their rotten joints. The stench is so bad that even the air seems heavy.\n\n'I don't think even Robotnik would have come in here by choice,' says Tails, still holding his nose. Should Sonic and Tails explore this room (turn to <b>260</b>), or should they leave (turn to <b>101</b>)?",
+		choices = new int[2] {260, 101}
 	};
 
 	public static Section section297 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic notices the small black and red wire underneath the Mega Drive. Following it with his eyes, he sees it leads underneath the console to a ... 'OH NO!!! Don't touch it, it's a BOMB!!!' Just in time, he reaches out to grab Tails' paw. 'Pheeew, that was close!' exclaims Sonic.\n\nTails swallows hard. 'That was close,' he says after a pause.\n\nSkilfully, Sonic fiddles with the wires, and in a few seconds the screen of the Mega Drive goes blank. 'Nothing to it. WHEN YOU KNOW HOW!'\n\nUnder the circumstances, Tails thinks it better to keep quiet.\n\n'Well, I suppose we had better get moving, old friend,' says Sonic. There is only one way out of this room, conveniently marked Exit. Turn to <b>157</b>.",
+		choices = new int[1] {157}
 	};
 
 	public static Section section298 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Suddenly, all the spines on Sonic's back stand on end. 'Shh,' he says, straining his ears.\n\n'What's the matter?' asks Tails. He doesn't have to wait for an answer! Out of the blue a huge silver ball comes crashing towards them. Roll the die and add the result to Sonic's Speed. If the score is 6 or more, turn to <b>22</b>. If the score is less than 6, turn to <b>235</b>.",
+		choices = new int[2] {22, 235}
 	};
 
 	public static Section section299 = new Section()
 	{
-		text = "",
-		choices = new int[0] {}
+		text = "Sonic and Tails speed out into the game at terrific speed. Everything is a blur, and only at the very last minute does Sonic see a large target flashing with bright yellow lights. First Sonic, and then Tails, hits the target bang in the middle. If this is the first time that Sonic and Tails have been to this target, then they score 10 points (add them to Sonic's Point Score). Now roll the die and add the result to Sonic's Quick Wits. If the score is less than 6, then you <i>must</i> turn to <b>283</b>. If the score is 6 or more, then Sonic and Tails may go either to a bouncer (turn to <b>189</b>), or to another bouncer (turn to <b>36</b>), or spring back (turn to <b>124</b>).",
+		choices = new int[4] {283, 189, 36, 124}
 	};
 
 	public static Section section300 = new Section()
 	{
-		text = "",
+		text = "The evil Zonik has been defeated at last, and Sonic and Tails stare at him as he slowly dissolves into a nasty blue blob on the ground. With him gone, and the Fak-Tor-Eee gone as well, the Zones will return to normal.\n\n'Well, I suppose that's that then,' says Tails.\n\n'Yep, guess it is,' replies Sonic.\n\n'Any idea how we're going to get back home?' asks Tails.\n\n'Nothing to it,' says Sonic and with that he spins off into the distance.\n\n'Hey, wait for me!' cries Tails. And with that our two pals disappear over the horizon.",
 		choices = new int[0] {}
 	};
 	
-	public static Section[] sectionLibrary = new Section[] {section0, section1, section2, section3, section4, section5, section6, section7, section8, section9, section10, section11, section12, section13, section14, section15, section16, section17, section18, section19, section20, section21, section22, section23, section24, section25, section26, section27, section28, section29, section30, section31, section32, section33, section34, section35, section36, section37, section38, section39, section40, section41, section42, section43, section44, section45, section46, section47, section48, section49, section50, section51, section52, section53, section54, section55, section56, section57, section58, section59, section60, section61, section62, section63, section64, section65, section66, section67, section68, section69, section70, section71, section72, section73, section74, section75, section76, section77, section78, section79, section80, section81, section82, section83, section84, section85, section86, section87, section88, section89, section90, section91, section92, section93, section94, section95, section96, section97, section98, section99, section100, section101, section102, section103, section104, section105, section106, section107, section108, section109, section110, section111, section112, section113, section114, section115, section116, section117, section118, section119, section120, section121, section122, section123, section124, section125, section126, section127, section128, section129, section130, section131, section132, section133, section134, section135, section136, section137, section138, section139, section140, section141, section142, section143, section144, section145, section146, section147, section148, section149, section150, section151, section152, section153, section154, section155, section156, section157, section158, section159, section160, section161, section162, section163, section164, section165, section166, section167, section168, section169, section170, section171, section172, section173, section174, section175, section176, section177, section178, section179, section180, section181, section182, section183, section184, section185, section186, section187, section188, section189, section190, section191, section192, section193, section194, section195, section196, section197, section198, section199, section200, section201, section202, section203, section204, section205, section206, section207, section208, section209, section210, section211, section212, section213, section214, section215, section216, section217, section218, section219, section220, section221, section222, section223, section224, section225, section226, section227, section228, section229, section230, section231, section232, section233, section234, section235, section236, section237, section238, section239, section240, section241, section242, section243, section244, section245, section246, section247, section248, section249, section250, section251, section252, section253, section254, section255, section256, section257, section258, section259, section260, section261, section262, section263, section264, section265, section266, section267, section268, section269, section270, section271, section272, section273, section274, section275, section276, section277, section278, section279, section280, section281, section282, section283, section284, section285, section286, section287, section288, section289, section290, section291, section292, section293, section294, section295, section296, section297, section298, section299, section300};
+	public static Section[] sectionLibrary = new Section[301] {section0, section1, section2, section3, section4, section5, section6, section7, section8, section9, section10, section11, section12, section13, section14, section15, section16, section17, section18, section19, section20, section21, section22, section23, section24, section25, section26, section27, section28, section29, section30, section31, section32, section33, section34, section35, section36, section37, section38, section39, section40, section41, section42, section43, section44, section45, section46, section47, section48, section49, section50, section51, section52, section53, section54, section55, section56, section57, section58, section59, section60, section61, section62, section63, section64, section65, section66, section67, section68, section69, section70, section71, section72, section73, section74, section75, section76, section77, section78, section79, section80, section81, section82, section83, section84, section85, section86, section87, section88, section89, section90, section91, section92, section93, section94, section95, section96, section97, section98, section99, section100, section101, section102, section103, section104, section105, section106, section107, section108, section109, section110, section111, section112, section113, section114, section115, section116, section117, section118, section119, section120, section121, section122, section123, section124, section125, section126, section127, section128, section129, section130, section131, section132, section133, section134, section135, section136, section137, section138, section139, section140, section141, section142, section143, section144, section145, section146, section147, section148, section149, section150, section151, section152, section153, section154, section155, section156, section157, section158, section159, section160, section161, section162, section163, section164, section165, section166, section167, section168, section169, section170, section171, section172, section173, section174, section175, section176, section177, section178, section179, section180, section181, section182, section183, section184, section185, section186, section187, section188, section189, section190, section191, section192, section193, section194, section195, section196, section197, section198, section199, section200, section201, section202, section203, section204, section205, section206, section207, section208, section209, section210, section211, section212, section213, section214, section215, section216, section217, section218, section219, section220, section221, section222, section223, section224, section225, section226, section227, section228, section229, section230, section231, section232, section233, section234, section235, section236, section237, section238, section239, section240, section241, section242, section243, section244, section245, section246, section247, section248, section249, section250, section251, section252, section253, section254, section255, section256, section257, section258, section259, section260, section261, section262, section263, section264, section265, section266, section267, section268, section269, section270, section271, section272, section273, section274, section275, section276, section277, section278, section279, section280, section281, section282, section283, section284, section285, section286, section287, section288, section289, section290, section291, section292, section293, section294, section295, section296, section297, section298, section299, section300};
 	
 	public void UpdateText() {
 		if (isHeader) {
