@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class IndexButton : MonoBehaviour
 {
-	private TMP_Text currentText;
+	private Button button;
+	private TMP_Text buttonText;
 	
 	void Start() {
-		currentText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
+		button = GetComponent<Button>();
+		button.onClick.AddListener(TaskOnClick);
+		buttonText = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
 	}
 	
-    public void ButtonGoToIndex() {
-		int newIndex = 0;
-		if (int.TryParse(currentText.text, out newIndex)) {
-			SonicVsZonikGame.index = newIndex;
-		}
+    private void TaskOnClick() {
+		Debug.Log("Button has been clicked.");
+		SonicVsZonikGame.ChangeIndex(buttonText.text);
 	}
 }

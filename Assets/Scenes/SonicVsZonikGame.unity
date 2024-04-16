@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 88727009}
   - component: {fileID: 88727008}
   - component: {fileID: 88727007}
+  - component: {fileID: 88727010}
   m_Layer: 5
   m_Name: TurnToSectionInput
   m_TagString: Untagged
@@ -375,10 +376,10 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1263561704}
-        m_TargetAssemblyTypeName: SonicVsZonikGame, Assembly-CSharp
-        m_MethodName: GoToIndex
-        m_Mode: 0
+      - m_Target: {fileID: 88727010}
+        m_TargetAssemblyTypeName: InputField, Assembly-CSharp
+        m_MethodName: TaskOnEndEdit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -461,6 +462,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88727004}
   m_CullTransparentMesh: 1
+--- !u!114 &88727010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88727004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaf68ee42cd54f4ba7da6cd9779776c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91754734
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +888,6 @@ GameObject:
   - component: {fileID: 142843284}
   - component: {fileID: 142843283}
   - component: {fileID: 142843282}
-  - component: {fileID: 142843281}
   - component: {fileID: 142843285}
   m_Layer: 5
   m_Name: ButtonSectionC
@@ -904,18 +916,6 @@ RectTransform:
   m_AnchoredPosition: {x: 380, y: -290}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &142843281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142843279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &142843282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,19 +959,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 142843283}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 142843285}
-        m_TargetAssemblyTypeName: IndexButton, Assembly-CSharp
-        m_MethodName: ButtonGoToIndex
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &142843283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,7 +1156,6 @@ GameObject:
   - component: {fileID: 305744643}
   - component: {fileID: 305744642}
   - component: {fileID: 305744641}
-  - component: {fileID: 305744640}
   - component: {fileID: 305744644}
   m_Layer: 5
   m_Name: ButtonSectionD
@@ -1197,18 +1184,6 @@ RectTransform:
   m_AnchoredPosition: {x: 640, y: -290}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &305744640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305744638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &305744641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,19 +1227,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 305744642}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 305744644}
-        m_TargetAssemblyTypeName: IndexButton, Assembly-CSharp
-        m_MethodName: ButtonGoToIndex
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &305744642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1839,7 +1802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1879057562}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2431,7 +2394,6 @@ GameObject:
   - component: {fileID: 1521527874}
   - component: {fileID: 1521527873}
   - component: {fileID: 1521527872}
-  - component: {fileID: 1521527871}
   - component: {fileID: 1521527875}
   m_Layer: 5
   m_Name: ButtonSectionA
@@ -2460,18 +2422,6 @@ RectTransform:
   m_AnchoredPosition: {x: -140, y: -290}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1521527871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521527869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1521527872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2515,19 +2465,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1521527873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1521527875}
-        m_TargetAssemblyTypeName: IndexButton, Assembly-CSharp
-        m_MethodName: ButtonGoToIndex
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1521527873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3007,7 +2945,6 @@ GameObject:
   - component: {fileID: 1829207831}
   - component: {fileID: 1829207830}
   - component: {fileID: 1829207829}
-  - component: {fileID: 1829207828}
   - component: {fileID: 1829207832}
   m_Layer: 5
   m_Name: ButtonSectionB
@@ -3036,18 +2973,6 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: -290}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1829207828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829207826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1829207829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,19 +3016,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1829207830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1829207832}
-        m_TargetAssemblyTypeName: IndexButton, Assembly-CSharp
-        m_MethodName: ButtonGoToIndex
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1829207830
 MonoBehaviour:
   m_ObjectHideFlags: 0

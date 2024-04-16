@@ -7,9 +7,10 @@ using SVZ = SonicVsZonikGameText;
 public class SonicVsZonikGame : MonoBehaviour
 {
     public static int index;
-	private int currentIndex;
+	private int mostRecentIndex;
 	private const int indexMin = 1;
 	private const int indexMax = 300;
+	Stack sectionHistory = new Stack();
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
 	[SerializeField] private GameObject ButtonSectionA;
@@ -29,12 +30,39 @@ public class SonicVsZonikGame : MonoBehaviour
 		ChangeButtons();
     }
 	
+	public static void ChangeIndex(string indexString) {
+		Debug.Log("ChangeIndex(" + indexString + ")");
+		int newIndex = 0;
+		if (int.TryParse(indexString, out newIndex)
+			&& newIndex >= indexMin && newIndex <= indexMax) {
+			Debug.Log("Index changed to " + newIndex);
+			SonicVsZonikGame.index = newIndex;
+		}
+	}
+	
 	void Update()
 	{
-		if (index != currentIndex) {
-			currentIndex = index;
-			GoToIndex(index.ToString());
+		if (mostRecentIndex != index) {
+			Debug.Log("Update: The index has changed!");
+			mostRecentIndex = index;
+			VisitIndex();
 		}
+	}
+	
+	private void VisitIndex() {
+		AddToSectionHistory();
+		ChangeButtons();
+		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
+		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
+    }
+	
+	private void AddToSectionHistory() {
+		sectionHistory.Push(index);
+		string sectionHistoryStr = "Section History: ";
+		foreach(var section in sectionHistory) {
+			sectionHistoryStr += (section + " ");
+		}
+		Debug.Log(sectionHistoryStr);
 	}
 	
 	public void UpdatePosX(GameObject Button, float x) {
@@ -101,18 +129,5 @@ public class SonicVsZonikGame : MonoBehaviour
 				ButtonSectionD.SetActive(true);
 				break;
 		}
-		
 	}
-	
-	public void GoToIndex(string indexString) {
-		int newIndex = 0;
-		if (int.TryParse(indexString, out newIndex)) {
-			if (newIndex >= indexMin && newIndex <= indexMax) {
-				index = newIndex;
-				TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
-				SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
-				ChangeButtons();
-			}
-		}
-    }
 }

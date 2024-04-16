@@ -178,7 +178,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section27 = new Section()
 	{
-		text = "Sonic and Tails walk around a comer in the tunnel and, surprise surprise, come to another junction. Will they go to the left (turn to <b>261</b>), or will they carry straight on (turn to <b>103</b>)?",
+		text = "Sonic and Tails walk around a corner in the tunnel and, surprise surprise, come to another junction. Will they go to the left (turn to <b>261</b>), or will they carry straight on (turn to <b>103</b>)?",
 		choices = new int[2] {261, 103}
 	};
 
@@ -514,7 +514,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section83 = new Section()
 	{
-		text = "This tunnel only goes on for a few metres before dividing into three. Which tunnel will they follow now:\n\nThe right-hand one?\t\t\tTurn to <b>103</b>The middle one?\t\t\tTurn to <b>141</b>The left-hand one?\t\t\tTurn to <b>224</b>",
+		text = "This tunnel only goes on for a few metres before dividing into three. Which tunnel will they follow now:\n\nThe right-hand one?\t\t\tTurn to <b>103</b>\nThe middle one?\t\t\tTurn to <b>141</b>\nThe left-hand one?\t\t\tTurn to <b>224</b>",
 		choices = new int[3] {103, 141, 224}
 	};
 
@@ -863,7 +863,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section141 = new Section()
 	{
-		text = "After a while, Sonic and Tails find themselves at an intersection of four tunnels. They all look so alike and both of them feel very lost!\n\n'Any ideas which one take?' says Sonic. In which direction should they head now:\n\nNorth?\t\t\tTurn to <b>30</b>South?\t\t\tTurn to <b>83</b>East?\t\t\tTurn to <b>224</b>West?\t\t\tTurn to <b>103</b>",
+		text = "After a while, Sonic and Tails find themselves at an intersection of four tunnels. They all look so alike and both of them feel very lost!\n\n'Any ideas which one take?' says Sonic. In which direction should they head now:\n\nNorth?\t\t\tTurn to <b>30</b>\nSouth?\t\t\tTurn to <b>83</b>\nEast?\t\t\tTurn to <b>224</b>\nWest?\t\t\tTurn to <b>103</b>",
 		choices = new int[4] {30, 83, 224, 103}
 	};
 
@@ -1361,7 +1361,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section224 = new Section()
 	{
-		text = "The tunnel winds this way and that for ages. At last, our friends come to a three-way junction. In which direction should they go:\n\nTo the left?\t\t\tTurn to <b>122</b>Straight on?\t\t\tTurn to <b>30</b>\nTo the right?\t\t\tTurn to <b>83</b>",
+		text = "The tunnel winds this way and that for ages. At last, our friends come to a three-way junction. In which direction should they go:\n\nTo the left?\t\t\tTurn to <b>122</b>\nStraight on?\t\t\tTurn to <b>30</b>\nTo the right?\t\t\tTurn to <b>83</b>",
 		choices = new int[3] {122, 30, 83}
 	};
 
@@ -1523,7 +1523,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section251 = new Section()
 	{
-		text = "Just in time, Sonic sees the m1ssmg step and with a skilful spin grabs Tails. At the same time, he pulls both himself and his furry friend clear of the huge puddle of Mack that was lurking at the bottom of the steps.\n\n'So COOL!' says Sonic and for once Tails just has to agree! A long tunnel stretches into the distance in front of them. Turn to <b>46</b>.",
+		text = "Just in time, Sonic sees the missing step and with a skilful spin grabs Tails. At the same time, he pulls both himself and his furry friend clear of the huge puddle of Mack that was lurking at the bottom of the steps.\n\n'So COOL!' says Sonic and for once Tails just has to agree! A long tunnel stretches into the distance in front of them. Turn to <b>46</b>.",
 		choices = new int[1] {46}
 	};
 
