@@ -12,12 +12,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		public string text;
 		public int[] choices;
+		public int diceGoal;
+		public string diceAbility;
 	};
 	
 	public static Section section0 = new Section()
 	{
-		text = "This is dummy text. If you're reading this, something's gone wrong!",
-		choices = new int[0] {}
+		text = "This is dummy text. If you're reading this, something's gone wrong!"
 	};
 
 	public static Section section1 = new Section()

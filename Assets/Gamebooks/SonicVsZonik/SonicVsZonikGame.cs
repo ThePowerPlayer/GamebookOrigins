@@ -8,10 +8,11 @@ public class SonicVsZonikGame : MonoBehaviour
 {
     public static int index;
 	private int mostRecentIndex;
-	public static bool backButtonPressed;
 	private const int indexMin = 1;
 	private const int indexMax = 300;
+	public static bool backButtonPressed;
 	public static Stack<int> sectionHistory = new Stack<int>();
+	
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
 	[SerializeField] private GameObject ButtonSectionA;
