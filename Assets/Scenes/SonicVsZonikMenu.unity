@@ -4866,6 +4866,7 @@ MonoBehaviour:
   - {fileID: 1505846299}
   - {fileID: 1901180700}
   SVZMenu: {fileID: 1263561704}
+  SVZGame: {fileID: 0}
 --- !u!1 &1273842330
 GameObject:
   m_ObjectHideFlags: 0

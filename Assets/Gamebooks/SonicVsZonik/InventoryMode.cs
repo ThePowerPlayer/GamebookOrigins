@@ -9,6 +9,7 @@ public class InventoryMode : MonoBehaviour
 	public GameObject[] GameplayObjects;
 	public GameObject[] InventoryObjects;
 	public SonicVsZonikMenu SVZMenu;
+	public SonicVsZonikGame SVZGame;
 	private Scene scene;
 	
 	void Start() {
@@ -17,7 +18,6 @@ public class InventoryMode : MonoBehaviour
 	
 	public void ToggleInventoryMode() {
 		inventoryMode = !inventoryMode;
-		Debug.Log("Inventory mode is " + inventoryMode);
 		foreach (GameObject obj in GameplayObjects) {
 			obj.SetActive(!inventoryMode);
 		}
@@ -25,8 +25,13 @@ public class InventoryMode : MonoBehaviour
 			obj.SetActive(inventoryMode);
 		}
 		
-		if (scene.name == "SonicVsZonikMenu" && !inventoryMode) {
-			SVZMenu.ChangeButtons();
+		if (!inventoryMode) {
+			if (scene.name == "SonicVsZonikMenu" && SVZMenu != null) {
+				SVZMenu.ChangeButtons();
+			}
+			else if (scene.name == "SonicVsZonikGame" && SVZGame != null) {
+				SVZGame.ChangeButtons();
+			}
 		}
 	}
 }

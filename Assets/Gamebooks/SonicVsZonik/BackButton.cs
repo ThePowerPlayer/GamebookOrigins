@@ -13,7 +13,6 @@ public class BackButton : MonoBehaviour
 	}
 	
     private void TaskOnClick() {
-		Debug.Log("Back button has been clicked.");
 		// Remove from section history
 		SonicVsZonikGame.backButtonPressed = true;
 		if (SonicVsZonikGame.sectionHistory.Count > 1) {

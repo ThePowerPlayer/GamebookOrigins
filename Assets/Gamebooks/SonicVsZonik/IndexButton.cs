@@ -16,7 +16,6 @@ public class IndexButton : MonoBehaviour
 	}
 	
     private void TaskOnClick() {
-		Debug.Log("Button has been clicked.");
 		SonicVsZonikGame.ChangeIndex(buttonText.text);
 	}
 }

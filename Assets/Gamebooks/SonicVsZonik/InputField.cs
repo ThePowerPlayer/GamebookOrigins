@@ -14,7 +14,6 @@ public class InputField : MonoBehaviour
     }
 	
     public static void TaskOnEndEdit() {
-		Debug.Log("TextMeshPro input field submitted.");
 		SonicVsZonikGame.ChangeIndex(tmpInputField.text);
 	}
 }

@@ -28,17 +28,14 @@ public class SonicVsZonikGame : MonoBehaviour
     {
 		index = 1;
 		mostRecentIndex = 0;
-		TextObject.GetComponent<SVZ>().UpdateText();
-		SectionObject.GetComponent<SVZ>().UpdateText();
-		ChangeButtons();
     }
 	
 	public static void ChangeIndex(string indexString) {
-		Debug.Log("ChangeIndex(" + indexString + ")");
+		//Debug.Log("ChangeIndex(" + indexString + ")");
 		int newIndex = 0;
 		if (int.TryParse(indexString, out newIndex)
 			&& newIndex >= indexMin && newIndex <= indexMax) {
-			Debug.Log("Index changed to " + newIndex);
+			//Debug.Log("Index changed to " + newIndex);
 			SonicVsZonikGame.index = newIndex;
 		}
 	}
@@ -46,7 +43,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	void Update()
 	{
 		if (mostRecentIndex != index) {
-			Debug.Log("Update: The index has changed!");
+			//Debug.Log("Update: The index has changed!");
 			mostRecentIndex = index;
 			VisitIndex();
 		}
@@ -60,10 +57,10 @@ public class SonicVsZonikGame : MonoBehaviour
 			// Add to section history
 			sectionHistory.Push(index);
 		}
-		PrintSectionHistory(); // DEBUG
-		ChangeButtons();
+		//PrintSectionHistory(); // DEBUG
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
+		ChangeButtons();
     }
 	
 	private void PrintSectionHistory() {
@@ -75,11 +72,14 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	private void UpdatePosX(GameObject Button, float x) {
-		// Shift to the right by an additional 800 units
-		Button.transform.position = new Vector3(x + 800, Button.transform.position.y, Button.transform.position.z);
+		// Change RectTransform, NOT regular transform.position
+		RectTransform ButtonRectTransform = Button.GetComponent<RectTransform>();
+		ButtonRectTransform.anchoredPosition =
+			new Vector2(x, ButtonRectTransform.anchoredPosition.y);
+		//Debug.Log("GameObject " + Button.name + " changed to X position = " + x);
 	}
 	
-	private void ChangeButtons() {
+	public void ChangeButtons() {
 		// Determine how many choices are possible from the current section,
 		// and update the number, position, and text of the buttons accordingly.
 		int i = index;
