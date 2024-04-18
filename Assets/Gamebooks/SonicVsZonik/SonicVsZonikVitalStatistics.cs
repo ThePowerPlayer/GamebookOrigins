@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SonicVsZonikVitalStatistics : MonoBehaviour
 {
-	Dictionary<string, int> abilities = new Dictionary<string, int>(); 
+	public static Dictionary<string, int> abilities = new Dictionary<string, int>();
+	public static int lives = 3;
+	public static int rings = 0;
 	
     void Start()
     {
