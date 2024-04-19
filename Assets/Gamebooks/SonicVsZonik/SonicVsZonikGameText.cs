@@ -12,8 +12,9 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		public string text;
 		public int[] choices;
-		public int diceGoal;
+		public int diceGoal = 0;
 		public string diceAbility;
+		public bool visited = false;
 	};
 	
 	public static Section section0 = new Section()

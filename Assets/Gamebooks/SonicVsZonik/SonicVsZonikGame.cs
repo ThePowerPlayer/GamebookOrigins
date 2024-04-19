@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using SVZ = SonicVsZonikGameText;
 
@@ -12,6 +13,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	private const int indexMax = 300;
 	public static bool backButtonPressed;
 	public static Stack<int> sectionHistory = new Stack<int>();
+	public static bool markVisitedSections = true;
 	
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
@@ -56,8 +58,9 @@ public class SonicVsZonikGame : MonoBehaviour
 		else {
 			// Add to section history
 			sectionHistory.Push(index);
+			SVZ.sectionLibrary[index].visited = true;
 		}
-		//PrintSectionHistory(); // DEBUG
+		PrintSectionHistory(); // DEBUG
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		ChangeButtons();
@@ -77,6 +80,16 @@ public class SonicVsZonikGame : MonoBehaviour
 		ButtonRectTransform.anchoredPosition =
 			new Vector2(x, ButtonRectTransform.anchoredPosition.y);
 		//Debug.Log("GameObject " + Button.name + " changed to X position = " + x);
+	}
+	
+	public void SetButtonVisited(GameObject ButtonSection, int i) {
+		//Debug.Log(markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZ.sectionLibrary[i].visited);
+		if (markVisitedSections && ButtonSection.activeInHierarchy && SVZ.sectionLibrary[i].visited) {
+			ButtonSection.GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
+		}
+		else {
+			ButtonSection.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+		}
 	}
 	
 	public void ChangeButtons() {
@@ -138,5 +151,10 @@ public class SonicVsZonikGame : MonoBehaviour
 				ButtonSectionD.SetActive(true);
 				break;
 		}
+		
+		SetButtonVisited(ButtonSectionA, int.Parse(ButtonSectionAText.text));
+		SetButtonVisited(ButtonSectionB, int.Parse(ButtonSectionBText.text));
+		SetButtonVisited(ButtonSectionC, int.Parse(ButtonSectionCText.text));
+		SetButtonVisited(ButtonSectionD, int.Parse(ButtonSectionDText.text));
 	}
 }
