@@ -19,6 +19,11 @@ public class BackButton : MonoBehaviour
 			SonicVsZonikGame.sectionHistory.Pop();
 			
 		}
+		// Lower counter for Mack sections
+		if (SonicVsZonikGameText.sectionLibrary[SonicVsZonikGame.index].mackSection) {
+			SonicVsZonikGame.mackCounter--;
+		}
+		// Go to previous index
 		int previousIndex = SonicVsZonikGame.sectionHistory.Peek();
 		SonicVsZonikGame.ChangeIndex(previousIndex.ToString());
 	}

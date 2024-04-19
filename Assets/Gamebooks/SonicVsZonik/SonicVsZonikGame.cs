@@ -14,6 +14,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	public static bool backButtonPressed;
 	public static Stack<int> sectionHistory = new Stack<int>();
 	public static bool markVisitedSections = true;
+	public static int mackCounter = 0;
 	
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
@@ -59,8 +60,12 @@ public class SonicVsZonikGame : MonoBehaviour
 			// Add to section history
 			sectionHistory.Push(index);
 			SVZ.sectionLibrary[index].visited = true;
+			
+			if (SVZ.sectionLibrary[index].mackSection) {
+				mackCounter++;
+			}
 		}
-		PrintSectionHistory(); // DEBUG
+		//PrintSectionHistory(); // DEBUG
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		ChangeButtons();

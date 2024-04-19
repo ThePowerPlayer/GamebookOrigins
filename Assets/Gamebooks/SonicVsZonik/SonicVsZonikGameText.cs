@@ -15,6 +15,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public int diceGoal = 0;
 		public string diceAbility;
 		public bool visited = false;
+		public bool mackSection = false;
 	};
 	
 	public static Section section0 = new Section()
@@ -79,7 +80,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section10 = new Section()
 	{
 		text = "Sonic and Tails have been in the maze for ages now. The Mack is getting dangerously close to their feet and they still don't know the way out. They are getting desperate! Should they follow the main tunnel (turn to <b>151</b>), or go into the smaller tunnel off to the left (turn to <b>21</b>)?",
-		choices = new int[2] {151, 21}
+		choices = new int[2] {151, 21},
+		mackSection = true
 	};
 
 	public static Section section11 = new Section()
@@ -97,7 +99,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section13 = new Section()
 	{
 		text = "The walls of the tunnel form a perfect tube. Made of some dull greyish metal streaked with horrible smears of dried-on Mack, they look a bit like Robotnik's white coat with all its egg stains - Euugh!\n\nAfter a while the tunnel branches in two. Which way should Sonic and Tails go? Straight on (turn to <b>125</b>) or to the left (turn to <b>204</b>)?",
-		choices = new int[2] {125, 204}
+		choices = new int[2] {125, 204},
+		mackSection = true
 	};
 
 	public static Section section14 = new Section()
@@ -145,7 +148,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section21 = new Section()
 	{
 		text = "After what seems like ages, this tunnel emerges at last into a very large room. Its ceiling is so far above their heads that neither Sonic nor Tails can see the top of it. The walkway carries on to the centre, where there are no less than four possible exits! Where should they go now?\n\nNorth?\t\t\tTurn to <b>194</b>\nSouth?\t\t\tTurn to <b>240</b>\nEast?\t\t\tTurn to <b>179</b>\nWest?\t\t\tTurn to <b>100</b>",
-		choices = new int[4] {194, 240, 179, 100}
+		choices = new int[4] {194, 240, 179, 100},
+		mackSection = true
 	};
 
 	public static Section section22 = new Section()
@@ -619,7 +623,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section100 = new Section()
 	{
 		text = "A hedgehog, even a blue one, could very easily go mad in a place like this. Soon Sonic and Tails find themselves at another junction. Check the number of points you have scored so far. If it's more than 20, turn to <b>288</b>. If you have scored less than 20, where will Sonic and Tails go now?\n\nFollow the left tunnel?\t\t\tTurn to <b>125</b>\nStay in this tunnel?\t\t\tTurn to <b>272</b>",
-		choices = new int[2] {125, 272}
+		choices = new int[2] {125, 272},
+		mackSection = true
 	};
 
 	public static Section section101 = new Section()
@@ -685,7 +690,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section111 = new Section()
 	{
 		text = "This tunnel looks a bit more promising. It's wider than the others, so Tails and Sonic can walk side by side. The gurgling sound continues and it's fairly obvious that the Mack is gradually getting higher! After about a hundred metres, the tunnel opens into a large circular chamber, from which there are three tunnels. Where should Sonic and Tails go:\n\nTo the right?\t\t\tTurn to <b>272</b>\nTo the left?\t\t\tTurn to <b>179</b>\nStraight on?\t\t\tTurn to <b>21</b>",
-		choices = new int[3] {272, 179, 21}
+		choices = new int[3] {272, 179, 21},
+		mackSection = true
 	};
 
 	public static Section section112 = new Section()
@@ -770,7 +776,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section125 = new Section()
 	{
 		text = "No sooner has the last junction disappeared behind them, than another appears before the brave heroes. This one has two forks. Should Sonic and Tails head to the right (turn to <b>204</b>), or to the left (turn to <b>111</b>)?",
-		choices = new int[2] {204, 111}
+		choices = new int[2] {204, 111},
+		mackSection = true
 	};
 
 	public static Section section126 = new Section()
@@ -1094,7 +1101,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section179 = new Section()
 	{
 		text = "Another tunnel, another fork at the end of it! This place is such a maze! Tails looks down at the Mack. It's a good deal higher than the last time he looked! If you have more than 20 points, turn to <b>288</b>. In which direction should Tails and Sonic now go:\n\nTo the left?\t\t\tTurn to <b>194</b>\nTo the right?\t\t\tTurn to <b>111</b>\nStraight on?\t\t\tTurn to <b>10</b>",
-		choices = new int[3] {194, 111, 10}
+		choices = new int[3] {194, 111, 10},
+		mackSection = true
 	};
 
 	public static Section section180 = new Section()
@@ -1148,7 +1156,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section188 = new Section()
 	{
 		text = "The tunnel leads on and on, and the heroes' footsteps echo on for ages. The gurgling noise continues and after a while Sonic gets used to it and forgets that it's there. At last, Sonic sees the tunnel branching in two and looks around to tell Tails, and realizes that Tails has dropped quite a way behind him. 'What's the matter now?' he shouts, seeing Tails crouching down about twenty metres back down the tunnel.\n\n'Look,' says Tails, pointing at a small pipe in the tunnel wall. Annoyed at the delay, Sonic stomps back to where his friend is waiting. Out of the pipe is gurgling a steady glooping mess of Mack!!!!\n\n'We're in a trap, Sonic,' says Tails. 'If we don't get out of these tunnels soon, we're going to be drowned in Mack!!!!!!!'\n\nShould the heroes go down the left tunnel (turn to <b>239</b>) or the right one (turn to <b>13</b>)?",
-		choices = new int[2] {239, 13}
+		choices = new int[2] {239, 13},
+		mackSection = true
 	};
 
 	public static Section section189 = new Section()
@@ -1184,7 +1193,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section194 = new Section()
 	{
 		text = "No sooner has the last junction disappeared behind them, than another appears before the brave heroes. This one has two forks. Which one do Sonic and Tails take? The one going off to the right (turn to <b>111</b>), or the one to the left (turn to <b>204</b>)?",
-		choices = new int[2] {111, 204}
+		choices = new int[2] {111, 204},
+		mackSection = true
 	};
 
 	public static Section section195 = new Section()
@@ -1244,7 +1254,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section204 = new Section()
 	{
 		text = "This tunnel looks like the one they have just left. It would be real easy to get lost here! There are two exits out of this part of the complex. Should Sonic and Tails carry straight on (turn to <b>111</b>), or should they take a right turn (turn to <b>272</b>)?",
-		choices = new int[2] {111, 272}
+		choices = new int[2] {111, 272},
+		mackSection = true
 	};
 
 	public static Section section205 = new Section()
@@ -1454,13 +1465,15 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section239 = new Section()
 	{
 		text = "The walls of the tunnel form a perfect tube. They are made of some dull greyish metal streaked with horrible smears of dried-on Mack. They look a bit like a Robotnik' s white coat with all its egg stains ... Euugh! After a while, the tunnel branches in two. One tunnel carries straight on (turn to <b>194</b>), the other curves off to the right (turn to <b>204</b>).",
-		choices = new int[2] {194, 204}
+		choices = new int[2] {194, 204},
+		mackSection = true
 	};
 
 	public static Section section240 = new Section()
 	{
 		text = "Abruptly, Sonic and Tails find themselves standing at a T-junction. Should they go left (turn to <b>100</b>) or right (turn to <b>276</b>)?",
-		choices = new int[2] {100, 276}
+		choices = new int[2] {100, 276},
+		mackSection = true
 	};
 
 	public static Section section241 = new Section()
@@ -1652,7 +1665,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section272 = new Section()
 	{
 		text = "Another tunnel, another fork at the end of it! This place is such a maze! Tails looks down af the Mack. It's a good deal higher than the last time he looked!\n\nCheck the number of points you have scored so far. If it's more than 20, you <i>must</i> turn to <b>288</b>.\n\nTails and Sonic can now go either to the left (turn to <b>21</b>) or to the right (turn to <b>13</b>).",
-		choices = new int[2] {21, 13}
+		choices = new int[2] {21, 13},
+		mackSection = true
 	};
 
 	public static Section section273 = new Section()
@@ -1676,7 +1690,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section276 = new Section()
 	{
 		text = "The Mack glows very bright in this tunnel, but being able to see more doesn't really help. Up ahead there's yet another choice to be made. Will Sonic and Tails go to the left (turn to <b>100</b>) or to the right (turn to <b>272</b>)?",
-		choices = new int[2] {100, 272}
+		choices = new int[2] {100, 272},
+		mackSection = true
 	};
 
 	public static Section section277 = new Section()
