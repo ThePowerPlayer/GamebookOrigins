@@ -16,6 +16,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public string diceAbility;
 		public bool visited = false;
 		public bool mackSection = false;
+		public bool asteronSection = false;
 	};
 	
 	public static Section section0 = new Section()
@@ -185,7 +186,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section27 = new Section()
 	{
 		text = "Sonic and Tails walk around a corner in the tunnel and, surprise surprise, come to another junction. Will they go to the left (turn to <b>261</b>), or will they carry straight on (turn to <b>103</b>)?",
-		choices = new int[2] {261, 103}
+		choices = new int[2] {261, 103},
+		asteronSection = true
 	};
 
 	public static Section section28 = new Section()
@@ -203,7 +205,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section30 = new Section()
 	{
 		text = "'I feel sure we're lost,' says Tails, after yet another ten minutes' walk.\n\n'OK,' says Sonic, annoyed. 'Tell me something I don't know! Why don't you go first for a change?'\n\nTails goes to the front and soon comes to a junction. So, what's Tails going to do now he has his big chance? Go to the left (turn to <b>282</b>) or to the right (turn to <b>103</b>)?",
-		choices = new int[2] {282, 103}
+		choices = new int[2] {282, 103},
+		asteronSection = true
 	};
 
 	public static Section section31 = new Section()
@@ -443,7 +446,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section70 = new Section()
 	{
 		text = "'Do you know something,' says Sonic, 'when this adventure's over, it would be really cool to spend just a few hours playing a game or something.'\n\n'Too right,' says Tails. 'And get a burger or two in as well!'\n\nSonic and Tails can either go to the left (turn to <b>27</b>) or to the right (turn to <b>268</b>).",
-		choices = new int[2] {27, 268}
+		choices = new int[2] {27, 268},
+		asteronSection = true
 	};
 
 	public static Section section71 = new Section()
@@ -521,7 +525,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section83 = new Section()
 	{
 		text = "This tunnel only goes on for a few metres before dividing into three. Which tunnel will they follow now:\n\nThe right-hand one?\t\t\tTurn to <b>103</b>\nThe middle one?\t\t\tTurn to <b>141</b>\nThe left-hand one?\t\t\tTurn to <b>224</b>",
-		choices = new int[3] {103, 141, 224}
+		choices = new int[3] {103, 141, 224},
+		asteronSection = true
 	};
 
 	public static Section section84 = new Section()
@@ -642,7 +647,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section103 = new Section()
 	{
 		text = "The tunnel slowly begins to wind downhill, and become really rather dark. Eventually, our friends find themselves at yet another intersection. Should they go:\n\nTo the right?\t\t\tTurn to <b>83</b>\nTo the left?\t\t\tTurn to <b>224</b>\nStraight on?\t\t\tTurn to <b>282</b>",
-		choices = new int[3] {83, 224, 282}
+		choices = new int[3] {83, 224, 282},
+		asteronSection = true
 	};
 
 	public static Section section104 = new Section()
@@ -757,7 +763,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section122 = new Section()
 	{
 		text = "Every so often, there is a faint booming noise coming from above them.\n\n'Perhaps this is where they make Badniks? What do you reckon, Sonic?' asks Tails.\n\n'Well, if it is, then we've come to the right place!' replies Sonic. 'I've had just about enough of Robotnik. He's such a DRAG!'\n\nAhead of them the tunnel divides in two again. Should Sonic and Tails go to the left (turn to <b>70</b>), or to the right (turn to <b>83</b>)?",
-		choices = new int[2] {70, 83}
+		choices = new int[2] {70, 83},
+		asteronSection = true
 	};
 
 	public static Section section123 = new Section()
@@ -873,7 +880,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section141 = new Section()
 	{
 		text = "After a while, Sonic and Tails find themselves at an intersection of four tunnels. They all look so alike and both of them feel very lost!\n\n'Any ideas which one take?' says Sonic. In which direction should they head now:\n\nNorth?\t\t\tTurn to <b>30</b>\nSouth?\t\t\tTurn to <b>83</b>\nEast?\t\t\tTurn to <b>224</b>\nWest?\t\t\tTurn to <b>103</b>",
-		choices = new int[4] {30, 83, 224, 103}
+		choices = new int[4] {30, 83, 224, 103},
+		asteronSection = true
 	};
 
 	public static Section section142 = new Section()
@@ -1375,7 +1383,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section224 = new Section()
 	{
 		text = "The tunnel winds this way and that for ages. At last, our friends come to a three-way junction. In which direction should they go:\n\nTo the left?\t\t\tTurn to <b>122</b>\nStraight on?\t\t\tTurn to <b>30</b>\nTo the right?\t\t\tTurn to <b>83</b>",
-		choices = new int[3] {122, 30, 83}
+		choices = new int[3] {122, 30, 83},
+		asteronSection = true
 	};
 
 	public static Section section225 = new Section()
@@ -1599,7 +1608,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section261 = new Section()
 	{
 		text = "There are lots of the strange star-shaped lanterns in this part of the tunnel. In different circumstances, they might have even looked pretty! No time to think of that though, Sonic and Tails have come to a junction. Will they go to the left (turn to <b>103</b>) or carry straight on (turn to <b>27</b>)?",
-		choices = new int[2] {103, 27}
+		choices = new int[2] {103, 27},
+		asteronSection = true
 	};
 
 	public static Section section262 = new Section()
@@ -1727,7 +1737,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section282 = new Section()
 	{
 		text = "The tunnel is made of shiny, almost black metal, and their footsteps echo on and on as they walk.\n\n'This must be the Fak-Tor-Eee basement,' says Sonic. 'I wonder what they make here?'\n\nThe tunnel forks in two again. Will Sonic and Tails go to the left (turn to <b>261</b>) or to the right (turn to <b>122</b>)?",
-		choices = new int[2] {261, 122}
+		choices = new int[2] {261, 122},
+		asteronSection = true
 	};
 
 	public static Section section283 = new Section()
@@ -1842,7 +1853,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 	
 	public void UpdateText() {
 		if (isHeader) {
-			currentText.text = "Section " + SonicVsZonikGame.index;
+			if (sectionLibrary[SonicVsZonikGame.index].mackSection
+				|| sectionLibrary[SonicVsZonikGame.index].asteronSection) {
+				currentText.text = "Section " + SonicVsZonikGame.index + " *";
+			}
+			else {
+				currentText.text = "Section " + SonicVsZonikGame.index;
+			}
 		}
 		else {
 			currentText.text = sectionLibrary[SonicVsZonikGame.index].text;
