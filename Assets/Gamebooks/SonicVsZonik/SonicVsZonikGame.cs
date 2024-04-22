@@ -107,6 +107,10 @@ public class SonicVsZonikGame : MonoBehaviour
 		ButtonSectionC.SetActive(false);
 		ButtonSectionD.SetActive(false);
 		
+		if (DiceRollManager.diceMode) {
+			return;
+		}
+		
 		switch(SVZ.sectionLibrary[i].choices.Length)
 		{
 			case 1:

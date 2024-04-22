@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class InventoryMode : MonoBehaviour
 {
 	public static bool inventoryMode;
-	public GameObject[] GameplayObjects;
-	public GameObject[] InventoryObjects;
+	public GameObject GameplayObjects;
+	public GameObject InventoryObjects;
 	public SonicVsZonikMenu SVZMenu;
 	public SonicVsZonikGame SVZGame;
 	private Scene scene;
@@ -18,12 +18,8 @@ public class InventoryMode : MonoBehaviour
 	
 	public void ToggleInventoryMode() {
 		inventoryMode = !inventoryMode;
-		foreach (GameObject obj in GameplayObjects) {
-			obj.SetActive(!inventoryMode);
-		}
-		foreach (GameObject obj in InventoryObjects) {
-			obj.SetActive(inventoryMode);
-		}
+		GameplayObjects.SetActive(!inventoryMode);
+		InventoryObjects.SetActive(inventoryMode);
 		
 		if (!inventoryMode) {
 			if (scene.name == "SonicVsZonikMenu" && SVZMenu != null) {

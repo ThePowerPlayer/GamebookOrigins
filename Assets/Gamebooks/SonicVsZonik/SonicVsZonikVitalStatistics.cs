@@ -19,7 +19,7 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 		// Prevent more than one VitalStatisticsManager from existing
 		if (!(SceneManager.GetActiveScene().name == "SonicVsZonikMenu"
 			|| SceneManager.GetActiveScene().name == "SonicVsZonikGame")) {
-			Destroy(gameObject);
+			if (this.gameObject) Destroy(this.gameObject);	
 		}
 	}
 	
