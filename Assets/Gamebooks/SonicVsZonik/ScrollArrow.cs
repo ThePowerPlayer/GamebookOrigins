@@ -11,6 +11,7 @@ public class ScrollArrow : MonoBehaviour
 	private const int speed = 5;
 	private const int height = 5;
 	[SerializeField] private bool upArrow;
+	RectTransform ArrowRect;
 	
 	public ScrollRect scroll;
 	public GameObject scrollbar;
@@ -20,7 +21,8 @@ public class ScrollArrow : MonoBehaviour
     {
         x = 0;
 		y = 0;
-		originalPosY = gameObject.transform.position.y;
+		ArrowRect = GetComponent<RectTransform>();
+		originalPosY = ArrowRect.anchoredPosition.y;
 		iRenderer = GetComponent<UnityEngine.UI.Image>();
     }
 	
@@ -54,8 +56,8 @@ public class ScrollArrow : MonoBehaviour
         if (!upArrow) {
 			y = -y;
 		}
-		gameObject.transform.position = new Vector2(
-			gameObject.transform.position.x,
+		ArrowRect.anchoredPosition = new Vector2(
+			ArrowRect.anchoredPosition.x,
 			originalPosY + y);
     }
 }
