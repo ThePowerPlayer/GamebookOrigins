@@ -31,15 +31,17 @@ public class DiceRollManager : MonoBehaviour
 			mostRecentIndex = SVZGame.index;
 			// Update monitor values for dice sections
 			// TODO: Set proper values to monitors, including random dice roll
-			// TODO: Reset sprites for monitors
-			// TODO: Properly hide choice buttons when DiceRoll GameObject is visible
+			// TODO: Reset monitor text when moving to a non-dice section
 			if (SVZText.sectionLibrary[SVZGame.index].diceSection) {
 				DiceRoll.SetActive(true);
 				diceMode = true;
-				
 				ResetMonitor(MonitorDice, SVZText.sectionLibrary[SVZGame.index].diceGoal);
 				ResetMonitor(MonitorAbility, SVZStats.abilities[SVZText.sectionLibrary[SVZGame.index].diceAbility]);
 				ResetMonitor(MonitorTails, SVZText.sectionLibrary[SVZGame.index].tailsValue);
+			}
+			else {	
+				DiceRoll.SetActive(false);
+				diceMode = false;
 			}
 		}
     }

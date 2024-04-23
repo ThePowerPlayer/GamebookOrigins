@@ -973,7 +973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &117401065
@@ -1807,7 +1807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161832414
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723871139}
   m_HandleRect: {fileID: 723871138}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4002,6 +4002,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BrokenMonitor: {fileID: 21300000, guid: 69ab3a405881a8745b8ebc84667f6714, type: 3}
+  SpeedMonitor: {fileID: 21300000, guid: df13be85db166714285e01487aaf77cf, type: 3}
+  AgilityMonitor: {fileID: 21300000, guid: 18ac30573fddf4e4f9ff9690719b390f, type: 3}
+  StrengthMonitor: {fileID: 21300000, guid: c081f7b18b78e3540b715d69eb21c03a, type: 3}
+  CoolnessMonitor: {fileID: 21300000, guid: 545ac6b4ffbf8aa4c925c9db4b6d0afa, type: 3}
+  QuickWitsMonitor: {fileID: 21300000, guid: 990feafb53f5bdd4180aa19299899533, type: 3}
+  GoodLooksMonitor: {fileID: 21300000, guid: 14554543e7507e6439ea7ffdfcc5ff0f, type: 3}
+  DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
+  TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
+  GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
 --- !u!114 &539766098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5899,6 +5908,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BrokenMonitor: {fileID: 21300000, guid: 69ab3a405881a8745b8ebc84667f6714, type: 3}
+  SpeedMonitor: {fileID: 21300000, guid: df13be85db166714285e01487aaf77cf, type: 3}
+  AgilityMonitor: {fileID: 21300000, guid: 18ac30573fddf4e4f9ff9690719b390f, type: 3}
+  StrengthMonitor: {fileID: 21300000, guid: c081f7b18b78e3540b715d69eb21c03a, type: 3}
+  CoolnessMonitor: {fileID: 21300000, guid: 545ac6b4ffbf8aa4c925c9db4b6d0afa, type: 3}
+  QuickWitsMonitor: {fileID: 21300000, guid: 990feafb53f5bdd4180aa19299899533, type: 3}
+  GoodLooksMonitor: {fileID: 21300000, guid: 14554543e7507e6439ea7ffdfcc5ff0f, type: 3}
+  DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
+  TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
+  GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
 --- !u!114 &1049935588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6491,7 +6509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229506645
@@ -10492,7 +10510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Goal
+  m_text: GOAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -10938,7 +10956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814852512
@@ -13079,7 +13097,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13110,6 +13128,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BrokenMonitor: {fileID: 21300000, guid: 69ab3a405881a8745b8ebc84667f6714, type: 3}
+  SpeedMonitor: {fileID: 21300000, guid: df13be85db166714285e01487aaf77cf, type: 3}
+  AgilityMonitor: {fileID: 21300000, guid: 18ac30573fddf4e4f9ff9690719b390f, type: 3}
+  StrengthMonitor: {fileID: 21300000, guid: c081f7b18b78e3540b715d69eb21c03a, type: 3}
+  CoolnessMonitor: {fileID: 21300000, guid: 545ac6b4ffbf8aa4c925c9db4b6d0afa, type: 3}
+  QuickWitsMonitor: {fileID: 21300000, guid: 990feafb53f5bdd4180aa19299899533, type: 3}
+  GoodLooksMonitor: {fileID: 21300000, guid: 14554543e7507e6439ea7ffdfcc5ff0f, type: 3}
+  DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
+  TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
+  GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
 --- !u!61 &2096632958
 BoxCollider2D:
   m_ObjectHideFlags: 0

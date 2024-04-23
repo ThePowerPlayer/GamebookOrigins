@@ -3,22 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using SVZGame = SonicVsZonikGame;
+using SVZText = SonicVsZonikGameText;
 
 public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 {
-	[SerializeField] private Sprite BrokenMonitor;
 	private UnityEngine.UI.Image iRenderer;
-	private bool monitorBroken;
-	private bool textAnimComplete;
+	[SerializeField] private Sprite BrokenMonitor;
+	[SerializeField] private Sprite SpeedMonitor;
+	[SerializeField] private Sprite AgilityMonitor;
+	[SerializeField] private Sprite StrengthMonitor;
+	[SerializeField] private Sprite CoolnessMonitor;
+	[SerializeField] private Sprite QuickWitsMonitor;
+	[SerializeField] private Sprite GoodLooksMonitor;
+	[SerializeField] private Sprite DiceMonitor;
+	[SerializeField] private Sprite TailsMonitor;
+	[SerializeField] private Sprite GoalMonitor;
+	private Sprite currentSprite;
 	
 	private int monitorValue;
-	
+	private bool monitorBroken;
+	private bool textAnimComplete;
 	private TMP_Text currentText;
 	private TextMeshProUGUI currentTextGUI;
+	private float originalFontSize;
 	
 	private float x;
 	private float y;
-	private float originalFontSize;
 	private const int speed = 5;
 	private const int height = 30;
 	
@@ -35,6 +46,41 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 		x = 0;
 		y = 0;
 		monitorValue = i;
+		
+		switch (gameObject.name) {
+			case "MonitorDice":
+				currentSprite = DiceMonitor;
+				break;
+			case "MonitorAbility":
+				switch (SVZText.sectionLibrary[SVZGame.index].diceAbility) {
+					case "Speed":
+						currentSprite = SpeedMonitor;
+						break;
+					case "Agility":
+						currentSprite = AgilityMonitor;
+						break;
+					case "Strength":
+						currentSprite = StrengthMonitor;
+						break;
+					case "Coolness":
+						currentSprite = CoolnessMonitor;
+						break;
+					case "QuickWits":
+						currentSprite = QuickWitsMonitor;
+						break;
+					case "GoodLooks":
+						currentSprite = GoodLooksMonitor;
+						break;
+				}
+				break;
+			case "MonitorTails":
+				currentSprite = TailsMonitor;
+				break;
+		}
+	}
+	
+	void Update() {
+		iRenderer.sprite = currentSprite;
 	}
 	
 	void FixedUpdate() {
@@ -56,7 +102,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 		if (!monitorBroken) {
 			monitorBroken = true;
 			currentText.enabled = true;
-			iRenderer.sprite = BrokenMonitor;
+			currentSprite = BrokenMonitor;
 			currentText.text = monitorValue.ToString();
 		}
     }

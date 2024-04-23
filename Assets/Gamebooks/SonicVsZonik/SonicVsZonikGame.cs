@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using SVZ = SonicVsZonikGameText;
+using SVZText = SonicVsZonikGameText;
 
 public class SonicVsZonikGame : MonoBehaviour
 {
@@ -59,9 +59,9 @@ public class SonicVsZonikGame : MonoBehaviour
 		else {
 			// Add to section history
 			sectionHistory.Push(index);
-			SVZ.sectionLibrary[index].visited = true;
+			SVZText.sectionLibrary[index].visited = true;
 			
-			if (SVZ.sectionLibrary[index].mackSection) {
+			if (SVZText.sectionLibrary[index].mackSection) {
 				mackCounter++;
 			}
 		}
@@ -88,8 +88,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	public void SetButtonVisited(GameObject ButtonSection, int i) {
-		//Debug.Log(markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZ.sectionLibrary[i].visited);
-		if (markVisitedSections && ButtonSection.activeInHierarchy && SVZ.sectionLibrary[i].visited) {
+		//Debug.Log(markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZText.sectionLibrary[i].visited);
+		if (markVisitedSections && ButtonSection.activeInHierarchy && SVZText.sectionLibrary[i].visited) {
 			ButtonSection.GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
 		}
 		else {
@@ -107,16 +107,16 @@ public class SonicVsZonikGame : MonoBehaviour
 		ButtonSectionC.SetActive(false);
 		ButtonSectionD.SetActive(false);
 		
-		if (DiceRollManager.diceMode) {
+		if (SVZText.sectionLibrary[index].diceSection) {
 			return;
 		}
 		
-		switch(SVZ.sectionLibrary[i].choices.Length)
+		switch(SVZText.sectionLibrary[i].choices.Length)
 		{
 			case 1:
 				UpdatePosX(ButtonSectionA, 225);
 				
-				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				break;
@@ -124,8 +124,8 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionA, 100);
 				UpdatePosX(ButtonSectionB, 400);
 				
-				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -135,9 +135,9 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionB, 225);
 				UpdatePosX(ButtonSectionC, 500);
 				
-				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
-				ButtonSectionCText.text = SVZ.sectionLibrary[i].choices[2].ToString();
+				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionCText.text = SVZText.sectionLibrary[i].choices[2].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -149,10 +149,10 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionC, 380);
 				UpdatePosX(ButtonSectionD, 640);
 				
-				ButtonSectionAText.text = SVZ.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZ.sectionLibrary[i].choices[1].ToString();
-				ButtonSectionCText.text = SVZ.sectionLibrary[i].choices[2].ToString();
-				ButtonSectionDText.text = SVZ.sectionLibrary[i].choices[3].ToString();
+				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionCText.text = SVZText.sectionLibrary[i].choices[2].ToString();
+				ButtonSectionDText.text = SVZText.sectionLibrary[i].choices[3].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
