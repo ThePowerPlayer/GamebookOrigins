@@ -281,7 +281,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1615719592}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5950,6 +5950,7 @@ MonoBehaviour:
   InventoryObjects: {fileID: 499931338}
   SVZMenu: {fileID: 1263561704}
   SVZGame: {fileID: 0}
+  InventoryButton: {fileID: 1333428276}
 --- !u!1 &1263974392
 GameObject:
   m_ObjectHideFlags: 0

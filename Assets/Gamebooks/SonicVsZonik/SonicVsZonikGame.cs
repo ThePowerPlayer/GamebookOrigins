@@ -97,26 +97,14 @@ public class SonicVsZonikGame : MonoBehaviour
 		}
 	}
 	
-	public void ChangeButtons() {
-		// Determine how many choices are possible from the current section,
-		// and update the number, position, and text of the buttons accordingly.
-		int i = index;
-		
-		ButtonSectionA.SetActive(false);
-		ButtonSectionB.SetActive(false);
-		ButtonSectionC.SetActive(false);
-		ButtonSectionD.SetActive(false);
-		
-		if (SVZText.sectionLibrary[index].diceSection) {
-			return;
-		}
-		
-		switch(SVZText.sectionLibrary[i].choices.Length)
+	private void SetButtonPositions(GameObject ButtonSectionA, GameObject ButtonSectionB,
+		GameObject ButtonSectionC, GameObject ButtonSectionD, int i, int[] choices) {
+		switch(choices.Length)
 		{
 			case 1:
 				UpdatePosX(ButtonSectionA, 225);
 				
-				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
+				ButtonSectionAText.text = choices[0].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				break;
@@ -124,8 +112,8 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionA, 100);
 				UpdatePosX(ButtonSectionB, 400);
 				
-				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
+				ButtonSectionAText.text = choices[0].ToString();
+				ButtonSectionBText.text = choices[1].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -135,9 +123,9 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionB, 225);
 				UpdatePosX(ButtonSectionC, 500);
 				
-				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
-				ButtonSectionCText.text = SVZText.sectionLibrary[i].choices[2].ToString();
+				ButtonSectionAText.text = choices[0].ToString();
+				ButtonSectionBText.text = choices[1].ToString();
+				ButtonSectionCText.text = choices[2].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -149,10 +137,10 @@ public class SonicVsZonikGame : MonoBehaviour
 				UpdatePosX(ButtonSectionC, 380);
 				UpdatePosX(ButtonSectionD, 640);
 				
-				ButtonSectionAText.text = SVZText.sectionLibrary[i].choices[0].ToString();
-				ButtonSectionBText.text = SVZText.sectionLibrary[i].choices[1].ToString();
-				ButtonSectionCText.text = SVZText.sectionLibrary[i].choices[2].ToString();
-				ButtonSectionDText.text = SVZText.sectionLibrary[i].choices[3].ToString();
+				ButtonSectionAText.text = choices[0].ToString();
+				ButtonSectionBText.text = choices[1].ToString();
+				ButtonSectionCText.text = choices[2].ToString();
+				ButtonSectionDText.text = choices[3].ToString();
 				
 				ButtonSectionA.SetActive(true);
 				ButtonSectionB.SetActive(true);
@@ -160,10 +148,38 @@ public class SonicVsZonikGame : MonoBehaviour
 				ButtonSectionD.SetActive(true);
 				break;
 		}
-		
+	
+		// Mark buttons as yellow if their sections have been visited
 		SetButtonVisited(ButtonSectionA, int.Parse(ButtonSectionAText.text));
 		SetButtonVisited(ButtonSectionB, int.Parse(ButtonSectionBText.text));
 		SetButtonVisited(ButtonSectionC, int.Parse(ButtonSectionCText.text));
 		SetButtonVisited(ButtonSectionD, int.Parse(ButtonSectionDText.text));
+	}
+	
+	public void ChangeButtons() {
+		// Determine how many choices are possible from the current section,
+		// and update the number, position, and text of the buttons accordingly.
+		ButtonSectionA.SetActive(false);
+		ButtonSectionB.SetActive(false);
+		ButtonSectionC.SetActive(false);
+		ButtonSectionD.SetActive(false);
+		
+		if (SVZText.sectionLibrary[index].diceSection) {
+			return;
+		}
+		
+		SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
+			ButtonSectionD, index, SVZText.sectionLibrary[index].choices);
+	}
+	
+	public void ChangeButtonsDiceRoll(bool rollSuccess) {
+		if (rollSuccess) {
+			SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
+				ButtonSectionD, index, SVZText.sectionLibrary[index].choicesDiceWin);
+		}
+		else {
+			SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
+				ButtonSectionD, index, SVZText.sectionLibrary[index].choicesDiceLose);
+		}
 	}
 }

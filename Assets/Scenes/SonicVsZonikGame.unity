@@ -5339,7 +5339,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1879057562}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6971,6 +6971,7 @@ MonoBehaviour:
   InventoryObjects: {fileID: 827332962}
   SVZMenu: {fileID: 0}
   SVZGame: {fileID: 1263561704}
+  InventoryButton: {fileID: 1645898088}
 --- !u!114 &1263561706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6983,10 +6984,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364b67ee67ca69147a5feeb7c82c7ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SVZGameScript: {fileID: 1263561704}
   DiceRoll: {fileID: 1685106312}
   MonitorDice: {fileID: 2096632953}
   MonitorAbility: {fileID: 1049935584}
   MonitorTails: {fileID: 539766094}
+  MonitorDiceScript: {fileID: 2096632957}
+  MonitorAbilityScript: {fileID: 1049935587}
+  MonitorTailsScript: {fileID: 539766097}
   Sum: {fileID: 1792031196}
   ComparisonSymbol: {fileID: 1681100199}
   GoalValue: {fileID: 1249532599}

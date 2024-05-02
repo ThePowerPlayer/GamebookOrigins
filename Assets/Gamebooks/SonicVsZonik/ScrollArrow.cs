@@ -8,7 +8,7 @@ public class ScrollArrow : MonoBehaviour
 	public static float x;
 	public static float y;
 	private float originalPosY;
-	private const int speed = 10;
+	private const int speed = 8;
 	private const int height = 5;
 	[SerializeField] private bool upArrow;
 	RectTransform ArrowRect;

@@ -13,6 +13,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public string text;
 		public int[] choices;
 		public bool diceSection = false;
+		public int[] choicesDiceWin;
+		public int[] choicesDiceLose;
 		public string diceAbility;
 		public int diceGoal = 0;
 		public bool tailsSection = false;
@@ -1284,7 +1286,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section207 = new Section()
 	{
 		text = "The lever is set about three metres above the floor of the valley – an easy jump for someone of Sonic's ability, isn't it? Roll the die and add the result to Sonic's Agility. If the score is more than 6, turn to <b>47</b>. If the score is less than 6, then turn to <b>162</b>.",
-		choices = new int[2] {47, 162},
+		choicesDiceWin = new int[1] {47},
+		choicesDiceLose = new int[1] {162},
 		diceSection = true,
 		diceAbility = "Agility",
 		diceGoal = 6
