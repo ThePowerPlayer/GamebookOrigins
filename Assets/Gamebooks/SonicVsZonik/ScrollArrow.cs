@@ -8,7 +8,7 @@ public class ScrollArrow : MonoBehaviour
 	public static float x;
 	public static float y;
 	private float originalPosY;
-	private const int speed = 5;
+	private const int speed = 10;
 	private const int height = 5;
 	[SerializeField] private bool upArrow;
 	RectTransform ArrowRect;
@@ -43,21 +43,20 @@ public class ScrollArrow : MonoBehaviour
 		else {
 			iRenderer.enabled = false;
 		}
+		
+		if (iRenderer.enabled) {
+			// Follow graph y = sin(x) without changing sign
+			x += (Time.deltaTime * speed);
+			if (x >= Mathf.PI) {
+				x = 0;
+			}
+			y = Mathf.Sin(x) * height;
+			if (!upArrow) {
+				y = -y;
+			}
+			ArrowRect.anchoredPosition = new Vector2(
+				ArrowRect.anchoredPosition.x,
+				originalPosY + y);
+		}
 	}
-	
-    void FixedUpdate()
-    {
-		// Follow graph y = sin(x) without changing sign
-		x += (Time.fixedDeltaTime * speed);
-		if (x >= Mathf.PI) {
-			x = 0;
-		}
-		y = Mathf.Sin(x) * height;
-        if (!upArrow) {
-			y = -y;
-		}
-		ArrowRect.anchoredPosition = new Vector2(
-			ArrowRect.anchoredPosition.x,
-			originalPosY + y);
-    }
 }

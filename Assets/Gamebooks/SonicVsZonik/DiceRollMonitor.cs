@@ -81,19 +81,21 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 	
 	void Update() {
 		iRenderer.sprite = currentSprite;
-	}
-	
-	void FixedUpdate() {
-		if (monitorBroken && !textAnimComplete) {
-			// Follow graph y = sin(x) without changing sign
-			x += (Time.fixedDeltaTime * speed);
-			y = Mathf.Sin(x) * height;
-			if (x >= Mathf.PI) {
-				x = 0;
-				y = 0;
-				textAnimComplete = true;
+		if (!monitorBroken) {
+			currentText.text = "";
+		}
+		else {
+			if (!textAnimComplete) {
+				// Follow graph y = sin(x) without changing sign
+				x += (Time.deltaTime * speed);
+				y = Mathf.Sin(x) * height;
+				if (x >= Mathf.PI) {
+					x = 0;
+					y = 0;
+					textAnimComplete = true;
+				}
+				currentText.fontSize = originalFontSize + y;
 			}
-			currentText.fontSize = originalFontSize + y;
 		}
 	}
 	

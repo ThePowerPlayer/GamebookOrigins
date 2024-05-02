@@ -31,7 +31,8 @@ public class DiceRollManager : MonoBehaviour
 			mostRecentIndex = SVZGame.index;
 			// Update monitor values for dice sections
 			// TODO: Set proper values to monitors, including random dice roll
-			// TODO: Reset monitor text when moving to a non-dice section
+			// TODO: Reset when leaving a dice section, not when entering one
+			// (so the changes aren't visible to the player)
 			if (SVZText.sectionLibrary[SVZGame.index].diceSection) {
 				DiceRoll.SetActive(true);
 				diceMode = true;
