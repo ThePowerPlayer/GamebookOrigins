@@ -15,6 +15,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public bool diceSection = false;
 		public string diceAbility;
 		public int diceGoal = 0;
+		public bool tailsSection = false;
 		public int tailsValue = 3;
 		public bool visited = false;
 		public bool mackSection = false;

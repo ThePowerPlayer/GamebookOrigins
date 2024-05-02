@@ -4011,6 +4011,8 @@ MonoBehaviour:
   DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
   TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
   GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
+  monitorValue: 0
+  monitorBroken: 0
 --- !u!114 &539766098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5917,6 +5919,8 @@ MonoBehaviour:
   DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
   TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
   GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
+  monitorValue: 0
+  monitorBroken: 0
 --- !u!114 &1049935588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6983,6 +6987,9 @@ MonoBehaviour:
   MonitorDice: {fileID: 2096632953}
   MonitorAbility: {fileID: 1049935584}
   MonitorTails: {fileID: 539766094}
+  Sum: {fileID: 1792031196}
+  ComparisonSymbol: {fileID: 1681100199}
+  GoalValue: {fileID: 1249532599}
 --- !u!1 &1274559119
 GameObject:
   m_ObjectHideFlags: 0
@@ -13137,6 +13144,8 @@ MonoBehaviour:
   DiceMonitor: {fileID: 21300000, guid: b310b444cf407064298a7b357ab8e143, type: 3}
   TailsMonitor: {fileID: 21300000, guid: 16cbdb439f0bdc64c9ecb526f66258d9, type: 3}
   GoalMonitor: {fileID: 21300000, guid: 93e312475f4348b4cb19adb0f2cf5652, type: 3}
+  monitorValue: 0
+  monitorBroken: 0
 --- !u!61 &2096632958
 BoxCollider2D:
   m_ObjectHideFlags: 0

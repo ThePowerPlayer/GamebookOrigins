@@ -21,8 +21,8 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 	[SerializeField] private Sprite GoalMonitor;
 	private Sprite currentSprite;
 	
-	private int monitorValue;
-	private bool monitorBroken;
+	public int monitorValue;
+	public bool monitorBroken;
 	private bool textAnimComplete;
 	private TMP_Text currentText;
 	private TextMeshProUGUI currentTextGUI;
