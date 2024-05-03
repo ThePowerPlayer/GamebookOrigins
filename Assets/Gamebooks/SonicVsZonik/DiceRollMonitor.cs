@@ -51,6 +51,9 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 			case "MonitorDice":
 				currentSprite = DiceMonitor;
 				break;
+			case "MonitorDice2":
+				currentSprite = DiceMonitor;
+				break;
 			case "MonitorAbility":
 				switch (SVZText.sectionLibrary[SVZGame.index].diceAbility) {
 					case "Speed":

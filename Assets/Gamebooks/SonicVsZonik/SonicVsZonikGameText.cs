@@ -22,6 +22,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public bool visited = false;
 		public bool mackSection = false;
 		public bool asteronSection = false;
+		public bool twoDice = false;
 	};
 	
 	public static Section section0 = new Section()
@@ -173,7 +174,12 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section24 = new Section()
 	{
 		text = "'I've been looking for you: you must get back to the Metropolis Zone and help with the cloning,' booms out the voice. Roll the die twice and add the score to Sonic's Quick Wits. If the result is 7 or more, turn to <b>277</b>. If the result is less than 7, then turn to <b>43</b>.",
-		choices = new int[2] {277, 43}
+		diceSection = true,
+		twoDice = true,
+		diceAbility = "Quick Wits",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {277},
+		choicesDiceLose = new int[1] {43}
 	};
 
 	public static Section section25 = new Section()
@@ -621,7 +627,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section98 = new Section()
 	{
 		text = "Sonic can't believe what is happening. Tails has been his friend ever since he can remember. Determined to catch up with Tails, Sonic leaps off the platform and tumbles expertly on to the floor of the valley with not a single spine out of place.\n\nTails is already a long way off up the valley, and Sonic hares off after him. Sonic moves a lot faster than Tails, and he is catching him up easily when disaster strikes. Roll the die and add the result to Sonic's Quick Wits. If the score is 7 or more, turn to <b>154</b>. If the score is less than 7, turn to <b>284</b>.",
-		choices = new int[2] {154, 284}
+		diceSection = true,
+		diceAbility = "Quick Wits",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {154},
+		choicesDiceLose = new int[1] {284}
 	};
 
 	public static Section section99 = new Section()
@@ -849,7 +859,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section135 = new Section()
 	{
 		text = "The two intrepid heroes tumble through the Game Over hole.\n\n'You know, Tails,' says Sonic, picking himself up off the floor, 'I don't come here often.'\n\nTails gives his friend one of <i>those</i> looks.\n\n'I mean, it's so rare for me actually to lose,' he continues.\n\n'Of COURSE it is,' replies Tails sarcastically.\n\nThe brave friends seem to be in some kind of control room. Over to the left is a large hole in the floor through which the losing player's ball would go. The rest of the room is full of computer equipment.\n\n'Do you understand any of this?' asks Tails, looking at the bewildering mess of circuits.\n\n'Of course,' says Sonic (what else would you expect!). Looks like there's going to be trouble between the two friends. He picks up a games console.\n\n'It's just like a Mega Drive,' says Tails.\n\n'Not quite,' says Sonic. 'Look,' he points out the title of the cartridge.\n\n'Death Ball? I haven't heard of that one,' says Tails.\n\n'Well, I think we've just been playing it. It's wired straight into the main computer.' The machine is indeed plugged into the game's main control console.\n\n'No guesses about who did this, eh?' says Sonic. 'Looks like we've just missed him again.'\n\n'Yes,' replies Tails, wondering if they will ever catch up the evil Zonik. 'Still, there's an easy way to sort out the game for the commissionaire,' he says, and he reaches out to pull the connecting wire from the console. Roll the die and add the result to Sonic's Quick Wits. If the score is 6 or more, turn to <b>297</b>. If the score is less than 6, turn to <b>146</b>.",
-		choices = new int[2] {297, 146}
+		diceSection = true,
+		diceAbility = "Quick Wits",
+		diceGoal = 6,
+		choicesDiceWin = new int[1] {297},
+		choicesDiceLose = new int[1] {146}
 	};
 
 	public static Section section136 = new Section()
@@ -861,7 +875,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section137 = new Section()
 	{
 		text = "They have just reached the island in time. Or have they?! A few metres from the shore the boat finally calls it a day and starts to sink. Tails starts to hover and will reach the island without any difficulty. Sonic, however, must jump and it's a LONG WAY.\n\nRoll the die and add the result to Sonic's Agility. If the score is equal to or greater than 7, turn to <b>33</b>. If the score is less than 7, turn to <b>238</b>.",
-		choices = new int[2] {33, 238}
+		diceSection = true,
+		diceAbility = "Agility",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {33},
+		choicesDiceLose = new int[1] {238}
 	};
 
 	public static Section section138 = new Section()
@@ -1013,7 +1031,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Oops! Now that wasn't supposed to happen at all. Sonic mistimed the jump, missed the lever completely, and landed with a thump on the ground ... OUCH. Turn back to <b>207</b> and let Sonic have another go. Before you do, roll the die. If Sonic scores a 1, then unfortunately he's lost either all his rings or a life if he doesn't have any rings!",
 		diceSection = true,
-		diceGoal = 1,
+		diceGoal = 2,
 		choicesDiceWin = new int[1] {207},
 		choicesDiceLose = new int[1] {207}
 	};
@@ -1045,7 +1063,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section167 = new Section()
 	{
 		text = "Sonic pushes the two-player button and then waits. Nothing happens for a moment or two, then the screen flickers into life.\n\n'Wow, it's Badnik Fighter II. Brilliant!' Sonic loves this game.\n\nRoll the die and add the result to Sonic's Quick Wits. As Tails is helping, you may add 2 to the result. If the score is 10 or more, turn to <b>198</b>. If the score is less than 10, then the unthinkable has happened and the game players have lost. They must press the Return key. In disgust, turn to <b>187</b>.",
-		choices = new int[2] {198, 187}
+		diceSection = true,
+		tailsSection = true,
+		diceAbility = "Quick Wits",
+		tailsValue = 2,
+		diceGoal = 10,
+		choicesDiceWin = new int[1] {198},
+		choicesDiceLose = new int[1] {187}
 	};
 
 	public static Section section168 = new Section()
@@ -1694,7 +1718,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section273 = new Section()
 	{
 		text = "They have just reached the island in time. Or have they?! A few metres from the shore, Tails' grip on Sonic's paw finally fails, sending Sonic tumbling towards the oil beneath him. Without the extra weight, Tails will reach the island without any difficulty. Sonic, however, must jump and it's a LONG WAY.\n\nRoll the die and add the result to Sonic's Agility. If the score is equal to or greater than 7, then turn to <b>33</b>. If the score is less than 7, turn to <b>238</b>.",
-		choices = new int[2] {33, 238}
+		diceSection = true,
+		diceAbility = "Agility",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {33},
+		choicesDiceLose = new int[1] {238}
 	};
 
 	public static Section section274 = new Section()

@@ -11,9 +11,11 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private SonicVsZonikGame SVZGameScript;
 	[SerializeField] private GameObject DiceRoll;
 	[SerializeField] private GameObject MonitorDice;
+	[SerializeField] private GameObject MonitorDice2;
 	[SerializeField] private GameObject MonitorAbility;
 	[SerializeField] private GameObject MonitorTails;
 	[SerializeField] private DiceRollMonitor MonitorDiceScript;
+	[SerializeField] private DiceRollMonitor MonitorDice2Script;
 	[SerializeField] private DiceRollMonitor MonitorAbilityScript;
 	[SerializeField] private DiceRollMonitor MonitorTailsScript;
 	[SerializeField] private GameObject FirstPlus;
@@ -29,10 +31,12 @@ public class DiceRollManager : MonoBehaviour
 	
 	private bool usesAbility;
 	private bool usesTails;
+	private bool usesTwoDice;
 	public static bool allMonitorsBroken;
 	
 	public static bool diceBeingRolled;
 	private float sumRoutineTimer;
+	private const float sumRoutineTimerMax = 1.5f;
 	private int sum;
 	private int goalValue;
 	public static bool rollSuccess;
@@ -42,7 +46,7 @@ public class DiceRollManager : MonoBehaviour
 		mostRecentIndex = 0;
 		diceMode = false;
 		DiceRoll.SetActive(false);
-		sumRoutineTimer = 1.5f;
+		sumRoutineTimer = sumRoutineTimerMax;
     }
 	
 	private void ResetMonitor(GameObject Monitor, int i) {
@@ -67,7 +71,7 @@ public class DiceRollManager : MonoBehaviour
 				diceMode = true;
 				diceBeingRolled = false;
 				rollSuccess = false;
-				sumRoutineTimer = 1.5f;
+				sumRoutineTimer = sumRoutineTimerMax;
 				
 				ResetMonitor(MonitorDice, Random.Range(1, 7));
 				
@@ -90,9 +94,54 @@ public class DiceRollManager : MonoBehaviour
 					MonitorTails.SetActive(false);
 				}
 				
+				usesTwoDice = (SVZText.sectionLibrary[mostRecentIndex].twoDice);
+				if (usesTwoDice) {
+					MonitorDice2.SetActive(true);
+					ResetMonitor(MonitorDice2, Random.Range(1, 7));
+				}
+				else {
+					MonitorDice2.SetActive(false);
+				}
+				
 				// Update positions of all monitors depending on which are active
 				// Calculate sum of monitor values
-				if (usesAbility && !usesTails) {
+				if (usesTails) {
+					// Dice + ability + Tails
+					FirstPlus.SetActive(true);
+					SecondPlus.SetActive(true);
+					UpdatePosX(MonitorDice, -325);
+					UpdatePosX(FirstPlus, -225);
+					UpdatePosX(MonitorAbility, -125);
+					UpdatePosX(SecondPlus, -25);
+					UpdatePosX(MonitorTails, 75);
+					UpdatePosX(EqualsObj, 175);
+					UpdatePosX(Sum, 260);
+					UpdatePosX(ComparisonSymbol, 340);
+					UpdatePosX(GoalValue, 420);
+					
+					sum = MonitorDiceScript.monitorValue
+					+ MonitorAbilityScript.monitorValue
+					+ MonitorTailsScript.monitorValue;
+				}
+				else if (usesAbility && usesTwoDice) {
+					// Dice + dice + ability
+					FirstPlus.SetActive(true);
+					SecondPlus.SetActive(true);
+					UpdatePosX(MonitorDice, -325);
+					UpdatePosX(FirstPlus, -225);
+					UpdatePosX(MonitorDice2, -125);
+					UpdatePosX(SecondPlus, -25);
+					UpdatePosX(MonitorAbility, 75);
+					UpdatePosX(EqualsObj, 175);
+					UpdatePosX(Sum, 260);
+					UpdatePosX(ComparisonSymbol, 340);
+					UpdatePosX(GoalValue, 420);
+					
+					sum = MonitorDiceScript.monitorValue
+					+ MonitorDice2Script.monitorValue
+					+ MonitorAbilityScript.monitorValue;
+				}
+				else if (usesAbility) {
 					// Dice + ability
 					FirstPlus.SetActive(true);
 					SecondPlus.SetActive(false);
@@ -104,8 +153,23 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(ComparisonSymbol, 280);
 					UpdatePosX(GoalValue, 370);
 					
-					sum = MonitorDice.GetComponent<DiceRollMonitor>().monitorValue
-					+ MonitorAbility.GetComponent<DiceRollMonitor>().monitorValue;
+					sum = MonitorDiceScript.monitorValue
+					+ MonitorAbilityScript.monitorValue;
+				}
+				else if (usesTwoDice) {
+					// Dice + dice
+					FirstPlus.SetActive(true);
+					SecondPlus.SetActive(false);
+					UpdatePosX(MonitorDice, -230);
+					UpdatePosX(FirstPlus, -115);
+					UpdatePosX(MonitorDice2, -5);
+					UpdatePosX(EqualsObj, 100);
+					UpdatePosX(Sum, 190);
+					UpdatePosX(ComparisonSymbol, 280);
+					UpdatePosX(GoalValue, 370);
+					
+					sum = MonitorDiceScript.monitorValue
+					+ MonitorDice2Script.monitorValue;
 				}
 				else {
 					// Dice only
@@ -117,7 +181,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(ComparisonSymbol, 140);
 					UpdatePosX(GoalValue, 240);
 					
-					sum = MonitorDice.GetComponent<DiceRollMonitor>().monitorValue;
+					sum = MonitorDiceScript.monitorValue;
 				}
 				
 				// Compare sum to goal value
@@ -142,14 +206,23 @@ public class DiceRollManager : MonoBehaviour
 		}
 		
 		// Activate sum routine when all monitors are broken
-		if (usesAbility && usesTails) {
+		if (usesTails) {
 			allMonitorsBroken = (MonitorDiceScript.monitorBroken
 				&& MonitorAbilityScript.monitorBroken
 				&& MonitorTailsScript.monitorBroken);
 		}
+		else if (usesAbility && usesTwoDice) {
+			allMonitorsBroken = (MonitorDiceScript.monitorBroken
+				&& MonitorDice2Script.monitorBroken
+				&& MonitorAbilityScript.monitorBroken);
+		}
 		else if (usesAbility) {
 			allMonitorsBroken = (MonitorDiceScript.monitorBroken
 				&& MonitorAbilityScript.monitorBroken);
+		}
+		else if (usesTwoDice) {
+			allMonitorsBroken = (MonitorDiceScript.monitorBroken
+				&& MonitorDice2Script.monitorBroken);
 		}
 		else {
 			allMonitorsBroken = MonitorDiceScript.monitorBroken;
