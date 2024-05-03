@@ -16,6 +16,9 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private DiceRollMonitor MonitorDiceScript;
 	[SerializeField] private DiceRollMonitor MonitorAbilityScript;
 	[SerializeField] private DiceRollMonitor MonitorTailsScript;
+	[SerializeField] private GameObject FirstPlus;
+	[SerializeField] private GameObject SecondPlus;
+	[SerializeField] private GameObject EqualsObj;
 	[SerializeField] private GameObject Sum;
 	[SerializeField] private GameObject ComparisonSymbol;
 	[SerializeField] private GameObject GoalValue;
@@ -42,8 +45,15 @@ public class DiceRollManager : MonoBehaviour
 		sumRoutineTimer = 1.5f;
     }
 	
-	void ResetMonitor(GameObject Monitor, int i) {
+	private void ResetMonitor(GameObject Monitor, int i) {
 		Monitor.GetComponent<DiceRollMonitor>().ResetMonitor(i);
+	}
+	
+	private void UpdatePosX(GameObject obj, float x) {
+		// Change RectTransform, NOT regular transform.position
+		RectTransform ObjRectTransform = obj.GetComponent<RectTransform>();
+		ObjRectTransform.anchoredPosition =
+			new Vector2(x, ObjRectTransform.anchoredPosition.y);
 	}
 	
     void Update()
@@ -61,19 +71,56 @@ public class DiceRollManager : MonoBehaviour
 				
 				ResetMonitor(MonitorDice, Random.Range(1, 7));
 				
-				// Include value of ability and Tails monitors (if applicable)
-				usesAbility = (SVZText.sectionLibrary[mostRecentIndex].diceAbility != "");
+				// Include ability and Tails monitors (if applicable)
+				usesAbility = (!string.IsNullOrEmpty(SVZText.sectionLibrary[mostRecentIndex].diceAbility));
 				if (usesAbility) {
+					MonitorAbility.SetActive(true);
 					ResetMonitor(MonitorAbility, SVZStats.abilities[SVZText.sectionLibrary[mostRecentIndex].diceAbility]);
 				}
-				usesTails = (SVZText.sectionLibrary[mostRecentIndex].tailsSection);
-				if (usesTails) {
-					ResetMonitor(MonitorTails, SVZText.sectionLibrary[mostRecentIndex].tailsValue);
+				else {
+					MonitorAbility.SetActive(false);
 				}
 				
-				// Calculate and display sum of monitor values
-				sum = MonitorDice.GetComponent<DiceRollMonitor>().monitorValue
+				usesTails = (SVZText.sectionLibrary[mostRecentIndex].tailsSection);
+				if (usesTails) {
+					MonitorTails.SetActive(true);
+					ResetMonitor(MonitorTails, SVZText.sectionLibrary[mostRecentIndex].tailsValue);
+				}
+				else {
+					MonitorTails.SetActive(false);
+				}
+				
+				// Update positions of all monitors depending on which are active
+				// Calculate sum of monitor values
+				if (usesAbility && !usesTails) {
+					// Dice + ability
+					FirstPlus.SetActive(true);
+					SecondPlus.SetActive(false);
+					UpdatePosX(MonitorDice, -230);
+					UpdatePosX(FirstPlus, -115);
+					UpdatePosX(MonitorAbility, -5);
+					UpdatePosX(EqualsObj, 100);
+					UpdatePosX(Sum, 190);
+					UpdatePosX(ComparisonSymbol, 280);
+					UpdatePosX(GoalValue, 370);
+					
+					sum = MonitorDice.GetComponent<DiceRollMonitor>().monitorValue
 					+ MonitorAbility.GetComponent<DiceRollMonitor>().monitorValue;
+				}
+				else {
+					// Dice only
+					FirstPlus.SetActive(false);
+					SecondPlus.SetActive(false);
+					UpdatePosX(MonitorDice, -140);
+					UpdatePosX(EqualsObj, -30);
+					UpdatePosX(Sum, 50);
+					UpdatePosX(ComparisonSymbol, 140);
+					UpdatePosX(GoalValue, 240);
+					
+					sum = MonitorDice.GetComponent<DiceRollMonitor>().monitorValue;
+				}
+				
+				// Compare sum to goal value
 				goalValue = SVZText.sectionLibrary[mostRecentIndex].diceGoal;
 				Sum.GetComponent<TMP_Text>().text = sum.ToString();
 				GoalValue.GetComponent<TMP_Text>().text = goalValue.ToString();
@@ -122,7 +169,6 @@ public class DiceRollManager : MonoBehaviour
 				// Leave dice mode and show available section buttons
 				sumRoutineTimer = 0;
 				diceBeingRolled = false;
-				Debug.Log("Dice roll success: " + rollSuccess);
 				SVZGameScript.ChangeButtonsDiceRoll(rollSuccess);
 				diceMode = false;
 				DiceRoll.SetActive(false);

@@ -676,7 +676,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section107 = new Section()
 	{
-		text = "Sonic reaches for the tube of glue that the rats gave him. With a careful shot he might be able to jam the Badnik' s missile launchers. Sonic takes aim and squeezes the tube. The glue shoots through the air in a graceful arc. A direct hit! The glue seeps into the missile launchers, but it has no effect whatsoever! All the glue has been used (delete it from Sonic's Stuff), and now our friends will have to try something else. What should they do?\n\nFight the Badnik robot?\t\t\tTurn to <b>14</b>Use the energy gun?\t\t\tTurn to <b>14</b>Try to roll the Badnik over?\t\t\tTurn to <b>53</b>'",
+		text = "Sonic reaches for the tube of glue that the rats gave him. With a careful shot he might be able to jam the Badnik's missile launchers. Sonic takes aim and squeezes the tube. The glue shoots through the air in a graceful arc. A direct hit! The glue seeps into the missile launchers, but it has no effect whatsoever! All the glue has been used (delete it from Sonic's Stuff), and now our friends will have to try something else. What should they do?\n\nFight the Badnik robot?\t\t\tTurn to <b>14</b>\nUse the energy gun?\t\t\tTurn to <b>230</b>\nTry to roll the Badnik over?\t\t\tTurn to <b>53</b>",
 		choices = new int[3] {14, 230, 53}
 	};
 
@@ -1012,7 +1012,10 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section162 = new Section()
 	{
 		text = "Oops! Now that wasn't supposed to happen at all. Sonic mistimed the jump, missed the lever completely, and landed with a thump on the ground ... OUCH. Turn back to <b>207</b> and let Sonic have another go. Before you do, roll the die. If Sonic scores a 1, then unfortunately he's lost either all his rings or a life if he doesn't have any rings!",
-		choices = new int[1] {207}
+		diceSection = true,
+		diceGoal = 1,
+		choicesDiceWin = new int[1] {207},
+		choicesDiceLose = new int[1] {207}
 	};
 
 	public static Section section163 = new Section()
@@ -1286,11 +1289,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section207 = new Section()
 	{
 		text = "The lever is set about three metres above the floor of the valley – an easy jump for someone of Sonic's ability, isn't it? Roll the die and add the result to Sonic's Agility. If the score is more than 6, turn to <b>47</b>. If the score is less than 6, then turn to <b>162</b>.",
-		choicesDiceWin = new int[1] {47},
-		choicesDiceLose = new int[1] {162},
 		diceSection = true,
 		diceAbility = "Agility",
-		diceGoal = 6
+		diceGoal = 6,
+		choicesDiceWin = new int[1] {47},
+		choicesDiceLose = new int[1] {162}
 	};
 
 	public static Section section208 = new Section()

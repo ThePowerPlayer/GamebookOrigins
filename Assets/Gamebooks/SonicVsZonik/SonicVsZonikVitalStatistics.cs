@@ -34,5 +34,6 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 		abilities["Coolness"] = 4;
 		abilities["Quick Wits"] = 5;
 		abilities["Good Looks"] = 6;
+		abilities["Section 31"] = 7;
     }
 }

@@ -65,11 +65,14 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 					case "Coolness":
 						currentSprite = CoolnessMonitor;
 						break;
-					case "QuickWits":
+					case "Quick Wits":
 						currentSprite = QuickWitsMonitor;
 						break;
-					case "GoodLooks":
+					case "Good Looks":
 						currentSprite = GoodLooksMonitor;
+						break;
+					case "Section 31":
+						currentSprite = TailsMonitor;
 						break;
 				}
 				break;

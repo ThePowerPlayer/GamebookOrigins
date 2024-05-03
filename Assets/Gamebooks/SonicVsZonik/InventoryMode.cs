@@ -20,9 +20,6 @@ public class InventoryMode : MonoBehaviour
 	}
 	
 	void Update() {
-		if (DiceRollManager.diceBeingRolled) {
-			Debug.Log("Dice is currently being rolled, inventory cannot be accessed!");
-		}
 		if (scene.name == "SonicVsZonikGame") {	
 			InventoryButton.interactable = !DiceRollManager.diceBeingRolled;
 		}
