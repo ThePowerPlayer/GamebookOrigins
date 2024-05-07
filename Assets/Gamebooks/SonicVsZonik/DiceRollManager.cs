@@ -21,6 +21,7 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private GameObject FirstPlus;
 	[SerializeField] private GameObject SecondPlus;
 	[SerializeField] private GameObject EqualsObj;
+	[SerializeField] private GameObject GoalValueSprite;
 	[SerializeField] private GameObject Sum;
 	[SerializeField] private GameObject ComparisonSymbol;
 	[SerializeField] private GameObject GoalValue;
@@ -116,6 +117,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorTails, 75);
 					UpdatePosX(EqualsObj, 175);
 					UpdatePosX(Sum, 260);
+					UpdatePosX(GoalValueSprite, 260);
 					UpdatePosX(ComparisonSymbol, 340);
 					UpdatePosX(GoalValue, 420);
 					
@@ -134,6 +136,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorAbility, 75);
 					UpdatePosX(EqualsObj, 175);
 					UpdatePosX(Sum, 260);
+					UpdatePosX(GoalValueSprite, 260);
 					UpdatePosX(ComparisonSymbol, 340);
 					UpdatePosX(GoalValue, 420);
 					
@@ -150,6 +153,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorAbility, -5);
 					UpdatePosX(EqualsObj, 100);
 					UpdatePosX(Sum, 190);
+					UpdatePosX(GoalValueSprite, 190);
 					UpdatePosX(ComparisonSymbol, 280);
 					UpdatePosX(GoalValue, 370);
 					
@@ -165,6 +169,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorDice2, -5);
 					UpdatePosX(EqualsObj, 100);
 					UpdatePosX(Sum, 190);
+					UpdatePosX(GoalValueSprite, 190);
 					UpdatePosX(ComparisonSymbol, 280);
 					UpdatePosX(GoalValue, 370);
 					
@@ -178,6 +183,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorDice, -140);
 					UpdatePosX(EqualsObj, -30);
 					UpdatePosX(Sum, 50);
+					UpdatePosX(GoalValueSprite, 50);
 					UpdatePosX(ComparisonSymbol, 140);
 					UpdatePosX(GoalValue, 240);
 					
@@ -228,9 +234,17 @@ public class DiceRollManager : MonoBehaviour
 			allMonitorsBroken = MonitorDiceScript.monitorBroken;
 		}
 		
+		// Visualize the dice roll to the player and display sum value
 		if (diceMode && allMonitorsBroken && !diceBeingRolled) {
 			diceBeingRolled = true;
 			Sum.GetComponent<TMP_Text>().enabled = true;
+			int monitorValue = int.Parse(Sum.GetComponent<TMP_Text>().text);
+			if (monitorValue < 10) {
+				Sum.GetComponent<TMP_Text>().fontSize = 72;
+			}
+			else {
+				Sum.GetComponent<TMP_Text>().fontSize = 58;
+			}
 			ComparisonSymbol.GetComponent<TMP_Text>().enabled = true;
 		}
 		

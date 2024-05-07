@@ -2,10 +2,11 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 (When you're done with a task, add a ✓ in between the brackets.)
 
 [✓] Make dice rolls without abilities or Tails sections work properly
-[] Make dice rolls with Tails sections work properly
-[] Make dice rolls with two dice at the same time work properly
-[] Prevent the Back button from being pressed during a dice roll
-[] Make dice roll on section 31 work properly (dice roll + 7)
+[✓] Make dice rolls with Tails sections work properly
+[✓] Make dice rolls with two dice at the same time work properly
+[✓] Prevent the Back button from being pressed during a dice roll
+[✓] Make dice roll on section 31 work properly (dice roll + 7)
+[] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [] Implement all sections with a single dice roll
 [] Implement Sections 35 and 138 (two dice rolls in a row)
 [] Allow the player to customize Sonic's Vital Statistics in the Menu scene

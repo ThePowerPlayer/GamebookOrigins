@@ -12,6 +12,10 @@ public class BackButton : MonoBehaviour
 		button.onClick.AddListener(TaskOnClick);
 	}
 	
+	void Update() {
+		button.interactable = !DiceRollManager.diceBeingRolled;
+	}
+	
     private void TaskOnClick() {
 		// Remove from section history
 		SonicVsZonikGame.backButtonPressed = true;

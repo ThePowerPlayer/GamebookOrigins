@@ -223,7 +223,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section31 = new Section()
 	{
 		text = "All three adversaries square up to each other - Zonik on one side and Tails and Sonic on the other. Sonic strikes first and misses. Zonik tries to clump him over the head as he goes by and misses again. Both aim a sweeping back kick at each other, then BOOOOOOOOM!!! There is a huge explosion. Zonik flies through the air in one direction and Sonic in the other. The emerald shoots up into the air. If only Tails can catch it.\n\nRoll the die and add 7 to the result. If your score is 10 or more, then turn to <b>234</b>. If your score is less than 10, turn to <b>76</b>.",
-		choices = new int[2] {234, 76}
+		diceSection = true,
+		diceAbility = "Section 31",
+		diceGoal = 10,
+		choicesDiceWin = new int[1] {234},
+		choicesDiceLose = new int[1] {76}
 	};
 
 	public static Section section32 = new Section()
@@ -1093,7 +1097,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section171 = new Section()
 	{
 		text = "The fruit machine is lit up like a Christmas tree and Sonic becomes mesmerized by it. Each game costs 1 ring, and Sonic cannot resist the temptation. Roll the die twice. If the result adds up to 4 or less, turn to <b>84</b>. If the result adds up to 5 or more, turn to <b>199</b>. Remember to subtract 1 ring from Sonic's Stuff.",
-		choices = new int[2] {84, 199}
+		diceSection = true,
+		twoDice = true,
+		diceGoal = 5,
+		choicesDiceWin = new int[1] {199},
+		choicesDiceLose = new int[1] {84}
 	};
 
 	public static Section section172 = new Section()
