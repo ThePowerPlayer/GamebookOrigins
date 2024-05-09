@@ -21,6 +21,8 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private GameObject FirstPlus;
 	[SerializeField] private GameObject SecondPlus;
 	[SerializeField] private GameObject EqualsObj;
+	[SerializeField] private GameObject ThumbsUp;
+	[SerializeField] private ThumbsUp ThumbsUpScript;
 	[SerializeField] private GameObject GoalValueSprite;
 	[SerializeField] private GameObject Sum;
 	[SerializeField] private GameObject ComparisonSymbol;
@@ -37,7 +39,7 @@ public class DiceRollManager : MonoBehaviour
 	
 	public static bool diceBeingRolled;
 	private float sumRoutineTimer;
-	private const float sumRoutineTimerMax = 1.5f;
+	private const float sumRoutineTimerMax = 2f;
 	private int sum;
 	private int goalValue;
 	public static bool rollSuccess;
@@ -117,6 +119,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorTails, 75);
 					UpdatePosX(EqualsObj, 175);
 					UpdatePosX(Sum, 260);
+					UpdatePosX(ThumbsUp, 260);
 					UpdatePosX(GoalValueSprite, 260);
 					UpdatePosX(ComparisonSymbol, 340);
 					UpdatePosX(GoalValue, 420);
@@ -136,6 +139,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorAbility, 75);
 					UpdatePosX(EqualsObj, 175);
 					UpdatePosX(Sum, 260);
+					UpdatePosX(ThumbsUp, 260);
 					UpdatePosX(GoalValueSprite, 260);
 					UpdatePosX(ComparisonSymbol, 340);
 					UpdatePosX(GoalValue, 420);
@@ -153,6 +157,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorAbility, -5);
 					UpdatePosX(EqualsObj, 100);
 					UpdatePosX(Sum, 190);
+					UpdatePosX(ThumbsUp, 190);
 					UpdatePosX(GoalValueSprite, 190);
 					UpdatePosX(ComparisonSymbol, 280);
 					UpdatePosX(GoalValue, 370);
@@ -169,6 +174,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorDice2, -5);
 					UpdatePosX(EqualsObj, 100);
 					UpdatePosX(Sum, 190);
+					UpdatePosX(ThumbsUp, 190);
 					UpdatePosX(GoalValueSprite, 190);
 					UpdatePosX(ComparisonSymbol, 280);
 					UpdatePosX(GoalValue, 370);
@@ -183,6 +189,7 @@ public class DiceRollManager : MonoBehaviour
 					UpdatePosX(MonitorDice, -140);
 					UpdatePosX(EqualsObj, -30);
 					UpdatePosX(Sum, 50);
+					UpdatePosX(ThumbsUp, 50);
 					UpdatePosX(GoalValueSprite, 50);
 					UpdatePosX(ComparisonSymbol, 140);
 					UpdatePosX(GoalValue, 240);
@@ -196,10 +203,12 @@ public class DiceRollManager : MonoBehaviour
 				GoalValue.GetComponent<TMP_Text>().text = goalValue.ToString();
 				if (sum >= goalValue) {
 					rollSuccess = true;
+					ThumbsUpScript.thumbPointsUp = true;
 					ComparisonSymbol.GetComponent<TMP_Text>().text = "≥";
 				}
 				else {
 					rollSuccess = false;
+					ThumbsUpScript.thumbPointsUp = false;
 					ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 				}
 				Sum.GetComponent<TMP_Text>().enabled = false;
@@ -245,6 +254,8 @@ public class DiceRollManager : MonoBehaviour
 			else {
 				Sum.GetComponent<TMP_Text>().fontSize = 58;
 			}
+			ThumbsUpScript.visibilityTimer = 1f;
+			ThumbsUpScript.visible = true;
 			ComparisonSymbol.GetComponent<TMP_Text>().enabled = true;
 		}
 		
@@ -257,6 +268,7 @@ public class DiceRollManager : MonoBehaviour
 				sumRoutineTimer = 0;
 				diceBeingRolled = false;
 				SVZGameScript.ChangeButtonsDiceRoll(rollSuccess);
+				ThumbsUpScript.visible = false;
 				diceMode = false;
 				DiceRoll.SetActive(false);
 			}
