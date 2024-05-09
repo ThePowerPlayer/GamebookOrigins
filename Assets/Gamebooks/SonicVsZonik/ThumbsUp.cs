@@ -12,9 +12,12 @@ public class ThumbsUp : MonoBehaviour
 	public bool thumbPointsUp;
 	public float visibilityTimer;
 	public bool visible;
+	public float xExp;
+	private const float xExpMultiplier = 1.2f;
 	private RectTransform rect;
 	private Vector2 originalSize;
-	private float sizeMultiplier;
+	public float sizeMultiplier;
+	public bool startedShrinking;
 	private UnityEngine.UI.Image iRenderer;
 	
     void Start()
@@ -23,55 +26,59 @@ public class ThumbsUp : MonoBehaviour
 		y = 0;
 		rect = GetComponent<RectTransform>();
 		originalSize = rect.sizeDelta;
-		originalPosY = rect.anchoredPosition.y;
+		originalPosY = rect.position.y;
 		iRenderer = GetComponent<UnityEngine.UI.Image>();
 		visible = false;
 		visibilityTimer = 1f;
+		xExp = 0;
+		sizeMultiplier = 0;
     }
 	
-	void IncrementUntilLimit(ref float f, float inc, float limit) {
-		if (f < limit) {
-			f += (inc * Time.deltaTime);
-			if (f > limit) {
-				f = limit;
-			}
-		}
+	float Exp(float x) {
+		return (1f - x) * Mathf.Exp(-5f * x);
 	}
 	
-	void DecrementUntilLimit(ref float f, float dec, float limit) {
-		if (f > limit) {
-			f -= (dec * Time.deltaTime);
-			if (f < limit) {
-				f = limit;
-			}
+	void IncrementExp(ref float f, ref float xExp, float xExpMultiplier, ref bool startedShrinking) {
+		xExp += xExpMultiplier * Time.deltaTime;
+		if (startedShrinking) {
+			f = Exp(xExp);
 		}
+		else {
+			f = 1f - Exp(xExp);
+		}
+		Mathf.Clamp(xExp, 0f, 1f);
+		Mathf.Clamp(f, 0f, 1f);
 	}
 	
     void Update()
     {
 		iRenderer.enabled = visible;
 		
-        // Follow graph y = sin(x) WITH changing sign
 		x += (Time.deltaTime * speed);
 		if (x >= 2 * Mathf.PI) {
 			x = 0;
 		}
-		y = Mathf.Sin(x) * height;
+		// Adjust oscillation height by current size
+		y = Mathf.Sin(x) * height * sizeMultiplier;
 		
 		if (visible) {
 			// Set position while visible
-			rect.anchoredPosition = new Vector2(
-				rect.anchoredPosition.x,
+			rect.position = new Vector2(
+				rect.position.x,
 				originalPosY + y);
 			
 			// Grow and shrink while visible
-			DecrementUntilLimit(ref visibilityTimer, 1f, 0);
-			if (visibilityTimer > 0) {
-				IncrementUntilLimit(ref sizeMultiplier, 5f, 1);
+			visibilityTimer -= Time.deltaTime;
+			
+			// Reset exponential curve when shrinking
+			if (visibilityTimer < 0 && !startedShrinking) {
+				visibilityTimer = 0;
+				startedShrinking = true;
+				xExp = 0;
 			}
-			else {
-				DecrementUntilLimit(ref sizeMultiplier, 5f, 0);
-			}
+			
+			// Exponentially decrease grow/shrink speed
+			IncrementExp(ref sizeMultiplier, ref xExp, xExpMultiplier, ref startedShrinking);
 		}
 		else {
 			sizeMultiplier = 0;

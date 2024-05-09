@@ -254,6 +254,9 @@ public class DiceRollManager : MonoBehaviour
 			else {
 				Sum.GetComponent<TMP_Text>().fontSize = 58;
 			}
+			ThumbsUpScript.xExp = 0;
+			ThumbsUpScript.sizeMultiplier = 0;
+			ThumbsUpScript.startedShrinking = false;
 			ThumbsUpScript.visibilityTimer = 1f;
 			ThumbsUpScript.visible = true;
 			ComparisonSymbol.GetComponent<TMP_Text>().enabled = true;
