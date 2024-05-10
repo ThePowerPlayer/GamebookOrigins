@@ -12186,7 +12186,7 @@ RectTransform:
   m_GameObject: {fileID: 1943967938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1193832340}
@@ -12194,7 +12194,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -535, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 480, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943967940
 MonoBehaviour:
@@ -12216,7 +12216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: be2a2e2836d1ec94dbb00a0aeef153b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5b6459b9ebfe59409ee98161f27b742, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -12243,16 +12243,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1943967938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12181316677969d4cbcf3066343724fa, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c994700a37df54db27ad68a0ba422b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image1: {fileID: 21300000, guid: be2a2e2836d1ec94dbb00a0aeef153b9, type: 3}
-  image2: {fileID: 21300000, guid: b0edef023675e664e87b09ee3e73ae06, type: 3}
-  image3: {fileID: 21300000, guid: 638d9044fdd6cf14b9dedf6db37058b9, type: 3}
-  image4: {fileID: 21300000, guid: a1b3561756e8c5c439f9c38573529bc4, type: 3}
-  image5: {fileID: 21300000, guid: 140d7f6b081cbcd4c9cd9fcaa62de06b, type: 3}
-  image6: {fileID: 21300000, guid: e2c7cf4bf31a238419ae2bc006fb48dd, type: 3}
-  image7: {fileID: 21300000, guid: 9bfbeb9e589f3144f902f4cb319bf5ac, type: 3}
+  section1: {fileID: 21300000, guid: b5b6459b9ebfe59409ee98161f27b742, type: 3}
+  section12: {fileID: 21300000, guid: 6300d98372fdbfa48b2d40f406c54530, type: 3}
+  section23: {fileID: 21300000, guid: 1858b0acd4dbcee49aab35598ca83ca7, type: 3}
+  section34: {fileID: 21300000, guid: 28e0180a6703f174896430a28d43076f, type: 3}
+  section46: {fileID: 21300000, guid: 1760f97c35827d249b7fc6b5aa8f7632, type: 3}
+  section58: {fileID: 21300000, guid: 10601f20a0a10e74ba46c43548db090e, type: 3}
+  section69: {fileID: 21300000, guid: 4ea7855d013243e45b8edc27d50f7cb1, type: 3}
+  section80: {fileID: 21300000, guid: 61fde7f2f15fe1a429569d7cec47f209, type: 3}
+  section91: {fileID: 21300000, guid: 05db7384f26a6af4db14419599de9ec0, type: 3}
+  section102: {fileID: 21300000, guid: 68dfb3d09cc4bf540ab94791353bcb1b, type: 3}
+  section113: {fileID: 21300000, guid: ae7c99e5b5b00ab40b15d83aee003e62, type: 3}
+  section124: {fileID: 21300000, guid: a64a9c9426dcdc840888eb81c620b425, type: 3}
+  section135: {fileID: 21300000, guid: e1007a34508bc2649a4f4610e9a54c58, type: 3}
+  section146: {fileID: 21300000, guid: 07439bf51797e37418e6beb19fa6266a, type: 3}
+  section157: {fileID: 21300000, guid: ed2a18536f165e143be0569d03d8f046, type: 3}
+  section169: {fileID: 21300000, guid: 02fcc0b27245bca4cb9f8694ea07395c, type: 3}
+  section180: {fileID: 21300000, guid: 0945e32d06c11de4eba582adae05ef0c, type: 3}
+  section191: {fileID: 21300000, guid: 68d9a704697989b4ca0cd8bdd61362e2, type: 3}
+  section202: {fileID: 21300000, guid: 6b99d30e7b2d69c45aa9fb80ddc7a199, type: 3}
+  section213: {fileID: 21300000, guid: 797447b375a68ad41aaef651da7dcb65, type: 3}
+  section225: {fileID: 21300000, guid: 9d80429b77a7a50499ac1400c8fdca1f, type: 3}
+  section236: {fileID: 21300000, guid: 943a36ee67be12d4e9b74e76cfa7e82c, type: 3}
+  section248: {fileID: 21300000, guid: 30ad896e931fbbd49a42a4885f95786b, type: 3}
+  section269: {fileID: 21300000, guid: db62c2fbaa8d13a4cb19ab31790140d3, type: 3}
+  section290: {fileID: 21300000, guid: 3d7718cb01d77694ab95b635e6de22b4, type: 3}
 --- !u!1 &1960140632
 GameObject:
   m_ObjectHideFlags: 0
