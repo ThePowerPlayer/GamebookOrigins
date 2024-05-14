@@ -9,18 +9,21 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	public static int lives;
 	public static int rings;
 	
+    public static SonicVsZonikVitalStatistics instance { get; private set; }
+
+	// Prevent more than one VitalStatisticsManager from existing
 	void Awake()
 	{
+		if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 		DontDestroyOnLoad(gameObject);
-		SceneManager.sceneLoaded += OnSceneLoaded;
-	}
-	
-	void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-		// Prevent more than one VitalStatisticsManager from existing
-		if (!(SceneManager.GetActiveScene().name == "SonicVsZonikMenu"
-			|| SceneManager.GetActiveScene().name == "SonicVsZonikGame")) {
-			if (this.gameObject) Destroy(this.gameObject);	
-		}
 	}
 	
     void Start()

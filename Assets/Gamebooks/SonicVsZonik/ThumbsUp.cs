@@ -26,7 +26,7 @@ public class ThumbsUp : MonoBehaviour
 		y = 0;
 		rect = GetComponent<RectTransform>();
 		originalSize = rect.sizeDelta;
-		originalPosY = rect.position.y;
+		originalPosY = rect.anchoredPosition.y;
 		iRenderer = GetComponent<UnityEngine.UI.Image>();
 		visible = false;
 		visibilityTimer = 1f;
@@ -63,8 +63,8 @@ public class ThumbsUp : MonoBehaviour
 		
 		if (visible) {
 			// Set position while visible
-			rect.position = new Vector2(
-				rect.position.x,
+			rect.anchoredPosition = new Vector2(
+				rect.anchoredPosition.x,
 				originalPosY + y);
 			
 			// Grow and shrink while visible

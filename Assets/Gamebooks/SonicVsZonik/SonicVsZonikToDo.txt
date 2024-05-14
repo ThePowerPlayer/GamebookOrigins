@@ -10,6 +10,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [] Implement all sections with a single dice roll
 [] Implement Sections 35 and 138 (two dice rolls in a row)
 [] Allow the player to customize Sonic's Vital Statistics in the Menu scene
+[] Fix bug where dice roll choices disappear after rolling, but before selecting a choice
 [] Fix issues with back button moving player to incorrect sections (perhaps using a queue to store history isn't best)
 [] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
 [] Implement getting hit (lose all rings or a life if you have no rings)

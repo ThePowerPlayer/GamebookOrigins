@@ -10,10 +10,10 @@ public class ChooseASection : MonoBehaviour
     void Update()
     {
         if (DiceRollManager.diceMode) {
-			currentText.text = "Roll the\ndie:";
+			currentText.text = "Roll the die:";
 		}
 		else {
-			currentText.text = "Choose a\nsection:";
+			currentText.text = "Choose a section:";
 		}
     }
 }
