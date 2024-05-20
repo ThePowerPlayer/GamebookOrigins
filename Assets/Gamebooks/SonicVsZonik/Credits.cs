@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Stats = SonicVsZonikVitalStatistics;
 
-public class Lives : MonoBehaviour
+public class Credits : MonoBehaviour
 {
 	private TMP_Text currentText;
 	
@@ -15,6 +15,6 @@ public class Lives : MonoBehaviour
 
     void Update()
     {
-        currentText.text = Stats.lives.ToString();
+        currentText.text = Stats.credits.ToString();
     }
 }

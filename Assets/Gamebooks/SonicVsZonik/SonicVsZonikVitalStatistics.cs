@@ -8,6 +8,8 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	public static Dictionary<string, int> abilities = new Dictionary<string, int>();
 	public static int lives;
 	public static int rings;
+	public static int credits;
+	public static int points;
 	
     public static SonicVsZonikVitalStatistics instance { get; private set; }
 
@@ -30,6 +32,8 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
     {
 		lives = 3;
 		rings = 0;
+		credits = 50;
+		points = 0;
 		
 		abilities["Speed"] = 1;
 		abilities["Agility"] = 2;
