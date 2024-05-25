@@ -6,12 +6,14 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Make dice rolls with two dice at the same time work properly
 [✓] Prevent the Back button from being pressed during a dice roll
 [✓] Make dice roll on section 31 work properly (dice roll + 7)
+[✓] Import all images of artwork from Sonic vs. Zonik
+[✓] Make artwork images appear in their proper sections
+[✓] Implement Section 138 (two dice rolls in a row)
+[✓] Fix bug where if the Inventory button is pressed, dice roll choices disappear after rolling, but before selecting a choice
+[] Crop empty space from artwork images
 [] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [] Implement all sections with a single dice roll
-[] Implement Sections 35 and 138 (two dice rolls in a row)
 [] Allow the player to customize Sonic's Vital Statistics in the Menu scene
-[] Fix bug where dice roll choices disappear after rolling, but before selecting a choice
-[] Fix issues with back button moving player to incorrect sections (perhaps using a queue to store history isn't best)
 [] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
 [] Implement getting hit (lose all rings or a life if you have no rings)
 [] Implement earning rings
@@ -20,8 +22,6 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [] Implement adding things to Sonic's stuff
 [] Implement sections with choices that require an item from Sonic's Stuff
 [] Implement the Zone Chip
-[] Import all images of artwork from Sonic vs. Zonik
-[] Make artwork images appear in their proper sections
 [] For infinite loop between sections 216, 114, 85, 68, and 114, implement a break in the space-time continuum (allow a jump to section 227)
 [] Add an Options menu, with toggles for the following features:
 	[] (Global) Back button

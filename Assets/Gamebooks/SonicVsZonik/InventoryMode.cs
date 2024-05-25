@@ -12,6 +12,7 @@ public class InventoryMode : MonoBehaviour
 	public GameObject InventoryObjects;
 	public SonicVsZonikMenu SVZMenu;
 	public SonicVsZonikGame SVZGame;
+	public SonicVsZonikGameText SVZText;
 	private Scene scene;
 	[SerializeField] private Button InventoryButton;
 	
@@ -35,12 +36,7 @@ public class InventoryMode : MonoBehaviour
 				SVZMenu.ChangeButtons();
 			}
 			else if (scene.name == "SonicVsZonikGame" && SVZGame != null) {
-				if (DiceRollManager.diceRollComplete) {
-					SVZGame.ChangeButtonsDiceRoll(DiceRollManager.rollSuccess);
-				}
-				else {
-					SVZGame.ChangeButtons();
-				}
+				SVZGame.ChangeButtons();
 			}
 		}
 	}

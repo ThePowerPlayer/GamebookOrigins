@@ -40,12 +40,19 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 		originalFontSize = currentText.fontSize;
 	}
 	
-	public void ResetMonitor(int i) {
+	public void ResetMonitor(int i, int timesDiceRolled) {
 		monitorBroken = false;
 		textAnimComplete = false;
 		x = 0;
 		y = 0;
 		monitorValue = i;
+		string currentAbility = "";
+		if (timesDiceRolled == 0) {
+			currentAbility = SVZText.sectionLibrary[SVZGame.index].diceAbility;
+		}
+		else {
+			currentAbility = SVZText.sectionLibrary[SVZGame.index].diceAbility2;
+		}
 		
 		switch (gameObject.name) {
 			case "MonitorDice":
@@ -55,7 +62,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 				currentSprite = DiceMonitor;
 				break;
 			case "MonitorAbility":
-				switch (SVZText.sectionLibrary[SVZGame.index].diceAbility) {
+				switch (currentAbility) {
 					case "Speed":
 						currentSprite = SpeedMonitor;
 						break;

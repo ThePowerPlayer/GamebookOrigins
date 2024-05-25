@@ -53,6 +53,10 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	private void VisitIndex() {
+		// Reset dice roll for visited section
+		SVZText.sectionLibrary[mostRecentIndex].rollComplete = false;
+		SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
+		
 		if (backButtonPressed) {
 			backButtonPressed = false;
 		}
@@ -164,22 +168,31 @@ public class SonicVsZonikGame : MonoBehaviour
 		ButtonSectionC.SetActive(false);
 		ButtonSectionD.SetActive(false);
 		
+		int[] choices;
+		
+		Debug.Log("diceSection = " + SVZText.sectionLibrary[index].diceSection
+		+ ", rollComplete = " + SVZText.sectionLibrary[index].rollComplete
+		+ ", rollSuccess = " + SVZText.sectionLibrary[index].rollSuccess);
 		if (SVZText.sectionLibrary[index].diceSection) {
-			return;
+			// Dice sections
+			if (SVZText.sectionLibrary[index].rollComplete) {
+				if (SVZText.sectionLibrary[index].rollSuccess) {
+					choices = SVZText.sectionLibrary[index].choicesDiceWin;
+				}
+				else {
+					choices = SVZText.sectionLibrary[index].choicesDiceLose;
+				}
+			}
+			else {
+				return;
+			}
+		}
+		else {
+			// Non-dice sections
+			choices = SVZText.sectionLibrary[index].choices;
 		}
 		
 		SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
-			ButtonSectionD, index, SVZText.sectionLibrary[index].choices);
-	}
-	
-	public void ChangeButtonsDiceRoll(bool rollSuccess) {
-		if (rollSuccess) {
-			SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
-				ButtonSectionD, index, SVZText.sectionLibrary[index].choicesDiceWin);
-		}
-		else {
-			SetButtonPositions(ButtonSectionA, ButtonSectionB, ButtonSectionC,
-				ButtonSectionD, index, SVZText.sectionLibrary[index].choicesDiceLose);
-		}
+			ButtonSectionD, index, choices);
 	}
 }

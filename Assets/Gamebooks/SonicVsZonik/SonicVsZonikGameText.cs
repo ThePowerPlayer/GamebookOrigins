@@ -19,20 +19,47 @@ public class SonicVsZonikGameText : MonoBehaviour
 	
 	public class Section
 	{
+		// Game text (expressly mandatory)
 		public string text;
+		
+		// Choices (mandatory unless in a Game Over state)
 		public int[] choices;
+		
+		// Dice roll variables
 		public bool diceSection = false;
 		public int[] choicesDiceWin;
 		public int[] choicesDiceLose;
 		public string diceAbility;
+		public string diceAbility2;
 		public int diceGoal = 0;
 		public bool tailsSection = false;
 		public int tailsValue = 3;
-		public bool visited = false;
-		public bool mackSection = false;
-		public bool pinballSection = false;
-		public bool asteronSection = false;
+		public bool rollComplete = false;
+		public bool rollSuccess = false;
+		
+		// Roll the die twice for the same sum (dice + dice = sum)
 		public bool twoDice = false;
+		
+		// Roll the die two or more times for different sums
+		// (dice = sum1, dice = sum2, etc.)
+		public int numDiceRolls = 1;
+		
+		// Has this section been visited yet?
+		public bool visited = false;
+		
+		// Fight section variables
+		public bool fightSection = false;
+		public int enemyHPMax = 0;
+		public int enemyHPCurrent = 0;
+		
+		// Special sections:
+		// Mack sections (level of Mack slowly increases)
+		public bool mackSection = false;
+		// Pinball sections (credits and points apply)
+		public bool pinballSection = false;
+		// Asteron sections (Asteron ambushes are possible)
+		public bool asteronSection = false;
+		
 	};
 	
 	public static Section section0 = new Section()
@@ -959,7 +986,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section138 = new Section()
 	{
 		text = "The pillar is very tall. If only Sonic had brought Tails, it would have been easy! Well, now there's only one thing for it - Sonic is going to have to try and jump to the top! This will mean pushing himself to the limit. Roll the die and add the result to Sonic's Speed. Then, roll the die again and add the result to Sonic's Strength.\n\nIf both scores are 6 or more, then Sonic manages to reach the tweezers. Remember to add them to Sonic's Stuff. If either score is less than 6, the jump is just a little too much for him and he has failed. In any event, the only thing left for Sonic to do is press the red Return button. Turn to <b>187</b>.",
-		choices = new int[1] {187}
+		diceSection = true,
+		numDiceRolls = 2,
+		diceAbility = "Speed",
+		diceAbility2 = "Strength",
+		diceGoal = 6,
+		choicesDiceWin = new int[1] {187},
+		choicesDiceLose = new int[1] {187}
 	};
 
 	public static Section section139 = new Section()
