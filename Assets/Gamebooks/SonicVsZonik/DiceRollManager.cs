@@ -326,7 +326,9 @@ public class DiceRollManager : MonoBehaviour
 				Debug.Log("timesDiceRolled = " + timesDiceRolled
 					+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
 				
-				if (timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls) {
+				bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
+				if ((isFightSection && SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent > 0)
+					|| (!isFightSection && timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls)) {
 					// Leave dice mode and show available section buttons
 					SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;
 					SVZText.sectionLibrary[mostRecentIndex].rollSuccess = rollSuccess;
