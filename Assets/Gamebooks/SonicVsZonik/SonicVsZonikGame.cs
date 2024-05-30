@@ -15,6 +15,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	public static Stack<int> sectionHistory = new Stack<int>();
 	public static bool markVisitedSections = true;
 	public static int mackCounter = 0;
+	public SonicsStuff SonicsStuff;
 	
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
@@ -58,6 +59,8 @@ public class SonicVsZonikGame : MonoBehaviour
 		SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
 		
 		if (backButtonPressed) {
+			// For more logic involving returning to the previous section,
+			// see BackButton.cs.
 			backButtonPressed = false;
 		}
 		else {
@@ -65,6 +68,18 @@ public class SonicVsZonikGame : MonoBehaviour
 			sectionHistory.Push(index);
 			SVZText.sectionLibrary[index].visited = true;
 			
+			// Add rings
+			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
+			
+			// Add items to Sonic's Stuff
+			SonicsStuff.newItems = true;
+			if (SVZText.sectionLibrary[mostRecentIndex].items != null) {
+				foreach(string item in SVZText.sectionLibrary[mostRecentIndex].items) {
+					SonicVsZonikVitalStatistics.SonicsStuff.Add(item);
+				}
+			}
+			
+			// Increment counter for Mack sections
 			if (SVZText.sectionLibrary[index].mackSection) {
 				mackCounter++;
 			}
@@ -106,7 +121,7 @@ public class SonicVsZonikGame : MonoBehaviour
 		switch(choices.Length)
 		{
 			case 1:
-				UpdatePosX(ButtonSectionA, 225);
+				UpdatePosX(ButtonSectionA, 245);
 				
 				ButtonSectionAText.text = choices[0].ToString();
 				
@@ -123,9 +138,9 @@ public class SonicVsZonikGame : MonoBehaviour
 				ButtonSectionB.SetActive(true);
 				break;
 			case 3:
-				UpdatePosX(ButtonSectionA, -50);
-				UpdatePosX(ButtonSectionB, 225);
-				UpdatePosX(ButtonSectionC, 500);
+				UpdatePosX(ButtonSectionA, -30);
+				UpdatePosX(ButtonSectionB, 245);
+				UpdatePosX(ButtonSectionC, 520);
 				
 				ButtonSectionAText.text = choices[0].ToString();
 				ButtonSectionBText.text = choices[1].ToString();
@@ -170,9 +185,9 @@ public class SonicVsZonikGame : MonoBehaviour
 		
 		int[] choices;
 		
-		Debug.Log("diceSection = " + SVZText.sectionLibrary[index].diceSection
-		+ ", rollComplete = " + SVZText.sectionLibrary[index].rollComplete
-		+ ", rollSuccess = " + SVZText.sectionLibrary[index].rollSuccess);
+		//Debug.Log("diceSection = " + SVZText.sectionLibrary[index].diceSection
+		//	+ ", rollComplete = " + SVZText.sectionLibrary[index].rollComplete
+		//	+ ", rollSuccess = " + SVZText.sectionLibrary[index].rollSuccess);
 		if (SVZText.sectionLibrary[index].diceSection) {
 			// Dice sections
 			if (SVZText.sectionLibrary[index].rollComplete) {

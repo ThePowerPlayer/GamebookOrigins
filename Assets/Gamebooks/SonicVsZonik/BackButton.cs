@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SVZGame = SonicVsZonikGame;
+using SVZText = SonicVsZonikGameText;
 
 public class BackButton : MonoBehaviour
 {
@@ -18,17 +20,22 @@ public class BackButton : MonoBehaviour
 	
     private void TaskOnClick() {
 		// Remove from section history
-		SonicVsZonikGame.backButtonPressed = true;
-		if (SonicVsZonikGame.sectionHistory.Count > 1) {
-			SonicVsZonikGame.sectionHistory.Pop();
+		SVZGame.backButtonPressed = true;
+		SVZText.sectionLibrary[SVZGame.index].inHistory = false;
+		if (SVZGame.sectionHistory.Count > 1) {
+			SVZGame.sectionHistory.Pop();
 			
 		}
-		// Lower counter for Mack sections
-		if (SonicVsZonikGameText.sectionLibrary[SonicVsZonikGame.index].mackSection) {
-			SonicVsZonikGame.mackCounter--;
+		
+		// Subtract rings
+		SonicVsZonikVitalStatistics.rings -= SVZText.sectionLibrary[SVZGame.index].rings;
+		
+		// Decrement counter for Mack sections
+		if (SVZText.sectionLibrary[SVZGame.index].mackSection) {
+			SVZGame.mackCounter--;
 		}
 		// Go to previous index
-		int previousIndex = SonicVsZonikGame.sectionHistory.Peek();
-		SonicVsZonikGame.ChangeIndex(previousIndex.ToString());
+		int previousIndex = SVZGame.sectionHistory.Peek();
+		SVZGame.ChangeIndex(previousIndex.ToString());
 	}
 }

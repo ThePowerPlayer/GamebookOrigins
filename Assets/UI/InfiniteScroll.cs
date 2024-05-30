@@ -3,13 +3,14 @@ using UnityEngine.UI;
 
 public class InfiniteScroll : MonoBehaviour
 {
-    public float scrollSpeed = 0.01f;
+    public float scrollSpeed;
     private RectTransform rectTransform;
     private RawImage rawImage;
     private Vector2 uvOffset = Vector2.zero;
 
     void Start()
     {
+		scrollSpeed = 0.05f;
         rectTransform = GetComponent<RectTransform>();
         rawImage = GetComponent<RawImage>();
     }

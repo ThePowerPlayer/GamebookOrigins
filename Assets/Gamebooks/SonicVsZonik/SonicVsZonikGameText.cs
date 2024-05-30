@@ -44,8 +44,17 @@ public class SonicVsZonikGameText : MonoBehaviour
 		// (dice = sum1, dice = sum2, etc.)
 		public int numDiceRolls = 1;
 		
-		// Has this section been visited yet?
+		// Has this section been visited yet at any time during gameplay?
 		public bool visited = false;
+		
+		// Has this section been visited yet in the current route?
+		public bool inHistory = false;
+		
+		// Collectables
+		public int rings = 0;
+		public int credits = 0;
+		public int points = 0;
+		public string[] items;
 		
 		// Fight section variables
 		public bool fightSection = false;
@@ -1559,7 +1568,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section225 = new Section()
 	{
-		text = "'Greetings, you are Sonic, are you not? Oh, and your brave companion Tails, if I'm not mistaken,' the voice comes from a wizened old creature sitting in the middle of the cave.\n\n'Yes, I'm Sonic. And who might you be?' replies Sonic.\n\n'Well, I \"might\" be anyone, as it is I'm Frisp. I'm the chief of the Tunnel Rats,' the creature waves his arm around the room.\n\nSo, they're rats! 'What were the rings left lying around for?' asks Sonic.\n\n'They were left by Robotnik as a trap. It's just as well we were there to help you,' says Frisp, and the other rats murmur their approval.\n\n'How did you know to be there at the right time, then?' asks Tails.\n\nFrisp stands up and holds his arms wide. 'I am Frisp and I can see the future,' the other rats start to chant. Frisp continues, 'I know that you seek one like yourself and also I know that, as we speak, he is at the FakTor-Eee in the centre of the city. He is a creature of Robotnik, and he is of great evil.'\n\n'EVIL, EVIL,' the other rats chant. They seem to know more about what's going on than Sonic does!\n\n'Will you help us?' asks Tails.\n\n'Help? HELP? Of course we will help,' exclaims Frisp. 'Here, take these.' The old rat holds out a roll of paper, a tube of glue, and a bright red piece of plastic. 'These will help you, but remember also that the power of light is greater than steel. Now be gone, for you have but little time. My rats will show you the way.' Remember to add these things to Sonic's Stuff. Turn to <b>150</b>.",
+		text = "'Greetings, you are Sonic, are you not? Oh, and your brave companion Tails, if I'm not mistaken,' the voice comes from a wizened old creature sitting in the middle of the cave.\n\n'Yes, I'm Sonic. And who might you be?' replies Sonic.\n\n'Well, I \"might\" be anyone, as it is I'm Frisp. I'm the chief of the Tunnel Rats,' the creature waves his arm around the room.\n\nSo, they're rats! 'What were the rings left lying around for?' asks Sonic.\n\n'They were left by Robotnik as a trap. It's just as well we were there to help you,' says Frisp, and the other rats murmur their approval.\n\n'How did you know to be there at the right time, then?' asks Tails.\n\nFrisp stands up and holds his arms wide. 'I am Frisp and I can see the future,' the other rats start to chant. Frisp continues, 'I know that you seek one like yourself and also I know that, as we speak, he is at the Fak-Tor-Eee in the centre of the city. He is a creature of Robotnik, and he is of great evil.'\n\n'EVIL, EVIL,' the other rats chant. They seem to know more about what's going on than Sonic does!\n\n'Will you help us?' asks Tails.\n\n'Help? HELP? Of course we will help,' exclaims Frisp. 'Here, take these.' The old rat holds out a roll of paper, a tube of glue, and a bright red piece of plastic. 'These will help you, but remember also that the power of light is greater than steel. Now be gone, for you have but little time. My rats will show you the way.' Remember to add these things to Sonic's Stuff. Turn to <b>150</b>.",
+		items = new string[3] {"Roll of paper", "Tube of glue", "Red piece of plastic"},
 		choices = new int[1] {150}
 	};
 
@@ -1816,6 +1826,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section262 = new Section()
 	{
 		text = "Although Sonic isn't really that keen on poking around in such a dirty smelly place, he puts the interests of Mobius above his own and sets about searching. After not very long at all, he finds a pile of oily rags. Kicking them aside, he discovers no less than 10 rings! Add these to Sonic's Stuff and then it is time to get out of here. Turn to <b>101</b>.",
+		rings = 10,
 		choices = new int[1] {101}
 	};
 

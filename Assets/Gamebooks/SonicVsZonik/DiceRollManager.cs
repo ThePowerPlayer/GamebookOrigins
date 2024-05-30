@@ -75,7 +75,7 @@ public class DiceRollManager : MonoBehaviour
 			currentAbility = SVZText.sectionLibrary[mostRecentIndex].diceAbility2;
 		}
 		
-		Debug.Log("timesDiceRolled = " + timesDiceRolled + ", currentAbility = " + currentAbility);
+		//Debug.Log("timesDiceRolled = " + timesDiceRolled + ", currentAbility = " + currentAbility);
 		
 		usesAbility = (!string.IsNullOrEmpty(currentAbility));
 		if (usesAbility) {
@@ -323,8 +323,8 @@ public class DiceRollManager : MonoBehaviour
 				
 				// Decide whether to keep rolling
 				timesDiceRolled++;
-				Debug.Log("timesDiceRolled = " + timesDiceRolled
-					+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
+				//Debug.Log("timesDiceRolled = " + timesDiceRolled
+				//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
 				
 				bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
 				if ((isFightSection && SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent > 0)
