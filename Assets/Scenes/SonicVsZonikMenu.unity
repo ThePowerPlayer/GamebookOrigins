@@ -4729,8 +4729,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 935383465}
   m_HandleRect: {fileID: 935383463}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5556,7 +5556,7 @@ GameObject:
   - component: {fileID: 1157681086}
   - component: {fileID: 1157681085}
   - component: {fileID: 1157681084}
-  - component: {fileID: 1157681083}
+  - component: {fileID: 1157681087}
   m_Layer: 5
   m_Name: ButtonStart
   m_TagString: Untagged
@@ -5584,18 +5584,6 @@ RectTransform:
   m_AnchoredPosition: {x: 169.05054, y: -640}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1157681083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157681081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1157681084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5640,8 +5628,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1157681083}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 1157681087}
+        m_TargetAssemblyTypeName: ButtonSwitchScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -5690,6 +5678,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157681081}
   m_CullTransparentMesh: 1
+--- !u!114 &1157681087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157681081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9cea013085ff2499f61b14e8d5608d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1168543382
 GameObject:
   m_ObjectHideFlags: 0
@@ -5778,7 +5778,6 @@ GameObject:
   - component: {fileID: 1194459187}
   - component: {fileID: 1194459186}
   - component: {fileID: 1194459185}
-  - component: {fileID: 1194459184}
   m_Layer: 5
   m_Name: ButtonPrevious
   m_TagString: Untagged
@@ -5806,18 +5805,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1210.9495, y: -640}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1194459184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194459182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1194459185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6674,7 +6661,7 @@ GameObject:
   - component: {fileID: 1371114325}
   - component: {fileID: 1371114324}
   - component: {fileID: 1371114323}
-  - component: {fileID: 1371114322}
+  - component: {fileID: 1371114326}
   m_Layer: 5
   m_Name: ButtonExit
   m_TagString: Untagged
@@ -6702,18 +6689,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1210.9495, y: -640}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1371114322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371114320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1371114323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6758,8 +6733,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371114322}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 1371114326}
+        m_TargetAssemblyTypeName: ButtonSwitchScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -6767,7 +6742,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SonicVsZonikTitle
+          m_StringArgument: GamebookSelect
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1371114324
@@ -6808,6 +6783,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371114320}
   m_CullTransparentMesh: 1
+--- !u!114 &1371114326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371114320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9cea013085ff2499f61b14e8d5608d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1388398518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8298,7 +8285,6 @@ GameObject:
   - component: {fileID: 1801610952}
   - component: {fileID: 1801610951}
   - component: {fileID: 1801610950}
-  - component: {fileID: 1801610949}
   m_Layer: 5
   m_Name: ButtonNext
   m_TagString: Untagged
@@ -8326,18 +8312,6 @@ RectTransform:
   m_AnchoredPosition: {x: 169.05054, y: -640}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1801610949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801610947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1801610950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9454,7 +9428,6 @@ GameObject:
   - component: {fileID: 1947910321}
   - component: {fileID: 1947910320}
   - component: {fileID: 1947910319}
-  - component: {fileID: 1947910318}
   m_Layer: 5
   m_Name: ButtonBuyExtraLife
   m_TagString: Untagged
@@ -9482,18 +9455,6 @@ RectTransform:
   m_AnchoredPosition: {x: 575, y: 50}
   m_SizeDelta: {x: 100, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1947910318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947910316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f51a69b39aea45b21b2b445165943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1947910319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9752,6 +9713,138 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985430968}
   m_CullTransparentMesh: 1
+--- !u!1 &1998935120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998935122}
+  - component: {fileID: 1998935121}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1998935121
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998935120}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1861277638893417960, guid: ceca9e56b1c47a148b350d2e6a24e1a1, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b4f1ed83284ac764db07fe0af298e8ce, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!224 &1998935122
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998935120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2055259643
 GameObject:
   m_ObjectHideFlags: 0
@@ -10130,4 +10223,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1352816564}
   - {fileID: 519420032}
+  - {fileID: 1998935122}
   - {fileID: 99181357}
