@@ -664,7 +664,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section88 = new Section()
 	{
 		text = "The passage walls open out above their heads. The cavern is very large and, even with the torch, its middle is hidden by an inky blackness. Suddenly, Tails' foot hits something hard.\n\n'Grrrrr! Gnssh!' growls the unseen thing.\n\nTails feels something shoot past his leg. 'SONIC! There's something in here!'\n\n'GNSSSH!!!'\n\nSonic can see it now! Dimly lit, a few metres away is the unmistakable outline of a Crawlton! Turn to <b>129</b>.",
-		choices = new int[0] {}
+		choices = new int[1] {129}
 	};
 
 	public static Section section89 = new Section()

@@ -22,10 +22,13 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 	public AudioClip HillTop;
 	public AudioClip MysticCave;
 	public AudioClip Metropolis;
+	public AudioClip SewerSystem;
+	public AudioClip RobotWars;
+	public AudioClip RobotWars2;
 	public AudioClip SkyChase;
 	public AudioClip FinalShowdown;
 	public AudioClip GameComplete;
-	
+	public AudioClip GameOver;
 	
 	// Dictionary: Input is a section number, output is its corresponding song
 	// TODO: Update this to include every section
@@ -47,15 +50,29 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 		Song[82] = HillTop;
 		Song[121] = MysticCave;
 		Song[191] = Metropolis;
+		Song[64] = SewerSystem;
+		Song[268] = RobotWars;
+		Song[248] = RobotWars2;
 		Song[269] = SkyChase;
 		Song[214] = FinalShowdown;
 		Song[300] = GameComplete;
+		
+		Song[41] = GameOver;
+		Song[54] = GameOver;
+		Song[231] = GameOver;
+		Song[281] = GameOver;
 	}
 	
 	public void PlaySongForSection(int section) {
 		if (Song.ContainsKey(section) && Song[section] != audioSource.clip) {
 			audioSource.Stop();
 			audioSource.clip = Song[section];
+			if (audioSource.clip == GameOver || audioSource.clip == GameComplete) {
+				audioSource.loop = false;
+			}
+			else {
+				audioSource.loop = true;
+			}
 			audioSource.Play();
 		}
 	}
