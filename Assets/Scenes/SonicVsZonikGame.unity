@@ -11805,6 +11805,21 @@ MonoBehaviour:
   GreenHill: {fileID: 8300000, guid: a7fa57dd62ae80d4e97c05002ac69cb2, type: 3}
   TailsIsHurt: {fileID: 8300000, guid: f820945ed70215044b02abaa9ea8ec1a, type: 3}
   ChemicalPlant: {fileID: 8300000, guid: a7e0da135d2680a41abd44895ff75c10, type: 3}
+  MackMadness: {fileID: 8300000, guid: 30406cdddcf238a4090f6d2080aef2ec, type: 3}
+  AquaticRuin: {fileID: 8300000, guid: 907be1d9a3ed33f44ae2b5a993a0bc69, type: 3}
+  ChopChopFight: {fileID: 8300000, guid: 9a6c005bae3f4e34caba79fbb55c789d, type: 3}
+  InTheWoods: {fileID: 8300000, guid: 6f82de3f555d785408ee2b7f433614b5, type: 3}
+  RobotnikCloud: {fileID: 8300000, guid: f4b4fa511620d5d45be68a47d3fdbf54, type: 3}
+  CasinoNight: {fileID: 8300000, guid: 88fddaa3036acd14bbce15fceedf6153, type: 3}
+  PinballHall: {fileID: 8300000, guid: 07ce903af0905014f849bafe2c9cc92b, type: 3}
+  PinballMachine: {fileID: 8300000, guid: 09a301e42afd8f44298dbe29204748cc, type: 3}
+  PinballEnding: {fileID: 8300000, guid: 33c6cd2e8b9915e4dbe60c3f8071c9f1, type: 3}
+  HillTop: {fileID: 8300000, guid: c9408addccb523d44a14bd83d5255122, type: 3}
+  MysticCave: {fileID: 8300000, guid: d4d3bc2d2fe7a5d4c8360e633209cc55, type: 3}
+  Metropolis: {fileID: 8300000, guid: 6fdcd403bc5aa794781ed7865ee35a37, type: 3}
+  SkyChase: {fileID: 8300000, guid: ddba036095f43c0469b636b78fc3d9a7, type: 3}
+  FinalShowdown: {fileID: 8300000, guid: 526e695993bc3bd4ea2a10b105567573, type: 3}
+  GameComplete: {fileID: 8300000, guid: 7cde8740ec835f346b9d69c29cd05089, type: 3}
 --- !u!1 &1678198099
 GameObject:
   m_ObjectHideFlags: 0
