@@ -1,6 +1,8 @@
 As of May 3, 2024, here are the remaining things to do during development of Sonic Gamebook Origins, (roughly) in order:
 (When you're done with a task, add a ✓ in between the brackets.)
 
+(Current version of Unity where the game is developed: Unity 2022.3.27f1)
+
 [✓] Make dice rolls without abilities or Tails sections work properly
 [✓] Make dice rolls with Tails sections work properly
 [✓] Make dice rolls with two dice at the same time work properly
@@ -10,6 +12,14 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Make artwork images appear in their proper sections
 [✓] Implement Section 138 (two dice rolls in a row)
 [✓] Fix bug where if the Inventory button is pressed, dice roll choices disappear after rolling, but before selecting a choice
+[✓] Add fitting music for different parts of the game
+[✓] Improve the title screen
+[✓] Add an improved background
+[✓] Use a different font (try a white font with a black outline)
+[✓] Make the first test build of the game (see what it looks like on a standard 16:9 monitor screen)
+[] Add sound effects
+[] Improve the menu screen
+[] Add a credits section
 [] Crop empty space from artwork images
 [] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [] Implement all sections with a single dice roll
@@ -34,13 +44,5 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Sonic vs. Zonik) Fix choice at Section 82 (Rexon encounter) taking player to Section 67 (go directly to Section 121 instead)
 	[] (Sonic vs. Zonik) Fix Section 84 (fruit machine) going straight to Section 97 (go to Section 66 instead)
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.) 
-[] Add an improved background
-[] Use a different font (try a white font with a black outline)
-[] Add sound effects
-[] Add fitting music for different parts of the game
-[] Improve the title screen
-[] Improve the menu screen
-[] Add a credits section
 [] Add a speedrun mode with a timer
-[] Add a results screen after Section 300 with remaining lives, rings, and speedrun timer (if applicable)
-[] Make the first test build of the game (see what it looks like on a standard 16:9 monitor screen)
+[] Make the final build of the game and publish it to itch.io

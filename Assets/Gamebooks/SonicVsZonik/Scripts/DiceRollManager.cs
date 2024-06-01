@@ -8,6 +8,10 @@ using SVZStats = SonicVsZonikVitalStatistics;
 
 public class DiceRollManager : MonoBehaviour
 {
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip DiceRollSuccess;
+	[SerializeField] private AudioClip DiceRollFail;
+	
 	[SerializeField] private SonicVsZonikGame SVZGameScript;
 	[SerializeField] private GameObject DiceRoll;
 	[SerializeField] private GameObject MonitorDice;
@@ -213,6 +217,7 @@ public class DiceRollManager : MonoBehaviour
 			ThumbsUpScript.thumbPointsUp = false;
 			ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 		}
+		
 	}
 	
 	private bool CheckAllMonitorsBroken() {
@@ -279,6 +284,14 @@ public class DiceRollManager : MonoBehaviour
 	
 	private void RollDice() {
 		if (diceMode && allMonitorsBroken && !diceBeingRolled) {
+			if (rollSuccess) {
+				audioSource.clip = DiceRollSuccess;
+			}
+			else {
+				audioSource.clip = DiceRollFail;
+			}
+			audioSource.Play();
+			
 			diceBeingRolled = true;
 			Sum.GetComponent<TMP_Text>().enabled = true;
 			int monitorValue = int.Parse(Sum.GetComponent<TMP_Text>().text);

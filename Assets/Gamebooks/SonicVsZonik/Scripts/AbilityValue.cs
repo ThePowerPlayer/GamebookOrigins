@@ -19,12 +19,6 @@ public class AbilityValue : MonoBehaviour
 	
     void Update()
     {
-		if (scene.name == "SonicVsZonikMenu") {
-			currentText.text = "-";
-		}
-		else if (scene.name == "SonicVsZonikGame") {
-			currentText.text = Stats.abilities[ability].ToString();
-		}
-        
+		currentText.text = Stats.abilities[ability].ToString();
     }
 }

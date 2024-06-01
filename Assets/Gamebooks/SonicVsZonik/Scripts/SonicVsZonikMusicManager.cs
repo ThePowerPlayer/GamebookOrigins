@@ -45,6 +45,7 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 		Song[28] = RobotnikCloud;
 		Song[65] = CasinoNight;
 		Song[66] = PinballHall;
+		Song[97] = PinballHall;
 		Song[274] = PinballMachine;
 		Song[45] = PinballEnding;
 		Song[82] = HillTop;

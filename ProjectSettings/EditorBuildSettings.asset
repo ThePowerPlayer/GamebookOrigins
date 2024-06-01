@@ -6,6 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SegaLogo.unity
+    guid: 4a8cb1d26c88d4944a1978ff7639c0c9
+  - enabled: 1
+    path: Assets/Scenes/DevPresents.unity
+    guid: 079035f0695b46c41885bc1663856f75
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c4f8a377b5eb5114a82562a08f35f4c3
+  - enabled: 1
+    path: Assets/Scenes/GamebookSelect.unity
+    guid: c870fd98ea6782140a9ad6d606893032
+  - enabled: 1
+    path: Assets/Scenes/SonicVsZonikTitle.unity
+    guid: 6279347dc94f70349836bb9154887677
+  - enabled: 1
+    path: Assets/Scenes/SonicVsZonikMenu.unity
+    guid: 4599c2c7f7e0c4444957f355f8d3695f
+  - enabled: 1
+    path: Assets/Scenes/SonicVsZonikGame.unity
+    guid: 453b0b707cdecad4ba222b9b890d7dc2
   m_configObjects: {}

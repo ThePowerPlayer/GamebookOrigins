@@ -114,7 +114,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 3,
 		choicesDiceWin = new int[2] {181, 124},
 		choicesDiceLose = new int[1] {298},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section7 = new Section()
@@ -188,7 +189,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Sonic's touch on the Start button was perfection! Our heroes have rolled on to the table at just the right speed. They glide perfectly through a Bonus Zone.\n\nTen rings appear from thin air and tumble on to the platform beneath the Bonus. Add them to Sonic's Stuff. A split second later, Sonic and Tails touch down as well.\n\n'Cool!' says Tails.\n\n'No, Mega Cool,' corrects Sonic.\n\nFrom here they can go one of two ways, which will they choose?\n\nThe platform to the right?\t\t\tTurn to <b>218</b>\nThe platform to the left?\t\t\tTurn to <b>109</b>",
 		choices = new int[2] {218, 109},
-		pinballSection = true
+		pinballSection = true,
+		rings = 10
 	};
 
 	public static Section section18 = new Section()
@@ -207,7 +209,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Reacting with incredible speed, Sonic grabs the target with one paw and Tails with the other, sending both of them whizzing off towards a mushroom bouncer on the right. They hit the bouncer square on, scoring 5 points if this is the first time they have been here. Then they bounce back the way they came, towards the target again. Turn to <b>86</b>.",
 		choices = new int[1] {86},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section21 = new Section()
@@ -221,7 +224,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The silver ball is travelling too fast to avoid and it strikes both Sonic and Tails a mighty blow, sending them flying down to the bottom of the game. Remove 5 Credits from Sonic's Stuff. The huge flippers shoot up to meet them and both get hit again! Remove another 5 Credits from Sonic's Stuff. Still, at least they're travelling back up to the top of the game now, and they are soon back at the central spinner. Turn to 124.",
 		choices = new int[1] {124},
-		pinballSection = true
+		pinballSection = true,
+		credits = -10
 	};
 
 	public static Section section23 = new Section()
@@ -444,7 +448,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section54 = new Section()
 	{
-		text = "Even though Sonic uses every bit of charm he possesses, the commissionaire is not convinced. There is no way that he will allow Sonic in his casino. Sonic is unceremoniously thrown out, along with Tails. With no chance of getting through the casino, Sonic's quest is now hopeless. Both he and Tails, unfortunately, have to go back to the beginning of this game and start again. YOUR ADVENTURE ENDS HERE",
+		text = "Even though Sonic uses every bit of charm he possesses, the commissionaire is not convinced. There is no way that he will allow Sonic in his casino. Sonic is unceremoniously thrown out, along with Tails. With no chance of getting through the casino, Sonic's quest is now hopeless. Both he and Tails, unfortunately, have to go back to the beginning of this game and start again.\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		choices = new int[0] {}
 	};
 
@@ -527,7 +531,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section67 = new Section()
 	{
 		text = "At last the mighty Rexon has been beaten, and he is now just a pile of scrap at Sonic's feet. Rexons are known to be great collectors of rings, and not far away Tails manages to find a hoard of twenty-five of the little beauties. Add them to Sonic's Stuff. Now it's time to get back to the heli-chopper and the Mystic Cave. Turn to <b>121</b>.",
-		choices = new int[1] {121}
+		choices = new int[1] {121},
+		rings = 25
 	};
 
 	public static Section section68 = new Section()
@@ -592,7 +597,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section77 = new Section()
 	{
 		text = "The door leads into a room so dark that neither Sonic nor Tails can see further than their noses. Groping around, Tails suddenly says, 'I think I've got something here, Sonic.'\n\nTails passes the object to Sonic and a few seconds later the room is lit up by the beam from a torch in Sonic's hand.\n\n'Nice find, Tails,' says Sonic as he plays the beam around the room and to his delight sees a pile of 10 rings in the far corner! Add them and the torch to Sonic's Stuff. The only way out of this room is to leave the way the heroes came in. Turn to <b>101</b>.",
-		choices = new int[1] {101}
+		choices = new int[1] {101},
+		rings = 10
 	};
 
 	public static Section section78 = new Section()
@@ -797,7 +803,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The platform is only a short drop, and both our friends make it easily. Below them they can see the game, stretching away into the distance. Sonic moves closer to the edge of the platform to have a better look and doesn't notice the trip wire! BOOOOM!!! There is a massive explosion, catapulting Sonic and Tails (none too gracefully) to the ground.\n\n'That's never happened before!' says Sonic, picking himself up, trying to act as if neither his body nor pride has been injured! Remove 5 credits from Sonic's Stuff.\n\nTo the right, Sonic and Tails can see a row of targets. Directly below there is a spinner. Do they:\n\nAim at the targets?\t\t\tTurn to <b>295</b>\nDrop into the spinner?\t\t\tTurn to <b>124</b>",
 		choices = new int[2] {295, 124},
-		pinballSection = true
+		pinballSection = true,
+		credits = -5
 	};
 
 	public static Section section110 = new Section()
@@ -914,7 +921,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Oh no, what a dismal performance! Sonic and Tails have run out of credits before they have even finished the first game! This is pathetic! From out of nowhere, a voice says, 'I'd expected better of you two. I can just manage to give you another 20 credits, but that's all.' It's the voice of the commissionaire. As if by magic, another 20 credits appear in Sonic's paw. Make sure you help him to use them wisely. Turn to <b>124</b>.",
 		choices = new int[1] {124},
-		pinballSection = true
+		pinballSection = true,
+		credits = 20
 	};
 
 	public static Section section127 = new Section()
@@ -1050,7 +1058,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section146 = new Section()
 	{
 		text = "Sonic notices the small black and red wire underneath the Mega Drive. Following it with his eyes, he sees it leads underneath the console to a ... 'OH NO!!! Don't touch it, it's a BOMB!!!'\n\nBOOOOOOOOOM!\n\nA few minutes later, our hero comes round. He can still see stars whizzing around inside his head, but where is Tails? Relieved, Sonic sees his friend sitting a few metres away, rubbing his head.\n\n'That'll teach you to be so impatient,' says Sonic. Tails doesn't reply and instead just looks away.\n\n'Well, I suppose we had better get moving, old friend,' says Sonic. There is only one way out of this room, conveniently marked 'Exit'. As he walks through it, Sonic turns to Tails, 'And don't touch anything this time.'\n\nThe explosion has destroyed 20 rings. Delete them from Sonic's Stuff. If he doesn't have any rings, then he loses a life instead! Turn to <b>157</b>.",
-		choices = new int[1] {157}
+		choices = new int[1] {157},
+		rings = -20
 	};
 
 	public static Section section147 = new Section()
@@ -1124,7 +1133,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section157 = new Section()
 	{
 		text = "Passing through the door, they find themselves outside the game at last. 'Excellent, the game is back under my control. I can clear up the rest of the mess myself.' It is the commissionaire, his mouth forming a huge smile. 'Whatever you want you can have,' he says.\n\n'Well, actually we're in a bit of a hurry,' pipes up Tails.\n\n'Hurry? I might be able to help you there,' says the commissionaire. 'Come with me.' He shows them through a small side-door and into a lift that takes them up to the roof of the casino. 'My heli-chopper is the fastest in the Zones. It can take you as far as the Mystic Cave if you want. No need to worry about flying it, either. It's all remote control. Oh, and by the way, don't forget these.' The commissionaire hands Sonic a bag. Inside are 100 rings. 'That's your prize for beating the game. Fair's fair!' he says and with that the heli-chopper rises majestically into the air. Turn to <b>82</b>.",
-		choices = new int[1] {82}
+		choices = new int[1] {82},
+		rings = 100
 	};
 
 	public static Section section158 = new Section()
@@ -1204,7 +1214,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Sonic and Tails have come up the ramp far too fast, and they find themselves tumbling towards the bottom of the table. Tails has started to hover and will be safe. Sonic, however, must find some other way to escape. All around him the various targets and bumpers flash past, if only he can somehow grab hold of one of those bumpers. Sonic reaches out with his left paw. A bumper flashes past, just millimetres out of his reach. He tries again and again, but with no success. Below him, he sees a flipper. 'This is going to HURT!!!'\n\nThe flipper springs up as Sonic approaches it, and hits him so hard that the blue superhedgehog looks more like a strangely coloured cricket ball. He then shoots back towards the top of the table. In a blink of an eye, Sonic lands with a thump on a platform right at the top of the table. Remove two credits from Sonic's Stuff as a penalty for hitting the flipper!\n\n'Not bad, but it's better if you fly!' Tails says, looking smug as he stands and watches Sonic dusting himself down.\n\n'OK, then,' says Sonic, a little annoyed at his smiling friend, 'as you're <i>so cool</i>, let's see you go first for a change!' Now Tails is in the hot seat, which way will he go? The platform to the right (turn to <b>218</b>)? The platform to the left (turn to <b>109</b>)?",
 		choices = new int[2] {218, 109},
-		pinballSection = true
+		pinballSection = true,
+		credits = -2
 	};
 
 	public static Section section169 = new Section()
@@ -1316,7 +1327,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Leaping into the unknown, they jump from the target, gradually picking up speed until they are tumbling out of control towards the bottom of the game and the flippers! BANG!!! A flipper smashes them back towards the top of the game. That hurt! Remove 5 credits from Sonic's Stuff, and then turn to <b>124</b>. If Sonic doesn't have 5 credits left, turn to <b>126</b>. If the commissionaire has already given Sonic another 20 credits, you <i>must</i> turn to <b>41</b>.",
 		choices = new int[3] {124, 126, 41},
-		pinballSection = true
+		pinballSection = true,
+		credits = -5
 	};
 
 	public static Section section186 = new Section()
@@ -1695,7 +1707,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section243 = new Section()
 	{
 		text = "The shattered body of Grabber lies at their feet. Sonic and Tails look down at the heap of scrap metal, and spot something gold in among the debris. Poking around, they find 20 rings! Add these to Sonic's Stuff and then turn to <b>209</b>.",
-		choices = new int[1] {209}
+		choices = new int[1] {209},
+		rings = 20
 	};
 
 	public static Section section244 = new Section()
@@ -1769,7 +1782,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section254 = new Section()
 	{
 		text = "Leaning forward, Sonic gingerly reaches out with a paw and tries the lid of the chest. It's not locked.\n\n'Here we go, then,' says Sonic, and with a flick of the wrist the lid is open. Peering inside, they can see GOLD – 10 rings to be precise! Add these to Sonic's Stuff and then turn to <b>80</b>.",
-		choices = new int[1] {80}
+		choices = new int[1] {80},
+		rings = 10
 	};
 
 	public static Section section255 = new Section()
@@ -1826,8 +1840,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section262 = new Section()
 	{
 		text = "Although Sonic isn't really that keen on poking around in such a dirty smelly place, he puts the interests of Mobius above his own and sets about searching. After not very long at all, he finds a pile of oily rags. Kicking them aside, he discovers no less than 10 rings! Add these to Sonic's Stuff and then it is time to get out of here. Turn to <b>101</b>.",
-		rings = 10,
-		choices = new int[1] {101}
+		choices = new int[1] {101},
+		rings = 10
 	};
 
 	// TODO: Implement using the energy gun
@@ -1887,7 +1901,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section271 = new Section()
 	{
 		text = "Sonic powers up the energy gun with 10 rings and fires at Zonik. The beam shoots out towards him. Zonik is covered in the energy field and stops. BANG!!!! The energy field shatters, and Zonik stands before them once more.\n\n'You're going to have to do better than that,' he sneers.\n\nWhat will Sonic and Tails try now:\n\nFight?\t\t\tTurn to <b>31</b>\nUse a bottle of Whiffy liquid?\t\t\tTurn to <b>180</b>",
-		choices = new int[0] {}
+		choices = new int[2] {31, 180}
 	};
 
 	public static Section section272 = new Section()
@@ -1936,7 +1950,9 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section278 = new Section()
 	{
 		text = "Shellcrackers are never an easy opponent, and the fight was a tough one. From the shattered remains, Sonic finds 20 rings and a broken piece of claw. Add these to Sonic's Stuff, and then turn to <b>48</b>.",
-		choices = new int[1] {48}
+		choices = new int[1] {48},
+		rings = 20,
+		items = new string[1] {"Broken claw piece"}
 	};
 
 	public static Section section279 = new Section()
@@ -1969,7 +1985,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Sonic and Tails mistime their move! Missing their target, they are caught in the game's Gravity Field and are pulled down towards the bottom and the waiting <i>Flippers</i>! BANG!!! A flipper smashes them back towards the top of the game. Ouch, that hurt! Remove 5 credits from Sonic's Stuff. Turn to <b>124</b>. If Sonic doesn't have 5 credits left, turn to <b>126</b>. If the commissionaire has already given Sonic another 20 credits, then you <i>must</i> turn to <b>41</b>.",
 		choices = new int[3] {124, 126, 41},
-		pinballSection = true
+		pinballSection = true,
+		credits = -5
 	};
 
 	public static Section section284 = new Section()

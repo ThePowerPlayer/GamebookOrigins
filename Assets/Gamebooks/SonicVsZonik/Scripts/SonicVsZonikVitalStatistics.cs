@@ -32,16 +32,16 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
     void Start()
     {
 		lives = 3;
-		rings = 100;
+		rings = 0;
 		credits = 50;
 		points = 0;
 		
-		abilities["Speed"] = 1;
-		abilities["Agility"] = 2;
-		abilities["Strength"] = 3;
-		abilities["Coolness"] = 4;
-		abilities["Quick Wits"] = 5;
-		abilities["Good Looks"] = 6;
+		abilities["Speed"] = 0;
+		abilities["Agility"] = 0;
+		abilities["Strength"] = 0;
+		abilities["Coolness"] = 0;
+		abilities["Quick Wits"] = 0;
+		abilities["Good Looks"] = 0;
 		abilities["Section 31"] = 7;
     }
 }

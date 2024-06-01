@@ -6,9 +6,11 @@ using Stats = SonicVsZonikVitalStatistics;
 
 public class BuyExtraLife : MonoBehaviour
 {
+	private AudioSource audioSource;
     private Button button;
 	
 	void Start() {
+		audioSource = gameObject.GetComponent<AudioSource>();
 		button = GetComponent<Button>();
 		button.onClick.AddListener(TaskOnClick);
 	}
@@ -18,6 +20,7 @@ public class BuyExtraLife : MonoBehaviour
 	}
 	
 	private void TaskOnClick() {
+		audioSource.Play();
 		Stats.rings -= 100;
 		Stats.lives++;
 	}

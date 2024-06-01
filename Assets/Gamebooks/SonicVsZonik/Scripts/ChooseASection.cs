@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
 public class ChooseASection : MonoBehaviour
 {
 	[SerializeField] private TMP_Text currentText;
-
+	private int[] gameEndSections = new int[5] {41, 54, 231, 281, 300};
+	
     void Update()
     {
-        if (DiceRollManager.diceMode) {
+		if (gameEndSections.Contains(SonicVsZonikGame.index)) {
+			currentText.text = "";
+		}
+        else if (DiceRollManager.diceMode) {
 			currentText.text = "Roll the die:";
 		}
 		else {

@@ -12,7 +12,6 @@ public class InventoryMode : MonoBehaviour
 	public GameObject InventoryObjects;
 	public SonicVsZonikMenu SVZMenu;
 	public SonicVsZonikGame SVZGame;
-	public SonicVsZonikGameText SVZText;
 	private Scene scene;
 	[SerializeField] private Button InventoryButton;
 	

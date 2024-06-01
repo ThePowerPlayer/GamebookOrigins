@@ -67,6 +67,9 @@ public class SonicVsZonikGameImages : MonoBehaviour
 				case 91:
 					GetComponent<Image>().sprite = section91;
 					break;
+				case 97:
+					GetComponent<Image>().sprite = section113;
+					break;
 				case 102:
 					GetComponent<Image>().sprite = section102;
 					break;

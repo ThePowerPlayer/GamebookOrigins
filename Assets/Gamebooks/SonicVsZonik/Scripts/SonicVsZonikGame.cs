@@ -7,6 +7,11 @@ using SVZText = SonicVsZonikGameText;
 
 public class SonicVsZonikGame : MonoBehaviour
 {
+	[SerializeField] private AudioSource ringAudioSource;
+	[SerializeField] private AudioClip Ring;
+	[SerializeField] private AudioClip LoseRings;
+	[SerializeField] private AudioClip EarnPoints;
+	
     public static int index;
 	private int mostRecentIndex;
 	private const int indexMin = 1;
@@ -72,8 +77,25 @@ public class SonicVsZonikGame : MonoBehaviour
 			sectionHistory.Push(index);
 			SVZText.sectionLibrary[index].visited = true;
 			
-			// Add rings
+			// Add rings, credits, and points
+			if (SVZText.sectionLibrary[mostRecentIndex].rings > 0) {
+				ringAudioSource.clip = Ring;
+				ringAudioSource.Play();
+			}
+			else if (SVZText.sectionLibrary[mostRecentIndex].rings < 0
+				|| SVZText.sectionLibrary[mostRecentIndex].credits < 0) {
+				ringAudioSource.clip = LoseRings;
+				ringAudioSource.Play();
+			}
+			if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
+				ringAudioSource.clip = EarnPoints;
+				ringAudioSource.Play();
+			}
 			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
+			SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
+			if (!SVZText.sectionLibrary[mostRecentIndex].visited) {
+				SonicVsZonikVitalStatistics.points += SVZText.sectionLibrary[mostRecentIndex].points;
+			}
 			
 			// Add items to Sonic's Stuff
 			SonicsStuff.newItems = true;

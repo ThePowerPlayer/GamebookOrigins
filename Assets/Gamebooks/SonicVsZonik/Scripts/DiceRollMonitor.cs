@@ -8,6 +8,8 @@ using SVZText = SonicVsZonikGameText;
 
 public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 {
+	private AudioSource audioSource;
+	
 	private UnityEngine.UI.Image iRenderer;
 	[SerializeField] private Sprite BrokenMonitor;
 	[SerializeField] private Sprite SpeedMonitor;
@@ -34,6 +36,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 	private const int height = 30;
 	
 	void Start() {
+		audioSource = gameObject.GetComponent<AudioSource>();
 		iRenderer = GetComponent<UnityEngine.UI.Image>();
 		currentText = transform.GetChild(0).GetComponent<TMP_Text>();
 		currentText.text = "";
@@ -115,6 +118,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 		if (!monitorBroken) {
+			audioSource.Play();
 			monitorBroken = true;
 			currentText.enabled = true;
 			currentSprite = BrokenMonitor;
