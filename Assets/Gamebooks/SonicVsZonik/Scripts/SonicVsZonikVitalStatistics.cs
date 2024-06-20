@@ -33,7 +33,7 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
     {
 		lives = 3;
 		rings = 0;
-		credits = 50;
+		credits = 0;
 		points = 0;
 		
 		abilities["Speed"] = 0;

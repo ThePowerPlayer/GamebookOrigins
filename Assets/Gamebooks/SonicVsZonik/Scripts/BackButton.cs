@@ -27,8 +27,10 @@ public class BackButton : MonoBehaviour
 			
 		}
 		
-		// Subtract rings
+		// Subtract rings, credits, and points
 		SonicVsZonikVitalStatistics.rings -= SVZText.sectionLibrary[SVZGame.index].rings;
+		SonicVsZonikVitalStatistics.credits -= SVZText.sectionLibrary[SVZGame.index].credits;
+		SonicVsZonikVitalStatistics.points -= SVZText.sectionLibrary[SVZGame.index].points;
 		
 		// Decrement counter for Mack sections
 		if (SVZText.sectionLibrary[SVZGame.index].mackSection) {

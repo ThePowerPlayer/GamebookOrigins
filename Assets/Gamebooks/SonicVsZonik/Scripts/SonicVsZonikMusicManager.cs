@@ -29,6 +29,7 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 	public AudioClip FinalShowdown;
 	public AudioClip GameComplete;
 	public AudioClip GameOver;
+	public AudioClip GameOverSpinball;
 	
 	// Dictionary: Input is a section number, output is its corresponding song
 	// TODO: Update this to include every section
@@ -58,7 +59,7 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 		Song[214] = FinalShowdown;
 		Song[300] = GameComplete;
 		
-		Song[41] = GameOver;
+		Song[41] = GameOverSpinball;
 		Song[54] = GameOver;
 		Song[231] = GameOver;
 		Song[281] = GameOver;
@@ -68,7 +69,7 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 		if (Song.ContainsKey(section) && Song[section] != audioSource.clip) {
 			audioSource.Stop();
 			audioSource.clip = Song[section];
-			if (audioSource.clip == GameOver || audioSource.clip == GameComplete) {
+			if (audioSource.clip == GameOver || audioSource.clip == GameOverSpinball || audioSource.clip == GameComplete) {
 				audioSource.loop = false;
 			}
 			else {

@@ -13,8 +13,15 @@ public class GifAnimator : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        StartCoroutine(PlayGif());
+		StartCoroutine(PlayGif());
     }
+	
+	void OnEnable()
+	{
+		if (image != null) {
+			StartCoroutine(PlayGif());
+		}
+	}
 
     IEnumerator PlayGif()
     {

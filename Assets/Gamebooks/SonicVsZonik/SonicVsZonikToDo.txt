@@ -17,7 +17,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Add an improved background
 [✓] Use a different font (try a white font with a black outline)
 [✓] Make the first test build of the game (see what it looks like on a standard 16:9 monitor screen)
-[] Add sound effects
+[✓] Add sound effects
 [] Improve the menu screen
 [] Add a credits section
 [] Crop empty space from artwork images

@@ -962,6 +962,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 19757769}
+  - {fileID: 2030034915}
   - {fileID: 448762878}
   - {fileID: 1813878635}
   - {fileID: 973886967}
@@ -1867,6 +1868,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929927930}
   m_CullTransparentMesh: 1
+--- !u!1 &2030034914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030034915}
+  - component: {fileID: 2030034916}
+  m_Layer: 0
+  m_Name: ParticleContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2030034915
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030034914}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -21.136068}
+  m_LocalScale: {x: 2.50001, y: 2.50001, z: 2.1136165}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1263561700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_SizeDelta: {x: 757, y: 426}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2030034916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030034914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf776a646b6d194d84977f25389dab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSprites:
+  - {fileID: 21300000, guid: 4c954660e7fc5d84b9519fe2fd6782cb, type: 3}
+  - {fileID: 21300000, guid: 899ec88d74d36d64aa72f9e51be6664e, type: 3}
+  - {fileID: 21300000, guid: bf4f1e62051589548bb499a8ebc4a04c, type: 3}
+  - {fileID: 21300000, guid: a2b94ebf08627e44a8b9231246de84ba, type: 3}
+  - {fileID: 21300000, guid: d8b046f8691116e488e757fa547c1d46, type: 3}
+  - {fileID: 21300000, guid: ae99324cb2f2d984d8a4bc7a8e87a4f0, type: 3}
+  - {fileID: 21300000, guid: e0de95504c777be4b8468df87767108f, type: 3}
+  - {fileID: 21300000, guid: aa68eadac9a8ff44ab9cbd32cf2785e8, type: 3}
+  particlePrefab: {fileID: 5238622621318593411, guid: 87c0a7bad9c96e14a98780997101c755, type: 3}
+  spawnInterval: 0.2
+  speed: 250
+  size: 20
+  amplitude: 20
+  frequency: 0.01
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

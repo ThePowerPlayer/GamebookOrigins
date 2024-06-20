@@ -12218,6 +12218,7 @@ MonoBehaviour:
   FinalShowdown: {fileID: 8300000, guid: 526e695993bc3bd4ea2a10b105567573, type: 3}
   GameComplete: {fileID: 8300000, guid: 7cde8740ec835f346b9d69c29cd05089, type: 3}
   GameOver: {fileID: 8300000, guid: 991f85597d703f54d9d23a2c41ded270, type: 3}
+  GameOverSpinball: {fileID: 8300000, guid: ad2f5505c8937044db6968da5796aa3f, type: 3}
 --- !u!1 &1678198099
 GameObject:
   m_ObjectHideFlags: 0

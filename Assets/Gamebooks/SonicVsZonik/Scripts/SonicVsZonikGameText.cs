@@ -86,7 +86,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The commissionaire explains that Zonik has ransacked most of the casino, and scared away all of its customers. All the damage must be put right - and quickly. If Sonic and Tails will help him, then the commissionaire will be pleased to return the favour.\n\nTo help them, he gives them 50 credits. Make a note of them in Sonic' s Stuff. While Sonic and Tails are in the casino, these can be used just like rings; unfortunately, though, they are worthless anywhere else. Now turn to <b>274</b>.",
 		choices = new int[1] {274},
-		pinballSection = true
+		pinballSection = true,
+		credits = 50
 	};
 
 	public static Section section3 = new Section()
@@ -171,7 +172,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	// TODO: Implement turning to Section 163 if Sonic has a torch
 	public static Section section15 = new Section()
 	{
-		text = "The trapdoor opens easily to reveal a small spiral staircase leading down into the darkness. The staircase- goes down and down and then down some more and it gradually starts to get hotter. If Sonic has a torch, turn to <b>163</b>.\n\nIf he doesn't have a torch, then roll the die and add the score to Sonic's Agility. If the result is 6 or more, turn to <b>251</b>. If the result is less than 6, turn to <b>34</b>.",
+		text = "The trapdoor opens easily to reveal a small spiral staircase leading down into the darkness. The staircase goes down and down and then down some more and it gradually starts to get hotter. If Sonic has a torch, turn to <b>163</b>.\n\nIf he doesn't have a torch, then roll the die and add the score to Sonic's Agility. If the result is 6 or more, turn to <b>251</b>. If the result is less than 6, turn to <b>34</b>.",
 		diceSection = true,
 		diceAbility = "Agility",
 		diceGoal = 6,
