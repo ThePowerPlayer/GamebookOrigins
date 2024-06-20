@@ -31,6 +31,7 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private GameObject Sum;
 	[SerializeField] private GameObject ComparisonSymbol;
 	[SerializeField] private GameObject GoalValue;
+	[SerializeField] private GameObject ClickRect;
 	
 	public static bool diceMode;
 	public static bool diceRollComplete;
@@ -310,6 +311,10 @@ public class DiceRollManager : MonoBehaviour
 		}
 	}
 	
+	public void SkipDiceRoll() {
+		sumRoutineTimer = 0;
+	}
+	
     void Update()
     {	
 		SetFirstDiceRoll();
@@ -322,9 +327,7 @@ public class DiceRollManager : MonoBehaviour
 		
 		// Display thumbs-up icon on screen (unless the player clicks to skip it)
 		if (diceBeingRolled) {
-			// if (player clicks on dice roll area) {
-				//sumRoutineTimer = 0;
-			//}
+			ClickRect.SetActive(true);
 			
 			if (sumRoutineTimer > 0) {
 				sumRoutineTimer -= Time.deltaTime;
@@ -353,6 +356,9 @@ public class DiceRollManager : MonoBehaviour
 					SetDiceRoll();
 				}
 			}
+		}
+		else {
+			ClickRect.SetActive(false);
 		}
     }
 }
