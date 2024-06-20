@@ -22,6 +22,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	public static int mackCounter = 0;
 	public SonicsStuff SonicsStuff;
 	public SonicVsZonikMusicManager MusicManager;
+	public SonicVsZonikJingleManager JingleManager;
 	
 	[SerializeField] private GameObject TextObject;
 	[SerializeField] private GameObject SectionObject;
@@ -75,7 +76,6 @@ public class SonicVsZonikGame : MonoBehaviour
 		else {
 			// Add to section history
 			sectionHistory.Push(index);
-			SVZText.sectionLibrary[index].visited = true;
 			
 			// Add rings, credits, and points
 			if (SVZText.sectionLibrary[mostRecentIndex].rings > 0) {
@@ -87,14 +87,20 @@ public class SonicVsZonikGame : MonoBehaviour
 				ringAudioSource.clip = LoseRings;
 				ringAudioSource.Play();
 			}
-			if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
-				ringAudioSource.clip = EarnPoints;
-				ringAudioSource.Play();
-			}
+			
 			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
 			SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
 			if (!SVZText.sectionLibrary[mostRecentIndex].visited) {
 				SonicVsZonikVitalStatistics.points += SVZText.sectionLibrary[mostRecentIndex].points;
+				// Manage audio for earning points
+				if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
+					if (SVZText.sectionLibrary[mostRecentIndex].points + SonicVsZonikVitalStatistics.points >= 100) {
+						JingleManager.PlayJingle("Spinball100Points");
+					}
+					else {
+						JingleManager.PlayJingle("SpinballPoints");
+					}
+				}
 			}
 			
 			// Add items to Sonic's Stuff
@@ -104,11 +110,17 @@ public class SonicVsZonikGame : MonoBehaviour
 					SonicVsZonikVitalStatistics.SonicsStuff.Add(item);
 				}
 			}
+			if (index == 234) {
+				JingleManager.PlayJingle("ChaosEmerald");
+			}
 			
 			// Increment counter for Mack sections
 			if (SVZText.sectionLibrary[index].mackSection) {
 				mackCounter++;
 			}
+			
+			// Mark section as visited
+			SVZText.sectionLibrary[index].visited = true;
 		}
 		//PrintSectionHistory(); // DEBUG
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();

@@ -38,6 +38,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Global) Make visited sections yellow
 	[] (Global) Turn-to-section input field
 	[] (Sonic vs. Zonik) Fix Section 60 not being accessible
+	[] (Sonic vs. Zonik) Fix Sections 37 and 94 not being accessible (Otherwise, pinball section is UNBEATABLE!!!)
 	[] (Sonic vs. Zonik) Fix infinite loop between sections 216, 114, 85, 68, and 114
 	[] (Sonic vs. Zonik) Fix sudden jump from Section 153 to 268 (go to Section 158 instead)
 	[] (Sonic vs. Zonik) Fix Section 180 (Whiffy liquid) taking player to Section 76 (go directly to Section 191 instead)

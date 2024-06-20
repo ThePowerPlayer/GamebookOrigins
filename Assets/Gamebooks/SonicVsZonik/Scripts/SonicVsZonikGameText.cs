@@ -12,7 +12,10 @@ public class SonicVsZonikGameText : MonoBehaviour
 	// 2, 6, 17, 20, 22, 36, 41, 49, 86, 109, 124, 126,
 	// 133, 168, 181, 185, 189, 195, 196, 203, 218, 228,
 	// 229, 235, 265, 274, 280, 283, 295, 298, 299
-
+	
+	// Sections with points:
+	// 6, 20, 36, 37, 86, 94, 133, 181, 189, 195, 228, 229, 265, 295, 299
+	
 	// Pinball ending (Credits and points are no longer applicable):
 	// 45, 135, 146, 157, 297
 	
@@ -325,7 +328,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 3,
 		choicesDiceWin = new int[2] {189, 295},
 		choicesDiceLose = new int[1] {298},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section37 = new Section()
@@ -334,7 +338,9 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceSection = true,
 		diceGoal = 3,
 		choicesDiceWin = new int[2] {189, 124},
-		choicesDiceLose = new int[1] {298}
+		choicesDiceLose = new int[1] {298},
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section38 = new Section()
@@ -659,7 +665,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 6,
 		choicesDiceWin = new int[3] {20, 265, 124},
 		choicesDiceLose = new int[1] {283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section87 = new Section()
@@ -707,7 +714,9 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section94 = new Section()
 	{
 		text = "Quick as a flash, Sonic flips over backwards and catches the bouncer with his foot and Tails with his right paw, dragging himself and his friend round on to the bouncer. They score 5 points if this is the first time they have been here. Now our friends can either bounce back to the spinner (turn to <b>124</b>), or they can jump to another bouncer on the right (turn to <b>37</b>).",
-		choices = new int[2] {124, 37}
+		choices = new int[2] {124, 37},
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section95 = new Section()
@@ -966,7 +975,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Sonic and Tails effortlessly glide on to the third target, scoring 10 points if this is the first time they have been here. Now a choice has to be made. Should they take a chance and jump down towards the bottom of the game (turn to <b>185</b>), or should they step into the nearby warp chute (turn to <b>124</b>)?",
 		choices = new int[2] {185, 124},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section134 = new Section()
@@ -1303,7 +1313,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Even though they are travelling at breakneck speed, Sonic and Tails manage to stay in control. They skid to a halt on top of the bouncer, scoring 5 points if this is the first time they have been here. From here they can see another bouncer. Turn to <b>6</b>.",
 		choices = new int[1] {6},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section182 = new Section()
@@ -1355,7 +1366,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Bunching himself up into a ball, Sonic tries to spring as he tumbles through the air. The bouncer looms in front of him, and somehow he manages to grab hold of it, with Tails hanging on to his feet for all he's worth. They've made it! Score 5 points if this is the first time they have been here.\n\nStanding on top of the bouncer, they can both feel it throbbing under their feet. Perhaps they had better not stay here too long! Should they aim at another bouncer above them (turn to <b>36</b>), or try and get into the long chute, way off to the right (turn to <b>195</b>)?",
 		choices = new int[2] {36, 195},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section190 = new Section()
@@ -1393,7 +1405,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The chute runs all the way down the side of the game. Tails and Sonic move faster and faster.\n\n'ALL RIGHT!!!!' yells Sonic as they approach the bottom. Here the chute curves back out into the middle and the brave adventurers find themselves flying through the air once more. A large round target looms up in front of them and they strike it fair and square, scoring 10 points if this is the first time they have been here.\n\nIn the distance they can just see another target. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>228</b>. If the combined score is less than 10, turn to <b>283</b>.",
 		choices = new int[2] {228, 283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section196 = new Section()
@@ -1442,7 +1455,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section203 = new Section()
 	{
 		text = "Sonic and Tails have come up the ramp far too fast, and they find themselves tumbling towards the bottom of the table. Tails has started to hover and will be safe. Sonic, however, must find some other way to escape. All around him the various targets and bumpers flash past - if only he can somehow grab hold of one of those bumpers.\n\nSonic reaches out with his left paw and just manages to grab one. Hanging on for all he's worth, the bumper spins him round and catapults him back to the top of the table, where he lands with a thump on a platform.\n\n'Not bad, but it's quicker by air!' Tails says, looking smug as he stands and watches Sonic dusting himself down.\n\n'OK then,' says Sonic, a little annoyed at his smirking friend. 'As you're SO COOL, let's see you go first for a change!'\n\nNow Tails is in the hot seat, which way will he go?\n\nThe platform to the right?\t\t\tTurn to <b>218</b>\nThe platform to the left?\t\t\tTurn to <b>109</b>",
-		choices = new int[0] {},
+		choices = new int[2] {218, 109},
 		pinballSection = true
 	};
 
@@ -1602,7 +1615,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "With great body control, Sonic and Tails speed towards the next target. They strike it a glancing blow, scoring 10 points if this is the first time they have been here. In the distance yet another target can be seen. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>133</b>. If the combined score is less than 10, turn to <b>283</b>.",
 		choices = new int[2] {133, 283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section229 = new Section()
@@ -1613,7 +1627,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 6,
 		choicesDiceWin = new int[3] {181, 6, 124},
 		choicesDiceLose = new int[1] {283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section230 = new Section()
@@ -1866,7 +1881,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Reacting with incredible speed, Sonic grabs the target with one paw and Tails with the other, sending both of them whizzing off towards a mushroom bouncer on the left. They give the bouncer a glancing blow, scoring 5 points if this is the first time they have been here. Then they bounce back the way they came, towards the target again. Turn to <b>86</b>.",
 		choices = new int[1] {86},
-		pinballSection = true
+		pinballSection = true,
+		points = 5
 	};
 
 	public static Section section266 = new Section()
@@ -2068,7 +2084,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 6,
 		choicesDiceWin = new int[3] {189, 36, 124},
 		choicesDiceLose = new int[1] {283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section296 = new Section()
@@ -2102,7 +2119,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceGoal = 6,
 		choicesDiceWin = new int[3] {189, 36, 124},
 		choicesDiceLose = new int[1] {283},
-		pinballSection = true
+		pinballSection = true,
+		points = 10
 	};
 
 	public static Section section300 = new Section()
