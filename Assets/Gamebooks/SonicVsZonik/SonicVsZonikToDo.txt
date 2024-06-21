@@ -18,6 +18,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Use a different font (try a white font with a black outline)
 [✓] Make the first test build of the game (see what it looks like on a standard 16:9 monitor screen)
 [✓] Add sound effects
+[✓] Improve the pinball sections
+[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
 [] Improve the menu screen
 [] Add a credits section
 [] Crop empty space from artwork images
@@ -44,6 +46,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Sonic vs. Zonik) Fix Section 180 (Whiffy liquid) taking player to Section 76 (go directly to Section 191 instead)
 	[] (Sonic vs. Zonik) Fix choice at Section 82 (Rexon encounter) taking player to Section 67 (go directly to Section 121 instead)
 	[] (Sonic vs. Zonik) Fix Section 84 (fruit machine) going straight to Section 97 (go to Section 66 instead)
-[] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.) 
+[] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
+[] Add an option to erase save data
 [] Add a speedrun mode with a timer
 [] Make the final build of the game and publish it to itch.io

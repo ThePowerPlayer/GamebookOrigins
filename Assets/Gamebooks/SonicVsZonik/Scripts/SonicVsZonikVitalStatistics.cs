@@ -11,6 +11,7 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	public static int credits;
 	public static int points;
 	public static HashSet<string> SonicsStuff = new HashSet<string>();
+	public static bool pinballSecondChanceUsed;
 	
     public static SonicVsZonikVitalStatistics instance { get; private set; }
 
@@ -44,4 +45,12 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 		abilities["Good Looks"] = 0;
 		abilities["Section 31"] = 7;
     }
+	
+	void Update()
+	{
+		lives = Mathf.Clamp(lives, 0, 999);
+		rings = Mathf.Clamp(rings, 0, 999);
+		credits = Mathf.Clamp(credits, 0, 999);
+		points = Mathf.Clamp(points, 0, 999);
+	}
 }

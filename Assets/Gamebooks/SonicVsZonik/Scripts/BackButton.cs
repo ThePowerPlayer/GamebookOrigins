@@ -31,6 +31,23 @@ public class BackButton : MonoBehaviour
 		SonicVsZonikVitalStatistics.rings -= SVZText.sectionLibrary[SVZGame.index].rings;
 		SonicVsZonikVitalStatistics.credits -= SVZText.sectionLibrary[SVZGame.index].credits;
 		SonicVsZonikVitalStatistics.points -= SVZText.sectionLibrary[SVZGame.index].points;
+		if (SVZGame.index == 283 && SonicVsZonikVitalStatistics.pinballSecondChanceUsed) {
+			SonicVsZonikVitalStatistics.pinballSecondChanceUsed = false;
+		}
+		
+		// Choices for Sections 185 and 283 (Lose credits)
+		if (SVZGame.index == 185 || SVZGame.index == 283) {
+			if (SonicVsZonikVitalStatistics.credits == 0 && !SonicVsZonikVitalStatistics.pinballSecondChanceUsed) {
+				SonicVsZonikVitalStatistics.pinballSecondChanceUsed = true;
+				SVZText.sectionLibrary[SVZGame.index].choices = new int[1] {126};
+			}
+			else if (SonicVsZonikVitalStatistics.credits == 0) {
+				SVZText.sectionLibrary[SVZGame.index].choices = new int[1] {41};
+			}
+			else {
+				SVZText.sectionLibrary[SVZGame.index].choices = new int[1] {124};
+			}
+		}
 		
 		// Decrement counter for Mack sections
 		if (SVZText.sectionLibrary[SVZGame.index].mackSection) {

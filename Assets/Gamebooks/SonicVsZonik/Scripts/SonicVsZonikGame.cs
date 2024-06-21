@@ -90,11 +90,11 @@ public class SonicVsZonikGame : MonoBehaviour
 			
 			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
 			SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
-			if (!SVZText.sectionLibrary[mostRecentIndex].visited) {
+			if (!SVZText.sectionLibrary[mostRecentIndex].inHistory) {
 				SonicVsZonikVitalStatistics.points += SVZText.sectionLibrary[mostRecentIndex].points;
 				// Manage audio for earning points
 				if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
-					if (SVZText.sectionLibrary[mostRecentIndex].points + SonicVsZonikVitalStatistics.points >= 100) {
+					if (SonicVsZonikVitalStatistics.points >= 100) {
 						JingleManager.PlayJingle("Spinball100Points");
 					}
 					else {
@@ -119,8 +119,32 @@ public class SonicVsZonikGame : MonoBehaviour
 				mackCounter++;
 			}
 			
-			// Mark section as visited
+			// Choices for Sections 185 and 283 (Lose credits)
+			if (index == 185 || index == 283) {
+				if (SonicVsZonikVitalStatistics.credits == 0 && !SonicVsZonikVitalStatistics.pinballSecondChanceUsed) {
+					SonicVsZonikVitalStatistics.pinballSecondChanceUsed = true;
+					SVZText.sectionLibrary[index].choices = new int[1] {126};
+				}
+				else if (SonicVsZonikVitalStatistics.credits == 0) {
+					SVZText.sectionLibrary[index].choices = new int[1] {41};
+				}
+				else {
+					SVZText.sectionLibrary[index].choices = new int[1] {124};
+				}
+			}
+			
+			// Choices for Section 124 (Pinball spinner)
+			if (index == 124 && SonicVsZonikVitalStatistics.points >= 100) {
+				SVZText.sectionLibrary[index].choices = new int[1] {45};
+			}
+			else if (index == 124) {
+				SVZText.sectionLibrary[index].choices = new int[4] {295, 299, 229, 86};
+			}
+			
+			// Mark section as visited (independent of section history)
 			SVZText.sectionLibrary[index].visited = true;
+			// Mark section as in history (dependent on current section history)
+			SVZText.sectionLibrary[index].inHistory = true;
 		}
 		//PrintSectionHistory(); // DEBUG
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();

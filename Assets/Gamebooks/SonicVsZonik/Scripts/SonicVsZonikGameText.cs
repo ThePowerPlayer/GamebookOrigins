@@ -1404,7 +1404,12 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section195 = new Section()
 	{
 		text = "The chute runs all the way down the side of the game. Tails and Sonic move faster and faster.\n\n'ALL RIGHT!!!!' yells Sonic as they approach the bottom. Here the chute curves back out into the middle and the brave adventurers find themselves flying through the air once more. A large round target looms up in front of them and they strike it fair and square, scoring 10 points if this is the first time they have been here.\n\nIn the distance they can just see another target. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>228</b>. If the combined score is less than 10, turn to <b>283</b>.",
-		choices = new int[2] {228, 283},
+		diceSection = true,
+		diceAbility = "Strength",
+		diceAbility2 = "Agility",
+		diceGoal = 10,
+		choicesDiceWin = new int[1] {228},
+		choicesDiceLose = new int[1] {283},
 		pinballSection = true,
 		points = 10
 	};
@@ -1614,7 +1619,12 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section228 = new Section()
 	{
 		text = "With great body control, Sonic and Tails speed towards the next target. They strike it a glancing blow, scoring 10 points if this is the first time they have been here. In the distance yet another target can be seen. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>133</b>. If the combined score is less than 10, turn to <b>283</b>.",
-		choices = new int[2] {133, 283},
+		diceSection = true,
+		diceAbility = "Strength",
+		diceAbility2 = "Agility",
+		diceGoal = 10,
+		choicesDiceWin = new int[1] {133},
+		choicesDiceLose = new int[1] {283},
 		pinballSection = true,
 		points = 10
 	};
@@ -2001,7 +2011,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section283 = new Section()
 	{
 		text = "Sonic and Tails mistime their move! Missing their target, they are caught in the game's Gravity Field and are pulled down towards the bottom and the waiting <i>Flippers</i>! BANG!!! A flipper smashes them back towards the top of the game. Ouch, that hurt! Remove 5 credits from Sonic's Stuff. Turn to <b>124</b>. If Sonic doesn't have 5 credits left, turn to <b>126</b>. If the commissionaire has already given Sonic another 20 credits, then you <i>must</i> turn to <b>41</b>.",
-		choices = new int[3] {124, 126, 41},
+		choices = new int[0] {},
 		pinballSection = true,
 		credits = -5
 	};
