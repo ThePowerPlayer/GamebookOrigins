@@ -21,7 +21,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Implement earning and losing rings
 [✓] Improve the pinball sections
 [✓] Improve the menu screen
-[] Improve the gamebook select screen
+[✓] Improve the gamebook select screen
 [] Add a credits section
 [] Allow the player to customize Sonic's Vital Statistics in the Menu scene
 [] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)

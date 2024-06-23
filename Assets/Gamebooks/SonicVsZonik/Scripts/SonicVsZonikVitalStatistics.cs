@@ -52,5 +52,12 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 		rings = Mathf.Clamp(rings, 0, 999);
 		credits = Mathf.Clamp(credits, 0, 999);
 		points = Mathf.Clamp(points, 0, 999);
+		
+		abilities["Speed"] = Mathf.Clamp(abilities["Speed"], 0, 99);
+		abilities["Agility"] = Mathf.Clamp(abilities["Agility"], 0, 99);
+		abilities["Strength"] = Mathf.Clamp(abilities["Strength"], 0, 99);
+		abilities["Coolness"] = Mathf.Clamp(abilities["Coolness"], 0, 99);
+		abilities["Quick Wits"] = Mathf.Clamp(abilities["Quick Wits"], 0, 99);
+		abilities["Good Looks"] = Mathf.Clamp(abilities["Good Looks"], 0, 99);
 	}
 }

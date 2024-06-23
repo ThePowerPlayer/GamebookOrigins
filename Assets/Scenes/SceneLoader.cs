@@ -71,9 +71,7 @@ public class SceneLoader : MonoBehaviour
 	
 	public void LoadScene(string sceneName)
     {
-		if (currentScene.name != "GamebookSelect") {
-			StopAllAudio();
-		}
+		StopAllAudio();
 		sceneToLoad = sceneName;
 		if (currentScene.name != "SegaLogo" && currentScene.name != "DevPresents") {
 			load_new_scene.Play();
