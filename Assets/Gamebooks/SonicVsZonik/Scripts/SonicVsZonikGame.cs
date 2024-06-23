@@ -11,6 +11,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	[SerializeField] private AudioClip Ring;
 	[SerializeField] private AudioClip LoseRings;
 	[SerializeField] private AudioClip EarnPoints;
+	[SerializeField] private GameObject TurnToSection;
+	[SerializeField] private GameObject ButtonBack;
 	
     public static int index;
 	private int mostRecentIndex;
@@ -18,7 +20,6 @@ public class SonicVsZonikGame : MonoBehaviour
 	private const int indexMax = 300;
 	public static bool backButtonPressed;
 	public static Stack<int> sectionHistory = new Stack<int>();
-	public static bool markVisitedSections = true;
 	public static int mackCounter = 0;
 	public SonicsStuff SonicsStuff;
 	public SonicVsZonikMusicManager MusicManager;
@@ -37,6 +38,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	
 	void Start()
     {
+		TurnToSection.SetActive(OptionsGlobal.enableTurnToSection);
+		ButtonBack.SetActive(OptionsGlobal.enableBackButton);
 		index = 1;
 		mostRecentIndex = 0;
     }
@@ -169,8 +172,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	}
 	
 	public void SetButtonVisited(GameObject ButtonSection, int i) {
-		//Debug.Log(markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZText.sectionLibrary[i].visited);
-		if (markVisitedSections && ButtonSection.activeInHierarchy && SVZText.sectionLibrary[i].visited) {
+		//Debug.Log(OptionsGlobal.markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZText.sectionLibrary[i].visited);
+		if (OptionsGlobal.markVisitedSections && ButtonSection.activeInHierarchy && SVZText.sectionLibrary[i].visited) {
 			ButtonSection.GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
 		}
 		else {

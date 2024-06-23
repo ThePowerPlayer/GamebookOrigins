@@ -18,29 +18,31 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Use a different font (try a white font with a black outline)
 [✓] Make the first test build of the game (see what it looks like on a standard 16:9 monitor screen)
 [✓] Add sound effects
+[✓] Implement earning and losing rings
 [✓] Improve the pinball sections
-[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
-[] Improve the menu screen
+[✓] Improve the menu screen
+[] Improve the gamebook select screen
 [] Add a credits section
+[] Allow the player to customize Sonic's Vital Statistics in the Menu scene
+[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
 [] Crop empty space from artwork images
 [] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [] Implement all sections with a single dice roll
-[] Allow the player to customize Sonic's Vital Statistics in the Menu scene
 [] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
 [] Implement getting hit (lose all rings or a life if you have no rings)
-[] Implement earning rings
 [] Implement fights against enemies
 [] Implement fights where the player can choose Sonic's ability to use
 [] Implement adding things to Sonic's stuff
 [] Implement sections with choices that require an item from Sonic's Stuff
 [] Implement the Zone Chip
 [] For infinite loop between sections 216, 114, 85, 68, and 114, implement a break in the space-time continuum (allow a jump to section 227)
-[] Add an Options menu, with toggles for the following features:
-	[] (Global) Back button
-	[] (Global) Make visited sections yellow
-	[] (Global) Turn-to-section input field
+[✓] Add an Options menu, with toggles for the following features:
+	[✓] (Global) Back button
+	[✓] (Global) Make visited sections yellow
+	[✓] (Global) Turn-to-section input field
+	[] (Global) Customize Sonic's Vital Statistics
 	[] (Sonic vs. Zonik) Fix Section 60 not being accessible
-	[] (Sonic vs. Zonik) Fix Sections 37 and 94 not being accessible (Otherwise, pinball section is UNBEATABLE!!!)
+	[] (Sonic vs. Zonik) Fix Sections 37 and 94 not being accessible
 	[] (Sonic vs. Zonik) Fix infinite loop between sections 216, 114, 85, 68, and 114
 	[] (Sonic vs. Zonik) Fix sudden jump from Section 153 to 268 (go to Section 158 instead)
 	[] (Sonic vs. Zonik) Fix Section 180 (Whiffy liquid) taking player to Section 76 (go directly to Section 191 instead)
@@ -49,4 +51,5 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Add a speedrun mode with a timer
+[] Make a trailer for the game and upload it to YouTube
 [] Make the final build of the game and publish it to itch.io

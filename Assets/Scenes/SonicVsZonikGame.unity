@@ -811,11 +811,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1988563104}
-  m_Father: {fileID: 1193832340}
+  m_Father: {fileID: 1723348225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -630, y: 385}
+  m_AnchoredPosition: {x: 70, y: -45.00006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88727007
@@ -7836,7 +7836,6 @@ RectTransform:
   - {fileID: 1164621324}
   - {fileID: 1292345736}
   - {fileID: 1723348225}
-  - {fileID: 88727005}
   - {fileID: 48009227}
   - {fileID: 1943967939}
   - {fileID: 1371114321}
@@ -8654,6 +8653,8 @@ MonoBehaviour:
   Ring: {fileID: 8300000, guid: 4443e05d6b4e4a24a826c0c5b86d4137, type: 3}
   LoseRings: {fileID: 8300000, guid: 834c1ebd3312ad544948d4262f7cc958, type: 3}
   EarnPoints: {fileID: 8300000, guid: 45b2c6585e8bd3347b506e3665d420a6, type: 3}
+  TurnToSection: {fileID: 1723348224}
+  ButtonBack: {fileID: 482478586}
   SonicsStuff: {fileID: 1487960840}
   MusicManager: {fileID: 1667284219}
   JingleManager: {fileID: 784302967}
@@ -13332,7 +13333,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 88727005}
   m_Father: {fileID: 1193832340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
