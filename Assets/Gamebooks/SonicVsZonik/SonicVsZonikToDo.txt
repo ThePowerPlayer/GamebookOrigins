@@ -22,10 +22,11 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Improve the pinball sections
 [✓] Improve the menu screen
 [✓] Improve the gamebook select screen
-[] Add a credits section
-[] Allow the player to customize Sonic's Vital Statistics in the Menu scene
-[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
+[✓] Allow the player to customize Sonic's Vital Statistics in the Menu scene (Free Play mode)
+[] Allow the player to customize Sonic's Vital Statistics in the Menu scene (while following the rules)
 [] Crop empty space from artwork images
+[] Add a credits section
+[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
 [] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [] Implement all sections with a single dice roll
 [] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
@@ -48,8 +49,10 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Sonic vs. Zonik) Fix Section 180 (Whiffy liquid) taking player to Section 76 (go directly to Section 191 instead)
 	[] (Sonic vs. Zonik) Fix choice at Section 82 (Rexon encounter) taking player to Section 67 (go directly to Section 121 instead)
 	[] (Sonic vs. Zonik) Fix Section 84 (fruit machine) going straight to Section 97 (go to Section 66 instead)
+	[] (Sonic vs. Zonik) Allow using the Zone Chip after visiting the Chemical Plant, whether or not you actually obtained it.
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Add a speedrun mode with a timer
+[] Fix the screen fadeout sped for Windows builds
 [] Make a trailer for the game and upload it to YouTube
 [] Make the final build of the game and publish it to itch.io

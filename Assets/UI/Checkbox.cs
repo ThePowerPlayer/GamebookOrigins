@@ -25,7 +25,6 @@ public class Checkbox : MonoBehaviour
 	
     void Update()
     {
-		
         switch (option) {
 			case "enableTurnToSection":
 				CheckboxSprite(ref image, OptionsGlobal.enableTurnToSection);
