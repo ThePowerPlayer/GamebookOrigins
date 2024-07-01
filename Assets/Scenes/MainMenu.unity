@@ -555,8 +555,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1934167808}
   m_HandleRect: {fileID: 1934167806}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.41333327
+  m_Value: 0.99999976
+  m_Size: 0.34444466
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1681,8 +1681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 309.99994}
-  m_SizeDelta: {x: 460, y: 500}
+  m_AnchoredPosition: {x: 0, y: 310}
+  m_SizeDelta: {x: 460, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &886630769
 MonoBehaviour:
@@ -3117,8 +3117,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Allows you to go to any page you want at any time, via the "Turn to section..."
-    box. (Type a number into this box and press Enter to go to a page.)
+  m_text: Allows you to go to any section you want at any time. (Type a number into
+    the "Turn to section..." box, then press Enter to go to that section number.)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -4259,11 +4259,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1481690004}
   - {fileID: 200215769}
   - {fileID: 100073778}
   - {fileID: 1324507313}
   - {fileID: 40004055}
+  - {fileID: 1481690004}
   m_Father: {fileID: 273582316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4651,8 +4651,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 769712473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5866667}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.65555537}
+  m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

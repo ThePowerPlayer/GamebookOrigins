@@ -12,6 +12,11 @@ public class ButtonChangeStats : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	[SerializeField] private bool increaseValue;
 	[SerializeField] private string abilityToChange;
 	
+	void Awake() {
+		// Only enable stat-changing buttons if the proper setting is on
+		this.gameObject.SetActive(OptionsGlobal.customVitalStatistics);
+	}
+	
 	void Update() {
 		if (buttonPressed) {
 			incrementTimer -= Time.deltaTime;
@@ -23,7 +28,7 @@ public class ButtonChangeStats : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	}
 	
 	private void ChangeStat() {
-		if (increaseValue && SonicVsZonikVitalStatistics.abilities[abilityToChange] < 99) {
+		if (increaseValue && SonicVsZonikVitalStatistics.abilities[abilityToChange] <= 99) {
 			SonicVsZonikVitalStatistics.abilities[abilityToChange]++;
 		}
 		else if (SonicVsZonikVitalStatistics.abilities[abilityToChange] > 0) {
