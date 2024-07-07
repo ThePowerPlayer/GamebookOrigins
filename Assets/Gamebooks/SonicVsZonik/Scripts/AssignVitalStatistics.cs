@@ -17,7 +17,7 @@ public class AssignVitalStatistics : MonoBehaviour
     {
         SetAssignmentsFalse();
 		
-		if (OptionsGlobal.customVitalStatistics) {
+		if (OptionsGlobal.options["customVitalStatistics"]) {
 			description.text = "Click the arrows to increase or decrease Sonic's abilities.";
 		}
 		else {
@@ -27,7 +27,7 @@ public class AssignVitalStatistics : MonoBehaviour
 	
 	void Update()
 	{
-		if (!OptionsGlobal.customVitalStatistics) {
+		if (!OptionsGlobal.options["customVitalStatistics"]) {
 			if (!stat1Assigned) {
 				description.text = "Click to assign Sonic's strongest ability (5 points).";
 			}
@@ -72,6 +72,7 @@ public class AssignVitalStatistics : MonoBehaviour
 		SetAssignmentsFalse();
 		
 		if (gamebook == "SonicVsZonik") {
+			SonicVsZonikMenu.allStatsAssigned = false;
 			SonicVsZonikVitalStatistics.abilities["Speed"] = 0;
 			SonicVsZonikVitalStatistics.abilities["Agility"] = 0;
 			SonicVsZonikVitalStatistics.abilities["Strength"] = 0;

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class OptionsGlobal : MonoBehaviour
 {
-	public static bool enableTurnToSection;
-	public static bool enableBackButton;
-	public static bool markVisitedSections;
-	public static bool customVitalStatistics;
+	public static Dictionary<string, bool> options = new Dictionary<string, bool>
+	{
+		{"enableTurnToSection", false},
+		{"enableBackButton", false},
+		{"markVisitedSections", false},
+		{"customVitalStatistics", false},
+	};
 	
 	public static OptionsGlobal instance { get; private set; }
 
@@ -26,28 +29,7 @@ public class OptionsGlobal : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 	
-    void Start()
-    {
-        enableTurnToSection = false;
-		enableBackButton = false;
-		markVisitedSections = false;
-		customVitalStatistics = false;
-    }
-	
-	public static void ToggleTurnToSection() {
-		enableTurnToSection = !enableTurnToSection;
+	public static void ToggleOption(string option) {
+		options[option] = !options[option];
 	}
-	
-	public static void ToggleBackButton() {
-		enableBackButton = !enableBackButton;
-	}
-	
-	public static void ToggleMarkVisitedSections() {
-		markVisitedSections = !markVisitedSections;
-	}
-	
-	public static void ToggleCustomVitalStatistics() {
-		customVitalStatistics = !customVitalStatistics;
-	}
-	
 }

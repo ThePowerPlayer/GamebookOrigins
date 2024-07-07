@@ -30,8 +30,15 @@ public class ScrollArrowHorizontal : MonoBehaviour
 		}
 		y = Mathf.Sin(x) * height;
 		
-		if (SonicVsZonikMenu.index == 2) {
-			iRenderer.enabled = true;
+		// Specific code for SonicVsZonikMenu scene
+		if (SonicVsZonikMenu.index >= 2) {
+			if (OptionsGlobal.options["customVitalStatistics"] == false
+				&& SonicVsZonikMenu.allStatsAssigned) {
+				iRenderer.enabled = false;
+			}
+			else {
+				iRenderer.enabled = true;
+			}
 		}
 		else {
 			iRenderer.enabled = false;
@@ -39,7 +46,7 @@ public class ScrollArrowHorizontal : MonoBehaviour
 		
 		if (iRenderer.enabled) {
 			ArrowRect.anchoredPosition = new Vector2(
-				originalPosX + x,
+				originalPosX + y,
 				ArrowRect.anchoredPosition.y);
 		}
 	}

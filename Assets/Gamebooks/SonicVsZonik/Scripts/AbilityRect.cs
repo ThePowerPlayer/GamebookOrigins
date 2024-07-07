@@ -10,7 +10,7 @@ public class AbilityRect : MonoBehaviour, IPointerDownHandler
 	public AssignVitalStatistics StatManager;
 	
     void Awake() {
-		if (!OptionsGlobal.customVitalStatistics) {
+		if (!OptionsGlobal.options["customVitalStatistics"]) {
 			if (gamebook == "SonicVsZonik") {
 				SonicVsZonikVitalStatistics.abilities[ability] = 0;
 			}
@@ -31,6 +31,9 @@ public class AbilityRect : MonoBehaviour, IPointerDownHandler
 			else if (!StatManager.stat3Assigned) {
 				SonicVsZonikVitalStatistics.abilities[ability] = 3;
 				StatManager.stat3Assigned = true;
+				if (gamebook == "SonicVsZonik") {
+					SonicVsZonikMenu.allStatsAssigned = true;
+				}
 				StatManager.SetRemainingStatistics();
 			}
 		}

@@ -4747,7 +4747,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 935383463}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5954,6 +5954,7 @@ MonoBehaviour:
   ButtonStart: {fileID: 1157681081}
   TextObject: {fileID: 1852594720}
   HeaderObject: {fileID: 1929927930}
+  AssignVitalStatistics: {fileID: 1882985227}
 --- !u!114 &1263561705
 MonoBehaviour:
   m_ObjectHideFlags: 0

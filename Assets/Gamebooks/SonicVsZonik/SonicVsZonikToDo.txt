@@ -41,7 +41,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[✓] (Global) Back button
 	[✓] (Global) Make visited sections yellow
 	[✓] (Global) Turn-to-section input field
-	[] (Global) Customize Sonic's Vital Statistics
+	[✓] (Global) Customize Sonic's Vital Statistics
 	[] (Sonic vs. Zonik) Fix Section 60 not being accessible
 	[] (Sonic vs. Zonik) Fix Sections 37 and 94 not being accessible
 	[] (Sonic vs. Zonik) Fix infinite loop between sections 216, 114, 85, 68, and 114
@@ -53,6 +53,6 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Add a speedrun mode with a timer
-[] Fix the screen fadeout sped for Windows builds
+[] Fix the screen fadeout speed for Windows builds
 [] Make a trailer for the game and upload it to YouTube
 [] Make the final build of the game and publish it to itch.io

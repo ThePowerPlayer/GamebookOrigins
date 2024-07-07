@@ -14,7 +14,7 @@ public class ResetStatisticsButton : MonoBehaviour
 	}
 	
 	void Update() {
-		if (OptionsGlobal.customVitalStatistics) {
+		if (OptionsGlobal.options["customVitalStatistics"]) {
 			button.interactable = true;
 		}
 		else {

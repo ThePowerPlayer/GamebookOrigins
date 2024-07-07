@@ -14,7 +14,7 @@ public class ButtonChangeStats : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	
 	void Awake() {
 		// Only enable stat-changing buttons if the proper setting is on
-		this.gameObject.SetActive(OptionsGlobal.customVitalStatistics);
+		this.gameObject.SetActive(OptionsGlobal.options["customVitalStatistics"]);
 	}
 	
 	void Update() {

@@ -504,7 +504,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	// TODO: Disable going to Section 236 if already visited
 	public static Section section62 = new Section()
 	{
-		text = "Sonic and Tails set about the place! Sonic spins around like a maniac, smashing everything within reach. Tails is a little slower, but he manages his fair share and in no time the whole place is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>. If the score is 3 or more, what should Sonic and Tails do:\n\nGo and look in the other room (if they haven't been there already)?\t\t\tTurn to <b>236</b>\nGo through the door labelled 'Production Line'?\t\t\tTurn to<b>248</b>",
+		text = "Sonic and Tails set about the place! Sonic spins around like a maniac, smashing everything within reach. Tails is a little slower, but he manages his fair share and in no time the whole place is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>. If the score is 3 or more, what should Sonic and Tails do:\n\nGo and look in the other room (if they haven't been there already)?\nTurn to <b>236</b>\nGo through the door labelled 'Production Line'?\t\t\tTurn to <b>248</b>",
 		diceSection = true,
 		diceGoal = 3,
 		choicesDiceWin = new int[2] {236, 248},
@@ -721,7 +721,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section95 = new Section()
 	{
-		text = "'This one stops just inside the West Gate. Take your seats, please.'\n\nSonic and Tails sit down, and the bus moves off. 'Well, I suppose it beats walking,' says Tails as he looks out of the window. Outside the landscape rushes past, the bus really is moving very quickly and in no time at all the gates of Metropolis loom in front of them.\n\n'We're going to have to be careful in here, Tails,' says Sonic. 'I think the best thing to do is to pretend I'm Zonik.'\n\n'What about me then?' asks Tails.\n\n'Perhaps you can be Taylz, or something,' replies Sonic.\n\nThe bus finally comes to a stop and its door opens. Metropolis is a very busy place, and there are people and robots everywhere, although none of them seems to be taking any notice of our friends. Where will they go from here?\n\nExplore the area on foot?\t\t\tTurn to <b>259</b>Head for the subway?\t\t\tTurn to <b>64</b>",
+		text = "'This one stops just inside the West Gate. Take your seats, please.'\n\nSonic and Tails sit down, and the bus moves off. 'Well, I suppose it beats walking,' says Tails as he looks out of the window. Outside the landscape rushes past, the bus really is moving very quickly and in no time at all the gates of Metropolis loom in front of them.\n\n'We're going to have to be careful in here, Tails,' says Sonic. 'I think the best thing to do is to pretend I'm Zonik.'\n\n'What about me then?' asks Tails.\n\n'Perhaps you can be Taylz, or something,' replies Sonic.\n\nThe bus finally comes to a stop and its door opens. Metropolis is a very busy place, and there are people and robots everywhere, although none of them seems to be taking any notice of our friends. Where will they go from here?\n\nExplore the area on foot?\t\t\tTurn to <b>259</b>\nHead for the subway?\t\t\tTurn to <b>64</b>",
 		choices = new int[2] {259, 64}
 	};
 

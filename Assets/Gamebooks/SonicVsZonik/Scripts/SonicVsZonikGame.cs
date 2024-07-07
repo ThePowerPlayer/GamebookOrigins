@@ -38,8 +38,8 @@ public class SonicVsZonikGame : MonoBehaviour
 	
 	void Start()
     {
-		TurnToSection.SetActive(OptionsGlobal.enableTurnToSection);
-		ButtonBack.SetActive(OptionsGlobal.enableBackButton);
+		TurnToSection.SetActive(OptionsGlobal.options["enableTurnToSection"]);
+		ButtonBack.SetActive(OptionsGlobal.options["enableBackButton"]);
 		index = 1;
 		mostRecentIndex = 0;
     }
@@ -173,7 +173,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	
 	public void SetButtonVisited(GameObject ButtonSection, int i) {
 		//Debug.Log(OptionsGlobal.markVisitedSections + " " + ButtonSection.activeInHierarchy + " " + SVZText.sectionLibrary[i].visited);
-		if (OptionsGlobal.markVisitedSections && ButtonSection.activeInHierarchy && SVZText.sectionLibrary[i].visited) {
+		if (OptionsGlobal.options["markVisitedSections"] && ButtonSection.activeInHierarchy && SVZText.sectionLibrary[i].visited) {
 			ButtonSection.GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
 		}
 		else {
