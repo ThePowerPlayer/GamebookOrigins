@@ -915,7 +915,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section124 = new Section()
 	{
 		text = "Sonic and Tails find themselves in the game's central spinner. It looks like a massive fairground roundabout. There are five exits from the spinner back into the game, each of which is spring loaded, so make sure our friends are careful! Both of them have played the game already, but they must remember that Zonik has been here before them, which makes it an altogether more dangerous place to be!\n\nSonic and Tails are now committed to playing the game. There are only two ways out, and one of them is <i>unthinkable</i>! Each time they visit a part of the game, write down the number of the section so that you know they have been there already. They may not use the gold exit until they have scored 100 points in the game. Make a note of the points they score. Which exit should they use to leave the game:\n\nThe red exit?\t\t\tTurn to <b>295</b>\nThe yellow exit?\t\t\tTurn to <b>299</b>\nThe blue exit?\t\t\tTurn to <b>229</b>\nThe green exit?\t\t\tTurn to <b>86</b>\nThe gold exit?\t\t\tTurn to <b>45</b>",
-		// TODO: Add 45 to choices
 		choices = new int[4] {295, 299, 229, 86},
 		pinballSection = true
 	};
@@ -1240,8 +1239,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Tails desperately tries to control the cloud skimmer as it flies through the clouds. Touch one of them and our heroes will be done for! Roll the die. If the score is 1, turn to <b>165</b>. If the score is 2 or more, then turn to <b>35</b>.",
 		diceSection = true,
 		diceGoal = 2,
-		choicesDiceWin = new int[1] {165},
-		choicesDiceLose = new int[1] {35}
+		choicesDiceWin = new int[1] {35},
+		choicesDiceLose = new int[1] {165}
 	};
 
 	public static Section section171 = new Section()
@@ -1688,7 +1687,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section236 = new Section()
 	{
-		text = "Our two friends creep up to the door labelled Bottle Bank. There is no noise coming from inside, and Sonic pushes open the door boldly, to find a huge storeroom full of shelves.\n\n'These shelves are full of bottles. Look!' says Tails, pointing to the nearest shelf. A quick look round reveals that the place is crammed with bottles of a faintly familiar shape. By the far wall there is a door labelled Production Line. What should the heroes do now:\n\nGo and look in the other room (if they haven't been there already)?\t\t\tTurn to <b>59</b>\nSmash the place up?\t\t\tTurn to <b>72</b>\nGo through the door labelled Production Line?\t\t\tTurn to <b>248</b>",
+		text = "Our two friends creep up to the door labelled Bottle Bank. There is no noise coming from inside, and Sonic pushes open the door boldly, to find a huge storeroom full of shelves.\n\n'These shelves are full of bottles. Look!' says Tails, pointing to the nearest shelf. A quick look round reveals that the place is crammed with bottles of a faintly familiar shape. By the far wall there is a door labelled Production Line. What should the heroes do now:\n\nGo and look in the other room (if they haven't been there already)?\nTurn to <b>59</b>\nSmash the place up?\t\t\tTurn to <b>72</b>\nGo through the door labelled Production Line?\t\t\tTurn to <b>248</b>",
 		choices = new int[3] {59, 72, 248}
 	};
 
@@ -1767,7 +1766,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section248 = new Section()
 	{
-		text = "Carefully, Sonic pushes open the door and peers through it. 'WOW ... Mega ...' Sonic just can't help himself. Through the door they can see a room so big they cannot even see the roof, let alone the other side of it! There are machines all over the place and robots too! The place is buzzing with activity, and it all seems to be centred around a slow-moving conveyor belt, but from where our friends are standing, they cannot see what's going on.\n\n'Let's have a closer look,' whispers Sonic, and our two friends slowly creep towards the conveyor belt. The robots are so intent on doing whatever it is that they are doing, that no one sees them. When they are closer, they can see that the conveyor belt is full of glass jars. Jars with blue stuff in them.\n\n'OH NO!' exclaims Tails. 'Look!' he says, pointing at the jars. Sonic obeys, looks at the jars and sees what has spooked Tails. Every jar contains a small blue hedgehog. One Zonik was bad enough, but the way this place is churning them out there would soon be thousands!\n\nWhat will our friends do:\n\nSmash the place up?\t\t\tTurn to <b>134</b>\nThink about using some glue (if Sonic has any in his Stuff)?\t\t\tTurn to <b>212</b>\nUse an energy bomb (again only if Sonic has one)?\t\t\tTurn to <b>197</b>",
+		text = "Carefully, Sonic pushes open the door and peers through it. 'WOW ... Mega ...' Sonic just can't help himself. Through the door they can see a room so big they cannot even see the roof, let alone the other side of it! There are machines all over the place and robots too! The place is buzzing with activity, and it all seems to be centred around a slow-moving conveyor belt, but from where our friends are standing, they cannot see what's going on.\n\n'Let's have a closer look,' whispers Sonic, and our two friends slowly creep towards the conveyor belt. The robots are so intent on doing whatever it is that they are doing, that no one sees them. When they are closer, they can see that the conveyor belt is full of glass jars. Jars with blue stuff in them.\n\n'OH NO!' exclaims Tails. 'Look!' he says, pointing at the jars. Sonic obeys, looks at the jars and sees what has spooked Tails. Every jar contains a small blue hedgehog. One Zonik was bad enough, but the way this place is churning them out there would soon be thousands!\n\nWhat will our friends do:\n\nSmash the place up?\t\t\tTurn to <b>134</b>\nThink about using some glue (if Sonic has any in his Stuff)?\nTurn to <b>212</b>\nUse an energy bomb (again only if Sonic has one)?\nTurn to <b>197</b>",
 		choices = new int[3] {134, 212, 197}
 	};
 

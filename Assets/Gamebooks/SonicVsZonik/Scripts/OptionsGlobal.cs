@@ -10,6 +10,11 @@ public class OptionsGlobal : MonoBehaviour
 		{"enableBackButton", false},
 		{"markVisitedSections", false},
 		{"customVitalStatistics", false},
+		{"lenientPinball", false},
+		{"fixRexonEncounter", false},
+		{"fixWhiffyLiquid", false},
+		{"fixSkyChase", false},
+		{"fixCloudSkimmer", false}
 	};
 	
 	public static OptionsGlobal instance { get; private set; }
