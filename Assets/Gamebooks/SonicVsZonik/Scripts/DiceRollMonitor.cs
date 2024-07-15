@@ -50,7 +50,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 		y = 0;
 		monitorValue = i;
 		string currentAbility = "";
-		if (timesDiceRolled == 0) {
+		if (timesDiceRolled == 0 || SVZText.sectionLibrary[SVZGame.index].fightSection) {
 			currentAbility = SVZText.sectionLibrary[SVZGame.index].diceAbility;
 		}
 		else {

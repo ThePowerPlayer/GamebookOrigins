@@ -7,6 +7,12 @@ public class ResetStatisticsButton : MonoBehaviour
 {
 	public AssignVitalStatistics StatManager;
     private Button button;
+	[SerializeField] private GameObject maxButton;
+	
+	// Only enable "Max Statistics" button if statistics can be freely customized
+	void Awake() {
+		maxButton.SetActive(OptionsGlobal.options["customVitalStatistics"]);
+	}
 	
 	void Start() {
 		button = GetComponent<Button>();

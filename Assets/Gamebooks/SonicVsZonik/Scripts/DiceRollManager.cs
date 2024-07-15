@@ -73,7 +73,7 @@ public class DiceRollManager : MonoBehaviour
 	private void SetMonitorsActive() {
 		// Change ability depending on if die is rolled twice
 		string currentAbility = "";
-		if (timesDiceRolled == 0) {
+		if (timesDiceRolled == 0 || SVZText.sectionLibrary[mostRecentIndex].fightSection) {
 			currentAbility = SVZText.sectionLibrary[mostRecentIndex].diceAbility;
 		}
 		else {
@@ -264,51 +264,57 @@ public class DiceRollManager : MonoBehaviour
 		// Hide sum and comparison symbol before all monitors are broken
 		Sum.GetComponent<TMP_Text>().enabled = false;
 		ComparisonSymbol.GetComponent<TMP_Text>().enabled = false;
+		
+		Debug.Log("Current enemy HP: " + SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent);
 	}
 	
 	private void SetFirstDiceRoll() {
-		if (SVZGame.index != mostRecentIndex) {
-			mostRecentIndex = SVZGame.index;
-			
-			if (SVZText.sectionLibrary[mostRecentIndex].diceSection) {
-				DiceRoll.SetActive(true);
-				diceMode = true;
-				timesDiceRolled = 0;
-				SetDiceRoll();
-			}
-			else {	
-				DiceRoll.SetActive(false);
-				diceMode = false;
-			}
+		//Debug.Log("Setting first dice roll...");
+		
+		mostRecentIndex = SVZGame.index;
+		
+		// Set initial HP of enemies
+		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
+			Debug.Log("Setting enemy HP from " + SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent + " to " + SVZText.sectionLibrary[mostRecentIndex].enemyHPMax + "...");
+			SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent = SVZText.sectionLibrary[mostRecentIndex].enemyHPMax;
+		}
+		
+		if (SVZText.sectionLibrary[mostRecentIndex].diceSection) {
+			DiceRoll.SetActive(true);
+			diceMode = true;
+			timesDiceRolled = 0;
+			SetDiceRoll();
+		}
+		else {	
+			DiceRoll.SetActive(false);
+			diceMode = false;
 		}
 	}
 	
 	private void RollDice() {
-		if (diceMode && allMonitorsBroken && !diceBeingRolled) {
-			if (rollSuccess) {
-				audioSource.clip = DiceRollSuccess;
-			}
-			else {
-				audioSource.clip = DiceRollFail;
-			}
-			audioSource.Play();
-			
-			diceBeingRolled = true;
-			Sum.GetComponent<TMP_Text>().enabled = true;
-			int monitorValue = int.Parse(Sum.GetComponent<TMP_Text>().text);
-			if (monitorValue < 10) {
-				Sum.GetComponent<TMP_Text>().fontSize = 72;
-			}
-			else {
-				Sum.GetComponent<TMP_Text>().fontSize = 58;
-			}
-			ThumbsUpScript.xExp = 0;
-			ThumbsUpScript.sizeMultiplier = 0;
-			ThumbsUpScript.startedShrinking = false;
-			ThumbsUpScript.visibilityTimer = 1f;
-			ThumbsUpScript.visible = true;
-			ComparisonSymbol.GetComponent<TMP_Text>().enabled = true;
+		if (rollSuccess) {
+			audioSource.clip = DiceRollSuccess;
 		}
+		else {
+			audioSource.clip = DiceRollFail;
+		}
+		audioSource.Play();
+		
+		diceBeingRolled = true;
+		Sum.GetComponent<TMP_Text>().enabled = true;
+		int monitorValue = int.Parse(Sum.GetComponent<TMP_Text>().text);
+		if (monitorValue < 10) {
+			Sum.GetComponent<TMP_Text>().fontSize = 72;
+		}
+		else {
+			Sum.GetComponent<TMP_Text>().fontSize = 58;
+		}
+		ThumbsUpScript.xExp = 0;
+		ThumbsUpScript.sizeMultiplier = 0;
+		ThumbsUpScript.startedShrinking = false;
+		ThumbsUpScript.visibilityTimer = 1f;
+		ThumbsUpScript.visible = true;
+		ComparisonSymbol.GetComponent<TMP_Text>().enabled = true;
 	}
 	
 	public void SkipDiceRoll() {
@@ -317,13 +323,17 @@ public class DiceRollManager : MonoBehaviour
 	
     void Update()
     {	
-		SetFirstDiceRoll();
+		if (SVZGame.index != mostRecentIndex) {
+			SetFirstDiceRoll();
+		}
 		
 		// Activate sum routine when all monitors are broken
 		allMonitorsBroken = CheckAllMonitorsBroken();
 		
 		// Visualize the dice roll to the player and display sum value
-		RollDice();
+		if (diceMode && allMonitorsBroken && !diceBeingRolled) {
+			RollDice();
+		}
 		
 		// Display thumbs-up icon on screen (unless the player clicks to skip it)
 		if (diceBeingRolled) {
@@ -343,7 +353,13 @@ public class DiceRollManager : MonoBehaviour
 				//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
 				
 				bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
-				if ((isFightSection && SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent > 0)
+				
+				// Decrease enemy HP if Sonic has hit it
+				if (isFightSection && rollSuccess) {
+					SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent--;
+				}
+				
+				if ((isFightSection && SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent == 0)
 					|| (!isFightSection && timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls)) {
 					// Leave dice mode and show available section buttons
 					SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;

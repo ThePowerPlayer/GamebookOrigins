@@ -6,15 +6,17 @@ public class OptionsGlobal : MonoBehaviour
 {
 	public static Dictionary<string, bool> options = new Dictionary<string, bool>
 	{
-		{"enableTurnToSection", false},
-		{"enableBackButton", false},
-		{"markVisitedSections", false},
-		{"customVitalStatistics", false},
-		{"lenientPinball", false},
-		{"fixRexonEncounter", false},
-		{"fixWhiffyLiquid", false},
-		{"fixSkyChase", false},
-		{"fixCloudSkimmer", false}
+		// DEBUG: All options are set to true
+		// For release, enable only "enableTurnToSection" and "enableBackButton"
+		{"enableTurnToSection", true},
+		{"enableBackButton", true},
+		{"markVisitedSections", true},
+		{"customVitalStatistics", true},
+		{"lenientPinball", true},
+		{"fixRexonEncounter", true},
+		{"fixWhiffyLiquid", true},
+		{"fixSkyChase", true},
+		{"fixCloudSkimmer", true}
 	};
 	
 	public static OptionsGlobal instance { get; private set; }
