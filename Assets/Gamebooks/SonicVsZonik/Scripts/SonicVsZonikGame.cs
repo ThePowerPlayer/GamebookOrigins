@@ -7,7 +7,7 @@ using SVZText = SonicVsZonikGameText;
 
 public class SonicVsZonikGame : MonoBehaviour
 {
-	[SerializeField] private AudioSource ringAudioSource;
+	[SerializeField] private AudioSource SFXAudioSource;
 	[SerializeField] private AudioClip Ring;
 	[SerializeField] private AudioClip LoseRings;
 	[SerializeField] private AudioClip EarnPoints;
@@ -73,20 +73,20 @@ public class SonicVsZonikGame : MonoBehaviour
 	
 	private void UpdateInventory() {
 		// Add rings, credits, and points
-		if (SVZText.sectionLibrary[mostRecentIndex].rings > 0) {
-			ringAudioSource.clip = Ring;
-			ringAudioSource.Play();
-		}
-		else if (SVZText.sectionLibrary[mostRecentIndex].rings < 0
-			|| SVZText.sectionLibrary[mostRecentIndex].credits < 0) {
-			ringAudioSource.clip = LoseRings;
-			ringAudioSource.Play();
-		}
-		
-		SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
-		SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
 		if (!SVZText.sectionLibrary[mostRecentIndex].inHistory) {
+			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
+			SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
 			SonicVsZonikVitalStatistics.points += SVZText.sectionLibrary[mostRecentIndex].points;
+			// Manage audio for earning rings and losing rings/credits
+			if (SVZText.sectionLibrary[mostRecentIndex].rings > 0) {
+				SFXAudioSource.clip = Ring;
+				SFXAudioSource.Play();
+			}
+			else if (SVZText.sectionLibrary[mostRecentIndex].rings < 0
+				|| SVZText.sectionLibrary[mostRecentIndex].credits < 0) {
+				SFXAudioSource.clip = LoseRings;
+				SFXAudioSource.Play();
+			}
 			// Manage audio for earning points
 			if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
 				if (SonicVsZonikVitalStatistics.points >= maxPoints) {

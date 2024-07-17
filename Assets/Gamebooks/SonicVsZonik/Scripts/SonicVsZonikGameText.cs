@@ -139,7 +139,9 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section9 = new Section()
 	{
 		text = "'OK,' says Sonic. 'The cave it is!'\n\nBoth the heroes charge off at a frightening speed, though at least Sonic manages to remember the small stream and easily avoids it this time.\n\nAt this rate the journey to the caves takes exactly one minute, and neither of them is even out of breath! The inside of the cave is dark and dank, maybe even a bit eggy!\n\n'I never remember it smelling this bad,' says Tails. 'Me neither,' says Sonic. After a few moments their eyes get used to the darkness and Sonic can see a pile of rings in the corner.\n\n'At least the rings are still safe!' says Sonic as he starts to pick them up. Beside the pile of rings Sonic sees a small computer chip. He picks it up and looks at it. There are brief instructions printed on the side of it: 'Zone Chip. To activate, insert 10 rings per person'. Sonic may now use the Zone Chip at any time. To use it, cross off 10 rings from Sonic's Stuff, or 20 rings if Tails is using it too. Then, make a note of the section you are reading, before turning to <b>237</b>.\n\nTails, however, has spotted something else. Over in the far corner is a small needle-shaped thing, and it's glowing blue! Sonic has managed to collect 10 rings (add them to his Vital Statistics sheet). If you would like him to go and have a look at the blue needle, turn to <b>174</b>. If you think it's about time the heroes left, turn to <b>201</b>.",
-		choices = new int[2] {174, 201}
+		choices = new int[2] {174, 201},
+		rings = 10,
+		items = new string[1] {"Zone Chip"}
 	};
 
 	public static Section section10 = new Section()
@@ -1094,8 +1096,12 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section149 = new Section()
 	{
-		text = "The door opens automatically to reveal a long corridor. It's all white and completely empty. Sonic enters it and takes a few steps. Suddenly, a trapdoor opens right under his feet. Roll the die and add the result to Sonic's Agility. If the score is 6 or more, turn to <b>205/b>. If the score is less than 6, and Sonic is alone, turn to <b>50</b>. If Tails is with Sonic, turn to <b>176</b>.",
-		choices = new int[3] {205, 50, 176}
+		text = "The door opens automatically to reveal a long corridor. It's all white and completely empty. Sonic enters it and takes a few steps. Suddenly, a trapdoor opens right under his feet. Roll the die and add the result to Sonic's Agility. If the score is 6 or more, turn to <b>205</b>. If the score is less than 6, and Sonic is alone, turn to <b>50</b>. If Tails is with Sonic, turn to <b>176</b>.",
+		diceSection = true,
+		diceAbility = "Agility",
+		diceGoal = 6,
+		choicesDiceWin = new int[1] {205},
+		choicesDiceLose = new int[2] {50, 176}
 	};
 
 	public static Section section150 = new Section()

@@ -5914,7 +5914,7 @@ AudioSource:
   m_GameObject: {fileID: 784302966}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1861277638893417960, guid: ceca9e56b1c47a148b350d2e6a24e1a1, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -7057,8 +7057,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 539090593}
   m_HandleRect: {fileID: 539090592}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8801,7 +8801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abad057daa9227438d43388787cc006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringAudioSource: {fileID: 1841592729}
+  SFXAudioSource: {fileID: 1841592729}
   Ring: {fileID: 8300000, guid: 4443e05d6b4e4a24a826c0c5b86d4137, type: 3}
   LoseRings: {fileID: 8300000, guid: 834c1ebd3312ad544948d4262f7cc958, type: 3}
   EarnPoints: {fileID: 8300000, guid: 45b2c6585e8bd3347b506e3665d420a6, type: 3}
@@ -8838,6 +8838,7 @@ MonoBehaviour:
   SVZMenu: {fileID: 0}
   SVZGame: {fileID: 1263561704}
   InventoryButton: {fileID: 1645898088}
+  ZoneChipButton: {fileID: 1679549500}
 --- !u!114 &1263561706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8885,7 +8886,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e49e47b99049b84eab2ec3f2fc92590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SVZGame: {fileID: 0}
+  SFXAudioSource: {fileID: 1841592729}
+  Ring: {fileID: 8300000, guid: 4443e05d6b4e4a24a826c0c5b86d4137, type: 3}
+  MackSiren: {fileID: 8300000, guid: 278ac7b6fe75d684ca695531b7b71291, type: 3}
+  EnterZoneChipArea: {fileID: 8300000, guid: 527c073539522db488036585baac705e, type: 3}
+  LeaveZoneChipArea: {fileID: 8300000, guid: 071872f9652348d4f9c916c6e1a369e4, type: 3}
+  LoseLife: {fileID: 8300000, guid: 3776737832403bb4b9cfb06ce52a80f3, type: 3}
 --- !u!1 &1274559119
 GameObject:
   m_ObjectHideFlags: 0
@@ -12803,6 +12809,7 @@ MonoBehaviour:
   audioSource: {fileID: 1667284217}
   GreenHill: {fileID: 8300000, guid: a7fa57dd62ae80d4e97c05002ac69cb2, type: 3}
   TailsIsHurt: {fileID: 8300000, guid: f820945ed70215044b02abaa9ea8ec1a, type: 3}
+  ZoneChip: {fileID: 8300000, guid: 5e76b1ed486acc948aa38975a0c94171, type: 3}
   ChemicalPlant: {fileID: 8300000, guid: a7e0da135d2680a41abd44895ff75c10, type: 3}
   MackMadness: {fileID: 8300000, guid: 30406cdddcf238a4090f6d2080aef2ec, type: 3}
   AquaticRuin: {fileID: 8300000, guid: 907be1d9a3ed33f44ae2b5a993a0bc69, type: 3}
@@ -13189,7 +13196,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1679549503}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1263561705}
+        m_TargetAssemblyTypeName: InventoryMode, Assembly-CSharp
+        m_MethodName: UseZoneChip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1679549503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14890,7 +14909,7 @@ GameObject:
   - component: {fileID: 1841592730}
   - component: {fileID: 1841592729}
   m_Layer: 0
-  m_Name: RingAudio
+  m_Name: SFXAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14905,7 +14924,7 @@ AudioSource:
   m_GameObject: {fileID: 1841592728}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2038387844039505327, guid: ceca9e56b1c47a148b350d2e6a24e1a1, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

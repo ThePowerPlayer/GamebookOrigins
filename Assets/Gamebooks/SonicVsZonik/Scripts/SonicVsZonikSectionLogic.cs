@@ -6,18 +6,28 @@ using SVZStats = SonicVsZonikVitalStatistics;
 
 public class SonicVsZonikSectionLogic : MonoBehaviour
 {
-	public SonicVsZonikGame SVZGame;
 	private int index;
 	
 	private int previousIndex;
 	private int[] previousChoices;
+	private bool mackDoomed0;
 	private bool mackDoomed1;
 	private bool mackDoomed2;
 	private int mackDoomCounter;
+	public static int zoneChipIndex;
+	
+	[SerializeField] private AudioSource SFXAudioSource;
+	
+	[SerializeField] private AudioClip Ring;
+	[SerializeField] private AudioClip MackSiren;
+	[SerializeField] private AudioClip EnterZoneChipArea;
+	[SerializeField] private AudioClip LeaveZoneChipArea;
+	[SerializeField] private AudioClip LoseLife;
 	
 	void Start() {
 		previousIndex = 1;
 		previousChoices = new int[0] {};
+		mackDoomed0 = false;
 		mackDoomed1 = false;
 		mackDoomed2 = false;
 		mackDoomCounter = 0;
@@ -46,22 +56,35 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		MackLogic();
 		PinballLogic();
 		//AsteronLogic();
+		ZoneChipLogic();
 		OptionsLogic();
 	}
 	
 	private void MackLogic() {
+		if ((index == 188 || index == 239) && mackDoomed0 == false) {
+			SFXAudioSource.clip = MackSiren;
+			SFXAudioSource.Play();
+			mackDoomed0 = true;
+		}
+		
 		if (SVZText.sectionLibrary[index].mackSection) {
 			// Increment counter for Mack sections
 			SonicVsZonikGame.mackCounter++;
 			if (!mackDoomed1 && SonicVsZonikGame.mackCounter == 21) {
+				SFXAudioSource.clip = MackSiren;
+				SFXAudioSource.Play();
 				BookmarkIndex();
 				ForceToIndex(288);
 			}
 			
 			// 1st stage of Mack doom: Remove 1 ring for every section
 			else if (mackDoomed1 && !mackDoomed2) {
-				SVZText.sectionLibrary[index].rings = -1;
+				SFXAudioSource.clip = Ring;
+				SFXAudioSource.Play();
+				SVZStats.rings--;
 				if (SVZStats.rings == 0) {
+					SFXAudioSource.clip = MackSiren;
+					SFXAudioSource.Play();
 					BookmarkIndex();
 					ForceToIndex(25);
 				}
@@ -71,11 +94,11 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].rings = 0;
 				mackDoomCounter++;
 				if (mackDoomCounter == 5) {
+					SFXAudioSource.clip = LoseLife;
+					SFXAudioSource.Play();
 					mackDoomCounter = 0;
-					if (SVZStats.lives > 0) {
-						SVZStats.lives--;
-					}
-					else {
+					SVZStats.lives--;
+					if (SVZStats.lives == 0) {
 						ForceToIndex(231);
 					}
 				}
@@ -112,6 +135,24 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		
 	}
 	*/
+	
+	private void ZoneChipLogic() {
+		// Immediately after pressing "Use Zone Chip" button
+		if (index == 237) {
+			SVZText.sectionLibrary[index].choices = new int[3] {zoneChipIndex, 127, 221};
+		}
+		// After actually using the Zone Chip
+		if (index == 127 || index == 221) {
+			SFXAudioSource.clip = EnterZoneChipArea;
+			SFXAudioSource.Play();
+		}
+		// After pressing the red button in any Zone Chip area
+		else if (index == 187) {
+			SFXAudioSource.clip = LeaveZoneChipArea;
+			SFXAudioSource.Play();
+			ForceToIndex(zoneChipIndex);
+		}
+	}
 	
 	private void OptionsLogic() {
 		// Choices for Section 124 (Pinball spinner)

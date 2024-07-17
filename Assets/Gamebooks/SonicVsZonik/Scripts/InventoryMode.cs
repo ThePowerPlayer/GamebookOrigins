@@ -14,6 +14,7 @@ public class InventoryMode : MonoBehaviour
 	public SonicVsZonikGame SVZGame;
 	private Scene scene;
 	[SerializeField] private Button InventoryButton;
+	[SerializeField] private GameObject ZoneChipButton;
 	
 	void Start() {
 		scene = SceneManager.GetActiveScene();
@@ -30,6 +31,10 @@ public class InventoryMode : MonoBehaviour
 		GameplayObjects.SetActive(!inventoryMode);
 		InventoryObjects.SetActive(inventoryMode);
 		
+		if (scene.name == "SonicVsZonikGame" && inventoryMode && ZoneChipButton != null) {
+			ZoneChipButton.SetActive(SonicVsZonikVitalStatistics.SonicsStuff.Contains("Zone Chip"));
+		}
+		
 		if (!inventoryMode) {
 			if (scene.name == "SonicVsZonikMenu" && SVZMenu != null) {
 				SVZMenu.ChangeButtons();
@@ -38,5 +43,11 @@ public class InventoryMode : MonoBehaviour
 				SVZGame.ChangeButtons();
 			}
 		}
+	}
+	
+	public void UseZoneChip() {
+		SonicVsZonikSectionLogic.zoneChipIndex = SonicVsZonikGame.index;
+		SonicVsZonikGame.index = 237;
+		ToggleInventoryMode();
 	}
 }
