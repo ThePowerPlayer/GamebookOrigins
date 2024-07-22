@@ -19,7 +19,7 @@ public class MackCounter : MonoBehaviour
     {
 		if (SonicVsZonikGameText.sectionLibrary[SonicVsZonikGame.index].mackSection) {
 			currentText.enabled = true;
-			currentText.text = SonicVsZonikGame.mackCounter.ToString();
+			currentText.text = SonicVsZonikSectionLogic.mackCounter.ToString();
 			MackCounterSprite.enabled = true;
 		}
         else {

@@ -6,32 +6,20 @@ using Stats = SonicVsZonikVitalStatistics;
 
 public class SonicsStuff : MonoBehaviour
 {
-	private TMP_Text currentText;
-	public bool newItems;
+	[SerializeField] public TMP_Text currentText;
 	private string sonicsStuff;
 	
-	void Start()
+	void OnEnable()
     {
-		newItems = true;
 		sonicsStuff = "";
-        currentText = gameObject.GetComponent<TMP_Text>();
-    }
-
-    void Update()
-    {
-		if (newItems) {
-			newItems = false;
-			sonicsStuff = "";
-			if (Stats.SonicsStuff.Count > 0) {
-				foreach (string item in Stats.SonicsStuff) {
-					sonicsStuff += ("• " + item + "\n");
-				}
-			}
-			else {
-				sonicsStuff = "You don't have any stuff yet.";
+		if (Stats.SonicsStuff.Count > 0) {
+			foreach (string item in Stats.SonicsStuff) {
+				sonicsStuff += ("• " + item + "\n");
 			}
 		}
-		
-        currentText.text = sonicsStuff;
+		else {
+			sonicsStuff = "You don't have any stuff yet.";
+		}
+		currentText.text = sonicsStuff;
     }
 }

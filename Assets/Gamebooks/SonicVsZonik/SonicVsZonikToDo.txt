@@ -23,8 +23,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Improve the menu screen
 [✓] Improve the gamebook select screen
 [✓] Allow the player to customize Sonic's Vital Statistics in the Menu scene (Free Play mode)
-[] Allow the player to customize Sonic's Vital Statistics in the Menu scene (while following the rules)
-[] Crop empty space from artwork images
+[✓] Allow the player to customize Sonic's Vital Statistics in the Menu scene (while following the rules)
+[✓] Implement the Zone Chip
 [] Add a credits section
 [] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
 [] Make dice roll on section 84 work properly (Convert two die rolls to rings)
@@ -35,8 +35,6 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [] Implement fights where the player can choose Sonic's ability to use
 [] Implement adding things to Sonic's stuff
 [] Implement sections with choices that require an item from Sonic's Stuff
-[] Implement the Zone Chip
-[] For infinite loop between sections 216, 114, 85, 68, and 114, implement a break in the space-time continuum (allow a jump to section 227)
 [✓] Add an Options menu, with toggles for the following features:
 	[✓] (Global) Back button
 	[✓] (Global) Make visited sections yellow
@@ -52,7 +50,6 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Sonic vs. Zonik) Fix dice roll on section 244
 	[] (Sonic vs. Zonik) Fix Section 84 (fruit machine) going straight to Section 97 (go to Section 66 instead)
 	[] (Sonic vs. Zonik) Always Get Zone Chip: Sonic will always obtain the Zone Chip upon leaving for the Chemical Plant, even if he skipped over it.
-	
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Add a speedrun mode with a timer

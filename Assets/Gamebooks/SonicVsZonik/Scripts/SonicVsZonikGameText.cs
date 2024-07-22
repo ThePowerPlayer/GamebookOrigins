@@ -1406,11 +1406,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "After a few seconds of blue skies, more clouds appear. This time they're not so big, but there are lots of them. Our heroes could fly around them, but that would take too long. There's only one thing for it!\n\n'We're going to have to fly straight through that lot!' yells Sonic. How are Sonic and Tails flying?\n\nIf Sonic is flying the cloud skimmer\t\t\tTurn to <b>78</b>\nIf Tails is flying the cloud skimmer\t\t\tTurn to <b>170</b>\nIf Tails is hovering\t\t\tTurn to <b>51</b>",
 		choices = new int[3] {78, 170, 51}
 	};
-
+	
+	// TODO: Allow ability to be customized
 	public static Section section193 = new Section()
 	{
 		text = "Sonic and Tails attack Chop Chop. Chop Chop's fighting score is 6. If you are unsure what to do, look back at the beginning of the book for instructions. If Sonic is hit by Chop Chop, then turn to <b>166</b>. If Sonic and Tails win the fight, turn to <b>52</b>.",
-		choices = new int[2] {166, 52}
+		diceSection = true,
+		diceAbility = "Strength",
+		diceGoal = 6,
+		choicesDiceWin = new int[1] {52},
+		choicesDiceLose = new int[1] {166}
 	};
 
 	public static Section section194 = new Section()

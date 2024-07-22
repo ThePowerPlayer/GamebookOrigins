@@ -3,34 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using SVZText = SonicVsZonikGameText;
 using SVZStats = SonicVsZonikVitalStatistics;
+using SVZLogic = SonicVsZonikSectionLogic;
 
 public class SonicVsZonikSectionLogic : MonoBehaviour
 {
 	private int index;
-	
 	private int previousIndex;
 	private int[] previousChoices;
-	private bool mackDoomed0;
-	private bool mackDoomed1;
-	private bool mackDoomed2;
-	private int mackDoomCounter;
 	public static int zoneChipIndex;
 	
-	[SerializeField] private AudioSource SFXAudioSource;
+	public static int mackCounter;
+	public static bool mackDoomed0;
+	public static bool mackDoomed1;
+	public static bool mackDoomed2;
+	public static int mackDoomCounter;
+	public static bool boatSunk;
+	public static bool pinballSecondChanceUsed;
+	public static bool asteronAmbush;
+	public static string skyChaseMethod;
 	
+	[SerializeField] private AudioSource SFXAudioSource;
 	[SerializeField] private AudioClip Ring;
 	[SerializeField] private AudioClip MackSiren;
 	[SerializeField] private AudioClip EnterZoneChipArea;
 	[SerializeField] private AudioClip LeaveZoneChipArea;
 	[SerializeField] private AudioClip LoseLife;
 	
+	public class SectionSave
+	{
+		// Section number
+		public int section = 0;
+		
+		// Sonic's Vital Statistics
+		public int speed = 0;
+		public int agility = 0;
+		public int strength = 0;
+		public int coolness = 0;
+		public int quickWits = 0;
+		public int goodLooks = 0;
+		
+		// Inventory
+		public int lives = 0;
+		public int rings = 0;
+		public int credits = 0;
+		public int points = 0;
+		public HashSet<string> SonicsStuff = new HashSet<string>();
+		
+		// Global story flags
+		public int mackCounter = 0;
+		public bool mackDoomed0 = false;
+		public bool mackDoomed1 = false;
+		public bool mackDoomed2 = false;
+		public int mackDoomCounter = 0;
+		public bool boatSunk = false;
+		public bool pinballSecondChanceUsed = false;
+		public bool asteronAmbush = false;
+		public string skyChaseMethod = "Hovering";
+	}
+	
+	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
+	
 	void Start() {
 		previousIndex = 1;
 		previousChoices = new int[0] {};
+		
+		mackCounter = 0;
 		mackDoomed0 = false;
 		mackDoomed1 = false;
 		mackDoomed2 = false;
 		mackDoomCounter = 0;
+		boatSunk = false;
+		pinballSecondChanceUsed = false;
+		asteronAmbush = false;
+		skyChaseMethod = "Hovering";
 	}
 	
 	private void ForceToIndex(int newIndex) {
@@ -53,11 +98,82 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		// Static value of index
 		index = SonicVsZonikGame.index;
 		
+		//UpdateInventory();
+		ChangeVitalStatistics();
+		
+		// Apply specific logic depending on the section
 		MackLogic();
+		BoatLogic();
 		PinballLogic();
 		//AsteronLogic();
 		ZoneChipLogic();
 		OptionsLogic();
+	}
+	
+	public void AddToHistory() {
+		SectionSave mostRecentSection = new SectionSave {
+			section = index,
+			
+			speed = SVZStats.abilities["Speed"],
+			agility = SVZStats.abilities["Agility"],
+			strength = SVZStats.abilities["Strength"],
+			coolness = SVZStats.abilities["Coolness"],
+			quickWits = SVZStats.abilities["Quick Wits"],
+			goodLooks = SVZStats.abilities["Good Looks"],
+			
+			lives = SVZStats.lives,
+			rings = SVZStats.rings,
+			credits = SVZStats.credits,
+			points = SVZStats.points,
+			SonicsStuff = SVZStats.SonicsStuff,
+			
+			mackCounter = SVZLogic.mackCounter,
+			mackDoomed0 = SVZLogic.mackDoomed0,
+			mackDoomed1 = SVZLogic.mackDoomed1,
+			mackDoomed2 = SVZLogic.mackDoomed2,
+			mackDoomCounter = SVZLogic.mackDoomCounter,
+			boatSunk = SVZLogic.boatSunk,
+			pinballSecondChanceUsed = SVZLogic.pinballSecondChanceUsed,
+			asteronAmbush = SVZLogic.asteronAmbush,
+			skyChaseMethod = SVZLogic.skyChaseMethod
+		};
+		sectionHistory.Push(mostRecentSection);
+	}
+	
+	public void RemoveFromHistory() {
+		if (sectionHistory.Count > 1) {
+			sectionHistory.Pop();
+		}
+		
+		// Update values to match the section visited by the Back button			
+		SVZStats.abilities["Speed"] = sectionHistory.Peek().speed;
+		SVZStats.abilities["Agility"] = sectionHistory.Peek().agility;
+		SVZStats.abilities["Strength"] = sectionHistory.Peek().strength;
+		SVZStats.abilities["Coolness"] = sectionHistory.Peek().coolness;
+		SVZStats.abilities["Quick Wits"] = sectionHistory.Peek().quickWits;
+		SVZStats.abilities["Good Looks"] = sectionHistory.Peek().goodLooks;
+			
+		SVZStats.lives = sectionHistory.Peek().lives;
+		SVZStats.rings = sectionHistory.Peek().rings;
+		SVZStats.credits = sectionHistory.Peek().credits;
+		SVZStats.points = sectionHistory.Peek().points;
+		
+		SVZStats.SonicsStuff.Clear();
+		foreach (string item in sectionHistory.Peek().SonicsStuff) {
+			SVZStats.SonicsStuff.Add(item);
+		}
+		
+		mackDoomed0 = sectionHistory.Peek().mackDoomed0;
+		mackDoomed1 = sectionHistory.Peek().mackDoomed1;
+		mackDoomed2 = sectionHistory.Peek().mackDoomed2;
+		mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
+		boatSunk = sectionHistory.Peek().boatSunk;
+		pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
+		asteronAmbush = sectionHistory.Peek().asteronAmbush;
+		skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
+		
+		int backIndex = sectionHistory.Peek().section;
+		SonicVsZonikGame.ChangeIndex(backIndex.ToString());
 	}
 	
 	private void MackLogic() {
@@ -69,8 +185,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		
 		if (SVZText.sectionLibrary[index].mackSection) {
 			// Increment counter for Mack sections
-			SonicVsZonikGame.mackCounter++;
-			if (!mackDoomed1 && SonicVsZonikGame.mackCounter == 21) {
+			mackCounter++;
+			if (!mackDoomed1 && mackCounter == 21) {
 				SFXAudioSource.clip = MackSiren;
 				SFXAudioSource.Play();
 				BookmarkIndex();
@@ -114,14 +230,31 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
+	private void BoatLogic() {
+		if (index == 52) {
+			boatSunk = false;
+		}
+		else if (index == 166) {
+			boatSunk = true;
+		}
+		else if (index == 40) {
+			if (!boatSunk) {
+				ForceToIndex(137);
+			}
+			else {
+				ForceToIndex(273);
+			}
+		}
+	}
+	
 	private void PinballLogic() {
 		// Choices for Sections 185 and 283 (Lose credits)
 		if (index == 185 || index == 283) {
-			if (SonicVsZonikVitalStatistics.credits == 0 && !SonicVsZonikVitalStatistics.pinballSecondChanceUsed) {
-				SonicVsZonikVitalStatistics.pinballSecondChanceUsed = true;
+			if (SVZStats.credits == 0 && !pinballSecondChanceUsed) {
+				pinballSecondChanceUsed = true;
 				ForceToIndex(126);
 			}
-			else if (SonicVsZonikVitalStatistics.credits == 0) {
+			else if (SVZStats.credits == 0) {
 				ForceToIndex(41);
 			}
 			else {
@@ -158,7 +291,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		// Choices for Section 124 (Pinball spinner)
 		if (index == 124) {
 			SVZText.sectionLibrary[index].text = "Sonic and Tails find themselves in the game's central spinner. It looks like a massive fairground roundabout. There are five exits from the spinner back into the game, each of which is spring loaded, so make sure our friends are careful! Both of them have played the game already, but they must remember that Zonik has been here before them, which makes it an altogether more dangerous place to be!\n\nSonic and Tails are now committed to playing the game. There are only two ways out, and one of them is <i>unthinkable</i>! Each time they visit a part of the game, write down the number of the section so that you know they have been there already. They may not use the gold exit until they have scored " + SonicVsZonikGame.maxPoints + " points in the game. Make a note of the points they score. Which exit should they use to leave the game:\n\nThe red exit?\t\t\tTurn to <b>295</b>\nThe yellow exit?\t\t\tTurn to <b>299</b>\nThe blue exit?\t\t\tTurn to <b>229</b>\nThe green exit?\t\t\tTurn to <b>86</b>\nThe gold exit?\t\t\tTurn to <b>45</b>";
-			if (SonicVsZonikVitalStatistics.points >= SonicVsZonikGame.maxPoints) {
+			if (SVZStats.points >= SonicVsZonikGame.maxPoints) {
 				ForceToIndex(45);
 			}
 			else {
@@ -241,6 +374,29 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			else {
 				SVZText.sectionLibrary[index].text = "Using the advantage of height, Sonic and Tails swoop down on Zonik's cloud skimmer, passing it with only centimetres to spare! Turn to <b>268</b>.";
 				ForceToIndex(268);
+			}
+		}
+	}
+	
+	private void ChangeVitalStatistics() {
+		if (index == 140) {
+			if (SVZStats.abilities["Coolness"] < 99) {
+				SVZStats.abilities["Coolness"]++;
+			}
+		}
+		else if (index == 34) {
+			if (SVZStats.abilities["Good Looks"] > 0) {
+				SVZStats.abilities["Good Looks"]--;
+			}
+		}
+		else if (index == 238) {
+			if (SVZStats.abilities["Good Looks"] > 0) {
+				SVZStats.abilities["Good Looks"]--;
+			}
+		}
+		else if (index == 33) {
+			if (SVZStats.abilities["Coolness"] < 99) {
+				SVZStats.abilities["Coolness"]++;
 			}
 		}
 	}

@@ -11,7 +11,6 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	public static int credits;
 	public static int points;
 	public static HashSet<string> SonicsStuff = new HashSet<string>();
-	public static bool pinballSecondChanceUsed;
 	
     public static SonicVsZonikVitalStatistics instance { get; private set; }
 

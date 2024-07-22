@@ -3996,6 +3996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a830fac67a72244866a8c9a8f9a019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SVZLogic: {fileID: 1263561707}
 --- !u!1 &488472166
 GameObject:
   m_ObjectHideFlags: 0
@@ -11050,7 +11051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd4f181e0950c408396454998d07b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newItems: 0
+  currentText: {fileID: 1487960838}
 --- !u!1 &1514225134
 GameObject:
   m_ObjectHideFlags: 0
