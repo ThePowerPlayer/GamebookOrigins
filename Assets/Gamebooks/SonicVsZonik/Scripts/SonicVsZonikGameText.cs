@@ -1604,7 +1604,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section221 = new Section()
 	{
-		text = "The chip starts to flash with red lights and emit a quiet humming sound. Suddenly, Sonic feels a little dizzy and Tails starts to sway from side to side. The next thing they know, they're standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic and Tails must choose carefully. They will only be allowed to go through a door once. It will seal shut for ever afterwards. Once they have decided which one to go through, put its number down so that they do not try and use it again! Which door do you think Sonic and Tails should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>",
+		text = "The chip starts to flash with red lights and emit a quiet humming sound. Suddenly, Sonic feels a little dizzy and Tails starts to sway from side to side. The next thing they know, they're standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic and Tails must choose carefully. They will only be allowed to go through a door once. It will seal shut for ever afterwards. Once they have decided which one to go through, put its number down so that they do not try and use it again! Which door do you think Sonic and Tails should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>",
 		choices = new int[4] {149, 290, 252, 245}
 	};
 
@@ -1770,7 +1770,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceSection = true,
 		diceAbility = "Strength",
 		tailsSection = true,
-		choicesDiceWin = new int[2] {102, 281}		
+		choicesDiceWin = new int[1] {102},
+		choicesDiceLose = new int[1] {281}
 	};
 
 	public static Section section243 = new Section()
@@ -2103,8 +2104,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Grabbing the energy gun, Sonic quickly powers it up with 10 rings (remember to subtract them from Sonic's Stuff), and takes aim at the hover ship. Roll the die; if the score is 1, then turn to <b>159</b>. If the score is 2 or more, turn to <b>71</b>.",
 		diceSection = true,
 		diceGoal = 2,
-		choicesDiceWin = new int[1] {159},
-		choicesDiceLose = new int[1] {71}
+		choicesDiceWin = new int[1] {71},
+		choicesDiceLose = new int[1] {159}
 	};
 
 	public static Section section290 = new Section()

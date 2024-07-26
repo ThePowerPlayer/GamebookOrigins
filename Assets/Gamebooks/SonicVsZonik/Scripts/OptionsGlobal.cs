@@ -6,17 +6,24 @@ public class OptionsGlobal : MonoBehaviour
 {
 	public static Dictionary<string, bool> options = new Dictionary<string, bool>
 	{
-		// DEBUG: All options are set to true
-		// For release, enable only "enableTurnToSection" and "enableBackButton"
+		// Options for all gamebooks
 		{"enableTurnToSection", true},
 		{"enableBackButton", true},
 		{"markVisitedSections", true},
+		// DEBUG: Set these 3 options to false on release.
 		{"customVitalStatistics", true},
+		{"infiniteLives", false},
+		{"infiniteRings", false},
+		// Sonic vs. Zonik options
+		{"fixFruitMachine", true},
 		{"lenientPinball", true},
 		{"fixRexonEncounter", true},
 		{"fixWhiffyLiquid", true},
 		{"fixSkyChase", true},
-		{"fixCloudSkimmer", true}
+		{"fixCloudSkimmer", true},
+		{"alwaysGetZoneChip", true},
+		{"useZoneChipForFree", true},
+		{"reEnterSpecialZoneDoors", true}
 	};
 	
 	public static OptionsGlobal instance { get; private set; }

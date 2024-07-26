@@ -58,6 +58,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public bool boatSunk = false;
 		public bool pinballSecondChanceUsed = false;
 		public bool asteronAmbush = false;
+		public string fakTorEeeLocation = "Bottle Bank";
+		public bool bottleBankDestroyed = false;
+		public bool spineFieldsDestroyed = false;
 		public string skyChaseMethod = "Hovering";
 	}
 	
@@ -106,6 +109,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		BoatLogic();
 		PinballLogic();
 		//AsteronLogic();
+		//FakTorEeeLogic();
+		//SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
 	}
@@ -270,6 +275,12 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	*/
 	
 	private void ZoneChipLogic() {
+		// Always give Sonic the Zone Chip, if the option to do so is enabled
+		if (OptionsGlobal.options["alwaysGetZoneChip"]
+			&& index == 201 && !SVZStats.SonicsStuff.Contains("Zone Chip")) {
+			SVZStats.SonicsStuff.Add("Zone Chip");
+		}
+		
 		// Immediately after pressing "Use Zone Chip" button
 		if (index == 237) {
 			SVZText.sectionLibrary[index].choices = new int[3] {zoneChipIndex, 127, 221};
@@ -296,6 +307,28 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			}
 			else {
 				SVZText.sectionLibrary[index].choices = new int[4] {295, 299, 229, 86};
+			}
+		}
+		
+		// Choices for Sections 84 (Fruit machine)
+		if (index == 84) {
+			if (OptionsGlobal.options["fixFruitMachine"]) {
+				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>66</b>.";
+				SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>97</b>.";
+				SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
+			}
+		}
+		if (index == 199) {
+			if (OptionsGlobal.options["fixFruitMachine"]) {
+				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action while Sonic and Tails are staring at it. Sonic loses. If Sonic plays the fruit machine again, turn to <b>171</b>. If he thinks it's a waste of time, turn to <b>66</b>.";
+				SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action while Sonic and Tails are staring at it. Sonic loses. If Sonic plays the fruit machine again, turn to <b>171</b>. If he thinks it's a waste of time, turn to <b>97</b>.";
+				SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
 			}
 		}
 		
