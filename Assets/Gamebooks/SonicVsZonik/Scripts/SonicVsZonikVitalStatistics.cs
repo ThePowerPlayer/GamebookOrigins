@@ -31,8 +31,18 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	
     void Start()
     {
-		lives = 3;
-		rings = 0;
+		if (OptionsGlobal.options["infiniteLives"]) {
+			lives = int.MaxValue;
+		}
+		else {
+			lives = 3;
+		}
+		if (OptionsGlobal.options["infiniteRings"]) {
+			rings = int.MaxValue;
+		}
+		else {
+			rings = 0;
+		}
 		credits = 0;
 		points = 0;
 		
@@ -47,8 +57,19 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	
 	void Update()
 	{
-		lives = Mathf.Clamp(lives, 0, 999);
-		rings = Mathf.Clamp(rings, 0, 999);
+		if (OptionsGlobal.options["infiniteLives"]) {
+			lives = int.MaxValue;
+		}
+		else {
+			lives = Mathf.Clamp(lives, 0, 999);
+		}
+		if (OptionsGlobal.options["infiniteRings"]) {
+			rings = int.MaxValue;
+		}
+		else {
+			rings = Mathf.Clamp(rings, 0, 999);
+		}
+		
 		credits = Mathf.Clamp(credits, 0, 999);
 		points = Mathf.Clamp(points, 0, 999);
 		

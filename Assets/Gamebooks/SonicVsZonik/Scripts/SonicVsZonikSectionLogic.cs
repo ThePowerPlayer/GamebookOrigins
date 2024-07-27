@@ -17,9 +17,13 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public static bool mackDoomed1;
 	public static bool mackDoomed2;
 	public static int mackDoomCounter;
+	public static bool justLeftMackDoom;
 	public static bool boatSunk;
 	public static bool pinballSecondChanceUsed;
 	public static bool asteronAmbush;
+	public static string fakTorEeeLocation;
+	public static bool bottleBankDestroyed;
+	public static bool spineFieldsDestroyed;
 	public static string skyChaseMethod;
 	
 	[SerializeField] private AudioSource SFXAudioSource;
@@ -55,6 +59,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public bool mackDoomed1 = false;
 		public bool mackDoomed2 = false;
 		public int mackDoomCounter = 0;
+		public bool justLeftMackDoom = false;
 		public bool boatSunk = false;
 		public bool pinballSecondChanceUsed = false;
 		public bool asteronAmbush = false;
@@ -78,6 +83,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		boatSunk = false;
 		pinballSecondChanceUsed = false;
 		asteronAmbush = false;
+		fakTorEeeLocation = "Bottle Bank";
+		bottleBankDestroyed = false;
+		spineFieldsDestroyed = false;
 		skyChaseMethod = "Hovering";
 	}
 	
@@ -137,9 +145,13 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			mackDoomed1 = SVZLogic.mackDoomed1,
 			mackDoomed2 = SVZLogic.mackDoomed2,
 			mackDoomCounter = SVZLogic.mackDoomCounter,
+			justLeftMackDoom = SVZLogic.justLeftMackDoom,
 			boatSunk = SVZLogic.boatSunk,
 			pinballSecondChanceUsed = SVZLogic.pinballSecondChanceUsed,
 			asteronAmbush = SVZLogic.asteronAmbush,
+			fakTorEeeLocation = SVZLogic.fakTorEeeLocation,
+			bottleBankDestroyed = SVZLogic.bottleBankDestroyed,
+			spineFieldsDestroyed = SVZLogic.spineFieldsDestroyed,
 			skyChaseMethod = SVZLogic.skyChaseMethod
 		};
 		sectionHistory.Push(mostRecentSection);
@@ -168,13 +180,18 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SVZStats.SonicsStuff.Add(item);
 		}
 		
+		mackCounter = sectionHistory.Peek().mackCounter;
 		mackDoomed0 = sectionHistory.Peek().mackDoomed0;
 		mackDoomed1 = sectionHistory.Peek().mackDoomed1;
 		mackDoomed2 = sectionHistory.Peek().mackDoomed2;
 		mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
+		justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
 		boatSunk = sectionHistory.Peek().boatSunk;
 		pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
 		asteronAmbush = sectionHistory.Peek().asteronAmbush;
+		fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
+		bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
+		spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
 		skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
 		
 		int backIndex = sectionHistory.Peek().section;
@@ -197,9 +214,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				BookmarkIndex();
 				ForceToIndex(288);
 			}
-			
 			// 1st stage of Mack doom: Remove 1 ring for every section
-			else if (mackDoomed1 && !mackDoomed2) {
+			else if (mackDoomed1 && !mackDoomed2 && !justLeftMackDoom) {
 				SFXAudioSource.clip = Ring;
 				SFXAudioSource.Play();
 				SVZStats.rings--;
@@ -211,7 +227,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				}
 			}
 			// 2nd stage of Mack doom: Remove 1 life for every 5 sections until Game Over
-			else if (mackDoomed2) {
+			else if (mackDoomed2 && !justLeftMackDoom) {
 				SVZText.sectionLibrary[index].rings = 0;
 				mackDoomCounter++;
 				if (mackDoomCounter == 5) {
@@ -224,13 +240,19 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 					}
 				}
 			}
+			
+			if (justLeftMackDoom) {
+				justLeftMackDoom = false;
+			}
 		}
 		else if (index == 288) {
 			mackDoomed1 = true;
+			justLeftMackDoom = true;
 			GoToPreviousIndex();
 		}
 		else if (index == 25) {
 			mackDoomed2 = true;
+			justLeftMackDoom = true;
 			GoToPreviousIndex();
 		}
 	}

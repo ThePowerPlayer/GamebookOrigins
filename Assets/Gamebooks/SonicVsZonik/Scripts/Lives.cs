@@ -15,6 +15,11 @@ public class Lives : MonoBehaviour
 
     void Update()
     {
-        currentText.text = Stats.lives.ToString();
+		if (Stats.lives == int.MaxValue) {
+			currentText.text = "∞";
+		}
+		else if (Stats.lives >= 0) {
+			currentText.text = Stats.lives.ToString();
+		}
     }
 }

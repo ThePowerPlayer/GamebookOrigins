@@ -41,11 +41,12 @@ public class SonicVsZonikGame : MonoBehaviour
 		TurnToSection.SetActive(OptionsGlobal.options["enableTurnToSection"]);
 		ButtonBack.SetActive(OptionsGlobal.options["enableBackButton"]);
 		if (OptionsGlobal.options["lenientPinball"]) {
-			maxPoints = 50;
+			maxPoints = 70;
 		}
 		else {
 			maxPoints = 100;
 		}
+		
 		index = 1;
 		mostRecentIndex = 0;
     }

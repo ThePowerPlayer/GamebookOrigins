@@ -15,6 +15,11 @@ public class Rings : MonoBehaviour
 
     void Update()
     {
-        currentText.text = Stats.rings.ToString();
+        if (Stats.rings == int.MaxValue) {
+			currentText.text = "∞";
+		}
+		else if (Stats.rings >= 0) {
+			currentText.text = Stats.rings.ToString();
+		}
     }
 }

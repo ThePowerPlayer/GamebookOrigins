@@ -955,9 +955,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "All images, audio, and text are copyright of their respective holders.\n<i>Sonic
-    vs. Zonik</i> is written by Nigel Gross and Jon Sutherland and is \xA9 SEGA.\nThis
-    is a non-profit fan work."
+  m_text: "All images, audio, and text are copyright of their respective holders.\nThe
+    <i>Sonic the Hedgehog</i> franchise is \xA9 SEGA.\nThis is a non-profit fan work."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

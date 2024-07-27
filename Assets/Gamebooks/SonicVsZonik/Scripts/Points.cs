@@ -13,7 +13,7 @@ public class Points : MonoBehaviour
     {
         currentText = gameObject.GetComponent<TMP_Text>();
 		if (OptionsGlobal.options["lenientPinball"]) {
-			maxPointsText.text = "/50";
+			maxPointsText.text = "/70";
 		}
 		else {
 			maxPointsText.text = "/100";
