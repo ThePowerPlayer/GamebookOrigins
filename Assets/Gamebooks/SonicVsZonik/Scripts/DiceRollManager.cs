@@ -13,6 +13,7 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private AudioClip DiceRollFail;
 	
 	[SerializeField] private SonicVsZonikGame SVZGameScript;
+	
 	[SerializeField] private GameObject DiceRoll;
 	[SerializeField] private GameObject MonitorDice;
 	[SerializeField] private GameObject MonitorDice2;
@@ -33,7 +34,16 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private GameObject GoalValue;
 	[SerializeField] private GameObject ClickRect;
 	
+	[SerializeField] private GameObject ChooseAbilityMenu;
+	[SerializeField] private GameObject MonitorChooseSpeed;
+	[SerializeField] private GameObject MonitorChooseAgility;
+	[SerializeField] private GameObject MonitorChooseStrength;
+	[SerializeField] private GameObject MonitorChooseCoolness;
+	[SerializeField] private GameObject MonitorChooseQuickWits;
+	[SerializeField] private GameObject MonitorChooseGoodLooks;
+	
 	public static bool diceMode;
+	public static bool chooseAbilityMode;
 	public static bool diceRollComplete;
 	private int mostRecentIndex;
 	
@@ -54,7 +64,9 @@ public class DiceRollManager : MonoBehaviour
     {
 		mostRecentIndex = 0;
 		diceMode = false;
+		chooseAbilityMode = false;
 		DiceRoll.SetActive(false);
+		ChooseAbilityMenu.SetActive(false);
 		sumRoutineTimer = sumRoutineTimerMax;
 		timesDiceRolled = 0;
     }
@@ -68,6 +80,19 @@ public class DiceRollManager : MonoBehaviour
 		RectTransform ObjRectTransform = obj.GetComponent<RectTransform>();
 		ObjRectTransform.anchoredPosition =
 			new Vector2(x, ObjRectTransform.anchoredPosition.y);
+	}
+	
+	private void OpenAbilityMenu() {
+		chooseAbilityMode = true;
+		DiceRoll.SetActive(false);
+		ChooseAbilityMenu.SetActive(true);
+	}
+	
+	public void SelectAbility(string ability) {
+		chooseAbilityMode = false;
+		ChooseAbilityMenu.SetActive(false);
+		SVZText.sectionLibrary[mostRecentIndex].diceAbility = ability;
+		SetFirstDiceRoll();
 	}
 	
 	private void SetMonitorsActive() {
@@ -269,10 +294,6 @@ public class DiceRollManager : MonoBehaviour
 	}
 	
 	private void SetFirstDiceRoll() {
-		//Debug.Log("Setting first dice roll...");
-		
-		mostRecentIndex = SVZGame.index;
-		
 		// Set initial HP of enemies
 		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
 			Debug.Log("Setting enemy HP from " + SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent + " to " + SVZText.sectionLibrary[mostRecentIndex].enemyHPMax + "...");
@@ -324,7 +345,13 @@ public class DiceRollManager : MonoBehaviour
     void Update()
     {	
 		if (SVZGame.index != mostRecentIndex) {
-			SetFirstDiceRoll();
+			mostRecentIndex = SVZGame.index;
+			if (SVZText.sectionLibrary[mostRecentIndex].chooseAbility) {
+				OpenAbilityMenu();
+			}
+			else {
+				SetFirstDiceRoll();
+			}
 		}
 		
 		// Activate sum routine when all monitors are broken

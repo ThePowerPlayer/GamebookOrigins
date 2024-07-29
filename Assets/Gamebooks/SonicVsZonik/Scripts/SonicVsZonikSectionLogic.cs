@@ -218,12 +218,14 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			else if (mackDoomed1 && !mackDoomed2 && !justLeftMackDoom) {
 				SFXAudioSource.clip = Ring;
 				SFXAudioSource.Play();
-				SVZStats.rings--;
 				if (SVZStats.rings == 0) {
 					SFXAudioSource.clip = MackSiren;
 					SFXAudioSource.Play();
 					BookmarkIndex();
 					ForceToIndex(25);
+				}
+				else {
+					SVZStats.rings--;
 				}
 			}
 			// 2nd stage of Mack doom: Remove 1 life for every 5 sections until Game Over

@@ -34,6 +34,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public int[] choicesDiceLose = new int[0] {};
 		public string diceAbility = "";
 		public string diceAbility2 = "";
+		public bool chooseAbility = false;
 		public int diceGoal = 0;
 		public bool tailsSection = false;
 		public int tailsValue = 3;
@@ -810,7 +811,14 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section108 = new Section()
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). Tails will help Sonic. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
-		choices = new int[2] {136, 90}
+		fightSection = true,
+		diceGoal = 6,
+		enemyHPMax = 3,
+		diceSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		choicesDiceWin = new int[1] {136},
+		choicesDiceLose = new int[1] {90}
 	};
 
 	public static Section section109 = new Section()

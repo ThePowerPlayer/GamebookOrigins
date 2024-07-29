@@ -17,6 +17,9 @@ public class ChooseASection : MonoBehaviour
         else if (DiceRollManager.diceMode) {
 			currentText.text = "Roll the die:";
 		}
+		else if (DiceRollManager.chooseAbilityMode) {
+			currentText.text = "Choose an ability to use:";
+		}
 		else {
 			currentText.text = "Choose a section:";
 		}
