@@ -10,7 +10,8 @@ public class OptionsGlobal : MonoBehaviour
 		{"enableTurnToSection", true},
 		{"enableBackButton", true},
 		{"markVisitedSections", true},
-		// DEBUG: Set these 3 options to false on release.
+		// DEBUG: Set these 4 options to false on release.
+		{"speedrunTimer", true},
 		{"customVitalStatistics", true},
 		{"infiniteLives", false},
 		{"infiniteRings", false},
