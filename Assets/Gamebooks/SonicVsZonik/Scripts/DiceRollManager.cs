@@ -60,6 +60,9 @@ public class DiceRollManager : MonoBehaviour
 	private int goalValue;
 	public static bool rollSuccess;
 	
+	// TODO: Pass by value, NOT by reference
+	public Queue<SVZText.Enemy> currentEnemyList = new Queue<SVZText.Enemy>();
+	
     void Start()
     {
 		mostRecentIndex = 0;
@@ -230,7 +233,13 @@ public class DiceRollManager : MonoBehaviour
 	
 	private void DetermineRollSuccess() {
 		// Compare sum to goal value
-		goalValue = SVZText.sectionLibrary[mostRecentIndex].diceGoal;
+		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
+			goalValue = currentEnemyList.Peek().fightingScore;
+		}
+		else {
+			goalValue = SVZText.sectionLibrary[mostRecentIndex].diceGoal;
+		}
+		
 		Sum.GetComponent<TMP_Text>().text = sum.ToString();
 		GoalValue.GetComponent<TMP_Text>().text = goalValue.ToString();
 		if (sum >= goalValue) {
@@ -244,6 +253,9 @@ public class DiceRollManager : MonoBehaviour
 			ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 		}
 		
+		Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
+		
+		// TODO: Invert rollSuccess if an enemy is taking its turn
 	}
 	
 	private bool CheckAllMonitorsBroken() {
@@ -289,15 +301,15 @@ public class DiceRollManager : MonoBehaviour
 		// Hide sum and comparison symbol before all monitors are broken
 		Sum.GetComponent<TMP_Text>().enabled = false;
 		ComparisonSymbol.GetComponent<TMP_Text>().enabled = false;
-		
-		Debug.Log("Current enemy HP: " + SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent);
 	}
 	
 	private void SetFirstDiceRoll() {
-		// Set initial HP of enemies
 		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
-			Debug.Log("Setting enemy HP from " + SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent + " to " + SVZText.sectionLibrary[mostRecentIndex].enemyHPMax + "...");
-			SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent = SVZText.sectionLibrary[mostRecentIndex].enemyHPMax;
+			SVZText.sectionLibrary[mostRecentIndex].diceSection = true;
+			// Create a deep copy of the current section's enemy list,
+			// i.e. pass by value, NOT by reference
+			// (so that enemy HP is automatically reset upon leaving the section)
+			currentEnemyList = new Queue<SVZText.Enemy>(SVZText.sectionLibrary[mostRecentIndex].enemyList);
 		}
 		
 		if (SVZText.sectionLibrary[mostRecentIndex].diceSection) {
@@ -383,11 +395,14 @@ public class DiceRollManager : MonoBehaviour
 				
 				// Decrease enemy HP if Sonic has hit it
 				if (isFightSection && rollSuccess) {
-					SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent--;
+					currentEnemyList.Peek().hp--;
 				}
 				
-				if ((isFightSection && SVZText.sectionLibrary[mostRecentIndex].enemyHPCurrent == 0)
-					|| (!isFightSection && timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls)) {
+				bool enemyDefeated = (isFightSection && currentEnemyList.Peek().hp == 0);
+				bool allDiceRolled = (!isFightSection
+					&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
+				
+				if (enemyDefeated || allDiceRolled) {
 					// Leave dice mode and show available section buttons
 					SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;
 					SVZText.sectionLibrary[mostRecentIndex].rollSuccess = rollSuccess;

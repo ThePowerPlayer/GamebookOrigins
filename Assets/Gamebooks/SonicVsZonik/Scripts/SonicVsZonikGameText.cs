@@ -19,6 +19,18 @@ public class SonicVsZonikGameText : MonoBehaviour
 	// Pinball ending (Credits and points are no longer applicable):
 	// 45, 135, 146, 157, 297
 	
+	public class Enemy
+	{
+		public string name = "";
+		public int hp = 0;
+		public int fightingScore = 0;
+		// If staggeredAttacks == true, enemy attacks every n turns,
+		// where n = attacksPerTurn,
+		// e.g. if n == 2, enemy only attacks every other turn.
+		// Otherwise, enemy gets to attack n times every turn.
+		public bool staggeredAttacks = false;
+		public int attacksPerTurn = 1;
+	}
 	
 	public class Section
 	{
@@ -61,11 +73,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 		public string[] items;
 		
 		// Fight section variables
-		// (Use diceGoal for the enemy's fighting score,
-		// and use choicesDiceWin after winning a battle)
+		// (Use choicesDiceWin after winning a battle)
 		public bool fightSection = false;
-		public int enemyHPMax = 0;
-		public int enemyHPCurrent = 0;
+		public Queue<Enemy> enemyList = new Queue<Enemy>();
+		public int enemyHPMax = 0; // TODO: remove
+		public int enemyHPCurrent = 0; // TODO: remove
 		
 		// Special sections:
 		// Mack sections (level of Mack slowly increases)
@@ -812,11 +824,17 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). Tails will help Sonic. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
 		fightSection = true,
-		diceGoal = 6,
-		enemyHPMax = 3,
-		diceSection = true,
 		chooseAbility = true,
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Zonik's skimmer",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		enemyHPMax = 3,
 		choicesDiceWin = new int[1] {136},
 		choicesDiceLose = new int[1] {90}
 	};

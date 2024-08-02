@@ -25,16 +25,17 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Allow the player to customize Sonic's Vital Statistics in the Menu scene (Free Play mode)
 [✓] Allow the player to customize Sonic's Vital Statistics in the Menu scene (while following the rules)
 [✓] Implement the Zone Chip
-[] Add a credits section
-[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
-[] Make dice roll on section 84 work properly (Convert two die rolls to rings)
-[] Implement all sections with a single dice roll
-[] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
-[] Implement getting hit (lose all rings or a life if you have no rings)
-[] Implement fights against enemies
-[] Implement fights where the player can choose Sonic's ability to use
+[✓] Implement all sections with a single dice roll
+[✓] Implement sections where player can or must return to a previous section (211, 288, 25, 237, 187)
+[✓] Add a credits section
+[✓] Add a speedrun mode with a timer
+[✓] Implement fights where the player can choose Sonic's ability to use
+[] Finish implementing fights against enemies
 [] Implement adding things to Sonic's stuff
 [] Implement sections with choices that require an item from Sonic's Stuff
+[] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
+[] Make dice roll on section 84 work properly (Convert two die rolls to rings)
+[] Implement getting hit (lose all rings or a life if you have no rings)
 [✓] Add an Options menu, with toggles for the following features:
 	[✓] (Global) Back button
 	[✓] (Global) Make visited sections yellow
@@ -54,7 +55,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[] (Sonic vs. Zonik) Fix dice roll on section 244
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
-[] Add a speedrun mode with a timer
+[] Fix issue where speed and size of title screen particles depends on size of the game window
+[] Only allow the screen to transition 0.5 seconds after the current scene has loaded in
 [] Fix the screen fadeout speed for Windows builds
 [] Make a trailer for the game and upload it to YouTube
-[] Make the final build of the game and publish it to itch.io
+[] Make the final build of the game and publish it to itch.io, archive.org, and a Sonic fangame website of your choice
