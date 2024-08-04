@@ -7,10 +7,6 @@ using SVZText = SonicVsZonikGameText;
 
 public class SonicVsZonikGame : MonoBehaviour
 {
-	[SerializeField] private AudioSource SFXAudioSource;
-	[SerializeField] private AudioClip Ring;
-	[SerializeField] private AudioClip LoseRings;
-	[SerializeField] private AudioClip EarnPoints;
 	[SerializeField] private GameObject TurnToSection;
 	[SerializeField] private GameObject ButtonBack;
 	
@@ -22,7 +18,6 @@ public class SonicVsZonikGame : MonoBehaviour
 	public static int maxPoints;
 	public SonicsStuff SonicsStuff;
 	public SonicVsZonikMusicManager MusicManager;
-	public SonicVsZonikJingleManager JingleManager;
 	public SonicVsZonikSectionLogic SVZLogicScript;
 	
 	[SerializeField] private GameObject TextObject;
@@ -70,44 +65,6 @@ public class SonicVsZonikGame : MonoBehaviour
 		}
 	}
 	
-	private void UpdateInventory() {
-		// Add rings, credits, and points
-		if (!SVZText.sectionLibrary[mostRecentIndex].inHistory) {
-			SonicVsZonikVitalStatistics.rings += SVZText.sectionLibrary[mostRecentIndex].rings;
-			SonicVsZonikVitalStatistics.credits += SVZText.sectionLibrary[mostRecentIndex].credits;
-			SonicVsZonikVitalStatistics.points += SVZText.sectionLibrary[mostRecentIndex].points;
-			// Manage audio for earning rings and losing rings/credits
-			if (SVZText.sectionLibrary[mostRecentIndex].rings > 0) {
-				SFXAudioSource.clip = Ring;
-				SFXAudioSource.Play();
-			}
-			else if (SVZText.sectionLibrary[mostRecentIndex].rings < 0
-				|| SVZText.sectionLibrary[mostRecentIndex].credits < 0) {
-				SFXAudioSource.clip = LoseRings;
-				SFXAudioSource.Play();
-			}
-			// Manage audio for earning points
-			if (SVZText.sectionLibrary[mostRecentIndex].points > 0) {
-				if (SonicVsZonikVitalStatistics.points >= maxPoints) {
-					JingleManager.PlayJingle("Spinball100Points");
-				}
-				else {
-					JingleManager.PlayJingle("SpinballPoints");
-				}
-			}
-		}
-		
-		// Add items to Sonic's Stuff
-		if (SVZText.sectionLibrary[mostRecentIndex].items != null) {
-			foreach(string item in SVZText.sectionLibrary[mostRecentIndex].items) {
-				SonicVsZonikVitalStatistics.SonicsStuff.Add(item);
-			}
-		}
-		if (index == 234 || (OptionsGlobal.options["fixWhiffyLiquid"] && index == 180)) {
-			JingleManager.PlayJingle("ChaosEmerald");
-		}
-	}
-	
 	private void VisitIndex() {		
 		// Update music (if applicable)
 		MusicManager.PlaySongForSection(index);
@@ -117,7 +74,7 @@ public class SonicVsZonikGame : MonoBehaviour
 		SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
 		
 		if (!backButtonPressed) {
-			UpdateInventory();
+			SVZLogicScript.UpdateInventory();
 			SVZLogicScript.SectionLogic();
 			SVZLogicScript.AddToHistory();
 			

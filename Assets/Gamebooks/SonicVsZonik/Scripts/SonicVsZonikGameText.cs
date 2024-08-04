@@ -394,7 +394,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Sonic definitely knows where he is now. Through the archway they find themselves in a wide, low corridor. The walls are still made of the same dull metal, but there is no Mack and everywhere is brightly lit by neon lights in the ceiling.\n\nSonic points towards the end of the corridor. 'All we've got to do is get to the end, go through a little door on the right and we'll be at the gate,' he says. He and Tails set off, deeply relieved to be out of the maze. Up ahead, the corridor bends sharply to the left. 'Just around that corn -' Sonic suddenly falls silent, hearing voices approaching. Turn to <b>148</b>.",
 		choices = new int[1] {148}
 	};
-
+	
 	public static Section section43 = new Section()
 	{
 		text = "Sonic can't think why Robotnik is speaking to him like this. If Sonic has 10 rings, he may use the energy gun (turn to <b>289</b>). If he does not have 10 rings, or you think he should fight Robotnik, turn to <b>242</b>.",
@@ -622,7 +622,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The door leads into a room so dark that neither Sonic nor Tails can see further than their noses. Groping around, Tails suddenly says, 'I think I've got something here, Sonic.'\n\nTails passes the object to Sonic and a few seconds later the room is lit up by the beam from a torch in Sonic's hand.\n\n'Nice find, Tails,' says Sonic as he plays the beam around the room and to his delight sees a pile of 10 rings in the far corner! Add them and the torch to Sonic's Stuff. The only way out of this room is to leave the way the heroes came in. Turn to <b>101</b>.",
 		choices = new int[1] {101},
-		rings = 10
+		rings = 10,
+		items = new string[1] {"Torch"}
 	};
 
 	public static Section section78 = new Section()
@@ -713,7 +714,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section91 = new Section()
 	{
 		text = "'Hi, I'm Whiffy. Pleased to meet you,' the furry black-and-white creature says, holding out a paw towards Sonic.\n\n'Hello,' replies Sonic.\n\n'I've heard a lot about you,' says Whiffy. 'I used to live in the Green Hills a few years ago, but being a skunk doesn't tend to make you very popular, so I came to live here.' Whiffy goes on to tell Sonic and Tails that he has seen lots of Robotnik' s Badniks around lately, and that they seem to be looking for something, though unfortunately he doesn't know what.\n\nAfter a long chat, Whiffy gives Sonic a map. 'This will show you the way to a speedboat that's moored on the other side of the island. There are even instructions on how to drive it on the other side of the map!'\n\nJust as Sonic and Tails are about to leave, Whiffy says, 'Oh, one more thing, take this, it might come in useful sometime.' He hands over a small brown bottle with a cork jammed tightly into it. Add this to Sonic's Stuff and then turn to <b>28</b>.",
-		choices = new int[1] {28}
+		choices = new int[1] {28},
+		items = new string[1] {"Bottle of Whiffy liquid"}
 	};
 
 	public static Section section92 = new Section()
@@ -1302,7 +1304,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section172 = new Section()
 	{
 		text = "The panel slides open to reveal an odd-looking red ball. Sonic picks the ball up and looks at it. 'Hmm, I suppose this must be the energy bomb.' Add it to Sonic's Stuff. All that Sonic can do now is press the red Return button. Turn to <b>187</b>.",
-		choices = new int[1] {187}
+		choices = new int[1] {187},
+		items = new string[1] {"Energy bomb"}
 	};
 
 	public static Section section173 = new Section()
@@ -1418,7 +1421,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section190 = new Section()
 	{
 		text = "Sonic aims the energy gun at Zonik and fires, but Zonik is moving too quickly and the beam misses! There's no time for a second shot. Turn to <b>161</b>.",
-		choices = new int[1] {161}
+		choices = new int[1] {161},
+		rings = -10
 	};
 
 	public static Section section191 = new Section()
@@ -1480,7 +1484,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section198 = new Section()
 	{
 		text = "The game has been won. Suddenly, a door opens in the wall just above the computer to reveal a hidden safe. In the safe there is a pair of gloves. Add these to Sonic's Stuff. There is nothing left to do now except press the Return button. Turn to <b>187</b>.",
-		choices = new int[1] {187}
+		choices = new int[1] {187},
+		items = new string[1] {"Gloves"}
 	};
 
 	public static Section section199 = new Section()
@@ -1564,7 +1569,10 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section211 = new Section()
 	{
 		text = "Before reading any further, make sure you have written down the number of the section you have just come from, otherwise you won't be able to continue this adventure!\n\nSonic and Tails have got so used to the star-shaped lanterns that they don't give them a second glance any more. This is a big mistake. Suddenly, one of the lanterns starts to pulse and make a whining noise. Sonic and Tails look at each other, mystified. Slowly, the whining gets louder and louder ... BOOOOOM!!!!! The lantern explodes, sending five missiles straight towards our two friends.\n\n'ASTERON!' shouts Sonic. There's no time to run from the missiles. Sonic and Tails will have to dodge them.\n\nRoll the die and add the result to Sonic's Agility. If the score is 7 or more, then Sonic has managed to dodge the missiles. If the score is less than 7, at least one of the missiles has hit him. A missile hit will destroy all Sonic's rings or, if he doesn't have any rings, it will remove one of his lives.\n\nReturn to the last section you read before this one.",
-		choices = new int[0] {}
+		choices = new int[0] {},
+		diceSection = true,
+		diceGoal = 7,
+		diceAbility = "Agility"
 	};
 
 	public static Section section212 = new Section()
@@ -1613,7 +1621,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section219 = new Section()
 	{
 		text = "Sonic reaches down and picks up the needle with his tweezers. It is indeed exactly like one of his own spines in all save two respects. Firstly, it is glowing and secondly it smells distinctly EGGY! Being careful not to touch it, Sonic places the spine in his bag. Remember to add it to Sonic's Stuff, then it's time to go to the Chemical Plant. Turn to <b>201</b>.",
-		choices = new int[1] {201}
+		choices = new int[1] {201},
+		items = new string[1] {"Glowing blue spine"}
 	};
 
 	public static Section section220 = new Section()
@@ -1707,7 +1716,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section230 = new Section()
 	{
 		text = "Carefully, Sonic powers up the energy gun and takes aim. A direct hit! The Badnik wobbles slightly but keeps on firing. Sonic and Tails may now fight the Badnik if they wish. The Badnik has a fighting score of 6 and three hits will be needed to destroy it. Tails will help Sonic. This is one MEAN hombre! Fortunately, though, the energy gun does seem to have slowed him down a bit. Or would it be wiser for Sonic and Tails to try something else – there is still time? Should they:\n\nTry using some glue?\t\t\tTurn to <b>107</b>\nTry to roll the Badnik over?\t\t\tTurn to<b>53</b>\n\nIf Sonic and Tails decide not to be such wimps, and fight the Badnik, turn to <b>249</b> if they win. If the Badnik wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[3] {107, 53, 249}
+		choices = new int[3] {107, 53, 249},
+		rings = -10
 	};
 
 	public static Section section231 = new Section()
@@ -1954,7 +1964,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section264 = new Section()
 	{
 		text = "The pillar is indeed very high, but with Tails here that's absolutely NO PROBLEM! Tails hovers up and picks up the tweezers. Remember to add them to Sonic's Stuff. Now, the only thing left for them to do is to press the red Return button. Turn to <b>187</b>.",
-		choices = new int[1] {187}
+		choices = new int[1] {187},
+		items = new string[1] {"Tweezers"}
 	};
 
 	public static Section section265 = new Section()
@@ -1998,7 +2009,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section271 = new Section()
 	{
 		text = "Sonic powers up the energy gun with 10 rings and fires at Zonik. The beam shoots out towards him. Zonik is covered in the energy field and stops. BANG!!!! The energy field shatters, and Zonik stands before them once more.\n\n'You're going to have to do better than that,' he sneers.\n\nWhat will Sonic and Tails try now:\n\nFight?\t\t\tTurn to <b>31</b>\nUse a bottle of Whiffy liquid?\t\t\tTurn to <b>180</b>",
-		choices = new int[2] {31, 180}
+		choices = new int[2] {31, 180},
+		rings = -10
 	};
 
 	public static Section section272 = new Section()
@@ -2123,15 +2135,15 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Oh dear! The level of the Mack is now so high that it's beginning to lap around the feet of the intrepid heroes. Each extra point you get will now destroy 1 ring in Sonic's Stuff. If you haven't got out of the maze by the time all of the rings have been destroyed, you <i>must</i> turn to <b>25</b>. Write this number down so you do not forget it. Go back to the maze where you left it and carry on.",
 		choices = new int[0] {}
 	};
-
-	// TODO: Implement subtracting 10 rings
+	
 	public static Section section289 = new Section()
 	{
 		text = "Grabbing the energy gun, Sonic quickly powers it up with 10 rings (remember to subtract them from Sonic's Stuff), and takes aim at the hover ship. Roll the die; if the score is 1, then turn to <b>159</b>. If the score is 2 or more, turn to <b>71</b>.",
 		diceSection = true,
 		diceGoal = 2,
 		choicesDiceWin = new int[1] {71},
-		choicesDiceLose = new int[1] {159}
+		choicesDiceLose = new int[1] {159},
+		rings = -10
 	};
 
 	public static Section section290 = new Section()

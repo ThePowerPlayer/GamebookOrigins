@@ -3299,7 +3299,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723871139}
   m_HandleRect: {fileID: 723871138}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6560,6 +6560,7 @@ MonoBehaviour:
   jingleAudioSource: {fileID: 784302968}
   SpinballPoints: {fileID: 8300000, guid: a8c4d1da9cac6884eb0804affe7ff03a, type: 3}
   Spinball100Points: {fileID: 8300000, guid: db456b841f350064ebca9304b1ea8a02, type: 3}
+  SpinballComplete: {fileID: 8300000, guid: 83c4bd0ec79cf7143bbc59e5ef61839e, type: 3}
   ChaosEmerald: {fileID: 8300000, guid: 7ac4e4a49cfff7d40920b49765bd20f5, type: 3}
 --- !u!82 &784302968
 AudioSource:
@@ -9890,15 +9891,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abad057daa9227438d43388787cc006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXAudioSource: {fileID: 1841592729}
-  Ring: {fileID: 8300000, guid: 4443e05d6b4e4a24a826c0c5b86d4137, type: 3}
-  LoseRings: {fileID: 8300000, guid: 834c1ebd3312ad544948d4262f7cc958, type: 3}
-  EarnPoints: {fileID: 8300000, guid: 45b2c6585e8bd3347b506e3665d420a6, type: 3}
   TurnToSection: {fileID: 1723348224}
   ButtonBack: {fileID: 482478586}
   SonicsStuff: {fileID: 1487960840}
   MusicManager: {fileID: 1667284219}
-  JingleManager: {fileID: 784302967}
   SVZLogicScript: {fileID: 1263561707}
   TextObject: {fileID: 117401062}
   SectionObject: {fileID: 1929927930}
@@ -9983,11 +9979,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXAudioSource: {fileID: 1841592729}
+  JingleManager: {fileID: 784302967}
   Ring: {fileID: 8300000, guid: 4443e05d6b4e4a24a826c0c5b86d4137, type: 3}
+  LoseRings: {fileID: 8300000, guid: 834c1ebd3312ad544948d4262f7cc958, type: 3}
+  ObtainItem: {fileID: 8300000, guid: 3223464b579eb3d4489562437923e7dd, type: 3}
+  LoseLife: {fileID: 8300000, guid: 3776737832403bb4b9cfb06ce52a80f3, type: 3}
   MackSiren: {fileID: 8300000, guid: 278ac7b6fe75d684ca695531b7b71291, type: 3}
   EnterZoneChipArea: {fileID: 8300000, guid: 527c073539522db488036585baac705e, type: 3}
   LeaveZoneChipArea: {fileID: 8300000, guid: 071872f9652348d4f9c916c6e1a369e4, type: 3}
-  LoseLife: {fileID: 8300000, guid: 3776737832403bb4b9cfb06ce52a80f3, type: 3}
 --- !u!1 &1274559119
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class InputField : MonoBehaviour
     }
 	
     public static void TaskOnEndEdit() {
-		SonicVsZonikGame.ChangeIndex(tmpInputField.text);
+		if (!DiceRollManager.diceBeingRolled) {
+			SonicVsZonikGame.ChangeIndex(tmpInputField.text);
+		}
 	}
 }

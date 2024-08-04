@@ -60,8 +60,24 @@ public class DiceRollManager : MonoBehaviour
 	private int goalValue;
 	public static bool rollSuccess;
 	
-	// TODO: Pass by value, NOT by reference
+	
 	public Queue<SVZText.Enemy> currentEnemyList = new Queue<SVZText.Enemy>();
+	
+	// Pass by value, NOT by reference
+	public Queue<SVZText.Enemy> NewQueue(Queue<SVZText.Enemy> oldQueue) {
+		Queue<SVZText.Enemy> newQueue = new Queue<SVZText.Enemy>();
+		foreach (SVZText.Enemy enemy in oldQueue) {
+			SVZText.Enemy newEnemy = new SVZText.Enemy {
+				name = enemy.name,
+				hp = enemy.hp,
+				fightingScore = enemy.fightingScore,
+				staggeredAttacks = enemy.staggeredAttacks,
+				attacksPerTurn = enemy.attacksPerTurn
+			};
+			newQueue.Enqueue(newEnemy);
+		}
+		return newQueue;
+	}
 	
     void Start()
     {
@@ -253,8 +269,9 @@ public class DiceRollManager : MonoBehaviour
 			ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 		}
 		
-		Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
-		
+		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
+			Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
+		}
 		// TODO: Invert rollSuccess if an enemy is taking its turn
 	}
 	
@@ -306,10 +323,10 @@ public class DiceRollManager : MonoBehaviour
 	private void SetFirstDiceRoll() {
 		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
 			SVZText.sectionLibrary[mostRecentIndex].diceSection = true;
-			// Create a deep copy of the current section's enemy list,
-			// i.e. pass by value, NOT by reference
+			// Pass by value, NOT by reference
 			// (so that enemy HP is automatically reset upon leaving the section)
-			currentEnemyList = new Queue<SVZText.Enemy>(SVZText.sectionLibrary[mostRecentIndex].enemyList);
+			Debug.Log("Setting first dice roll...");
+			currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);
 		}
 		
 		if (SVZText.sectionLibrary[mostRecentIndex].diceSection) {

@@ -20,18 +20,30 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public static bool justLeftMackDoom;
 	public static bool boatSunk;
 	public static bool pinballSecondChanceUsed;
-	public static bool asteronAmbush;
 	public static string fakTorEeeLocation;
 	public static bool bottleBankDestroyed;
 	public static bool spineFieldsDestroyed;
 	public static string skyChaseMethod;
 	
+	// All sections where the energy gun is fired
+	// (and 10 rings are expended):
+	// 121 = Rexon
+	// 190 = Zonik's skimmer
+	// 230 = Giant Badnik
+	// 271 = Zonik
+	// 289 = Robotnik's hover ship
+	private int[] energyGunFired = new int[] {121, 190, 230, 271, 289};
+	
 	[SerializeField] private AudioSource SFXAudioSource;
+	[SerializeField] private SonicVsZonikJingleManager JingleManager;
+	
 	[SerializeField] private AudioClip Ring;
+	[SerializeField] private AudioClip LoseRings;
+	[SerializeField] private AudioClip ObtainItem;
+	[SerializeField] private AudioClip LoseLife;
 	[SerializeField] private AudioClip MackSiren;
 	[SerializeField] private AudioClip EnterZoneChipArea;
 	[SerializeField] private AudioClip LeaveZoneChipArea;
-	[SerializeField] private AudioClip LoseLife;
 	
 	public class SectionSave
 	{
@@ -62,7 +74,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public bool justLeftMackDoom = false;
 		public bool boatSunk = false;
 		public bool pinballSecondChanceUsed = false;
-		public bool asteronAmbush = false;
 		public string fakTorEeeLocation = "Bottle Bank";
 		public bool bottleBankDestroyed = false;
 		public bool spineFieldsDestroyed = false;
@@ -82,7 +93,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		mackDoomCounter = 0;
 		boatSunk = false;
 		pinballSecondChanceUsed = false;
-		asteronAmbush = false;
 		fakTorEeeLocation = "Bottle Bank";
 		bottleBankDestroyed = false;
 		spineFieldsDestroyed = false;
@@ -109,18 +119,75 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		// Static value of index
 		index = SonicVsZonikGame.index;
 		
-		//UpdateInventory();
+		UpdateInventory();
 		ChangeVitalStatistics();
 		
 		// Apply specific logic depending on the section
+		EnergyGunLogic();
 		MackLogic();
 		BoatLogic();
 		PinballLogic();
-		//AsteronLogic();
+		AsteronLogic();
+		MysticCaveLogic();
 		//FakTorEeeLogic();
 		//SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
+	}
+	
+	public void UpdateInventory() {
+		// Add rings, credits, and points
+		if (!SVZText.sectionLibrary[index].inHistory) {
+			SVZStats.rings += SVZText.sectionLibrary[index].rings;
+			SVZStats.credits += SVZText.sectionLibrary[index].credits;
+			SVZStats.points += SVZText.sectionLibrary[index].points;
+			// Manage audio for earning rings and losing rings/credits
+			bool ringCost = false;
+			if (index == 176) {
+				ringCost = true;
+			}
+			foreach (int n in energyGunFired)
+			{
+				if (n == index)
+				{
+					ringCost = true;
+					break;
+				}
+			}
+			
+			if (SVZText.sectionLibrary[index].rings > 0) {
+				SFXAudioSource.clip = Ring;
+				SFXAudioSource.Play();
+			}
+			else if ((SVZText.sectionLibrary[index].rings < 0
+				|| SVZText.sectionLibrary[index].credits < 0)
+				&& !ringCost) {
+				SFXAudioSource.clip = LoseRings;
+				SFXAudioSource.Play();
+			}
+			// Manage audio for earning points
+			if (SVZText.sectionLibrary[index].points > 0) {
+				if (SVZStats.points >= SonicVsZonikGame.maxPoints) {
+					JingleManager.PlayJingle("Spinball100Points");
+				}
+				else {
+					JingleManager.PlayJingle("SpinballPoints");
+				}
+			}
+		}
+		
+		// Add items to Sonic's Stuff
+		if (SVZText.sectionLibrary[index].items != null) {
+			SFXAudioSource.clip = ObtainItem;
+			SFXAudioSource.Play();
+			foreach(string item in SVZText.sectionLibrary[index].items) {
+				SVZStats.SonicsStuff.Add(item);
+			}
+		}
+		if (index == 234 || (OptionsGlobal.options["fixWhiffyLiquid"] && index == 180)) {
+			SVZStats.SonicsStuff.Add("Chaos Emerald");
+			JingleManager.PlayJingle("ChaosEmerald");
+		}
 	}
 	
 	public void AddToHistory() {
@@ -148,7 +215,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			justLeftMackDoom = SVZLogic.justLeftMackDoom,
 			boatSunk = SVZLogic.boatSunk,
 			pinballSecondChanceUsed = SVZLogic.pinballSecondChanceUsed,
-			asteronAmbush = SVZLogic.asteronAmbush,
 			fakTorEeeLocation = SVZLogic.fakTorEeeLocation,
 			bottleBankDestroyed = SVZLogic.bottleBankDestroyed,
 			spineFieldsDestroyed = SVZLogic.spineFieldsDestroyed,
@@ -188,7 +254,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
 		boatSunk = sectionHistory.Peek().boatSunk;
 		pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
-		asteronAmbush = sectionHistory.Peek().asteronAmbush;
 		fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
 		bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
 		spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
@@ -196,6 +261,107 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		
 		int backIndex = sectionHistory.Peek().section;
 		SonicVsZonikGame.ChangeIndex(backIndex.ToString());
+	}
+	
+	private void ChangeVitalStatistics() {
+		if (index == 140) {
+			if (SVZStats.abilities["Coolness"] < 99) {
+				SVZStats.abilities["Coolness"]++;
+			}
+		}
+		else if (index == 34) {
+			if (SVZStats.abilities["Good Looks"] > 0) {
+				SVZStats.abilities["Good Looks"]--;
+			}
+		}
+		else if (index == 238) {
+			if (SVZStats.abilities["Good Looks"] > 0) {
+				SVZStats.abilities["Good Looks"]--;
+			}
+		}
+		else if (index == 33) {
+			if (SVZStats.abilities["Coolness"] < 99) {
+				SVZStats.abilities["Coolness"]++;
+			}
+		}
+	}
+	
+	public void GetHit() {
+		if (SVZStats.rings > 0) {
+			SFXAudioSource.clip = LoseRings;
+			SFXAudioSource.Play();
+			SVZStats.rings = 0;
+		}
+		else {
+			SFXAudioSource.clip = LoseLife;
+			SFXAudioSource.Play();
+			SVZStats.lives--;
+			if (SVZStats.lives <= 0) {
+				Debug.Log("TODO: Implement Game Over!");
+			}
+		}
+	}
+	
+	private void EnergyGunLogic() {
+		bool canUseEnergyGun = (SVZStats.rings >= 10 && SVZStats.SonicsStuff.Contains("Energy gun"));
+		
+		// Special logic for sections 158 and 263
+		if (index == 158) {
+			bool canUseSkyNet = SVZStats.SonicsStuff.Contains("Sky net");
+			if (canUseSkyNet && canUseEnergyGun) {
+				SVZText.sectionLibrary[index].choices = new int[3] {161, 87, 190};
+			}
+			else if (!canUseSkyNet && canUseEnergyGun) {
+				SVZText.sectionLibrary[index].choices = new int[2] {161, 190};
+			}
+			else if (canUseSkyNet && !canUseEnergyGun) {
+				SVZText.sectionLibrary[index].choices = new int[2] {161, 87};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[1] {161};
+			}
+			return;
+		}
+		else if (index == 263) {
+			if (canUseEnergyGun) {
+				// TODO: Only make Section 121 cost 10 rings if the dice roll fails
+				SVZText.sectionLibrary[index].choicesDiceLose = new int[2] {220, 121};
+			}
+			else {
+				SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {220};
+			}
+			return;
+		}
+		
+		int[] choicesWithEnergyGun = new int[0] {};
+		int[] choicesWithoutEnergyGun = new int[0] {};
+		
+		if (index == 14) {
+			choicesWithEnergyGun = new int[4] {230, 107, 53, 249};
+			choicesWithoutEnergyGun = new int[3] {107, 53, 249};
+		}
+		else if (index == 43) {
+			choicesWithEnergyGun = new int[2] {289, 242};
+			choicesWithoutEnergyGun = new int[1] {242};
+		}
+		else if (index == 107) {
+			choicesWithEnergyGun = new int[3] {14, 230, 53};
+			choicesWithoutEnergyGun = new int[2] {14, 53};
+		}
+		else if (index == 169) {
+			choicesWithEnergyGun = new int[3] {271, 31, 180};
+			choicesWithoutEnergyGun = new int[2] {31, 180};
+		}
+		
+		if (choicesWithEnergyGun != null && choicesWithEnergyGun.Length > 0
+			&& choicesWithoutEnergyGun != null && choicesWithoutEnergyGun.Length > 0) {
+			if (canUseEnergyGun) {
+				SVZText.sectionLibrary[index].choices = choicesWithEnergyGun;
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = choicesWithoutEnergyGun;
+			}
+		}
 	}
 	
 	private void MackLogic() {
@@ -292,11 +458,31 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
-	/*
+	
 	private void AsteronLogic() {
-		
+		if (SVZText.sectionLibrary[index].asteronSection) {
+			previousIndex = index;
+			SVZText.sectionLibrary[index].diceSection = true;
+			SVZText.sectionLibrary[index].diceGoal = 2;
+			SVZText.sectionLibrary[index].choicesDiceWin = SVZText.sectionLibrary[index].choices;
+			SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {211};
+		}
+		// TODO: Lose rings if hit by a missile
+		if (index == 211) {
+			SVZText.sectionLibrary[index].choicesDiceWin = new int[1] {previousIndex};
+			SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {previousIndex};
+		}
 	}
-	*/
+	
+	private void MysticCaveLogic() {
+		if (index == 76) {
+			GetHit();
+			if (SVZStats.SonicsStuff.Contains("Energy gun")) {
+				SVZStats.SonicsStuff.Remove("Energy gun");
+			}
+			SVZStats.SonicsStuff.Add("Energy gun (broken)");
+		}
+	}
 	
 	private void ZoneChipLogic() {
 		// Always give Sonic the Zone Chip, if the option to do so is enabled
@@ -327,6 +513,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if (index == 124) {
 			SVZText.sectionLibrary[index].text = "Sonic and Tails find themselves in the game's central spinner. It looks like a massive fairground roundabout. There are five exits from the spinner back into the game, each of which is spring loaded, so make sure our friends are careful! Both of them have played the game already, but they must remember that Zonik has been here before them, which makes it an altogether more dangerous place to be!\n\nSonic and Tails are now committed to playing the game. There are only two ways out, and one of them is <i>unthinkable</i>! Each time they visit a part of the game, write down the number of the section so that you know they have been there already. They may not use the gold exit until they have scored " + SonicVsZonikGame.maxPoints + " points in the game. Make a note of the points they score. Which exit should they use to leave the game:\n\nThe red exit?\t\t\tTurn to <b>295</b>\nThe yellow exit?\t\t\tTurn to <b>299</b>\nThe blue exit?\t\t\tTurn to <b>229</b>\nThe green exit?\t\t\tTurn to <b>86</b>\nThe gold exit?\t\t\tTurn to <b>45</b>";
 			if (SVZStats.points >= SonicVsZonikGame.maxPoints) {
+				JingleManager.PlayJingle("SpinballComplete");
 				ForceToIndex(45);
 			}
 			else {
@@ -431,29 +618,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			else {
 				SVZText.sectionLibrary[index].text = "Using the advantage of height, Sonic and Tails swoop down on Zonik's cloud skimmer, passing it with only centimetres to spare! Turn to <b>268</b>.";
 				ForceToIndex(268);
-			}
-		}
-	}
-	
-	private void ChangeVitalStatistics() {
-		if (index == 140) {
-			if (SVZStats.abilities["Coolness"] < 99) {
-				SVZStats.abilities["Coolness"]++;
-			}
-		}
-		else if (index == 34) {
-			if (SVZStats.abilities["Good Looks"] > 0) {
-				SVZStats.abilities["Good Looks"]--;
-			}
-		}
-		else if (index == 238) {
-			if (SVZStats.abilities["Good Looks"] > 0) {
-				SVZStats.abilities["Good Looks"]--;
-			}
-		}
-		else if (index == 33) {
-			if (SVZStats.abilities["Coolness"] < 99) {
-				SVZStats.abilities["Coolness"]++;
 			}
 		}
 	}

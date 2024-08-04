@@ -9,6 +9,7 @@ public class SonicVsZonikJingleManager : MonoBehaviour
 	
 	public AudioClip SpinballPoints;
 	public AudioClip Spinball100Points;
+	public AudioClip SpinballComplete;
 	public AudioClip ChaosEmerald;
 	
 	private float musicVolume;
@@ -48,6 +49,10 @@ public class SonicVsZonikJingleManager : MonoBehaviour
 		}
 		else if (jingle == "Spinball100Points") {
 			jingleAudioSource.clip = Spinball100Points;
+			jingleVolume = 1f;
+		}
+		else if (jingle == "SpinballComplete") {
+			jingleAudioSource.clip = SpinballComplete;
 			jingleVolume = 1f;
 		}
 		else if (jingle == "ChaosEmerald") {
