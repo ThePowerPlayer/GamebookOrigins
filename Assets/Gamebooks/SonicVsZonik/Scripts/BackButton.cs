@@ -23,6 +23,7 @@ public class BackButton : MonoBehaviour
 		// Remove from section history
 		SVZGame.backButtonPressed = true;
 		SVZText.sectionLibrary[SVZGame.index].inHistory = false;
+		SonicVsZonikSectionLogic.gameOver = false;
 		if (SonicVsZonikSectionLogic.sectionHistory.Count > 1) {
 			SVZLogic.RemoveFromHistory();
 		}

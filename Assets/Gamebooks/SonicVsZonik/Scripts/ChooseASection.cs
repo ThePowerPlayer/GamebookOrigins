@@ -7,11 +7,10 @@ using TMPro;
 public class ChooseASection : MonoBehaviour
 {
 	[SerializeField] private TMP_Text currentText;
-	private int[] gameEndSections = new int[5] {41, 54, 231, 281, 300};
 	
     void Update()
     {
-		if (gameEndSections.Contains(SonicVsZonikGame.index)) {
+		if (SonicVsZonikSectionLogic.gameOver || SonicVsZonikGame.index == 300) {
 			currentText.text = "";
 		}
 		else if (DiceRollManager.fightMode && DiceRollManager.enemyTurn) {

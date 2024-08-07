@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using SVZText = SonicVsZonikGameText;
 using SVZStats = SonicVsZonikVitalStatistics;
@@ -11,6 +12,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	private int previousIndex;
 	private int[] previousChoices;
 	public static int zoneChipIndex;
+	public static bool gameOver;
+	private int[] gameOverSections = new int[] {41, 54, 231, 281};
 	
 	public static int mackCounter;
 	public static bool mackDoomed0;
@@ -34,6 +37,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	// 289 = Robotnik's hover ship
 	private int[] energyGunFired = new int[] {121, 190, 230, 271, 289};
 	
+	[SerializeField] private SonicVsZonikMusicManager MusicManager;
 	[SerializeField] private AudioSource SFXAudioSource;
 	[SerializeField] private SonicVsZonikJingleManager JingleManager;
 	
@@ -85,6 +89,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	void Start() {
 		previousIndex = 1;
 		previousChoices = new int[0] {};
+		gameOver = false;
 		
 		mackCounter = 0;
 		mackDoomed0 = false;
@@ -130,6 +135,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		//SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
+		
+		if (gameOverSections.Contains(index)) {
+			gameOver = true;
+		}
 	}
 	
 	public void UpdateInventory() {
@@ -291,6 +300,18 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
+	public void EarnRings(int rings) {
+		if (rings >= 0) {
+			SFXAudioSource.clip = Ring;
+			SFXAudioSource.Play();
+		}
+		else {
+			SFXAudioSource.clip = LoseRings;
+			SFXAudioSource.Play();
+		}
+		SVZStats.rings += rings;
+	}
+	
 	public void GetHit() {
 		if (SVZStats.rings > 0) {
 			SFXAudioSource.clip = LoseRings;
@@ -301,9 +322,16 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SFXAudioSource.clip = LoseLife;
 			SFXAudioSource.Play();
 			SVZStats.lives--;
-			if (SVZStats.lives <= 0) {
-				Debug.Log("TODO: Implement Game Over!");
+			if (SVZStats.lives == 0) {
+				MusicManager.PlaySongForSection(54);
+				gameOver = true;
 			}
+		}
+	}
+	
+	public void EndOfDiceRollLogic(int diceIndex, bool rollSuccess) {
+		if ((diceIndex == 117 || diceIndex == 173) && !rollSuccess) {
+			GetHit();
 		}
 	}
 	

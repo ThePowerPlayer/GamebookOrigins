@@ -446,6 +446,10 @@ public class DiceRollManager : MonoBehaviour
 		if (fightMode && !rollSuccess && enemyTurn) {
 			SVZLogicScript.GetHit();
 		}
+		if (SonicVsZonikSectionLogic.gameOver) {
+			DiceRoll.SetActive(false);
+		}
+		
 		
 		if (fightMode) {
 			numEnemyAttacks++;
@@ -471,6 +475,8 @@ public class DiceRollManager : MonoBehaviour
 				}
 			}
 		}
+		
+		SVZLogicScript.EndOfDiceRollLogic(mostRecentIndex, rollSuccess);
 		
 		// Decide whether to keep rolling
 		bool allDiceRolled = (!fightMode
@@ -506,6 +512,9 @@ public class DiceRollManager : MonoBehaviour
     {	
 		if (SVZGame.index != mostRecentIndex) {
 			mostRecentIndex = SVZGame.index;
+			diceMode = false;
+			fightMode = false;
+			enemyTurn = false;
 			if (SVZText.sectionLibrary[mostRecentIndex].chooseAbility) {
 				OpenAbilityMenu();
 			}

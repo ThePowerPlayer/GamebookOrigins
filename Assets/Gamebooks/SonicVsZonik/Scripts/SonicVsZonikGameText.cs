@@ -1049,11 +1049,15 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choicesDiceWin = new int[1] {136},
 		choicesDiceLose = new int[1] {90}
 	};
-
+	
 	public static Section section117 = new Section()
 	{
 		text = "Despite all of Sonic's careful observations, he somehow managed to get it completely wrong. The first step goes OK, then the next plank just disappears, and Sonic finds himself spinning uncontrollably through the air. Roll the die and add the result to Sonic's Agility. If the score is 7 or more, then Sonic has still managed to get across (more by luck than judgement though!). If the score is less than 7, then he has got wet and he must lose all his rings, or a life if he doesn't have any rings!\n\nIn any event, Sonic at last manages to get across the booby-trapped bridge. Safely over, Sonic starts to think about what to do next. There are a lot of hills here, maybe he should head for them? Suddenly, Sonic spots something that makes his spines stand on end. Turn to <b>200</b>.",
-		choices = new int[1] {200}
+		diceSection = true,
+		diceAbility = "Agility",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {200},
+		choicesDiceLose = new int[1] {200}
 	};
 
 	// TODO: Implement turning to Section 163 if Sonic has a torch
@@ -1489,11 +1493,15 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[1] {187},
 		items = new string[1] {"Energy bomb"}
 	};
-
+	
 	public static Section section173 = new Section()
 	{
 		text = "Despite all Sonic's careful observations, he somehow manages to get it completely wrong. The first step went OK, then the next plank just disappeared and Sonic finds himself spinning uncontrollably through the air.\n\nRoll the die and add the result to Sonic's Agility. If the score is 7 or more, then he still manages to get across (more by luck than judgement though!). If the score is lower, unfortunately he's got wet and he must lose either a life or all his rings!\n\nIn any event, Sonic at last manages to get across the more-dangerous-than-it-looked bridge. There are a lot of hills on the other side. Just as Sonic is deciding which way to go, he sees something that makes his spines stand on end. Turn to <b>200</b>.",
-		choices = new int[1] {200}
+		diceSection = true,
+		diceAbility = "Agility",
+		diceGoal = 7,
+		choicesDiceWin = new int[1] {200},
+		choicesDiceLose = new int[1] {200}
 	};
 
 	public static Section section174 = new Section()
