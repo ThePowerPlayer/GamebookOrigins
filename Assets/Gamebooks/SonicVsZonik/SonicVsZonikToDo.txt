@@ -38,6 +38,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Finish implementing fights against enemies
 [✓] Implement adding things to Sonic's stuff
 [] Implement sections with choices that require an item from Sonic's Stuff
+[] Implement logic for the Fak-Tor-Eee and the Sky Chase Zone
 [] Fix dice rolls for Sections 185 and 283 (Dice + Strength + Agility)
 [✓] Make dice roll on section 84 work properly (Convert two die rolls to rings)
 [✓] Add an Options menu, with toggles for the following features:
@@ -55,8 +56,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[✓] (Sonic vs. Zonik) Always Get Zone Chip: Sonic will always obtain the Zone Chip upon leaving for the Chemical Plant, even if he skipped over it.
 	[✓] (Sonic vs. Zonik) Use Zone Chip For Free: The Zone Chip can be used even if you are out of rings. This can be useful in a pinch.
 	[] (Sonic vs. Zonik) Re-Enter Special Zone Doors: Allow the Special Zone doors to be re-entered, instead of them shutting permanently.
-	[] (Sonic vs. Zonik) Varied Treasure: Fix Section 60 not being accessible
-	[] (Sonic vs. Zonik) Easier River Escape: Fix dice roll on section 244
+	[✓] (Sonic vs. Zonik) Varied Treasure: Fix Section 60 not being accessible
+	[✓] (Sonic vs. Zonik) Easier River Escape: Fix dice roll on section 244
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Fix issue where speed and size of title screen particles depends on size of the game window

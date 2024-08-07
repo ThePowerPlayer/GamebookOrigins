@@ -670,7 +670,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Sonic reaches out and presses the red button. The skimmer's engines spring to life. Sonic pulls the joystick back and the skimmer flies into the air.\n\n'See, old friend, nothing to this flying. Anyone can do it!' The skimmer judders and wobbles as Sonic struggles to control it.\n\n'Push the stick forward!' shouts Tails. Sonic does it and the skimmer moves off after Zonik. Even Sonic thinks it might have been better to have let Tails fly the skimmer! Turn to <b>114</b>.",
 		choices = new int[1] {114}
 	};
-
+	
 	public static Section section69 = new Section()
 	{
 		text = "The little boat bobs its way quite happily across the sea, apparently just as good at floating on oil as on water. Neither Sonic nor Tails has any idea how long the voyage is going to take. The Aquatic Ruin is huge, and it always took Sonic and Tails ages to get through the normal way.\n\nSonic is pondering this problem, when the sea suddenly bursts into a fountain right in front of the boat. A split second later, it is followed by a sleek silver shape. The shape makes straight for the boat, a huge mouth opening to reveal row upon row of sharp teeth. In an instant the boat is hit, and the prow becomes a radically different shape!\n\n'CHOP CHOP!' exclaims Tails. Should Sonic and Tails stay and fight Chop Chop (turn to <b>193</b>), or should they try and sail the boat away (turn to <b>279</b>)?",
@@ -1280,8 +1280,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section146 = new Section()
 	{
 		text = "Sonic notices the small black and red wire underneath the Mega Drive. Following it with his eyes, he sees it leads underneath the console to a ... 'OH NO!!! Don't touch it, it's a BOMB!!!'\n\nBOOOOOOOOOM!\n\nA few minutes later, our hero comes round. He can still see stars whizzing around inside his head, but where is Tails? Relieved, Sonic sees his friend sitting a few metres away, rubbing his head.\n\n'That'll teach you to be so impatient,' says Sonic. Tails doesn't reply and instead just looks away.\n\n'Well, I suppose we had better get moving, old friend,' says Sonic. There is only one way out of this room, conveniently marked 'Exit'. As he walks through it, Sonic turns to Tails, 'And don't touch anything this time.'\n\nThe explosion has destroyed 20 rings. Delete them from Sonic's Stuff. If he doesn't have any rings, then he loses a life instead! Turn to <b>157</b>.",
-		choices = new int[1] {157},
-		rings = -20
+		choices = new int[1] {157}
 	};
 
 	// TODO: Account for Schrodinger's Tails
@@ -1643,7 +1642,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 			new Enemy()
 			{
 				name = "Chop Chop",
-				hp = 3,
+				hp = 2,
 				fightingScore = 6
 			}
 		}),

@@ -14,6 +14,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public static int zoneChipIndex;
 	public static bool gameOver;
 	private int[] gameOverSections = new int[] {41, 54, 231, 281};
+	private int[] boomSections = new int[] {31, 60, 109, 140, 146, 160, 211, 268};
 	
 	public static int mackCounter;
 	public static bool mackDoomed0;
@@ -45,6 +46,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	[SerializeField] private AudioClip LoseRings;
 	[SerializeField] private AudioClip ObtainItem;
 	[SerializeField] private AudioClip LoseLife;
+	[SerializeField] private AudioClip Explosion;
 	[SerializeField] private AudioClip MackSiren;
 	[SerializeField] private AudioClip EnterZoneChipArea;
 	[SerializeField] private AudioClip LeaveZoneChipArea;
@@ -136,6 +138,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		//SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
+		BoomLogic();
 		
 		if (gameOverSections.Contains(index)) {
 			gameOver = true;
@@ -299,6 +302,14 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZStats.abilities["Coolness"]++;
 			}
 		}
+		else if (index == 60) {
+			if (SVZStats.rings >= 10) {
+				EarnRings(-10);
+			}
+			else if (SVZStats.abilities["Strength"] > 0) {
+				SVZStats.abilities["Strength"]--;
+			}
+		}
 	}
 	
 	public void EarnRings(int rings) {
@@ -335,6 +346,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if ((diceIndex == 117 || diceIndex == 173) && !rollSuccess) {
 			GetHit();
 		}
+		// Missed the lever at Green Hill
+		if (diceIndex == 162 && !rollSuccess) {
+			GetHit();
+		}
 		// Dice roll fail at Sky Chase
 		if (diceIndex == 165 && !rollSuccess) {
 			MusicManager.PlaySongForSection(54);
@@ -350,6 +365,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 		if (diceIndex == 275 && enemyDefeated) {
 			EarnRings(20);
+		}
+		// Lose rings if hit by an Asteron missile
+		if (diceIndex == 211 && !rollSuccess) {
+			GetHit();
 		}
 	}
 	
@@ -390,7 +409,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 		else if (index == 263) {
 			if (canUseEnergyGun) {
-				// TODO: Only make Section 121 cost 10 rings if the dice roll fails
 				SVZText.sectionLibrary[index].choicesDiceLose = new int[2] {220, 121};
 			}
 			else {
@@ -533,7 +551,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SVZText.sectionLibrary[index].choicesDiceWin = SVZText.sectionLibrary[index].choices;
 			SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {211};
 		}
-		// TODO: Lose rings if hit by a missile
 		if (index == 211) {
 			SVZText.sectionLibrary[index].choicesDiceWin = new int[1] {previousIndex};
 			SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {previousIndex};
@@ -556,6 +573,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			&& index == 201 && !SVZStats.SonicsStuff.Contains("Zone Chip")) {
 			SVZStats.SonicsStuff.Add("Zone Chip");
 		}
+		
 		// Immediately after pressing "Use Zone Chip" button
 		if (index == 237) {
 			if (SVZStats.rings >= 20 || OptionsGlobal.options["useZoneChipForFree"]) {
@@ -568,6 +586,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].choices = new int[1] {zoneChipIndex};
 			}
 		}
+		
 		// After actually using the Zone Chip
 		if (index == 127 || index == 221) {
 			SFXAudioSource.clip = EnterZoneChipArea;
@@ -582,8 +601,32 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	}
 	
 	private void OptionsLogic() {
+		// Choices for section 244 (Easier river escape)
+		if (index == 244) {
+			if (OptionsGlobal.options["easierRiverEscape"]) {
+				SVZText.sectionLibrary[index].text = "BAD NEWS!!! Sonic's worst nightmare comes true! The river is ice cold and already Sonic can feel himself slowly sinking. The cold is severely limiting his aquatic abilities. There's only one thing for it: he calls out and hopes Tails will come to the rescue. Roll the die and add the result to Sonic's Good Looks. If the score is 5 or more, then turn to <b>104</b>. If the score is less than 5, turn to <b>131</b>.";
+				SVZText.sectionLibrary[index].diceGoal = 5;
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "BAD NEWS!!! Sonic's worst nightmare comes true! The river is ice cold and already Sonic can feel himself slowly sinking. The cold is severely limiting his aquatic abilities. There's only one thing for it: he calls out and hopes Tails will come to the rescue. Roll the die and add the result to Sonic's Good Looks. If the score is 10 or more, then turn to <b>104</b>. If the score is less than 10, turn to <b>131</b>.";
+				SVZText.sectionLibrary[index].diceGoal = 10;
+			}
+		}
+		
+		// Choices for Section 26 (Varied treasure)
+		if (index == 26) {
+			if (OptionsGlobal.options["variedTreasure"]) {
+				SVZText.sectionLibrary[index].text = "The sandy path leads into the jungle, running beneath huge palm trees. This is the sort of place that Coconuts would like to hang out in and both of them keep a wary eye on the tree-tops. In fact, they are so intent looking above them that the first either knew of the treasure chest was when Tails walked straight into it with a THUMP!\n\n'Ow!' says Tails, stubbing his paw against the half-buried chest.\n\nSonic looks at the large wooden chest that stands right in the middle of the pathway. 'Now, who would want to put a treasure chest in such an obvious position?'\n\n'Perhaps they dropped it,' says Tails rubbing his paw.\n\n'Or,' says Sonic, 'they, whoever they are, wanted us to find it.'\n\nDo you want Sonic to open the chest and see what's inside it (turn to <b>60</b>), or to leave the chest where it is (turn to <b>80</b>)?";
+				SVZText.sectionLibrary[index].choices = new int[2] {60, 80};
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "The sandy path leads into the jungle, running beneath huge palm trees. This is the sort of place that Coconuts would like to hang out in and both of them keep a wary eye on the tree-tops. In fact, they are so intent looking above them that the first either knew of the treasure chest was when Tails walked straight into it with a THUMP!\n\n'Ow!' says Tails, stubbing his paw against the half-buried chest.\n\nSonic looks at the large wooden chest that stands right in the middle of the pathway. 'Now, who would want to put a treasure chest in such an obvious position?'\n\n'Perhaps they dropped it,' says Tails rubbing his paw.\n\n'Or,' says Sonic, 'they, whoever they are, wanted us to find it.'\n\nDo you want Sonic to open the chest and see what's inside it (turn to <b>254</b>), or to leave the chest where it is (turn to <b>80</b>)?";
+				SVZText.sectionLibrary[index].choices = new int[2] {254, 80};
+			}
+		}
+		
 		// Choices for Section 124 (Pinball spinner)
-		if (index == 124) {
+		else if (index == 124) {
 			SVZText.sectionLibrary[index].text = "Sonic and Tails find themselves in the game's central spinner. It looks like a massive fairground roundabout. There are five exits from the spinner back into the game, each of which is spring loaded, so make sure our friends are careful! Both of them have played the game already, but they must remember that Zonik has been here before them, which makes it an altogether more dangerous place to be!\n\nSonic and Tails are now committed to playing the game. There are only two ways out, and one of them is <i>unthinkable</i>! Each time they visit a part of the game, write down the number of the section so that you know they have been there already. They may not use the gold exit until they have scored " + SonicVsZonikGame.maxPoints + " points in the game. Make a note of the points they score. Which exit should they use to leave the game:\n\nThe red exit?\t\t\tTurn to <b>295</b>\nThe yellow exit?\t\t\tTurn to <b>299</b>\nThe blue exit?\t\t\tTurn to <b>229</b>\nThe green exit?\t\t\tTurn to <b>86</b>\nThe gold exit?\t\t\tTurn to <b>45</b>";
 			if (SVZStats.points >= SonicVsZonikGame.maxPoints) {
 				JingleManager.PlayJingle("SpinballComplete");
@@ -594,7 +637,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			}
 		}
 		
-		// Choices for Sections 84 (Fruit machine)
+		// Choices for Section 84 (Fruit machine)
 		if (index == 84) {
 			if (OptionsGlobal.options["fixFruitMachine"]) {
 				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>66</b>.";
@@ -712,6 +755,28 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].text = "Using the advantage of height, Sonic and Tails swoop down on Zonik's cloud skimmer, passing it with only centimetres to spare! Turn to <b>268</b>.";
 				ForceToIndex(268);
 			}
+		}
+	}
+	
+	private void BoomLogic() {
+		if (index == 140 || index == 160) {
+			GetHit();
+		}
+		if (index == 146) {
+			if (SVZStats.rings > 0) {
+				EarnRings(-20);
+			}
+			else {
+				SVZStats.lives--;
+				if (SVZStats.lives == 0) {
+					MusicManager.PlaySongForSection(54);
+					gameOver = true;
+				}
+			}
+		}
+		if (boomSections.Contains(index)) {
+			SFXAudioSource.clip = Explosion;
+			SFXAudioSource.Play();
 		}
 	}
 }

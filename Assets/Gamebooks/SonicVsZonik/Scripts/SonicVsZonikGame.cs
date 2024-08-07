@@ -63,6 +63,11 @@ public class SonicVsZonikGame : MonoBehaviour
 			SVZText.sectionLibrary[mostRecentIndex].rollComplete = false;
 			SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
 			
+			// Only make the Rexon escape cost 10 rings if the dice roll fails
+			if (mostRecentIndex == 263 && index == 121 && !DiceRollManager.rollSuccess) {
+				SonicVsZonikVitalStatistics.rings -= 10;
+			}
+			
 			Debug.Log("mostRecentIndex = " + mostRecentIndex + "; index = " + index);
 			mostRecentIndex = index;
 			VisitIndex();

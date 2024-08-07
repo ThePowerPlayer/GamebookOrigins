@@ -19,6 +19,8 @@ public class OptionsGlobal : MonoBehaviour
 		{"infiniteLives", false},
 		{"infiniteRings", false},
 		// Sonic vs. Zonik options
+		{"easierRiverEscape", true},
+		{"variedTreasure", true},
 		{"fixFruitMachine", true},
 		{"lenientPinball", true},
 		{"fixRexonEncounter", true},
