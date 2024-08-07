@@ -20,6 +20,7 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 	[SerializeField] private Sprite GoodLooksMonitor;
 	[SerializeField] private Sprite DiceMonitor;
 	[SerializeField] private Sprite TailsMonitor;
+	[SerializeField] private Sprite FightingScoreMonitor;
 	[SerializeField] private Sprite GoalMonitor;
 	private Sprite currentSprite;
 	
@@ -91,6 +92,9 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 				break;
 			case "MonitorTails":
 				currentSprite = TailsMonitor;
+				break;
+			case "MonitorFightingScore":
+				currentSprite = FightingScoreMonitor;
 				break;
 		}
 	}

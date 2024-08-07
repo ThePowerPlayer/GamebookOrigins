@@ -14,6 +14,12 @@ public class ChooseASection : MonoBehaviour
 		if (gameEndSections.Contains(SonicVsZonikGame.index)) {
 			currentText.text = "";
 		}
+		else if (DiceRollManager.fightMode && DiceRollManager.enemyTurn) {
+			currentText.text = "Enemy's turn to fight:";
+		}
+		else if (DiceRollManager.fightMode) {
+			currentText.text = "Sonic's turn to fight:";
+		}
         else if (DiceRollManager.diceMode) {
 			currentText.text = "Roll the die:";
 		}

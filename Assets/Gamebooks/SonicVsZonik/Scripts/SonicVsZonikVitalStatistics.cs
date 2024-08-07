@@ -53,8 +53,6 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 		abilities["Quick Wits"] = 0;
 		abilities["Good Looks"] = 0;
 		abilities["Section 31"] = 7;
-		
-		SonicsStuff.Add("Energy gun");
     }
 	
 	void Update()

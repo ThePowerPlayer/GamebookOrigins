@@ -13,16 +13,23 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private AudioClip DiceRollFail;
 	
 	[SerializeField] private SonicVsZonikGame SVZGameScript;
+	[SerializeField] private SonicVsZonikSectionLogic SVZLogicScript;
+	
+	[SerializeField] private AudioSource SFXAudioSource;
+	[SerializeField] private AudioClip EnemyHit;
+	[SerializeField] private AudioClip EnemyDestroyed;
 	
 	[SerializeField] private GameObject DiceRoll;
 	[SerializeField] private GameObject MonitorDice;
 	[SerializeField] private GameObject MonitorDice2;
 	[SerializeField] private GameObject MonitorAbility;
 	[SerializeField] private GameObject MonitorTails;
+	[SerializeField] private GameObject MonitorFightingScore;
 	[SerializeField] private DiceRollMonitor MonitorDiceScript;
 	[SerializeField] private DiceRollMonitor MonitorDice2Script;
 	[SerializeField] private DiceRollMonitor MonitorAbilityScript;
 	[SerializeField] private DiceRollMonitor MonitorTailsScript;
+	[SerializeField] private DiceRollMonitor MonitorFightingScoreScript;
 	[SerializeField] private GameObject FirstPlus;
 	[SerializeField] private GameObject SecondPlus;
 	[SerializeField] private GameObject EqualsObj;
@@ -43,6 +50,7 @@ public class DiceRollManager : MonoBehaviour
 	[SerializeField] private GameObject MonitorChooseGoodLooks;
 	
 	public static bool diceMode;
+	public static bool fightMode;
 	public static bool chooseAbilityMode;
 	public static bool diceRollComplete;
 	private int mostRecentIndex;
@@ -54,12 +62,13 @@ public class DiceRollManager : MonoBehaviour
 	
 	public static bool diceBeingRolled;
 	private int timesDiceRolled;
+	public static bool enemyTurn;
+	private int numEnemyAttacks;
 	private float sumRoutineTimer;
 	private const float sumRoutineTimerMax = 2f;
 	private int sum;
 	private int goalValue;
 	public static bool rollSuccess;
-	
 	
 	public Queue<SVZText.Enemy> currentEnemyList = new Queue<SVZText.Enemy>();
 	
@@ -117,17 +126,25 @@ public class DiceRollManager : MonoBehaviour
 	private void SetMonitorsActive() {
 		// Change ability depending on if die is rolled twice
 		string currentAbility = "";
-		if (timesDiceRolled == 0 || SVZText.sectionLibrary[mostRecentIndex].fightSection) {
+		if (timesDiceRolled == 0 || fightMode) {
 			currentAbility = SVZText.sectionLibrary[mostRecentIndex].diceAbility;
 		}
 		else {
 			currentAbility = SVZText.sectionLibrary[mostRecentIndex].diceAbility2;
 		}
 		
+		if (enemyTurn) {
+			MonitorFightingScore.SetActive(true);
+			ResetMonitor(MonitorFightingScore, currentEnemyList.Peek().fightingScore, timesDiceRolled);
+		}
+		else {
+			MonitorFightingScore.SetActive(false);
+		}
+		
 		//Debug.Log("timesDiceRolled = " + timesDiceRolled + ", currentAbility = " + currentAbility);
 		
 		usesAbility = (!string.IsNullOrEmpty(currentAbility));
-		if (usesAbility) {
+		if (!enemyTurn && usesAbility) {
 			MonitorAbility.SetActive(true);
 			ResetMonitor(MonitorAbility, SVZStats.abilities[currentAbility], timesDiceRolled);
 		}
@@ -136,7 +153,7 @@ public class DiceRollManager : MonoBehaviour
 		}
 		
 		usesTails = (SVZText.sectionLibrary[mostRecentIndex].tailsSection);
-		if (usesTails) {
+		if (!enemyTurn && usesTails) {
 			MonitorTails.SetActive(true);
 			ResetMonitor(MonitorTails, SVZText.sectionLibrary[mostRecentIndex].tailsValue, timesDiceRolled);
 		}
@@ -145,7 +162,7 @@ public class DiceRollManager : MonoBehaviour
 		}
 		
 		usesTwoDice = (SVZText.sectionLibrary[mostRecentIndex].twoDice);
-		if (usesTwoDice) {
+		if (!enemyTurn && usesTwoDice) {
 			MonitorDice2.SetActive(true);
 			ResetMonitor(MonitorDice2, Random.Range(1, 7), timesDiceRolled);
 		}
@@ -157,7 +174,24 @@ public class DiceRollManager : MonoBehaviour
 	private void SetMonitorPositions() {
 		// Update positions of all monitors depending on which are active
 		// Calculate sum of monitor values
-		if (usesTails) {
+		if (enemyTurn) {
+			// Dice + enemy's fighting score
+			FirstPlus.SetActive(true);
+			SecondPlus.SetActive(false);
+			UpdatePosX(MonitorDice, -230);
+			UpdatePosX(FirstPlus, -115);
+			UpdatePosX(MonitorFightingScore, -5);
+			UpdatePosX(EqualsObj, 100);
+			UpdatePosX(Sum, 190);
+			UpdatePosX(ThumbsUp, 190);
+			UpdatePosX(GoalValueSprite, 190);
+			UpdatePosX(ComparisonSymbol, 280);
+			UpdatePosX(GoalValue, 370);
+			
+			sum = MonitorDiceScript.monitorValue
+			+ currentEnemyList.Peek().fightingScore;
+		}
+		else if (usesTails) {
 			// Dice + ability + Tails
 			FirstPlus.SetActive(true);
 			SecondPlus.SetActive(true);
@@ -250,7 +284,12 @@ public class DiceRollManager : MonoBehaviour
 	private void DetermineRollSuccess() {
 		// Compare sum to goal value
 		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
-			goalValue = currentEnemyList.Peek().fightingScore;
+			if (!enemyTurn) {
+				goalValue = currentEnemyList.Peek().fightingScore;
+			}
+			else {
+				goalValue = 11;
+			}
 		}
 		else {
 			goalValue = SVZText.sectionLibrary[mostRecentIndex].diceGoal;
@@ -269,14 +308,22 @@ public class DiceRollManager : MonoBehaviour
 			ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 		}
 		
-		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
+		if (fightMode) {
 			Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
 		}
-		// TODO: Invert rollSuccess if an enemy is taking its turn
+		
+		if (enemyTurn) {
+			rollSuccess = !rollSuccess;
+			ThumbsUpScript.thumbPointsUp = !ThumbsUpScript.thumbPointsUp;
+		}
 	}
 	
 	private bool CheckAllMonitorsBroken() {
-		if (usesTails) {
+		if (enemyTurn) {
+			return (MonitorDiceScript.monitorBroken
+				&& MonitorFightingScoreScript.monitorBroken);
+		}
+		else if (usesTails) {
 			return (MonitorDiceScript.monitorBroken
 				&& MonitorAbilityScript.monitorBroken
 				&& MonitorTailsScript.monitorBroken);
@@ -323,12 +370,16 @@ public class DiceRollManager : MonoBehaviour
 	private void SetFirstDiceRoll() {
 		if (SVZText.sectionLibrary[mostRecentIndex].fightSection) {
 			SVZText.sectionLibrary[mostRecentIndex].diceSection = true;
+			fightMode = true;
+			enemyTurn = false;
+			numEnemyAttacks = 0;
+			
 			// Pass by value, NOT by reference
 			// (so that enemy HP is automatically reset upon leaving the section)
 			Debug.Log("Setting first dice roll...");
 			if (SVZText.sectionLibrary[mostRecentIndex].enemyList != null
 				&& SVZText.sectionLibrary[mostRecentIndex].enemyList.Count > 0) {
-				currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);	
+				currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);
 			}
 			else {
 				currentEnemyList = new Queue<SVZText.Enemy>();
@@ -385,20 +436,51 @@ public class DiceRollManager : MonoBehaviour
 		//Debug.Log("timesDiceRolled = " + timesDiceRolled
 		//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
 		
-		bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
-		
 		// Decrease enemy HP if Sonic has hit it
-		if (isFightSection && rollSuccess) {
+		if (fightMode && rollSuccess && !enemyTurn) {
+			SFXAudioSource.clip = EnemyHit;
+			SFXAudioSource.Play();
 			currentEnemyList.Peek().hp--;
+		}
+		// Make Sonic get hit by an enemy
+		if (fightMode && !rollSuccess && enemyTurn) {
+			SVZLogicScript.GetHit();
+		}
+		
+		numEnemyAttacks++;
+		bool enemyStaggered = currentEnemyList.Peek().staggeredAttacks;
+		bool attackQuotaMet = (numEnemyAttacks == currentEnemyList.Peek().attacksPerTurn);
+		
+		// If current turn is Sonic's:
+		if (!enemyTurn) {
+			// Allow non-staggered enemies to attack right away.
+			// Wait for enemies with staggered attack patterns.
+			if (!enemyStaggered || (enemyStaggered && attackQuotaMet)) {
+				numEnemyAttacks = 0;
+				enemyTurn = !enemyTurn;
+			}
+		}
+		// If current turn is enemy's:
+		else if (enemyTurn) {
+			// Allow Sonic to attack right away against staggered enemies.
+			// Allow non-staggered enemies to attack multiple times.
+			if (enemyStaggered || (!enemyStaggered && attackQuotaMet)) {
+				numEnemyAttacks = 0;
+				enemyTurn = !enemyTurn;
+			}
 		}
 		
 		// Decide whether to keep rolling
-		bool allDiceRolled = (!isFightSection
+		bool allDiceRolled = (!fightMode
 			&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
-		bool enemyDefeated = (isFightSection && currentEnemyList.Peek().hp == 0);
+		bool enemyDefeated = (fightMode && currentEnemyList.Peek().hp == 0);
 		bool allEnemiesDefeated = false;
 		if (enemyDefeated) {
+			SFXAudioSource.clip = EnemyDestroyed;
+			SFXAudioSource.Play();
 			currentEnemyList.Dequeue();
+			enemyTurn = false;
+			numEnemyAttacks = 0;
 		}
 		if (currentEnemyList.Count == 0) {
 			allEnemiesDefeated = true;
@@ -406,6 +488,7 @@ public class DiceRollManager : MonoBehaviour
 		
 		// Leave dice mode and show available section buttons
 		if (allDiceRolled || allEnemiesDefeated) {
+			fightMode = false;
 			SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;
 			SVZText.sectionLibrary[mostRecentIndex].rollSuccess = rollSuccess;
 			SVZGameScript.ChangeButtons();
@@ -425,6 +508,7 @@ public class DiceRollManager : MonoBehaviour
 				OpenAbilityMenu();
 			}
 			else {
+				ChooseAbilityMenu.SetActive(false);
 				SetFirstDiceRoll();
 			}
 		}

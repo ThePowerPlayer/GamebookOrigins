@@ -75,8 +75,6 @@ public class SonicVsZonikGame : MonoBehaviour
 		// Update music (if applicable)
 		MusicManager.PlaySongForSection(index);
 		
-		
-		
 		if (!backButtonPressed) {
 			SVZLogicScript.SectionLogic();
 			SVZLogicScript.AddToHistory();

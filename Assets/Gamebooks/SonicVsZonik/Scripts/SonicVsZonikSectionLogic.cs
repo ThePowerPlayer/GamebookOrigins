@@ -177,8 +177,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		Debug.Log("index = " + index);
 		if (SVZText.sectionLibrary[index].items != null
 			&& SVZText.sectionLibrary[index].items.Length > 0) {
-			SFXAudioSource.clip = ObtainItem;
-			SFXAudioSource.Play();
+			if (index != 1) {
+				SFXAudioSource.clip = ObtainItem;
+				SFXAudioSource.Play();
+			}
 			foreach(string item in SVZText.sectionLibrary[index].items) {
 				SVZStats.SonicsStuff.Add(item);
 			}
@@ -207,7 +209,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			rings = SVZStats.rings,
 			credits = SVZStats.credits,
 			points = SVZStats.points,
-			SonicsStuff = SVZStats.SonicsStuff,
 			
 			mackCounter = SVZLogic.mackCounter,
 			mackDoomed0 = SVZLogic.mackDoomed0,
@@ -222,13 +223,15 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			spineFieldsDestroyed = SVZLogic.spineFieldsDestroyed,
 			skyChaseMethod = SVZLogic.skyChaseMethod
 		};
+		mostRecentSection.SonicsStuff.Clear();
+		foreach (string item in SVZStats.SonicsStuff) {
+			mostRecentSection.SonicsStuff.Add(item);
+		}
 		sectionHistory.Push(mostRecentSection);
 	}
 	
 	public void RemoveFromHistory() {
-		if (sectionHistory.Count > 1) {
-			sectionHistory.Pop();
-		}
+		sectionHistory.Pop();
 		
 		// Update values to match the section visited by the Back button			
 		SVZStats.abilities["Speed"] = sectionHistory.Peek().speed;
