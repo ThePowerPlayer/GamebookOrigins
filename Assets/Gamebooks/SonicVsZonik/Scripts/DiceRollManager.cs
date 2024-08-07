@@ -447,26 +447,28 @@ public class DiceRollManager : MonoBehaviour
 			SVZLogicScript.GetHit();
 		}
 		
-		numEnemyAttacks++;
-		bool enemyStaggered = currentEnemyList.Peek().staggeredAttacks;
-		bool attackQuotaMet = (numEnemyAttacks == currentEnemyList.Peek().attacksPerTurn);
-		
-		// If current turn is Sonic's:
-		if (!enemyTurn) {
-			// Allow non-staggered enemies to attack right away.
-			// Wait for enemies with staggered attack patterns.
-			if (!enemyStaggered || (enemyStaggered && attackQuotaMet)) {
-				numEnemyAttacks = 0;
-				enemyTurn = !enemyTurn;
+		if (fightMode) {
+			numEnemyAttacks++;
+			bool enemyStaggered = currentEnemyList.Peek().staggeredAttacks;
+			bool attackQuotaMet = (numEnemyAttacks == currentEnemyList.Peek().attacksPerTurn);
+			
+			// If current turn is Sonic's:
+			if (!enemyTurn) {
+				// Allow non-staggered enemies to attack right away.
+				// Wait for enemies with staggered attack patterns.
+				if (!enemyStaggered || (enemyStaggered && attackQuotaMet)) {
+					numEnemyAttacks = 0;
+					enemyTurn = !enemyTurn;
+				}
 			}
-		}
-		// If current turn is enemy's:
-		else if (enemyTurn) {
-			// Allow Sonic to attack right away against staggered enemies.
-			// Allow non-staggered enemies to attack multiple times.
-			if (enemyStaggered || (!enemyStaggered && attackQuotaMet)) {
-				numEnemyAttacks = 0;
-				enemyTurn = !enemyTurn;
+			// If current turn is enemy's:
+			else if (enemyTurn) {
+				// Allow Sonic to attack right away against staggered enemies.
+				// Allow non-staggered enemies to attack multiple times.
+				if (enemyStaggered || (!enemyStaggered && attackQuotaMet)) {
+					numEnemyAttacks = 0;
+					enemyTurn = !enemyTurn;
+				}
 			}
 		}
 		

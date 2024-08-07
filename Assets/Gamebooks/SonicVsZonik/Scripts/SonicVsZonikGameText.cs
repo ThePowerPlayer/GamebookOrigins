@@ -83,8 +83,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 				fightingScore = 0
 			}
 		});
-		public int enemyHPMax = 0; // TODO: remove
-		public int enemyHPCurrent = 0; // TODO: remove
 		
 		// Special sections:
 		// Mack sections (level of Mack slowly increases)
@@ -125,7 +123,41 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section4 = new Section()
 	{
 		text = "Sonic stares at the jars, wondering what to do with them. Suddenly, one of the jars cracks and then splinters into pieces. Standing in its place is a perfectly formed mini-Zonik. Another jar starts to crack, then another. Horrified, Sonic realizes that the jars are starting to hatch!\n\nSonic and Tails must fight the mini-Zoniks. Tails will not be able to help Sonic. The mini-Zoniks have a fighting score of 5 and only need one hit to be destroyed. Unfortunately, there are five of them! Sonic must fight them one after another. If he wins, turn to <b>130</b>.\n\nIf, regrettably, the mini-Zoniks win, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {130}
+		fightSection = true,
+		chooseAbility = true,
+		enemyList = new Queue<Enemy>(new Enemy[5] {
+			new Enemy()
+			{
+				name = "1st Mini-Zonik",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "2nd Mini-Zonik",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "3rd Mini-Zonik",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "4th Mini-Zonik",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "5th Mini-Zonik",
+				hp = 1,
+				fightingScore = 5
+			}
+		}),
+		choicesDiceWin = new int[1] {130}
 	};
 
 	public static Section section5 = new Section()
@@ -194,7 +226,18 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section14 = new Section()
 	{
 		text = "Picking their moment carefully, Sonic and Tails prepare to fight the Badnik. It has a fighting score of 7 and it will need five hits to be destroyed. Tails will help Sonic. This is one MEAN dude!\n\nIf you think it might be wiser for Sonic and Tails to try something else, there is still time. But what should they do:\n\nUse the energy gun?\t\t\tTurn to <b>230</b>\nTry using some glue?\t\t\tTurn to <b>107</b>\nTry to roll the Badnik over?\t\t\tTurn to <b>53</b>\n\nIf you decide Sonic and Tails shouldn't be such wimps, then fight the Badnik. If they win, turn to <b>249</b>. If Sonic and Tails fail to beat the Badnik, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[4] {230, 107, 53, 249}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Giant Badnik",
+				hp = 5,
+				fightingScore = 7
+			}
+		}),
+		choicesDiceWin = new int[4] {230, 107, 53, 249}
 	};
 
 	// TODO: Implement turning to Section 163 if Sonic has a torch
@@ -321,11 +364,25 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choicesDiceWin = new int[1] {234},
 		choicesDiceLose = new int[1] {76}
 	};
-
+	
+	// TODO: Automatically choose ability depending on skyChaseMethod
 	public static Section section32 = new Section()
 	{
 		text = "The cloud passes safely by and Zonik is even closer! At this rate he'll be caught in no time. Suddenly, a huge shadow appears above them, rapidly followed by a loud screeching.\n\n'That's all we need,' says Sonic, pointing to the awkward-looking Badnik floating above them. It's a Balkiry. It shouldn't prove too much trouble, but it's bound to slow them up. The Balkiry dives in to attack, and our friends will have to fight it.\n\nThe Balkiry has a fighting score of 6, but it is so clumsy that it can only attack every other turn. If Tails is flying the skimmer, then roll against Strength and add 2 to Sonic's score. If Sonic is flying it, then use Speed, but deduct 1 from the score. If Tails is hovering, then he can help Sonic, who fights with Agility. If they win, turn to 192. However, if they lose, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {192}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Balkiry",
+				hp = 3,
+				fightingScore = 6,
+				staggeredAttacks = true,
+				attacksPerTurn = 2
+			}
+		}),
+		choicesDiceWin = new int[1] {192}
 	};
 
 	public static Section section33 = new Section()
@@ -499,7 +556,47 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section57 = new Section()
 	{
 		text = "Suddenly, the robots realize what is going on and move in to attack our heroes. There are so many that Tails will not be able to help Sonic - he has enough to do himself.\n\nSonic can fight robots using whatever ability he wants (you choose). Because they are so clumsy, only one robot can attack at a time. There are six robots queuing up to deal with him, and Sonic must fight them one after another.\n\n\t\t\t\tFighting Score\t\tHits to Destroy\nRobot 1\t\t5\t\t1\nRobot 2\t\t5\t\t1\nRobot 3\t\t5\t\t2\nRobot 4\t\t5\t\t2\nRobot 5\t\t6\t\t2\nRobot 6\t\t6\t\t3\n\nWhen a robot is destroyed, it will release 10 rings that Sonic can pick up. Remember to add them to Sonic's Stuff. If Sonic wins, he and Tails can destroy the rest of the machines in peace (turn to <b>208</b>). If the robots win, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {208}
+		fightSection = true,
+		chooseAbility = true,
+		enemyList = new Queue<Enemy>(new Enemy[6] {
+			new Enemy()
+			{
+				name = "Robot 1",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "Robot 2",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "Robot 3",
+				hp = 2,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "Robot 4",
+				hp = 2,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "Robot 5",
+				hp = 2,
+				fightingScore = 6
+			},
+			new Enemy()
+			{
+				name = "Robot 6",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {208}
 	};
 
 	public static Section section58 = new Section()
@@ -611,7 +708,19 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section74 = new Section()
 	{
 		text = "Despite a thorough search of the cave, neither Tails nor Sonic finds anything. It looks like the only way out of this cave is to try and open the steel door. Sonic and Tails look at the lever by its side.\n\n'After you,' says Sonic, gesturing for Tails to try the lever.\n\n'No, after you,' replies Tails.\n\n'No, really,' says Sonic.\n\n'No, you try it, Sonic. I insist!' smiles Tails, bowing gracefully to his friend.\n\nGingerly, Sonic reaches out and pulls the lever, and the door slides open with a faint wooshing sound. 'There you are! Nothing to it,' says Sonic.\n\n'Let's hope you feel the same way about those, then!' says Tails, pointing to the two Guardbots who have suddenly appeared!\n\nSonic and Tails must fight the Guardbots using Strength. The Guardbots have a fighting score of 5, but both can attack Sonic each round. Tails will help Sonic. If our heroes win, turn to <b>256</b>. If Sonic and Tails are beaten by the Guardbots, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {256}
+		fightSection = true,
+		diceAbility = "Strength",
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Guardbots",
+				hp = 3,
+				fightingScore = 5,
+				attacksPerTurn = 2
+			}
+		}),
+		choicesDiceWin = new int[1] {256}
 	};
 
 	public static Section section75 = new Section()
@@ -830,6 +939,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[3] {14, 230, 53}
 	};
 
+	// TODO: Account for turning to section 90 if you lose
 	public static Section section108 = new Section()
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). Tails will help Sonic. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
@@ -844,7 +954,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 				fightingScore = 6
 			}
 		}),
-		enemyHPMax = 3,
 		choicesDiceWin = new int[1] {136},
 		choicesDiceLose = new int[1] {90}
 	};
@@ -873,7 +982,35 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section112 = new Section()
 	{
 		text = "The tunnel is very narrow, and soon Sonic and Tails can only walk along in single file. The tunnel itself is lit by small lanterns placed at irregular intervals along the walls. Then, without warning, one of the lanterns moves! Sonic and Tails have stumbled into the lair of four Flashers!\n\nIn the narrow tunnel, Sonic will have to fight the Flashers on his own, though luckily for him, they can only attack one at a time. Sonic must use his Agility. Because the tunnel is so narrow, Sonic may not use the energy gun. The Flashers have a fighting score of 5. They will fight to the death. If Sonic wins, turn to <b>169</b>.\n\nIf the Flashers beat him ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {169}
+		fightSection = true,
+		diceAbility = "Agility",
+		enemyList = new Queue<Enemy>(new Enemy[4] {
+			new Enemy()
+			{
+				name = "1st Flasher",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "2nd Flasher",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "3rd Flasher",
+				hp = 1,
+				fightingScore = 5
+			},
+			new Enemy()
+			{
+				name = "4th Flasher",
+				hp = 1,
+				fightingScore = 5
+			}
+		}),
+		choicesDiceWin = new int[1] {169}
 	};
 
 	public static Section section113 = new Section()
@@ -897,7 +1034,20 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section116 = new Section()
 	{
 		text = "Now it's time to fight! Zonik is a much better pilot than Sonic! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). However, because he is so bad at flying the skimmer, subtract one from his score. Tails will help Sonic.\nIf Sonic and Tails win\t\t\tTurn to <b>136</b>If they lose\t\t\tTurn to <b>90</b>",
-		choices = new int[2] {136, 90}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		tailsValue = 2,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Zonik's skimmer",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {136},
+		choicesDiceLose = new int[1] {90}
 	};
 
 	public static Section section117 = new Section()
@@ -987,10 +1137,22 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[2] {26, 247}
 	};
 
+	// TODO: Limit ability choice to Strength or Speed
 	public static Section section129 = new Section()
 	{
 		text = "Sonic and Tails must fight the Crawlton. Sonic can use either his Strength or Speed (you choose), and Tails can help him. The Crawlton has a fighting score of 6 and he needs two hits to destroy him. If Sonic and Tails win, turn to <b>292</b>.\n\nIf the Crawlton wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {292}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Crawlton",
+				hp = 2,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {292}
 	};
 
 	public static Section section130 = new Section()
@@ -1118,10 +1280,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Just as Sonic grabs the bag, the robot springs to life. Instantly it aims a punch, but Sonic is too fast and easily avoids it. Unfortunately, the Badnik is now between him and the Return button and Sonic is going to have to fight his way through.\n\nThe Badnik has a fighting score of 6 and needs two hits to be destroyed. Sonic must fight using Strength. If Tails is with him, he will help. If Sonic wins, then he presses the Return button. Remember to add the sky net to Sonic's Stuff before turning to <b>187</b>. If the robot has finished off Sonic, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
-		diceGoal = 6,
-		enemyHPMax = 2,
-		diceSection = true,
 		diceAbility = "Strength",
+		//tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Special Badnik",
+				hp = 2,
+				fightingScore = 6
+			}
+		}),
 		choicesDiceWin = new int[1] {187}
 	};
 
@@ -1189,11 +1357,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "What had looked like a solid brick wall a few seconds ago, suddenly starts to move. First one huge claw, and then another, appears and the whole 'wall' starts to grind slowly towards our heroes.\n\n'It's a Shellcracker!' screams Sonic.\n\nSonic and Tails must fight the Shellcracker using Strength. Tails will help Sonic. The Shellcracker has a fighting score of 6 and needs two hits to be destroyed. If Sonic and Tails win, turn to <b>278</b>. If they fail to beat the Shellcracker, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
-		diceGoal = 6,
-		enemyHPMax = 2,
-		diceSection = true,
 		diceAbility = "Strength",
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Shellcracker",
+				hp = 2,
+				fightingScore = 6
+			}
+		}),
 		choicesDiceWin = new int[1] {278}
 	};
 
@@ -1446,13 +1619,21 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[3] {78, 170, 51}
 	};
 	
-	// TODO: Allow ability to be customized
+	// TODO: Go to choicesDiceLose upon getting hit
 	public static Section section193 = new Section()
 	{
 		text = "Sonic and Tails attack Chop Chop. Chop Chop's fighting score is 6. If you are unsure what to do, look back at the beginning of the book for instructions. If Sonic is hit by Chop Chop, then turn to <b>166</b>. If Sonic and Tails win the fight, turn to <b>52</b>.",
-		diceSection = true,
-		diceAbility = "Strength",
-		diceGoal = 6,
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Chop Chop",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
 		choicesDiceWin = new int[1] {52},
 		choicesDiceLose = new int[1] {166}
 	};
@@ -1572,7 +1753,20 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section210 = new Section()
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and his skimmer needs to be hit three times to put it out of action. Sonic may fight using any of his abilities (you choose). Tails cannot help Sonic – he needs to fly the skimmer – but because Tails is such a natural flyer, Sonic may add 1 to whatever score he gets. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</>.",
-		choices = new int[2] {136, 90}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		tailsValue = 1,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Zonik's skimmer",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {136},
+		choicesDiceLose = new int[1] {90}
 	};
 
 	public static Section section211 = new Section()
@@ -1596,10 +1790,22 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[1] {11}
 	};
 
+	// TODO: Account for special details
 	public static Section section214 = new Section()
 	{
 		text = "The surface of the Zone is barren and rocky and not very nice at all. At last, Sonic and Tails and Zonik stand facing each other. It's time for the final showdown!\n\nIf Zonik crash-landed, he has a fighting score of 5, otherwise it is 7. Like Sonic, he has three lives, and therefore needs to be hit three times to be beaten. If Sonic crash-landed, then he must subtract 1 from each of his die rolls.\n\nSonic <i>must</i> have the gloves to fight Zonik. (If Sonic hasn't been to the Special Zone yet, then he must go and get them if he has enough rings - use the Zone Chip from Sonic's Stuff.) Tails will help Sonic. Finally, if Sonic has the Chaos Emerald, he may add 2 to each of his die scores. If Sonic and Tails win, turn to <b>300</b>. If Zonik beats them, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {300}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Zonik",
+				hp = 3,
+				fightingScore = 7
+			}
+		}),
+		choicesDiceWin = new int[1] {300}
 	};
 
 	public static Section section215 = new Section()
@@ -1638,11 +1844,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Sonic and Tails must fight the Rexon. He has a fighting score of 6 and needs two hits to be killed. Tails will help Sonic fight. If you cannot remember how to do this, then read again the section at the beginning of the book. The Rexon will fight to the death, and it is so aggressive that Sonic cannot use the energy gun, even if he wants to. Sonic must fight the Rexon using Strength. If Sonic and Tails beat the Rexon, turn to <b>67</b>. If the Rexon wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
-		diceGoal = 6,
-		enemyHPMax = 2,
-		diceSection = true,
 		diceAbility = "Strength",
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Rexon",
+				hp = 2,
+				fightingScore = 6
+			}
+		}),
 		choicesDiceWin = new int[1] {67}
 	};
 
@@ -1663,13 +1874,17 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "The footpath slowly makes its way uphill. The sides of it are now piled high with rubbish.\n\n'You know,' says Tails, 'you always bring me to the nicest places, Sonic.' Sonic turns to look at his friend, thinking of some suitable reply, when suddenly a giant silver claw shoots out of the rubbish in front of him.\n\n'SLICER!!!' yells Tails. The claw flies past Sonic's head. Sonic and Tails must fight the Slicer using Speed. Tails will help. The Slicer has a fighting score of 6, but it only needs one hit to be destroyed. If Sonic and Tails win, turn to <b>93</b>. If Slicer beats them, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
-		diceGoal = 6,
-		enemyHPMax = 1,
-		diceSection = true,
 		diceAbility = "Speed",
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Slicer",
+				hp = 1,
+				fightingScore = 6
+			}
+		}),
 		choicesDiceWin = new int[1] {93}
-		
 	};
 
 	public static Section section224 = new Section()
@@ -1725,9 +1940,20 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section230 = new Section()
 	{
-		text = "Carefully, Sonic powers up the energy gun and takes aim. A direct hit! The Badnik wobbles slightly but keeps on firing. Sonic and Tails may now fight the Badnik if they wish. The Badnik has a fighting score of 6 and three hits will be needed to destroy it. Tails will help Sonic. This is one MEAN hombre! Fortunately, though, the energy gun does seem to have slowed him down a bit. Or would it be wiser for Sonic and Tails to try something else – there is still time? Should they:\n\nTry using some glue?\t\t\tTurn to <b>107</b>\nTry to roll the Badnik over?\t\t\tTurn to<b>53</b>\n\nIf Sonic and Tails decide not to be such wimps, and fight the Badnik, turn to <b>249</b> if they win. If the Badnik wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[3] {107, 53, 249},
-		rings = -10
+		text = "Carefully, Sonic powers up the energy gun and takes aim. A direct hit! The Badnik wobbles slightly but keeps on firing. Sonic and Tails may now fight the Badnik if they wish. The Badnik has a fighting score of 6 and three hits will be needed to destroy it. Tails will help Sonic. This is one MEAN hombre! Fortunately, though, the energy gun does seem to have slowed him down a bit. Or would it be wiser for Sonic and Tails to try something else – there is still time? Should they:\n\nTry using some glue?\t\t\tTurn to <b>107</b>\nTry to roll the Badnik over?\t\t\tTurn to<b>53</b>\n\nIf Sonic and Tails decide not to be such wimps, and fight the Badnik, turn to <b>249</b> if they win. If the Badnik wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>", 
+		rings = -10,
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Giant Badnik",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {249}
 	};
 
 	public static Section section231 = new Section()
@@ -1811,11 +2037,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Launching into a spin, Sonic aims himself straight at the ship, closely followed by Tails. The hover ship has a fighting score of 5 and it needs to be hit twice to be destroyed. In this fight, Tails may help Sonic. Sonic will fight using his Strength. If Tails and Sonic manage to beat the hover ship, then turn to <b>102</b>. If they lose, turn to <b>281</b>.",
 		fightSection = true,
-		diceGoal = 5,
-		enemyHPMax = 2,
-		diceSection = true,
 		diceAbility = "Strength",
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Hover ship",
+				hp = 2,
+				fightingScore = 5
+			}
+		}),
 		choicesDiceWin = new int[1] {102},
 		choicesDiceLose = new int[1] {281}
 	};
@@ -2053,11 +2284,16 @@ public class SonicVsZonikGameText : MonoBehaviour
 	{
 		text = "Unfortunately, smashing all this stuff has made so much noise that a Badnik has come to see what's going on! A large robot appears at the door with no less than four arms, each ending in a vicious claw. Sonic and Tails must fight the Badnik. Tails will help Sonic. The Badnik has a fighting score of 5 and needs three hits to be destroyed. Sonic and Tails must fight using Strength. If they win, our friends will find 20 rings in the wreckage. Once Sonic has beaten the robot, turn to <b>62</b> if they were in the Spine Fields. Turn to <b>72</b> if they were in the Bottle Bank.\n\nIf the Badnik has beaten the two heroes, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
-		diceGoal = 5,
-		enemyHPMax = 3,
-		diceSection = true,
 		diceAbility = "Strength",
 		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Clawed Badnik",
+				hp = 3,
+				fightingScore = 5
+			}
+		}),
 		choicesDiceWin = new int[2] {62, 72}
 	};
 
@@ -2177,13 +2413,36 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section293 = new Section()
 	{
 		text = "Sonic and Tails attack Grabber. Grabber's fighting score is usually 8, but since he's already been smashed up by Zonik, it's now only 6. If you are unsure what to do, look back to the beginning of the book for instructions.\n\nGrabber will now fight to the death, so if they lose this fight, Sonic and Tails will have to start all over again! If they defeat Grabber, turn to <b>243</b>. If Grabber beats Sonic and Tails, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {243}
+		fightSection = true,
+		chooseAbility = true,
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Grabber",
+				hp = 3,
+				fightingScore = 6
+			}
+		}),
+		choicesDiceWin = new int[1] {243}
 	};
 
 	public static Section section294 = new Section()
 	{
 		text = "It looks like the only way out of this cave is to try and open the steel door. Both of them look at the lever by the side of the door.\n\n'After you,' says Sonic, gesturing for Tails to try the lever.\n\n'No, after you,' replies Tails.\n\n'No, really,' says Sonic.\n\n'No, you try it, Sonic. I insist!' smiles Tails, bowing gracefully to his friend. Gingerly, Sonic reaches out and pulls the lever. The door slides open with a faint whooshing sound.\n\n'There you are,' he says triumphantly. 'Nothing to it.'\n\n'Let's hope you feel the same way about those, then!' says Tails, pointing towards the door. Emerging from beyond it are two Guardbots! Sonic and Tails must fight the Guardbots using Strength. The Guardbots have a fighting score of 6, but both can attack Sonic each round. Tails will help Sonic. If the heroes win, turn to <b>256</b>.\n\nIf the Guardbots beat Sonic and Tails, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
-		choices = new int[1] {256}
+		fightSection = true,
+		diceAbility = "Strength",
+		tailsSection = true,
+		enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "Guardbots",
+				hp = 3,
+				fightingScore = 6,
+				attacksPerTurn = 2
+			}
+		}),
+		choicesDiceWin = new int[1] {256}
 	};
 
 	public static Section section295 = new Section()
