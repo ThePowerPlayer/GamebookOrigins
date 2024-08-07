@@ -75,7 +75,14 @@ public class SonicVsZonikGameText : MonoBehaviour
 		// Fight section variables
 		// (Use choicesDiceWin after winning a battle)
 		public bool fightSection = false;
-		public Queue<Enemy> enemyList = new Queue<Enemy>();
+		public Queue<Enemy> enemyList = new Queue<Enemy>(new Enemy[1] {
+			new Enemy()
+			{
+				name = "DUMMY",
+				hp = 1,
+				fightingScore = 0
+			}
+		});
 		public int enemyHPMax = 0; // TODO: remove
 		public int enemyHPCurrent = 0; // TODO: remove
 		
@@ -969,7 +976,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section127 = new Section()
 	{
 		text = "The chip starts to flash with red lights, emitting a quiet humming sound. Suddenly, Sonic feels a little dizzy. The next thing he knows, he's standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic must choose carefully. He will only be allowed to go through a door once. Then it will seal shut for ever. Once you have decided which one he should go through, write its number down so that you don't use it again! Which door do you think Sonic should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>",
-		choices = new int[4] {149, 290, 252, 245}
+		choices = new int[4] {149, 290, 252, 245},
+		rings = -10
 	};
 
 	public static Section section128 = new Section()
@@ -1640,7 +1648,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section221 = new Section()
 	{
 		text = "The chip starts to flash with red lights and emit a quiet humming sound. Suddenly, Sonic feels a little dizzy and Tails starts to sway from side to side. The next thing they know, they're standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic and Tails must choose carefully. They will only be allowed to go through a door once. It will seal shut for ever afterwards. Once they have decided which one to go through, put its number down so that they do not try and use it again! Which door do you think Sonic and Tails should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>",
-		choices = new int[4] {149, 290, 252, 245}
+		choices = new int[4] {149, 290, 252, 245},
+		rings = -20
 	};
 
 	public static Section section222 = new Section()

@@ -120,9 +120,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		index = SonicVsZonikGame.index;
 		
 		UpdateInventory();
-		ChangeVitalStatistics();
-		
-		// Apply specific logic depending on the section
 		EnergyGunLogic();
 		MackLogic();
 		BoatLogic();
@@ -143,7 +140,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SVZStats.points += SVZText.sectionLibrary[index].points;
 			// Manage audio for earning rings and losing rings/credits
 			bool ringCost = false;
-			if (index == 176) {
+			if (index == 176 || index == 127 || index == 221) {
 				ringCost = true;
 			}
 			foreach (int n in energyGunFired)
@@ -177,7 +174,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 		
 		// Add items to Sonic's Stuff
-		if (SVZText.sectionLibrary[index].items != null) {
+		Debug.Log("index = " + index);
+		if (SVZText.sectionLibrary[index].items != null
+			&& SVZText.sectionLibrary[index].items.Length > 0) {
 			SFXAudioSource.clip = ObtainItem;
 			SFXAudioSource.Play();
 			foreach(string item in SVZText.sectionLibrary[index].items) {
@@ -188,6 +187,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SVZStats.SonicsStuff.Add("Chaos Emerald");
 			JingleManager.PlayJingle("ChaosEmerald");
 		}
+		
+		// Update Vital Statistics (if applicable)
+		ChangeVitalStatistics();
 	}
 	
 	public void AddToHistory() {

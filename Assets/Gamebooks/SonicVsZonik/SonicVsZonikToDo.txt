@@ -31,7 +31,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Add a speedrun mode with a timer
 [✓] Implement fights where the player can choose Sonic's ability to use
 [✓] Implement Asteron ambushes
-[] Move inventory logic to SonicVsZonikSectionLogic.cs
+[✓] Move inventory logic to SonicVsZonikSectionLogic.cs
+[] Fix how Sonic's Stuff is modified in between sections
 [] Implement getting hit (lose all rings or a life if you have no rings)
 [] Allow enemies to take their own turns against Sonic
 [] Finish implementing fights against enemies

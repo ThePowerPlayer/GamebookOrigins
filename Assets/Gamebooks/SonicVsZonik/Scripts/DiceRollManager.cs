@@ -326,7 +326,13 @@ public class DiceRollManager : MonoBehaviour
 			// Pass by value, NOT by reference
 			// (so that enemy HP is automatically reset upon leaving the section)
 			Debug.Log("Setting first dice roll...");
-			currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);
+			if (SVZText.sectionLibrary[mostRecentIndex].enemyList != null
+				&& SVZText.sectionLibrary[mostRecentIndex].enemyList.Count > 0) {
+				currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);	
+			}
+			else {
+				currentEnemyList = new Queue<SVZText.Enemy>();
+			}
 		}
 		
 		if (SVZText.sectionLibrary[mostRecentIndex].diceSection) {
@@ -371,6 +377,46 @@ public class DiceRollManager : MonoBehaviour
 		sumRoutineTimer = 0;
 	}
 	
+	private void FinishDiceRoll() {
+		diceBeingRolled = false;
+		ThumbsUpScript.visible = false;
+		
+		timesDiceRolled++;
+		//Debug.Log("timesDiceRolled = " + timesDiceRolled
+		//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
+		
+		bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
+		
+		// Decrease enemy HP if Sonic has hit it
+		if (isFightSection && rollSuccess) {
+			currentEnemyList.Peek().hp--;
+		}
+		
+		// Decide whether to keep rolling
+		bool allDiceRolled = (!isFightSection
+			&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
+		bool enemyDefeated = (isFightSection && currentEnemyList.Peek().hp == 0);
+		bool allEnemiesDefeated = false;
+		if (enemyDefeated) {
+			currentEnemyList.Dequeue();
+		}
+		if (currentEnemyList.Count == 0) {
+			allEnemiesDefeated = true;
+		}
+		
+		// Leave dice mode and show available section buttons
+		if (allDiceRolled || allEnemiesDefeated) {
+			SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;
+			SVZText.sectionLibrary[mostRecentIndex].rollSuccess = rollSuccess;
+			SVZGameScript.ChangeButtons();
+			diceMode = false;
+			DiceRoll.SetActive(false);
+		}
+		else {
+			SetDiceRoll();
+		}
+	}
+	
     void Update()
     {	
 		if (SVZGame.index != mostRecentIndex) {
@@ -400,36 +446,7 @@ public class DiceRollManager : MonoBehaviour
 			}
 			else {
 				sumRoutineTimer = 0;
-				diceBeingRolled = false;
-				ThumbsUpScript.visible = false;
-				
-				// Decide whether to keep rolling
-				timesDiceRolled++;
-				//Debug.Log("timesDiceRolled = " + timesDiceRolled
-				//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
-				
-				bool isFightSection = SVZText.sectionLibrary[mostRecentIndex].fightSection;
-				
-				// Decrease enemy HP if Sonic has hit it
-				if (isFightSection && rollSuccess) {
-					currentEnemyList.Peek().hp--;
-				}
-				
-				bool enemyDefeated = (isFightSection && currentEnemyList.Peek().hp == 0);
-				bool allDiceRolled = (!isFightSection
-					&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
-				
-				if (enemyDefeated || allDiceRolled) {
-					// Leave dice mode and show available section buttons
-					SVZText.sectionLibrary[mostRecentIndex].rollComplete = true;
-					SVZText.sectionLibrary[mostRecentIndex].rollSuccess = rollSuccess;
-					SVZGameScript.ChangeButtons();
-					diceMode = false;
-					DiceRoll.SetActive(false);
-				}
-				else {
-					SetDiceRoll();
-				}
+				FinishDiceRoll();
 			}
 		}
 		else {

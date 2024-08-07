@@ -59,22 +59,25 @@ public class SonicVsZonikGame : MonoBehaviour
 	void Update()
 	{
 		if (mostRecentIndex != index) {
-			//Debug.Log("Update: The index has changed!");
+			// Reset a dice roll if in progress
+			SVZText.sectionLibrary[mostRecentIndex].rollComplete = false;
+			SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
+			
+			Debug.Log("mostRecentIndex = " + mostRecentIndex + "; index = " + index);
 			mostRecentIndex = index;
 			VisitIndex();
 		}
 	}
 	
 	private void VisitIndex() {		
+		Debug.Log("Visiting index " + index + "...");
+		
 		// Update music (if applicable)
 		MusicManager.PlaySongForSection(index);
 		
-		// Reset dice roll for visited section
-		SVZText.sectionLibrary[mostRecentIndex].rollComplete = false;
-		SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
+		
 		
 		if (!backButtonPressed) {
-			SVZLogicScript.UpdateInventory();
 			SVZLogicScript.SectionLogic();
 			SVZLogicScript.AddToHistory();
 			
