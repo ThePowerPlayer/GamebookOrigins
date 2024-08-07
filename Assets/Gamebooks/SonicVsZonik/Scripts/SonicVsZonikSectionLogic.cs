@@ -125,6 +125,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		index = SonicVsZonikGame.index;
 		
 		UpdateInventory();
+		ItemLogic();
 		EnergyGunLogic();
 		MackLogic();
 		BoatLogic();
@@ -329,9 +330,41 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
-	public void EndOfDiceRollLogic(int diceIndex, bool rollSuccess) {
+	public void EndOfDiceRollLogic(int diceIndex, bool rollSuccess, int sum, bool enemyDefeated) {
+		// Faulty bridge at Green Hill
 		if ((diceIndex == 117 || diceIndex == 173) && !rollSuccess) {
 			GetHit();
+		}
+		// Dice roll fail at Sky Chase
+		if (diceIndex == 165 && !rollSuccess) {
+			MusicManager.PlaySongForSection(54);
+			gameOver = true;
+		}
+		// Casino Night fruit machine payout
+		if (diceIndex == 84) {
+			EarnRings(sum);
+		}
+		// Badniks that drop rings upon being destroyed
+		if (diceIndex == 57 && enemyDefeated) {
+			EarnRings(10);
+		}
+		if (diceIndex == 275 && enemyDefeated) {
+			EarnRings(20);
+		}
+	}
+	
+	private void ItemLogic() {
+		// Casino Night fruit machine requires 1 ring per play
+		if (index == 171) {
+			SVZStats.rings--;
+		}
+		if (index == 226) {
+			if (SVZStats.rings > 0) {
+				SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[1] {66};
+			}
 		}
 	}
 	
@@ -523,10 +556,17 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			&& index == 201 && !SVZStats.SonicsStuff.Contains("Zone Chip")) {
 			SVZStats.SonicsStuff.Add("Zone Chip");
 		}
-		
 		// Immediately after pressing "Use Zone Chip" button
 		if (index == 237) {
-			SVZText.sectionLibrary[index].choices = new int[3] {zoneChipIndex, 127, 221};
+			if (SVZStats.rings >= 20 || OptionsGlobal.options["useZoneChipForFree"]) {
+				SVZText.sectionLibrary[index].choices = new int[3] {zoneChipIndex, 127, 221};
+			}
+			else if (SVZStats.rings >= 10) {
+				SVZText.sectionLibrary[index].choices = new int[2] {zoneChipIndex, 127};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[1] {zoneChipIndex};
+			}
 		}
 		// After actually using the Zone Chip
 		if (index == 127 || index == 221) {
@@ -558,21 +598,41 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if (index == 84) {
 			if (OptionsGlobal.options["fixFruitMachine"]) {
 				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>66</b>.";
-				SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+				if (SVZStats.rings > 0) {
+					SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+				}
+				else {
+					SVZText.sectionLibrary[index].choices = new int[1] {66};
+				}
 			}
 			else {
 				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>97</b>.";
-				SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
+				if (SVZStats.rings > 0) {
+					SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
+				}
+				else {
+					SVZText.sectionLibrary[index].choices = new int[1] {97};
+				}
 			}
 		}
 		if (index == 199) {
 			if (OptionsGlobal.options["fixFruitMachine"]) {
 				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action while Sonic and Tails are staring at it. Sonic loses. If Sonic plays the fruit machine again, turn to <b>171</b>. If he thinks it's a waste of time, turn to <b>66</b>.";
-				SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+				if (SVZStats.rings > 0) {
+					SVZText.sectionLibrary[index].choices = new int[2] {171, 66};
+				}
+				else {
+					SVZText.sectionLibrary[index].choices = new int[1] {66};
+				}
 			}
 			else {
 				SVZText.sectionLibrary[index].text = "The fruit machine whirrs into action while Sonic and Tails are staring at it. Sonic loses. If Sonic plays the fruit machine again, turn to <b>171</b>. If he thinks it's a waste of time, turn to <b>97</b>.";
-				SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
+				if (SVZStats.rings > 0) {
+					SVZText.sectionLibrary[index].choices = new int[2] {171, 97};
+				}
+				else {
+					SVZText.sectionLibrary[index].choices = new int[1] {97};
+				}
 			}
 		}
 		

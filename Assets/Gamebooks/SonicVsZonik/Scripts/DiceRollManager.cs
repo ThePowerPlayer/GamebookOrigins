@@ -312,7 +312,7 @@ public class DiceRollManager : MonoBehaviour
 			Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
 		}
 		
-		if (enemyTurn) {
+		if (enemyTurn || mostRecentIndex == 171) {
 			rollSuccess = !rollSuccess;
 			ThumbsUpScript.thumbPointsUp = !ThumbsUpScript.thumbPointsUp;
 		}
@@ -446,10 +446,15 @@ public class DiceRollManager : MonoBehaviour
 		if (fightMode && !rollSuccess && enemyTurn) {
 			SVZLogicScript.GetHit();
 		}
+		
+		bool enemyDefeated = (fightMode && currentEnemyList.Peek().hp == 0);
+		SVZLogicScript.EndOfDiceRollLogic(mostRecentIndex, rollSuccess, sum, enemyDefeated);
 		if (SonicVsZonikSectionLogic.gameOver) {
+			fightMode = false;
+			enemyTurn = false;
+			numEnemyAttacks = 0;
 			DiceRoll.SetActive(false);
 		}
-		
 		
 		if (fightMode) {
 			numEnemyAttacks++;
@@ -476,12 +481,9 @@ public class DiceRollManager : MonoBehaviour
 			}
 		}
 		
-		SVZLogicScript.EndOfDiceRollLogic(mostRecentIndex, rollSuccess);
-		
 		// Decide whether to keep rolling
 		bool allDiceRolled = (!fightMode
 			&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
-		bool enemyDefeated = (fightMode && currentEnemyList.Peek().hp == 0);
 		bool allEnemiesDefeated = false;
 		if (enemyDefeated) {
 			SFXAudioSource.clip = EnemyDestroyed;

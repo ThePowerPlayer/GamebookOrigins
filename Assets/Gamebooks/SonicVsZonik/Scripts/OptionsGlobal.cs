@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OptionsGlobal : MonoBehaviour
 {
+	public static float musicVolume = 1;
+	public static float sfxVolume = 1;
+	
 	public static Dictionary<string, bool> options = new Dictionary<string, bool>
 	{
 		// Options for all gamebooks

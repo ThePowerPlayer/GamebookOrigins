@@ -12,6 +12,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 	// 2, 6, 17, 20, 22, 36, 41, 49, 86, 109, 124, 126,
 	// 133, 168, 181, 185, 189, 195, 196, 203, 218, 228,
 	// 229, 235, 265, 274, 280, 283, 295, 298, 299
+	// Note that sections 37 and 94 are inaccessible pinall sections.
 	
 	// Sections with points:
 	// 6, 20, 36, 37, 86, 94, 133, 181, 189, 195, 228, 229, 265, 295, 299
@@ -783,7 +784,11 @@ public class SonicVsZonikGameText : MonoBehaviour
 	public static Section section84 = new Section()
 	{
 		text = "The fruit machine whirrs into action, while Sonic and Tails stare at it. A WINNER!!! Roll the die twice and add the scores together. This is the number of rings that the fruit machine pays out! Add these to Sonic's Stuff.\n\nIf you want Sonic to play the fruit machine again, turn to <b>171</b>. If you think he should stop wasting time, turn to <b>97</b>.",
-		choices = new int[2] {171, 97}
+		diceSection = true,
+		twoDice = true,
+		diceGoal = 0,
+		choicesDiceWin = new int[2] {171, 97},
+		choicesDiceLose = new int[2] {171, 97}
 	};
 
 	public static Section section85 = new Section()
@@ -1483,8 +1488,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		diceSection = true,
 		twoDice = true,
 		diceGoal = 5,
-		choicesDiceWin = new int[1] {199},
-		choicesDiceLose = new int[1] {84}
+		choicesDiceWin = new int[1] {84},
+		choicesDiceLose = new int[1] {199}
 	};
 
 	public static Section section172 = new Section()
@@ -2285,8 +2290,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[3] {196, 280, 49},
 		pinballSection = true
 	};
-
-	// TODO: Collect 20 rings if you win
+	
 	// TODO: Determine which section to visit next
 	public static Section section275 = new Section()
 	{

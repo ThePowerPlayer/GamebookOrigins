@@ -16,7 +16,7 @@ public class SonicVsZonikJingleManager : MonoBehaviour
 	private float jingleVolume;
 	private float jingleTimer;
 	private const float fadeSpeed = 3f;
-	private bool jinglePlaying = false;
+	public static bool jinglePlaying = false;
 	
 	void OnEnable()
 	{
