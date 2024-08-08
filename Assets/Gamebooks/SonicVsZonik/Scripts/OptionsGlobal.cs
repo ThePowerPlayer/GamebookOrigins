@@ -13,7 +13,8 @@ public class OptionsGlobal : MonoBehaviour
 		{"enableTurnToSection", true},
 		{"enableBackButton", true},
 		{"markVisitedSections", true},
-		// DEBUG: Set these 4 options to false on release.
+		// DEBUG: Set these 5 options to false on release.
+		{"easierFights", true},
 		{"speedrunTimer", true},
 		{"customVitalStatistics", true},
 		{"infiniteLives", false},
@@ -28,8 +29,8 @@ public class OptionsGlobal : MonoBehaviour
 		{"fixSkyChase", true},
 		{"fixCloudSkimmer", true},
 		{"alwaysGetZoneChip", true},
-		{"useZoneChipForFree", true},
-		{"reEnterSpecialZoneDoors", true}
+		{"useZoneChipForFree", true}, // DEBUG: set to false on release
+		{"reEnterSpecialZoneDoors", true} // DEBUG: set to false on release
 	};
 	
 	public static OptionsGlobal instance { get; private set; }

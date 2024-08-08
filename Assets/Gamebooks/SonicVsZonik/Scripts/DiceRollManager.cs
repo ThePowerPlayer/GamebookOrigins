@@ -336,7 +336,12 @@ public class DiceRollManager : MonoBehaviour
 				goalValue = currentEnemyList.Peek().fightingScore;
 			}
 			else {
-				goalValue = 11;
+				if (OptionsGlobal.options["easierFights"]) {
+					goalValue = 13;
+				}
+				else {
+					goalValue = 11;
+				}
 			}
 		}
 		else {

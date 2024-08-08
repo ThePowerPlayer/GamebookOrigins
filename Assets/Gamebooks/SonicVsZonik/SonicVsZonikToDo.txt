@@ -44,6 +44,7 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[✓] (Global) Turn-to-section input field
 	[✓] (Global) Customize Sonic's Vital Statistics
 	[✓] (Global) Volume settings (for music and sound effects independently)
+	[✓] (Sonic vs. Zonik) Easier Fights: To hit Sonic, enemies need the sum of their fighting score and the die roll to be greater than 12 instead of greater than 10.
 	[✓] (Sonic vs. Zonik) Allow the pinball section to have a more lenient goal score
 	[✓] (Sonic vs. Zonik) Fix choice at Section 82 (Rexon encounter) taking player to Section 67 (go directly to Section 121 instead)
 	[✓] (Sonic vs. Zonik) Fix Section 180 (Whiffy liquid) taking player to Section 76 (go directly to Section 191 instead)
