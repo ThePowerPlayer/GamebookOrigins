@@ -144,7 +144,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		PinballLogic();
 		AsteronLogic();
 		MysticCaveLogic();
-		//FakTorEeeLogic();
+		FakTorEeeLogic();
 		SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
@@ -397,6 +397,13 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		// Lose rings if hit by an Asteron missile
 		if (diceIndex == 211 && !rollSuccess) {
 			GetHit();
+		}
+		// Smash up the Bottle Bank and the Spine Fields
+		if (diceIndex == 62 && rollSuccess) {
+			spineFieldsDestroyed = true;
+		}
+		if (diceIndex == 72 && rollSuccess) {
+			bottleBankDestroyed = true;
 		}
 		// Obtain the sky net after defeating the Special Badnik
 		if (diceIndex == 147 && enemyDefeated) {
@@ -673,6 +680,61 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
+	private void FakTorEeeLogic() {
+		// Spine Fields
+		if (index == 59) {
+			if (!bottleBankDestroyed) {
+				SVZText.sectionLibrary[index].choices = new int[3] {236, 62, 248};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {62, 248};
+			}
+		}
+		if (index == 62) {
+			if (!bottleBankDestroyed) {
+				SVZText.sectionLibrary[index].choicesDiceWin = new int[2] {236, 248};
+			}
+			else {
+				SVZText.sectionLibrary[index].choicesDiceWin = new int[1] {248};
+			}
+		}
+		// Bottle Bank
+		if (index == 236) {
+			if (!spineFieldsDestroyed) {
+				SVZText.sectionLibrary[index].choices = new int[3] {59, 72, 248};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {72, 248};
+			}
+		}
+		if (index == 72) {
+			if (!spineFieldsDestroyed) {
+				SVZText.sectionLibrary[index].choicesDiceWin = new int[2] {59, 248};
+			}
+			else {
+				SVZText.sectionLibrary[index].choicesDiceWin = new int[1] {248};
+			}
+		}
+		// Clawed Badnik interruption
+		if (index == 62 || index == 72) {
+			BookmarkIndex();
+		}
+		if (index == 275) {
+			GoToPreviousIndex();
+			SVZText.sectionLibrary[index].choicesDiceWin = SVZText.sectionLibrary[index].choices;
+			SVZText.sectionLibrary[index].choices = new int[0] {};
+		}
+		// Have both the Bottle Bank and Spine Fields been smashed up?
+		if (index == 208) {
+			if (bottleBankDestroyed && spineFieldsDestroyed) {
+				ForceToIndex(130);
+			}
+			else {
+				ForceToIndex(152);
+			}
+		}
+	}
+	
 	private void SkyChaseLogic() {
 		if (index == 216) {
 			skyChaseMethod = "Hovering";
@@ -705,6 +767,21 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			}
 			else if (skyChaseMethod == "Hovering") {
 				ForceToIndex(108);
+			}
+		}
+		
+		if (index == 32) {
+			if (skyChaseMethod == "Tails") {
+				SVZText.sectionLibrary[index].diceAbility = "Strength";
+				SVZText.sectionLibrary[index].tailsSection = false;
+			}
+			else if (skyChaseMethod == "Sonic") {
+				SVZText.sectionLibrary[index].diceAbility = "Speed";
+				SVZText.sectionLibrary[index].tailsSection = false;
+			}
+			else if (skyChaseMethod == "Hovering") {
+				SVZText.sectionLibrary[index].diceAbility = "Agility";
+				SVZText.sectionLibrary[index].tailsSection = true;
 			}
 		}
 		

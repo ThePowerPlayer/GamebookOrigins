@@ -63,7 +63,12 @@ public class DiceRollMonitor : MonoBehaviour, IPointerClickHandler
 				currentSprite = DiceMonitor;
 				break;
 			case "MonitorDice2":
-				currentSprite = DiceMonitor;
+				if (SVZGame.index == 195 || SVZGame.index == 228) {
+					currentSprite = StrengthMonitor;
+				}
+				else {
+					currentSprite = DiceMonitor;
+				}
 				break;
 			case "MonitorAbility":
 				switch (currentAbility) {

@@ -61,8 +61,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 		// (dice = sum1, dice = sum2, etc.)
 		public int numDiceRolls = 1;
 		
-		// TODO: Sections 195 and 228 (Roll two dice for two different abilities at the same time)
-		
 		// Has this section been visited yet at any time during gameplay?
 		public bool visited = false;
 		
@@ -368,7 +366,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choicesDiceLose = new int[1] {76}
 	};
 	
-	// TODO: Automatically choose ability depending on skyChaseMethod
 	public static Section section32 = new Section()
 	{
 		text = "The cloud passes safely by and Zonik is even closer! At this rate he'll be caught in no time. Suddenly, a huge shadow appears above them, rapidly followed by a loud screeching.\n\n'That's all we need,' says Sonic, pointing to the awkward-looking Badnik floating above them. It's a Balkiry. It shouldn't prove too much trouble, but it's bound to slow them up. The Balkiry dives in to attack, and our friends will have to fight it.\n\nThe Balkiry has a fighting score of 6, but it is so clumsy that it can only attack every other turn. If Tails is flying the skimmer, then roll against Strength and add 2 to Sonic's score. If Sonic is flying it, then use Speed, but deduct 1 from the score. If Tails is hovering, then he can help Sonic, who fights with Agility. If they win, turn to 192. However, if they lose, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
@@ -625,8 +622,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "The tunnel slowly curves around to the right, its grey metal walls covered in a film of Mega Mack. Here and there, there are even puddles of it on the floor. Being careful to avoid these, Sonic and Tails slowly walk along, trying to think of anything to take their minds off the awful smell! After a little while, they come to another branch in the tunnel. What should Sonic and Tails do:\n\nFollow the left-hand tunnel?\t\t\tTurn to <b>101</b>\nFollow the right-hand tunnel?\t\t\tTurn to <b>89</b>",
 		choices = new int[2] {101, 89}
 	};
-
-	// TODO: Disable going to Section 236 if already visited
+	
 	public static Section section62 = new Section()
 	{
 		text = "Sonic and Tails set about the place! Sonic spins around like a maniac, smashing everything within reach. Tails is a little slower, but he manages his fair share and in no time the whole place is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>. If the score is 3 or more, what should Sonic and Tails do:\n\nGo and look in the other room (if they haven't been there already)?\nTurn to <b>236</b>\nGo through the door labelled 'Production Line'?\t\t\tTurn to <b>248</b>",
@@ -691,8 +687,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "A brilliant blue beam shoots out of the energy gun and surrounds the hover ship in an odd blue mist. 'Come on, Tails, let's GET OUT OF HERE!!!' Sonic screams, slamming the boat into gear. Thanks to the energy gun, Sonic and Tails have escaped. Turn to <b>65</b>.",
 		choices = new int[1] {65}
 	};
-
-	// TODO: Disable going to Section 59 if already visited
+	
 	public static Section section72 = new Section()
 	{
 		text = "Sonic and Tails start destroying the place! Sonic spins around like a maniac, smashing everything in his path. Tails is a little slower, but he manages his fair share and in no time everything is a wreck. Roll the die. If the score is 1 or 2, turn to <b>275</b>.\n\nIf the score is 3 or more, what should Sonic and Tails do?\n\nGo and look in the other room (if they haven't been there already)?\nTurn to <b>59</b>\nGo through the door labelled 'Production Line'?\t\t\tTurn to <b>248</b>",
@@ -945,8 +940,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Sonic reaches for the tube of glue that the rats gave him. With a careful shot he might be able to jam the Badnik's missile launchers. Sonic takes aim and squeezes the tube. The glue shoots through the air in a graceful arc. A direct hit! The glue seeps into the missile launchers, but it has no effect whatsoever! All the glue has been used (delete it from Sonic's Stuff), and now our friends will have to try something else. What should they do?\n\nFight the Badnik robot?\t\t\tTurn to <b>14</b>\nUse the energy gun?\t\t\tTurn to <b>230</b>\nTry to roll the Badnik over?\t\t\tTurn to <b>53</b>",
 		choices = new int[3] {14, 230, 53}
 	};
-
-	// TODO: Account for turning to section 90 if you lose
+	
 	public static Section section108 = new Section()
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). Tails will help Sonic. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
@@ -1037,7 +1031,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Sonic and Tails stumble blindly into the large cavern. The glow from the walls is far too weak to reach into the centre. Suddenly, Tails' foot hits something hard.\n\n'Grrrr, Gnssh,' it growls. \n\nTails feels something shoot past his leg. 'SONIC! There's something in here!'\n\n'GNSSSH!'\n\nSonic can see it now! Dimly lit, a few metres away is the unmistakable outline of a Crawlton! Turn to <b>129</b>.",
 		choices = new int[1] {129}
 	};
-
+	
 	public static Section section116 = new Section()
 	{
 		text = "Now it's time to fight! Zonik is a much better pilot than Sonic! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). However, because he is so bad at flying the skimmer, subtract one from his score. Tails will help Sonic.\n\nIf Sonic and Tails win\t\t\tTurn to <b>136</b>\nIf they lose\t\t\tTurn to <b>90</b>",
@@ -1630,7 +1624,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[3] {78, 170, 51}
 	};
 	
-	// TODO: Go to choicesDiceLose upon getting hit
 	public static Section section193 = new Section()
 	{
 		text = "Sonic and Tails attack Chop Chop. Chop Chop's fighting score is 6. If you are unsure what to do, look back at the beginning of the book for instructions. If Sonic is hit by Chop Chop, then turn to <b>166</b>. If Sonic and Tails win the fight, turn to <b>52</b>.",
@@ -1655,13 +1648,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[2] {111, 204},
 		mackSection = true
 	};
-
+	
 	public static Section section195 = new Section()
 	{
 		text = "The chute runs all the way down the side of the game. Tails and Sonic move faster and faster.\n\n'ALL RIGHT!!!!' yells Sonic as they approach the bottom. Here the chute curves back out into the middle and the brave adventurers find themselves flying through the air once more. A large round target looms up in front of them and they strike it fair and square, scoring 10 points if this is the first time they have been here.\n\nIn the distance they can just see another target. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>228</b>. If the combined score is less than 10, turn to <b>283</b>.",
 		diceSection = true,
-		diceAbility = "Strength",
-		diceAbility2 = "Agility",
+		diceAbility = "Agility",
+		twoDice = true,
 		diceGoal = 10,
 		choicesDiceWin = new int[1] {228},
 		choicesDiceLose = new int[1] {283},
@@ -1760,7 +1753,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Neither Sonic nor Tails really knows what to make of all this. The only thing that's for sure is that Zonik has to be stopped, though how they are going to do it remains to be seen! Through the gate to the Aquatic Ruin, the sea breeze hits them like a breath of fresh air. Or rather it should have done, instead all they could smell was oil!\n\n'Looks like the Oil Ocean to me, Sonic. I thought you said this was going to be the Aquatic Ruin?' says Tails.\n\n'Well, it should be,' replies a rather puzzled Sonic. In front of them stretches the coast line, <i>usually</i> lapped by brilliant blue seas. Today the sea has turned black ... like oil.\n\n'Looks like oil ... smells like oil,' says Tails, bending down to dip a paw into the edge of the sea. 'And feels like oil too!'\n\n'OK, so it's oil!' says Sonic, a little irritated. The normal route down to the submerged city lies straight in front of them. About a hundred metres over to the right, a small sailing boat lies on the beach. Will Sonic and Tails go by the normal route (turn to <b>99</b>), or will they try the boat (turn to <b>206</b>)?",
 		choices = new int[2] {99, 206}
 	};
-
+	
 	public static Section section210 = new Section()
 	{
 		text = "Now it's time to fight! Zonik has a fighting score of 6 and his skimmer needs to be hit three times to put it out of action. Sonic may fight using any of his abilities (you choose). Tails cannot help Sonic – he needs to fly the skimmer – but because Tails is such a natural flyer, Sonic may add 1 to whatever score he gets. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
@@ -1922,13 +1915,13 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "At last, Sonic and Tails are up in the air and in hot pursuit of the evil Zonik. Despite his head start, our heroes are gaining on him by the second.\n\n'Watch out for the acid clouds,' shouts Sonic. 'Touch one and we're finished!'\n\n'Like that one, you mean?' Tails points to a large acid cloud looming up in front of them.\n\n'Yes, just like that one!' warns Sonic. Should our friends swerve to the right (turn to <b>192</b>) or to the left (turn to <b>32</b>)?",
 		choices = new int[2] {192, 32}
 	};
-
+	
 	public static Section section228 = new Section()
 	{
 		text = "With great body control, Sonic and Tails speed towards the next target. They strike it a glancing blow, scoring 10 points if this is the first time they have been here. In the distance yet another target can be seen. Roll the die and add the result to Sonic's Strength, and then add his Agility. If the combined score is 10 or more, turn to <b>133</b>. If the combined score is less than 10, turn to <b>283</b>.",
 		diceSection = true,
-		diceAbility = "Strength",
-		diceAbility2 = "Agility",
+		diceAbility = "Agility",
+		twoDice = true,
 		diceGoal = 10,
 		choicesDiceWin = new int[1] {133},
 		choicesDiceLose = new int[1] {283},
@@ -2287,7 +2280,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 		pinballSection = true
 	};
 	
-	// TODO: Determine which section to visit next
 	public static Section section275 = new Section()
 	{
 		text = "Unfortunately, smashing all this stuff has made so much noise that a Badnik has come to see what's going on! A large robot appears at the door with no less than four arms, each ending in a vicious claw. Sonic and Tails must fight the Badnik. Tails will help Sonic. The Badnik has a fighting score of 5 and needs three hits to be destroyed. Sonic and Tails must fight using Strength. If they win, our friends will find 20 rings in the wreckage. Once Sonic has beaten the robot, turn to <b>62</b> if they were in the Spine Fields. Turn to <b>72</b> if they were in the Bottle Bank.\n\nIf the Badnik has beaten the two heroes, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",

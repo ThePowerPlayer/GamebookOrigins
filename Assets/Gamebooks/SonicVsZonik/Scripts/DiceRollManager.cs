@@ -223,14 +223,21 @@ public class DiceRollManager : MonoBehaviour
 			UpdatePosX(ComparisonSymbol, 340);
 			UpdatePosX(GoalValue, 420);
 			
-			if (mostRecentIndex == 214 && SVZStats.SonicsStuff.Contains("Chaos Emerald")) {
-				MonitorDiceScript.monitorValue += 2;
-				MonitorAbilityScript.monitorValue += 2;
+			// Sky Chase Zone logic
+			if (mostRecentIndex == 214) {
+				if (SVZStats.SonicsStuff.Contains("Chaos Emerald")) {
+					MonitorDiceScript.monitorValue += 2;
+					MonitorAbilityScript.monitorValue += 2;
+				}
+				if (!SonicVsZonikSectionLogic.zonikCrashLanded) {
+					MonitorDiceScript.monitorValue--;
+					MonitorAbilityScript.monitorValue--;
+				}
 			}
-			if (!SonicVsZonikSectionLogic.zonikCrashLanded) {
-				MonitorDiceScript.monitorValue--;
-				MonitorAbilityScript.monitorValue--;
-			}
+			
+			MonitorDiceScript.monitorValue = Mathf.Clamp(MonitorDiceScript.monitorValue, 0, 999);
+			MonitorAbilityScript.monitorValue = Mathf.Clamp(MonitorAbilityScript.monitorValue, 0, 999);
+			
 			sum = MonitorDiceScript.monitorValue
 			+ MonitorAbilityScript.monitorValue
 			+ MonitorTailsScript.monitorValue;
@@ -251,6 +258,11 @@ public class DiceRollManager : MonoBehaviour
 			UpdatePosX(ComparisonSymbol, 340);
 			UpdatePosX(GoalValue, 420);
 			
+			// Sections 195 and 228: Dice + Strength + Agility
+			if (mostRecentIndex == 195 || mostRecentIndex == 228) {
+				MonitorDice2Script.monitorValue = SVZStats.abilities["Strength"];
+			}
+			
 			sum = MonitorDiceScript.monitorValue
 			+ MonitorDice2Script.monitorValue
 			+ MonitorAbilityScript.monitorValue;
@@ -268,6 +280,18 @@ public class DiceRollManager : MonoBehaviour
 			UpdatePosX(GoalValueSprite, 190);
 			UpdatePosX(ComparisonSymbol, 280);
 			UpdatePosX(GoalValue, 370);
+			
+			// Sky Chase logic
+			if (mostRecentIndex == 32) {
+				if (SonicVsZonikSectionLogic.skyChaseMethod == "Tails") {
+					MonitorDiceScript.monitorValue += 2;
+					MonitorAbilityScript.monitorValue += 2;
+				}
+				if (SonicVsZonikSectionLogic.skyChaseMethod == "Sonic") {
+					MonitorDiceScript.monitorValue--;
+					MonitorAbilityScript.monitorValue--;
+				}
+			}
 			
 			sum = MonitorDiceScript.monitorValue
 			+ MonitorAbilityScript.monitorValue;
@@ -460,6 +484,8 @@ public class DiceRollManager : MonoBehaviour
 		//Debug.Log("timesDiceRolled = " + timesDiceRolled
 		//	+ ", numDiceRolls = " + SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
 		
+		bool allEnemiesDefeated = false;
+		
 		// Decrease enemy HP if Sonic has hit it
 		if (fightMode && rollSuccess && !enemyTurn) {
 			SFXAudioSource.clip = EnemyHit;
@@ -468,7 +494,15 @@ public class DiceRollManager : MonoBehaviour
 		}
 		// Make Sonic get hit by an enemy
 		if (fightMode && !rollSuccess && enemyTurn) {
-			SVZLogicScript.GetHit();
+			// Against Chop Chop or Zonik's skimmer,
+			// go to a certain section upon getting hit
+			if (mostRecentIndex == 108 || mostRecentIndex == 116
+				|| mostRecentIndex == 193 || mostRecentIndex == 210) {
+				allEnemiesDefeated = true;
+			}
+			else {
+				SVZLogicScript.GetHit();
+			}
 		}
 		
 		bool enemyDefeated = (fightMode && currentEnemyList.Peek().hp == 0);
@@ -508,7 +542,6 @@ public class DiceRollManager : MonoBehaviour
 		// Decide whether to keep rolling
 		bool allDiceRolled = (!fightMode
 			&& timesDiceRolled == SVZText.sectionLibrary[mostRecentIndex].numDiceRolls);
-		bool allEnemiesDefeated = false;
 		if (enemyDefeated) {
 			SFXAudioSource.clip = EnemyDestroyed;
 			SFXAudioSource.Play();

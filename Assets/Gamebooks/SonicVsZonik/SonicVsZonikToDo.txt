@@ -56,9 +56,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 	[✓] (Sonic vs. Zonik) Varied Treasure: Fix Section 60 not being accessible
 	[✓] (Sonic vs. Zonik) Easier River Escape: Fix dice roll on section 244
 [✓] Implement sections with choices that require an item from Sonic's Stuff
-[] Implement endgame section logic
-	[] Fak-Tor-Eee
-[] Fix dice rolls for Sections 195 and 228 (Dice + Strength + Agility)
+[✓] Implement endgame section logic
+[✓] Fix dice rolls for Sections 195 and 228 (Dice + Strength + Agility)
 [] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [] Add an option to erase save data
 [] Fix issue where speed and size of title screen particles depends on size of the game window
