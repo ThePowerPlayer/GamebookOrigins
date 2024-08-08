@@ -61,6 +61,8 @@ public class SonicVsZonikGameText : MonoBehaviour
 		// (dice = sum1, dice = sum2, etc.)
 		public int numDiceRolls = 1;
 		
+		// TODO: Sections 195 and 228 (Roll two dice for two different abilities at the same time)
+		
 		// Has this section been visited yet at any time during gameplay?
 		public bool visited = false;
 		
@@ -240,14 +242,14 @@ public class SonicVsZonikGameText : MonoBehaviour
 		}),
 		choicesDiceWin = new int[4] {230, 107, 53, 249}
 	};
-
-	// TODO: Implement turning to Section 163 if Sonic has a torch
+	
 	public static Section section15 = new Section()
 	{
 		text = "The trapdoor opens easily to reveal a small spiral staircase leading down into the darkness. The staircase goes down and down and then down some more and it gradually starts to get hotter. If Sonic has a torch, turn to <b>163</b>.\n\nIf he doesn't have a torch, then roll the die and add the score to Sonic's Agility. If the result is 6 or more, turn to <b>251</b>. If the result is less than 6, turn to <b>34</b>.",
 		diceSection = true,
 		diceAbility = "Agility",
 		diceGoal = 6,
+		choices = new int[1] {163},
 		choicesDiceWin = new int[1] {251},
 		choicesDiceLose = new int[1] {34}
 	};
@@ -1064,14 +1066,14 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choicesDiceWin = new int[1] {200},
 		choicesDiceLose = new int[1] {200}
 	};
-
-	// TODO: Implement turning to Section 163 if Sonic has a torch
+	
 	public static Section section118 = new Section()
 	{
 		text = "The trapdoor opens easily to reveal a small spiral staircase leading down into the darkness. The staircase goes down and down and then down some more, and it gradually starts to get hotter. If Sonic has a torch, turn to <b>163</b>. If he doesn't have a torch, then roll the die and add the result to Sonic's Agility. If the score is 6 or more, turn to <b>251</b>. If the score is less than 6, turn to <b>34</b>.",
 		diceSection = true,
 		diceAbility = "Agility",
 		diceGoal = 6,
+		choices = new int[1] {163},
 		choicesDiceWin = new int[1] {251},
 		choicesDiceLose = new int[1] {34}
 	};
@@ -1282,14 +1284,12 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Sonic notices the small black and red wire underneath the Mega Drive. Following it with his eyes, he sees it leads underneath the console to a ... 'OH NO!!! Don't touch it, it's a BOMB!!!'\n\nBOOOOOOOOOM!\n\nA few minutes later, our hero comes round. He can still see stars whizzing around inside his head, but where is Tails? Relieved, Sonic sees his friend sitting a few metres away, rubbing his head.\n\n'That'll teach you to be so impatient,' says Sonic. Tails doesn't reply and instead just looks away.\n\n'Well, I suppose we had better get moving, old friend,' says Sonic. There is only one way out of this room, conveniently marked 'Exit'. As he walks through it, Sonic turns to Tails, 'And don't touch anything this time.'\n\nThe explosion has destroyed 20 rings. Delete them from Sonic's Stuff. If he doesn't have any rings, then he loses a life instead! Turn to <b>157</b>.",
 		choices = new int[1] {157}
 	};
-
-	// TODO: Account for Schrodinger's Tails
+	
 	public static Section section147 = new Section()
 	{
 		text = "Just as Sonic grabs the bag, the robot springs to life. Instantly it aims a punch, but Sonic is too fast and easily avoids it. Unfortunately, the Badnik is now between him and the Return button and Sonic is going to have to fight his way through.\n\nThe Badnik has a fighting score of 6 and needs two hits to be destroyed. Sonic must fight using Strength. If Tails is with him, he will help. If Sonic wins, then he presses the Return button. Remember to add the sky net to Sonic's Stuff before turning to <b>187</b>. If the robot has finished off Sonic, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
 		fightSection = true,
 		diceAbility = "Strength",
-		//tailsSection = true,
 		enemyList = new Queue<Enemy>(new Enemy[1] {
 			new Enemy()
 			{
@@ -2202,8 +2202,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		choices = new int[1] {101},
 		rings = 10
 	};
-
-	// TODO: Implement using the energy gun
+	
 	public static Section section263 = new Section()
 	{
 		text = "Roll the die and add the result to Sonic's Speed. If the score is 6 or more, then he and Tails have made it to the heli-chopper. They can now fly away (turn to <b>121</b>). If the score is less than 6, they will have to stand and fight the Rexon (turn to <b>220</b>).\n\nAlternatively, Sonic may spend 10 rings and use the energy gun. This will freeze the Rexon long enough for both Sonic and Tails to escape comfortably. If you have used the energy gun and paid the price in rings, then turn to <b>121</b>.",

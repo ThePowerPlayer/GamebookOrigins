@@ -504,6 +504,10 @@ public class DiceRollManager : MonoBehaviour
 			SVZGameScript.ChangeButtons();
 			diceMode = false;
 			DiceRoll.SetActive(false);
+			// Obtain tweezers on Section 138 only if BOTH dice rolls succeed
+			if (mostRecentIndex == 138 && rollSuccess) {
+				SVZLogicScript.ObtainItem("Tweezers");
+			}
 		}
 		else {
 			SetDiceRoll();

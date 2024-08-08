@@ -28,6 +28,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public static bool bottleBankDestroyed;
 	public static bool spineFieldsDestroyed;
 	public static string skyChaseMethod;
+	public static bool tailsInSpecialZone;
+	public static HashSet<string> specialZoneDoors = new HashSet<string>();
 	
 	// All sections where the energy gun is fired
 	// (and 10 rings are expended):
@@ -44,7 +46,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	
 	[SerializeField] private AudioClip Ring;
 	[SerializeField] private AudioClip LoseRings;
-	[SerializeField] private AudioClip ObtainItem;
+	[SerializeField] private AudioClip ItemSound;
 	[SerializeField] private AudioClip LoseLife;
 	[SerializeField] private AudioClip Explosion;
 	[SerializeField] private AudioClip MackSiren;
@@ -84,6 +86,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public bool bottleBankDestroyed = false;
 		public bool spineFieldsDestroyed = false;
 		public string skyChaseMethod = "Hovering";
+		public bool tailsInSpecialZone = false;
+		public HashSet<string> specialZoneDoors = new HashSet<string>();
+		
 	}
 	
 	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
@@ -104,6 +109,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		bottleBankDestroyed = false;
 		spineFieldsDestroyed = false;
 		skyChaseMethod = "Hovering";
+		specialZoneDoors = new HashSet<string>();
+		tailsInSpecialZone = false;
 	}
 	
 	private void ForceToIndex(int newIndex) {
@@ -135,7 +142,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		AsteronLogic();
 		MysticCaveLogic();
 		//FakTorEeeLogic();
-		//SkyChaseLogic();
+		SkyChaseLogic();
 		ZoneChipLogic();
 		OptionsLogic();
 		BoomLogic();
@@ -191,7 +198,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if (SVZText.sectionLibrary[index].items != null
 			&& SVZText.sectionLibrary[index].items.Length > 0) {
 			if (index != 1) {
-				SFXAudioSource.clip = ObtainItem;
+				SFXAudioSource.clip = ItemSound;
 				SFXAudioSource.Play();
 			}
 			foreach(string item in SVZText.sectionLibrary[index].items) {
@@ -234,11 +241,16 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			fakTorEeeLocation = SVZLogic.fakTorEeeLocation,
 			bottleBankDestroyed = SVZLogic.bottleBankDestroyed,
 			spineFieldsDestroyed = SVZLogic.spineFieldsDestroyed,
-			skyChaseMethod = SVZLogic.skyChaseMethod
+			skyChaseMethod = SVZLogic.skyChaseMethod,
+			tailsInSpecialZone = SVZLogic.tailsInSpecialZone
 		};
 		mostRecentSection.SonicsStuff.Clear();
 		foreach (string item in SVZStats.SonicsStuff) {
 			mostRecentSection.SonicsStuff.Add(item);
+		}
+		mostRecentSection.specialZoneDoors.Clear();
+		foreach (string door in specialZoneDoors) {
+			mostRecentSection.specialZoneDoors.Add(door);
 		}
 		sectionHistory.Push(mostRecentSection);
 	}
@@ -263,6 +275,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		foreach (string item in sectionHistory.Peek().SonicsStuff) {
 			SVZStats.SonicsStuff.Add(item);
 		}
+		specialZoneDoors.Clear();
+		foreach (string door in sectionHistory.Peek().specialZoneDoors) {
+			specialZoneDoors.Add(door);
+		}
 		
 		mackCounter = sectionHistory.Peek().mackCounter;
 		mackDoomed0 = sectionHistory.Peek().mackDoomed0;
@@ -276,6 +292,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
 		spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
 		skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
+		tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
 		
 		int backIndex = sectionHistory.Peek().section;
 		SonicVsZonikGame.ChangeIndex(backIndex.ToString());
@@ -324,6 +341,12 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		SVZStats.rings += rings;
 	}
 	
+	public void ObtainItem(string item) {
+		SFXAudioSource.clip = ItemSound;
+		SFXAudioSource.Play();
+		SVZStats.SonicsStuff.Add(item);
+	}
+	
 	public void GetHit() {
 		if (SVZStats.rings > 0) {
 			SFXAudioSource.clip = LoseRings;
@@ -370,9 +393,69 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if (diceIndex == 211 && !rollSuccess) {
 			GetHit();
 		}
+		// Obtain the sky net after defeating the Special Badnik
+		if (diceIndex == 184 && enemyDefeated) {
+			ObtainItem("Sky net");
+		}
 	}
 	
 	private void ItemLogic() {
+		// Torch
+		if (index == 8) {
+			if (SVZStats.SonicsStuff.Contains("Torch")) {
+				ForceToIndex(79);
+			}
+			else {
+				ForceToIndex(115);
+			}
+		}
+		if (index == 15 || index == 118) {
+			if (SVZStats.SonicsStuff.Contains("Torch")) {
+				SVZText.sectionLibrary[index].diceSection = false;
+			}
+			else {
+				SVZText.sectionLibrary[index].diceSection = true;
+			}
+		}
+		
+		// Tweezers
+		if (index == 75) {
+			if (!SVZStats.SonicsStuff.Contains("Tweezers")) {
+				ForceToIndex(140);
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {140, 219};
+			}
+		}
+		
+		// Whiffy liquid
+		if (index == 180 && SVZStats.SonicsStuff.Contains("Bottle of Whiffy liquid")) {
+			SVZStats.SonicsStuff.Remove("Bottle of Whiffy liquid");
+		}
+		
+		// Tube of glue
+		bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
+		if (index == 248) {
+			if (canUseGlue) {
+				SVZText.sectionLibrary[index].choices = new int[3] {134, 212, 197};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {134, 197};
+			}
+		}
+		if (index == 268) {
+			if (canUseGlue) {
+				SVZText.sectionLibrary[index].choices = new int[4] {14, 230, 107, 53};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[3] {14, 230, 53};
+			}
+		}
+		if ((index == 107 || index == 212) && canUseGlue) {
+			SVZStats.SonicsStuff.Remove("Tube of glue");
+		}
+		
+		
 		// Casino Night fruit machine requires 1 ring per play
 		if (index == 171) {
 			SVZStats.rings--;
@@ -389,6 +472,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	
 	private void EnergyGunLogic() {
 		bool canUseEnergyGun = (SVZStats.rings >= 10 && SVZStats.SonicsStuff.Contains("Energy gun"));
+		bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
 		
 		// Special logic for sections 158 and 263
 		if (index == 158) {
@@ -567,11 +651,48 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 	}
 	
+	private void SkyChaseLogic() {
+		if (index == 216) {
+			skyChaseMethod = "Hovering";
+		}
+		else if (index == 85) {
+			skyChaseMethod = "Tails";
+		}
+		else if (index == 68) {
+			skyChaseMethod = "Sonic";
+		}
+		
+		if (index == 192) {
+			if (skyChaseMethod == "Sonic") {
+				ForceToIndex(78);
+			}
+			else if (skyChaseMethod == "Tails") {
+				ForceToIndex(170);
+			}
+			else if (skyChaseMethod == "Hovering") {
+				ForceToIndex(51);
+			}
+		}
+		
+		if (index == 161) {
+			if (skyChaseMethod == "Sonic") {
+				ForceToIndex(116);
+			}
+			else if (skyChaseMethod == "Tails") {
+				ForceToIndex(210);
+			}
+			else if (skyChaseMethod == "Hovering") {
+				ForceToIndex(108);
+			}
+		}
+		
+	}
+	
 	private void ZoneChipLogic() {
 		// Always give Sonic the Zone Chip, if the option to do so is enabled
 		if (OptionsGlobal.options["alwaysGetZoneChip"]
 			&& index == 201 && !SVZStats.SonicsStuff.Contains("Zone Chip")) {
-			SVZStats.SonicsStuff.Add("Zone Chip");
+			ObtainItem("Zone Chip");
 		}
 		
 		// Immediately after pressing "Use Zone Chip" button
@@ -585,19 +706,87 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			else {
 				SVZText.sectionLibrary[index].choices = new int[1] {zoneChipIndex};
 			}
+			
+			if (OptionsGlobal.options["useZoneChipForFree"]) {
+				SVZText.sectionLibrary[127].rings = 0;
+				SVZText.sectionLibrary[221].rings = 0;
+			}
+			else {
+				SVZText.sectionLibrary[127].rings = -10;
+				SVZText.sectionLibrary[221].rings = -20;
+			}
 		}
 		
 		// After actually using the Zone Chip
 		if (index == 127 || index == 221) {
 			SFXAudioSource.clip = EnterZoneChipArea;
 			SFXAudioSource.Play();
+			if (index == 221) {
+				tailsInSpecialZone = true;
+			}
+			else {
+				tailsInSpecialZone = false;
+			}
+			// Sky net: Tails will only help fight the Special Badnik if he's there.
+			SVZText.sectionLibrary[147].tailsSection = tailsInSpecialZone;
 		}
+		
+		// Permanently close a door once it is used
+		// (unless the option to prevent this is checked).
+		if (index == 149) {
+			specialZoneDoors.Add("Tweezers");
+		}
+		else if (index == 290) {
+			specialZoneDoors.Add("Sky net");
+		}
+		else if (index == 252) {
+			specialZoneDoors.Add("Gloves");
+		}
+		else if (index == 245) {
+			specialZoneDoors.Add("Energy bomb");
+		}
+		
+		// Tweezers
+		if (index == 205) {
+			if (tailsInSpecialZone) {
+				SVZText.sectionLibrary[index].choices = new int[2] {187, 264};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {187, 138};
+			}
+		}
+		if (index == 149) {
+			if (tailsInSpecialZone) {
+				SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {176};
+			}
+			else {
+				SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {50};
+			}
+		}
+		
+		// Gloves
+		if (index == 178) {
+			if (tailsInSpecialZone) {
+				ForceToIndex(167);
+			}
+			else {
+				ForceToIndex(232);
+			}
+		}
+		
+		// For Section 138, only collect the tweezers if BOTH dice scores are above 6
+		// (see DiceRollManager.cs).
+		
 		// After pressing the red button in any Zone Chip area
-		else if (index == 187) {
+		if (index == 187) {
 			SFXAudioSource.clip = LeaveZoneChipArea;
 			SFXAudioSource.Play();
 			ForceToIndex(zoneChipIndex);
 		}
+	}
+	
+	private bool doorOpen(string door) {
+		return !specialZoneDoors.Contains(door);
 	}
 	
 	private void OptionsLogic() {
@@ -755,6 +944,46 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].text = "Using the advantage of height, Sonic and Tails swoop down on Zonik's cloud skimmer, passing it with only centimetres to spare! Turn to <b>268</b>.";
 				ForceToIndex(268);
 			}
+		}
+		
+		// Choices for Sections 127 and 221 (Entering the Special Zone)
+		if (index == 127) {
+			if (OptionsGlobal.options["reEnterSpecialZoneDoors"]) {
+				SVZText.sectionLibrary[index].text = "The chip starts to flash with red lights, emitting a quiet humming sound. Suddenly, Sonic feels a little dizzy. The next thing he knows, he's standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic must choose carefully. Which door do you think Sonic should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>";
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "The chip starts to flash with red lights, emitting a quiet humming sound. Suddenly, Sonic feels a little dizzy. The next thing he knows, he's standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic must choose carefully. He will only be allowed to go through a door once. Then it will seal shut for ever. Once you have decided which one he should go through, write its number down so that you don't use it again! Which door do you think Sonic should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>";
+			}
+		}
+		if (index == 221) {
+			if (OptionsGlobal.options["reEnterSpecialZoneDoors"]) {
+				SVZText.sectionLibrary[index].text = "The chip starts to flash with red lights and emit a quiet humming sound. Suddenly, Sonic feels a little dizzy and Tails starts to sway from side to side. The next thing they know, they're standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic and Tails must choose carefully. Which door do you think Sonic and Tails should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>";
+			}
+			else {
+				SVZText.sectionLibrary[index].text = "The chip starts to flash with red lights and emit a quiet humming sound. Suddenly, Sonic feels a little dizzy and Tails starts to sway from side to side. The next thing they know, they're standing in a square room. Everything shines with a bright white light. This isn't anywhere Sonic's been before, in fact it doesn't even look like a 'normal' Zone.\n\nThere are four doors, one in each wall. Above each door is a different picture. Sonic and Tails must choose carefully. They will only be allowed to go through a door once. It will seal shut for ever afterwards. Once they have decided which one to go through, put its number down so that they do not try and use it again! Which door do you think Sonic and Tails should go through:\n\nThe one with a pair of tweezers?\t\t\tTurn to <b>149</b>\nThe one with a sky net?\t\t\tTurn to <b>290</b>\nThe one with a pair of gloves?\t\t\tTurn to <b>252</b>\nThe one with an energy bomb?\t\t\tTurn to <b>245</b>";
+			}
+		}
+		
+		if (index == 127 || index == 221) {
+			// Permanently close Special Zone doors
+			int[] doorChoices = new int[4] {149, 290, 252, 245};
+			if (!OptionsGlobal.options["reEnterSpecialZoneDoors"]) {
+				List<int> doorList = new List<int>();
+				if (doorOpen("Tweezers")) {
+					doorList.Add(149);
+				}
+				if (doorOpen("Sky net")) {
+					doorList.Add(290);
+				}
+				if (doorOpen("Gloves")) {
+					doorList.Add(252);
+				}
+				if (doorOpen("Energy bomb")) {
+					doorList.Add(245);
+				}
+				doorChoices = doorList.ToArray();
+			}
+			SVZText.sectionLibrary[index].choices = doorChoices;
 		}
 	}
 	
