@@ -29,6 +29,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public static bool spineFieldsDestroyed;
 	public static string skyChaseMethod;
 	public static bool tailsInSpecialZone;
+	public static bool zonikCrashLanded;
 	public static HashSet<string> specialZoneDoors = new HashSet<string>();
 	
 	// All sections where the energy gun is fired
@@ -88,6 +89,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public string skyChaseMethod = "Hovering";
 		public bool tailsInSpecialZone = false;
 		public HashSet<string> specialZoneDoors = new HashSet<string>();
+		public bool zonikCrashLanded = false;
 		
 	}
 	
@@ -111,6 +113,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		skyChaseMethod = "Hovering";
 		specialZoneDoors = new HashSet<string>();
 		tailsInSpecialZone = false;
+		zonikCrashLanded = false;
 	}
 	
 	private void ForceToIndex(int newIndex) {
@@ -242,7 +245,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			bottleBankDestroyed = SVZLogic.bottleBankDestroyed,
 			spineFieldsDestroyed = SVZLogic.spineFieldsDestroyed,
 			skyChaseMethod = SVZLogic.skyChaseMethod,
-			tailsInSpecialZone = SVZLogic.tailsInSpecialZone
+			tailsInSpecialZone = SVZLogic.tailsInSpecialZone,
+			zonikCrashLanded = SVZLogic.zonikCrashLanded
 		};
 		mostRecentSection.SonicsStuff.Clear();
 		foreach (string item in SVZStats.SonicsStuff) {
@@ -293,6 +297,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
 		skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
 		tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
+		zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
 		
 		int backIndex = sectionHistory.Peek().section;
 		SonicVsZonikGame.ChangeIndex(backIndex.ToString());
@@ -394,7 +399,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			GetHit();
 		}
 		// Obtain the sky net after defeating the Special Badnik
-		if (diceIndex == 184 && enemyDefeated) {
+		if (diceIndex == 147 && enemyDefeated) {
 			ObtainItem("Sky net");
 		}
 	}
@@ -433,14 +438,22 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SVZStats.SonicsStuff.Remove("Bottle of Whiffy liquid");
 		}
 		
-		// Tube of glue
+		// Tube of glue and energy bomb
 		bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
+		bool canUseEnergyBomb = (SVZStats.SonicsStuff.Contains("Energy bomb"));
+		
 		if (index == 248) {
-			if (canUseGlue) {
+			if (canUseGlue && canUseEnergyBomb) {
 				SVZText.sectionLibrary[index].choices = new int[3] {134, 212, 197};
 			}
-			else {
+			else if (canUseGlue && !canUseEnergyBomb) {
+				SVZText.sectionLibrary[index].choices = new int[2] {134, 212};
+			}
+			else if (!canUseGlue && canUseEnergyBomb) {
 				SVZText.sectionLibrary[index].choices = new int[2] {134, 197};
+			}
+			if (!canUseGlue && !canUseEnergyBomb) {
+				SVZText.sectionLibrary[index].choices = new int[1] {134};
 			}
 		}
 		if (index == 268) {
@@ -454,7 +467,15 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		if ((index == 107 || index == 212) && canUseGlue) {
 			SVZStats.SonicsStuff.Remove("Tube of glue");
 		}
+		if (index == 197 && canUseEnergyBomb) {
+			SVZStats.SonicsStuff.Remove("Energy bomb");
+		}
 		
+		// Using the sky net
+		bool canUseSkyNet = (SVZStats.SonicsStuff.Contains("Sky net"));
+		if (index == 87 && canUseSkyNet) {
+			SVZStats.SonicsStuff.Remove("Sky net");
+		}
 		
 		// Casino Night fruit machine requires 1 ring per play
 		if (index == 171) {
@@ -475,6 +496,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
 		
 		// Special logic for sections 158 and 263
+		// (Energy gun AND sky net)
 		if (index == 158) {
 			bool canUseSkyNet = SVZStats.SonicsStuff.Contains("Sky net");
 			if (canUseSkyNet && canUseEnergyGun) {
@@ -686,6 +708,31 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			}
 		}
 		
+		if (index == 136) {
+			zonikCrashLanded = true;
+		}
+		if (index == 90) {
+			zonikCrashLanded = false;
+		}
+		
+		if (index == 214) {
+			if (!SVZStats.SonicsStuff.Contains("Gloves")) {
+				SVZText.sectionLibrary[index].fightSection = false;
+				SVZText.sectionLibrary[index].chooseAbility = false;
+				ForceToIndex(237);
+			}
+			else {
+				SVZText.sectionLibrary[index].fightSection = true;
+				SVZText.sectionLibrary[index].chooseAbility = true;
+				SVZText.sectionLibrary[index].choices = new int[0] {};
+				if (zonikCrashLanded) {
+					SVZText.sectionLibrary[index].enemyList.Peek().fightingScore = 5;
+				}
+				else {
+					SVZText.sectionLibrary[index].enemyList.Peek().fightingScore = 7;
+				}
+			}
+		}
 	}
 	
 	private void ZoneChipLogic() {

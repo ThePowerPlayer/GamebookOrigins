@@ -1040,7 +1040,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section116 = new Section()
 	{
-		text = "Now it's time to fight! Zonik is a much better pilot than Sonic! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). However, because he is so bad at flying the skimmer, subtract one from his score. Tails will help Sonic.\nIf Sonic and Tails win\t\t\tTurn to <b>136</b>If they lose\t\t\tTurn to <b>90</b>",
+		text = "Now it's time to fight! Zonik is a much better pilot than Sonic! Zonik has a fighting score of 6 and Sonic needs three hits to disable his skimmer. Sonic may fight using any of his abilities (you choose). However, because he is so bad at flying the skimmer, subtract one from his score. Tails will help Sonic.\n\nIf Sonic and Tails win\t\t\tTurn to <b>136</b>\nIf they lose\t\t\tTurn to <b>90</b>",
 		fightSection = true,
 		chooseAbility = true,
 		tailsSection = true,
@@ -1147,8 +1147,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Pleasant as it is, Sonic and Tails are still trapped on the island and they need to find a way off it fairly quickly. There are two paths leading away from the beach. Should Sonic and Tails follow the path to the West (turn to <b>26</b>), or the one to the East (turn to <b>247</b>)?",
 		choices = new int[2] {26, 247}
 	};
-
-	// TODO: Limit ability choice to Strength or Speed
+	
 	public static Section section129 = new Section()
 	{
 		text = "Sonic and Tails must fight the Crawlton. Sonic can use either his Strength or Speed (you choose), and Tails can help him. The Crawlton has a fighting score of 6 and he needs two hits to destroy him. If Sonic and Tails win, turn to <b>292</b>.\n\nIf the Crawlton wins, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",
@@ -1764,7 +1763,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 
 	public static Section section210 = new Section()
 	{
-		text = "Now it's time to fight! Zonik has a fighting score of 6 and his skimmer needs to be hit three times to put it out of action. Sonic may fight using any of his abilities (you choose). Tails cannot help Sonic – he needs to fly the skimmer – but because Tails is such a natural flyer, Sonic may add 1 to whatever score he gets. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</>.",
+		text = "Now it's time to fight! Zonik has a fighting score of 6 and his skimmer needs to be hit three times to put it out of action. Sonic may fight using any of his abilities (you choose). Tails cannot help Sonic – he needs to fly the skimmer – but because Tails is such a natural flyer, Sonic may add 1 to whatever score he gets. If Sonic and Tails win, turn to <b>136</b>. If they lose, then turn to <b>90</b>.",
 		fightSection = true,
 		chooseAbility = true,
 		tailsSection = true,
@@ -1801,8 +1800,7 @@ public class SonicVsZonikGameText : MonoBehaviour
 		text = "Spotting their chance to escape, Sonic flips over backwards and spins off down the tunnel, quickly followed by Tails, though strangely the creatures make no attempt to chase after them. Still moving at breakneck speed, they round a bend and see with horror no less than four of Robotnik's Guardbots walking towards them. Sonic judders to a halt and is abruptly knocked flying by Tails, whose reactions weren't quite as good as his! Faced with a choice of a dozen or so small furry creatures and four Guardbots, who Sonic knew were hostile, there wasn't much option!\n\n'RUN AWAY!' shouts Sonic, and with that both he and Tails run off back the way they had just come. Fortunately, the Guardbots seem not to have seen them, and soon they find themselves back where they had first seen the rings. The furry creatures are still there. It looks like they're going to have to trust them after all. Turn to <b>11</b>.",
 		choices = new int[1] {11}
 	};
-
-	// TODO: Account for special details
+	
 	public static Section section214 = new Section()
 	{
 		text = "The surface of the Zone is barren and rocky and not very nice at all. At last, Sonic and Tails and Zonik stand facing each other. It's time for the final showdown!\n\nIf Zonik crash-landed, he has a fighting score of 5, otherwise it is 7. Like Sonic, he has three lives, and therefore needs to be hit three times to be beaten. If Sonic crash-landed, then he must subtract 1 from each of his die rolls.\n\nSonic <i>must</i> have the gloves to fight Zonik. (If Sonic hasn't been to the Special Zone yet, then he must go and get them if he has enough rings - use the Zone Chip from Sonic's Stuff.) Tails will help Sonic. Finally, if Sonic has the Chaos Emerald, he may add 2 to each of his die scores. If Sonic and Tails win, turn to <b>300</b>. If Zonik beats them, then ...\n\n<b>YOUR ADVENTURE ENDS HERE</b>",

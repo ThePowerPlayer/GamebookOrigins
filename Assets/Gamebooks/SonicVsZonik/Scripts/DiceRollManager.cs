@@ -114,6 +114,22 @@ public class DiceRollManager : MonoBehaviour
 		chooseAbilityMode = true;
 		DiceRoll.SetActive(false);
 		ChooseAbilityMenu.SetActive(true);
+		if (mostRecentIndex != 129) {
+			MonitorChooseSpeed.SetActive(true);
+			MonitorChooseAgility.SetActive(true);
+			MonitorChooseStrength.SetActive(true);
+			MonitorChooseCoolness.SetActive(true);
+			MonitorChooseQuickWits.SetActive(true);
+			MonitorChooseGoodLooks.SetActive(true);
+		}
+		else {
+			MonitorChooseSpeed.SetActive(true);
+			MonitorChooseAgility.SetActive(false);
+			MonitorChooseStrength.SetActive(true);
+			MonitorChooseCoolness.SetActive(false);
+			MonitorChooseQuickWits.SetActive(false);
+			MonitorChooseGoodLooks.SetActive(false);
+		}
 	}
 	
 	public void SelectAbility(string ability) {
@@ -207,6 +223,14 @@ public class DiceRollManager : MonoBehaviour
 			UpdatePosX(ComparisonSymbol, 340);
 			UpdatePosX(GoalValue, 420);
 			
+			if (mostRecentIndex == 214 && SVZStats.SonicsStuff.Contains("Chaos Emerald")) {
+				MonitorDiceScript.monitorValue += 2;
+				MonitorAbilityScript.monitorValue += 2;
+			}
+			if (!SonicVsZonikSectionLogic.zonikCrashLanded) {
+				MonitorDiceScript.monitorValue--;
+				MonitorAbilityScript.monitorValue--;
+			}
 			sum = MonitorDiceScript.monitorValue
 			+ MonitorAbilityScript.monitorValue
 			+ MonitorTailsScript.monitorValue;
@@ -520,6 +544,7 @@ public class DiceRollManager : MonoBehaviour
 			mostRecentIndex = SVZGame.index;
 			diceMode = false;
 			fightMode = false;
+			chooseAbilityMode = false;
 			enemyTurn = false;
 			if (SVZText.sectionLibrary[mostRecentIndex].chooseAbility) {
 				OpenAbilityMenu();
