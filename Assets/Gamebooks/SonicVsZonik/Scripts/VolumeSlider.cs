@@ -8,18 +8,20 @@ using TMPro;
 public class VolumeSlider : MonoBehaviour
 {
 	[SerializeField] private Slider _slider;
-	[SerializeField] private AudioMixer _audioMixer;
 	[SerializeField] private TextMeshProUGUI _sliderText;
 	[SerializeField] private string sliderType;
+	[SerializeField] private AudioMixer masterMixer;
 	
     void Start()
     {	
         _slider.onValueChanged.AddListener((v) => {
 			if (sliderType == "Music") {
-				_audioMixer.SetFloat("mixerMusicVolume", Mathf.Log10(_slider.value) * 20);
+				OptionsGlobal.musicVolume = (Mathf.Log10(_slider.value) * 20);
+				masterMixer.SetFloat("mixerMusicVolume", OptionsGlobal.musicVolume);
 			}
 			else if (sliderType == "SFX") {
-				_audioMixer.SetFloat("mixerSFXVolume", Mathf.Log10(_slider.value) * 20);
+				OptionsGlobal.sfxVolume = (Mathf.Log10(_slider.value) * 20);
+				masterMixer.SetFloat("mixerSFXVolume", OptionsGlobal.sfxVolume);
 			}
 			_sliderText.text = v.ToString("0%");
 		});

@@ -11,6 +11,7 @@ public class SonicVsZonikGame : MonoBehaviour
 	[SerializeField] private GameObject ButtonBack;
 	
     public static int index;
+	public static bool loadedSave = false;
 	private int mostRecentIndex;
 	private const int indexMin = 1;
 	private const int indexMax = 300;
@@ -42,7 +43,15 @@ public class SonicVsZonikGame : MonoBehaviour
 			maxPoints = 100;
 		}
 		
-		index = 1;
+		if (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
+			Debug.Log("index = " + SonicVsZonikSectionLogic.sectionHistory.Peek().index);
+			index = SonicVsZonikSectionLogic.sectionHistory.Peek().index;
+			loadedSave = true;
+		}
+		else {
+			index = 1;
+		}
 		mostRecentIndex = 0;
     }
 	
@@ -81,19 +90,29 @@ public class SonicVsZonikGame : MonoBehaviour
 		MusicManager.PlaySongForSection(index);
 		
 		if (!backButtonPressed) {
-			SVZLogicScript.SectionLogic();
-			SVZLogicScript.AddToHistory();
+			if (loadedSave) {
+				loadedSave = false;
+			}
+			else {
+				SVZLogicScript.SectionLogic();
+				SVZLogicScript.AddToHistory();
+			}
 			
-			// Mark section as visited (independent of section history)
+			// Mark the section as having been visited at any point
+			// (independent of SonicVsZonikSectionLogic.sectionHistory).
+			// Note that the "visited" field for each section is reset upon quitting the game.
 			SVZText.sectionLibrary[index].visited = true;
-			// Mark section as in history (dependent on current section history)
-			SVZText.sectionLibrary[index].inHistory = true;
 		}
 		else {
 			// For more logic involving returning to the previous section,
 			// see BackButton.cs.
 			backButtonPressed = false;
 		}
+		
+		// Save current progress
+		string filePath = Application.persistentDataPath + "/SonicVsZonik.json";
+		SonicVsZonikSectionLogic.SaveSVZData(filePath);
+		
 		TextObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		SectionObject.GetComponent<SonicVsZonikGameText>().UpdateText();
 		ChangeButtons();

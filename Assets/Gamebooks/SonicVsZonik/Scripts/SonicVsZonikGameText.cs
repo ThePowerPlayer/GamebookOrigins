@@ -64,9 +64,6 @@ public class SonicVsZonikGameText : MonoBehaviour
 		// Has this section been visited yet at any time during gameplay?
 		public bool visited = false;
 		
-		// Has this section been visited yet in the current route?
-		public bool inHistory = false;
-		
 		// Collectables
 		public int rings = 0;
 		public int credits = 0;

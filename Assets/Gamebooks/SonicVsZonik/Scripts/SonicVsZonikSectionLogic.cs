@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
 using SVZText = SonicVsZonikGameText;
 using SVZStats = SonicVsZonikVitalStatistics;
 using SVZLogic = SonicVsZonikSectionLogic;
+using Newtonsoft.Json;
 
 public class SonicVsZonikSectionLogic : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	private int[] gameOverSections = new int[] {41, 54, 231, 281};
 	private int[] boomSections = new int[] {31, 60, 109, 140, 146, 160, 211, 268};
 	
+	// Global story flags
 	public static int mackCounter;
 	public static bool mackDoomed0;
 	public static bool mackDoomed1;
@@ -57,15 +60,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	public class SectionSave
 	{
 		// Section number
-		public int section = 0;
-		
-		// Sonic's Vital Statistics
-		public int speed = 0;
-		public int agility = 0;
-		public int strength = 0;
-		public int coolness = 0;
-		public int quickWits = 0;
-		public int goodLooks = 0;
+		public int index = 0;
 		
 		// Inventory
 		public int lives = 0;
@@ -93,7 +88,59 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		
 	}
 	
+	public class AllSaveData
+	{
+		// Sonic's Vital Statistics
+		public int speed = 0;
+		public int agility = 0;
+		public int strength = 0;
+		public int coolness = 0;
+		public int quickWits = 0;
+		public int goodLooks = 0;
+		
+		// Section history
+		public Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
+	}
+	
 	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
+	
+	public static void SaveSVZData(string filePath) {
+		AllSaveData SVZData = new AllSaveData() {
+			speed = SVZStats.abilities["Speed"],
+			agility = SVZStats.abilities["Agility"],
+			strength = SVZStats.abilities["Strength"],
+			coolness = SVZStats.abilities["Coolness"],
+			quickWits = SVZStats.abilities["Quick Wits"],
+			goodLooks = SVZStats.abilities["Good Looks"],
+			sectionHistory = SVZLogic.sectionHistory
+		};
+		string json = JsonConvert.SerializeObject(SVZData);
+        File.WriteAllText(filePath, json);
+		Debug.Log($"Sonic vs. Zonik save data written to {filePath}");
+	}
+	
+	public static void LoadSVZData(string filePath) {
+		if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            AllSaveData SVZData = JsonConvert.DeserializeObject<AllSaveData>(json);
+			SVZStats.abilities["Speed"] = SVZData.speed;
+			SVZStats.abilities["Agility"] = SVZData.agility;
+			SVZStats.abilities["Strength"] = SVZData.strength;
+			SVZStats.abilities["Coolness"] = SVZData.coolness;
+			SVZStats.abilities["Quick Wits"] = SVZData.quickWits;
+			SVZStats.abilities["Good Looks"] = SVZData.goodLooks;
+			sectionHistory = SVZData.sectionHistory;
+			Debug.Log($"Sonic vs. Zonik save data read from {filePath}");
+        }
+        else
+        {
+            Debug.LogWarning("Sonic vs. Zonik save data not found");
+        }
+		
+		Debug.Log("Music volume: " + OptionsGlobal.musicVolume);
+		Debug.Log("SFX volume: " + OptionsGlobal.sfxVolume);
+	}
 	
 	void Start() {
 		previousIndex = 1;
@@ -157,7 +204,15 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	
 	public void UpdateInventory() {
 		// Add rings, credits, and points
-		if (!SVZText.sectionLibrary[index].inHistory) {
+		bool inHistory = false;
+		foreach (SectionSave sectionSave in sectionHistory) {
+			if (sectionSave.index == index) {
+				inHistory = true;
+				break;
+			}
+		}
+		
+		if (!inHistory) {
 			SVZStats.rings += SVZText.sectionLibrary[index].rings;
 			SVZStats.credits += SVZText.sectionLibrary[index].credits;
 			SVZStats.points += SVZText.sectionLibrary[index].points;
@@ -214,19 +269,12 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 		
 		// Update Vital Statistics (if applicable)
-		ChangeVitalStatistics();
+		ChangeVitalStatistics(index, false);
 	}
 	
 	public void AddToHistory() {
 		SectionSave mostRecentSection = new SectionSave {
-			section = index,
-			
-			speed = SVZStats.abilities["Speed"],
-			agility = SVZStats.abilities["Agility"],
-			strength = SVZStats.abilities["Strength"],
-			coolness = SVZStats.abilities["Coolness"],
-			quickWits = SVZStats.abilities["Quick Wits"],
-			goodLooks = SVZStats.abilities["Good Looks"],
+			index = index,
 			
 			lives = SVZStats.lives,
 			rings = SVZStats.rings,
@@ -260,15 +308,9 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	}
 	
 	public void RemoveFromHistory() {
-		sectionHistory.Pop();
+		ChangeVitalStatistics(sectionHistory.Peek().index, true);
 		
-		// Update values to match the section visited by the Back button			
-		SVZStats.abilities["Speed"] = sectionHistory.Peek().speed;
-		SVZStats.abilities["Agility"] = sectionHistory.Peek().agility;
-		SVZStats.abilities["Strength"] = sectionHistory.Peek().strength;
-		SVZStats.abilities["Coolness"] = sectionHistory.Peek().coolness;
-		SVZStats.abilities["Quick Wits"] = sectionHistory.Peek().quickWits;
-		SVZStats.abilities["Good Looks"] = sectionHistory.Peek().goodLooks;
+		sectionHistory.Pop();
 			
 		SVZStats.lives = sectionHistory.Peek().lives;
 		SVZStats.rings = sectionHistory.Peek().rings;
@@ -299,38 +341,42 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
 		zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
 		
-		int backIndex = sectionHistory.Peek().section;
+		int backIndex = sectionHistory.Peek().index;
 		SonicVsZonikGame.ChangeIndex(backIndex.ToString());
 	}
 	
-	private void ChangeVitalStatistics() {
-		if (index == 140) {
-			if (SVZStats.abilities["Coolness"] < 99) {
-				SVZStats.abilities["Coolness"]++;
-			}
+	private void ChangeVitalStatistics(int index, bool backButtonPressed) {
+		string ability = "";
+		int abilityChange = 0;
+		
+		if (index == 33 || index == 140) {
+			ability = "Coolness";
+			abilityChange = 1;
 		}
-		else if (index == 34) {
-			if (SVZStats.abilities["Good Looks"] > 0) {
-				SVZStats.abilities["Good Looks"]--;
-			}
-		}
-		else if (index == 238) {
-			if (SVZStats.abilities["Good Looks"] > 0) {
-				SVZStats.abilities["Good Looks"]--;
-			}
-		}
-		else if (index == 33) {
-			if (SVZStats.abilities["Coolness"] < 99) {
-				SVZStats.abilities["Coolness"]++;
-			}
+		else if (index == 34 || index == 238) {
+			ability = "Good Looks";
+			abilityChange = -1;
 		}
 		else if (index == 60) {
-			if (SVZStats.rings >= 10) {
+			if (!backButtonPressed && SVZStats.rings >= 10) {
 				EarnRings(-10);
 			}
-			else if (SVZStats.abilities["Strength"] > 0) {
-				SVZStats.abilities["Strength"]--;
+			else {
+				ability = "Strength";
+				abilityChange = -1;
 			}
+		}
+		
+		// Reverse the ability change if back button was pressed
+		if (backButtonPressed) {
+			abilityChange *= -1;
+		}
+		
+		Debug.Log("SVZStats.abilities.ContainsKey(ability) = " + SVZStats.abilities.ContainsKey(ability));
+		if (SVZStats.abilities.ContainsKey(ability)) {
+			Debug.Log(ability + " = " + SVZStats.abilities[ability]);
+			SVZStats.abilities[ability] += abilityChange;
+			Debug.Log(ability + " = " + SVZStats.abilities[ability]);
 		}
 	}
 	

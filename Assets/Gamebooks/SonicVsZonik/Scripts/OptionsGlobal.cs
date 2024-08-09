@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class OptionsGlobal : MonoBehaviour
 {
-	public static float musicVolume = 1;
-	public static float sfxVolume = 1;
+	// Note that these values range from 0 dB (full volume) to -80 dB (silence).
+	// They are also reset upon quitting the game.
+	public static float musicVolume;
+	public static float sfxVolume;
 	
 	public static Dictionary<string, bool> options = new Dictionary<string, bool>
 	{
@@ -33,11 +37,18 @@ public class OptionsGlobal : MonoBehaviour
 		{"reEnterSpecialZoneDoors", true} // DEBUG: set to false on release
 	};
 	
+	public class OptionsClass
+	{
+		public Dictionary<string, bool> options = new Dictionary<string, bool>();
+	}
+	
 	public static OptionsGlobal instance { get; private set; }
 
 	// Prevent more than one OptionsGlobal from existing
 	void Awake()
 	{
+		musicVolume = 0;
+		sfxVolume = 0;
 		if (instance == null)
         {
             instance = this;
@@ -52,5 +63,28 @@ public class OptionsGlobal : MonoBehaviour
 	
 	public static void ToggleOption(string option) {
 		options[option] = !options[option];
+	}
+	
+	public static void SaveOptions() {
+		string filePath = Application.persistentDataPath + "/Options.json";
+		OptionsClass data = new OptionsClass();
+		data.options = options;
+		string json = JsonConvert.SerializeObject(data);
+        File.WriteAllText(filePath, json);
+		Debug.Log($"Options written to {filePath}");
+	}
+	
+	public static void LoadOptions(string filePath) {
+		if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            OptionsClass data = JsonConvert.DeserializeObject<OptionsClass>(json);
+			options = data.options;
+			Debug.Log($"Options read from {filePath}");
+        }
+        else
+        {
+            Debug.LogWarning("Saved options not found");
+        }
 	}
 }

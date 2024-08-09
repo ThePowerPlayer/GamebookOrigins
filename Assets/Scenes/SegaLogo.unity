@@ -1153,6 +1153,7 @@ MonoBehaviour:
   fadingOut: 0
   fadeoutTimer: 0
   load_new_scene: {fileID: 0}
+  masterMixer: {fileID: 24100000, guid: ceca9e56b1c47a148b350d2e6a24e1a1, type: 2}
 --- !u!4 &1987197416
 Transform:
   m_ObjectHideFlags: 0

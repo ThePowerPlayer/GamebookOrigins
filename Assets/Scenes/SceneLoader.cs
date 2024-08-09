@@ -21,6 +21,13 @@ public class SceneLoader : MonoBehaviour
 	private AudioSource[] allAudioSources;
 	
 	void Awake() {
+		// Load options
+		string filePath = Application.persistentDataPath + "/Options.json";
+		OptionsGlobal.LoadOptions(filePath);
+		// Load Sonic vs. Zonik save data
+		filePath = Application.persistentDataPath + "/SonicVsZonik.json";
+		SonicVsZonikSectionLogic.LoadSVZData(filePath);
+		
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		
 		BlackOutSquareImage.enabled = true;
