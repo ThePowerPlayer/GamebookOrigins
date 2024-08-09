@@ -15,6 +15,9 @@ public class SceneLoader : MonoBehaviour
 	public bool fadingOut;
 	public float fadeoutTimer;
 	private bool loading;
+	private const float fadeCooldownMax = 0.3f;
+	private float fadeCooldown = 0f;
+	private bool fadeCooled;
 	private string sceneToLoad;
 	
 	public AudioSource load_new_scene;
@@ -48,6 +51,8 @@ public class SceneLoader : MonoBehaviour
 		currentScene = SceneManager.GetActiveScene();
 		loading = false;
 		fadingOut = false;
+		fadeCooled = false;
+		fadeCooldown = fadeCooldownMax;
 		allAudioSources =
 			FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 		CheckIntroScenes();
@@ -78,12 +83,14 @@ public class SceneLoader : MonoBehaviour
 	
 	public void LoadScene(string sceneName)
     {
-		StopAllAudio();
-		sceneToLoad = sceneName;
-		if (currentScene.name != "SegaLogo" && currentScene.name != "DevPresents") {
-			load_new_scene.Play();
+		if (fadeCooled) {
+			StopAllAudio();
+			sceneToLoad = sceneName;
+			if (currentScene.name != "SegaLogo" && currentScene.name != "DevPresents") {
+				load_new_scene.Play();
+			}
+			fadingOut = true;
 		}
-        fadingOut = true;
     }
 	
 	void ChangeAlpha(ref float alpha, bool increasing) {
@@ -110,6 +117,18 @@ public class SceneLoader : MonoBehaviour
 	}
 	
 	void Update() {
+		// Scene transition must cooldown for 0.5 seconds
+		// before another transition can happen
+		if (!fadeCooled) {
+			if (fadeCooldown > 0) {
+				fadeCooldown -= Time.deltaTime;
+			}
+			else {
+				fadeCooldown = 0;
+				fadeCooled = true;
+			}
+		}
+		
 		// Use fadeout timer for intro scenes
 		if ((currentScene.name == "SegaLogo" || currentScene.name == "DevPresents")
 			&& !fadingOut) {

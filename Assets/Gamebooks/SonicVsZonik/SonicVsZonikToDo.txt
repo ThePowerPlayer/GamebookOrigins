@@ -60,10 +60,11 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Implement endgame section logic
 [✓] Fix dice rolls for Sections 195 and 228 (Dice + Strength + Agility)
 [✓] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
-[] Fix issue where speed and size of title screen particles depends on size of the game window
+[✓] Save the most recently used music and image
+[✓] Fix issue where speed and size of title screen particles depends on size of the game window
 [] Only allow the screen to transition 0.5 seconds after the current scene has loaded in
-[] Add all sections associated with each song in SonicVsZonikMusicManager.cs
-[] Toggle off certain options that were previously enabled
 [] Fix the screen fadeout speed for Windows builds
+[] Toggle off certain options that were previously enabled
+[] Remove all debug messages
 [] Make a trailer for the game and upload it to YouTube
 [] Make the final build of the game and publish it to itch.io, archive.org, and a Sonic fangame website of your choice

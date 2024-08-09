@@ -241,9 +241,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 5238622621318593411, guid: 87c0a7bad9c96e14a98780997101c755, type: 3}
   particlesPerSecond: 12
-  particleSpeed: 800
-  sizeIncreaseRate: 2.5
+  particleSpeed: 600
+  sizeIncreaseRate: 5
   particleContainer: {fileID: 113391449}
+  travelTime: 0.9
 --- !u!1 &414804812
 GameObject:
   m_ObjectHideFlags: 0

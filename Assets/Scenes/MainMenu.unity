@@ -8105,7 +8105,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 5238622621318593411, guid: 87c0a7bad9c96e14a98780997101c755, type: 3}
   spawnInterval: 0.2
   speed: 250
-  size: 20
+  size: 40
   amplitude: 20
   frequency: 0.01
 --- !u!1 &1094804545

@@ -72,13 +72,16 @@ public class ParticleMovement : MonoBehaviour
         startPosition = rectTransform.anchoredPosition;
     }
 
-    void Update()
-    {
-        // Move the particle to the right along a sine wave
-        float newX = rectTransform.anchoredPosition.x + speed * Time.deltaTime;
+	void FixedUpdate()
+	{
+		// Move the particle to the right along a sine wave
+        float newX = rectTransform.anchoredPosition.x + speed * Time.fixedDeltaTime;
         float newY = startPosition.y + Mathf.Sin((newX - startPosition.x) * frequency) * amplitude;
         rectTransform.anchoredPosition = new Vector3(newX, newY, 0);
+	}
 
+    void Update()
+    {
         // Destroy the particle when it leaves the screen bounds on the right side
         if (rectTransform.anchoredPosition.x > canvasHalfWidth)
         {
