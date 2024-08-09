@@ -12,12 +12,16 @@ public class SonicVsZonikGame : MonoBehaviour
 	
     public static int index;
 	public static bool loadedSave = false;
+	public static bool returningToGame = false;
 	private int mostRecentIndex;
+	public static int mostRecentImage;
+	public static int mostRecentMusic;
 	private const int indexMin = 1;
 	private const int indexMax = 300;
 	public static bool backButtonPressed;
 	public static int maxPoints;
 	public SonicsStuff SonicsStuff;
+	public SonicVsZonikGameImages ImageManager;
 	public SonicVsZonikMusicManager MusicManager;
 	public SonicVsZonikSectionLogic SVZLogicScript;
 	
@@ -32,6 +36,11 @@ public class SonicVsZonikGame : MonoBehaviour
 	[SerializeField] private TMP_Text ButtonSectionCText;
 	[SerializeField] private TMP_Text ButtonSectionDText;
 	
+	void OnEnable() {
+		Debug.Log("Returning to game...");
+		returningToGame = true;
+	}
+	
 	void Start()
     {
 		TurnToSection.SetActive(OptionsGlobal.options["enableTurnToSection"]);
@@ -43,6 +52,9 @@ public class SonicVsZonikGame : MonoBehaviour
 			maxPoints = 100;
 		}
 		
+		Debug.Log("Section history: " + SonicVsZonikSectionLogic.sectionHistory);
+		Debug.Log("Section history count: " + SonicVsZonikSectionLogic.sectionHistory.Count);
+		
 		if (SonicVsZonikSectionLogic.sectionHistory != null
 			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
 			Debug.Log("index = " + SonicVsZonikSectionLogic.sectionHistory.Peek().index);
@@ -51,6 +63,8 @@ public class SonicVsZonikGame : MonoBehaviour
 		}
 		else {
 			index = 1;
+			mostRecentImage = 1;
+			mostRecentMusic = 1;
 		}
 		mostRecentIndex = 0;
     }
@@ -86,14 +100,23 @@ public class SonicVsZonikGame : MonoBehaviour
 	private void VisitIndex() {		
 		Debug.Log("Visiting index " + index + "...");
 		
-		// Update music (if applicable)
-		MusicManager.PlaySongForSection(index);
-		
 		if (!backButtonPressed) {
 			if (loadedSave) {
+				ImageManager.SwitchImage(mostRecentImage);
+				MusicManager.PlaySongForSection(mostRecentMusic);
 				loadedSave = false;
+				returningToGame = false;
 			}
 			else {
+				if (returningToGame) {
+					ImageManager.SwitchImage(mostRecentImage);
+					MusicManager.PlaySongForSection(mostRecentMusic);
+					returningToGame = false;
+				}
+				else {
+					ImageManager.SwitchImage(index);
+					MusicManager.PlaySongForSection(index);
+				}
 				SVZLogicScript.SectionLogic();
 				SVZLogicScript.AddToHistory();
 			}

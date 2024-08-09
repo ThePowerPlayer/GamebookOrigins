@@ -11,8 +11,8 @@ using Newtonsoft.Json;
 public class SonicVsZonikSectionLogic : MonoBehaviour
 {
 	private int index;
-	private int previousIndex;
-	private int[] previousChoices;
+	public static int previousIndex;
+	public static int[] previousChoices;
 	public static int zoneChipIndex;
 	public static bool gameOver;
 	private int[] gameOverSections = new int[] {41, 54, 231, 281};
@@ -78,10 +78,10 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public bool justLeftMackDoom = false;
 		public bool boatSunk = false;
 		public bool pinballSecondChanceUsed = false;
-		public string fakTorEeeLocation = "Bottle Bank";
+		public string fakTorEeeLocation = "";
 		public bool bottleBankDestroyed = false;
 		public bool spineFieldsDestroyed = false;
-		public string skyChaseMethod = "Hovering";
+		public string skyChaseMethod = "";
 		public bool tailsInSpecialZone = false;
 		public HashSet<string> specialZoneDoors = new HashSet<string>();
 		public bool zonikCrashLanded = false;
@@ -98,11 +98,37 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		public int quickWits = 0;
 		public int goodLooks = 0;
 		
+		// Image and music
+		public int mostRecentImage = 1;
+		public int mostRecentMusic = 1;
+		
+		// Important backtracking flags
+		public int previousIndex = 1;
+		public int[] previousChoices = new int[0] {};
+		public int zoneChipIndex = 0;
+		public bool gameOver = false;
+		
+		
 		// Section history
 		public Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
 	}
 	
 	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
+
+    private Stack<T> ReadStackFromJson<T>(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            Stack<T> stack = JsonConvert.DeserializeObject<Stack<T>>(json);
+            Debug.Log($"Stack read from {filePath}");
+            return stack;
+        }
+        else
+        {
+            return new Stack<T>();
+        }
+    }
 	
 	public static void SaveSVZData(string filePath) {
 		AllSaveData SVZData = new AllSaveData() {
@@ -112,6 +138,15 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			coolness = SVZStats.abilities["Coolness"],
 			quickWits = SVZStats.abilities["Quick Wits"],
 			goodLooks = SVZStats.abilities["Good Looks"],
+			
+			mostRecentImage = SonicVsZonikGame.mostRecentImage,
+			mostRecentMusic = SonicVsZonikGame.mostRecentMusic,
+			
+			previousIndex = previousIndex,
+			previousChoices = previousChoices,
+			zoneChipIndex = zoneChipIndex,
+			gameOver = gameOver,
+			
 			sectionHistory = SVZLogic.sectionHistory
 		};
 		string json = JsonConvert.SerializeObject(SVZData);
@@ -124,43 +159,109 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
         {
             string json = File.ReadAllText(filePath);
             AllSaveData SVZData = JsonConvert.DeserializeObject<AllSaveData>(json);
+			
+			// Clear the current stack
+			sectionHistory.Clear();
+
+			// Reverse the order of the list before pushing onto the stack
+			List<SectionSave> tempList = new List<SectionSave>(SVZData.sectionHistory);
+
+			foreach (SectionSave item in tempList)
+			{
+				sectionHistory.Push(item);
+			}
+			
 			SVZStats.abilities["Speed"] = SVZData.speed;
 			SVZStats.abilities["Agility"] = SVZData.agility;
 			SVZStats.abilities["Strength"] = SVZData.strength;
 			SVZStats.abilities["Coolness"] = SVZData.coolness;
 			SVZStats.abilities["Quick Wits"] = SVZData.quickWits;
 			SVZStats.abilities["Good Looks"] = SVZData.goodLooks;
-			sectionHistory = SVZData.sectionHistory;
+			
+			SonicVsZonikGame.mostRecentImage = SVZData.mostRecentImage;
+			SonicVsZonikGame.mostRecentMusic = SVZData.mostRecentMusic;
+			
+			previousIndex = SVZData.previousIndex;
+			previousChoices = SVZData.previousChoices;
+			zoneChipIndex = SVZData.zoneChipIndex;
+			gameOver = SVZData.gameOver;
+			
+			mackCounter = sectionHistory.Peek().mackCounter;
+			mackDoomed0 = sectionHistory.Peek().mackDoomed0;
+			mackDoomed1 = sectionHistory.Peek().mackDoomed1;
+			mackDoomed2 = sectionHistory.Peek().mackDoomed2;
+			mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
+			justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
+			boatSunk = sectionHistory.Peek().boatSunk;
+			pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
+			fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
+			bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
+			spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
+			skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
+			tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
+			zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
+			
 			Debug.Log($"Sonic vs. Zonik save data read from {filePath}");
         }
         else
         {
             Debug.LogWarning("Sonic vs. Zonik save data not found");
         }
-		
-		Debug.Log("Music volume: " + OptionsGlobal.musicVolume);
-		Debug.Log("SFX volume: " + OptionsGlobal.sfxVolume);
 	}
 	
 	void Start() {
-		previousIndex = 1;
-		previousChoices = new int[0] {};
-		gameOver = false;
+		if (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
+            SVZStats.lives = sectionHistory.Peek().lives;
+			SVZStats.rings = sectionHistory.Peek().rings;
+			SVZStats.credits = sectionHistory.Peek().credits;
+			SVZStats.points = sectionHistory.Peek().points;
+			
+			SVZStats.SonicsStuff.Clear();
+			foreach (string item in sectionHistory.Peek().SonicsStuff) {
+				SVZStats.SonicsStuff.Add(item);
+			}
+			specialZoneDoors.Clear();
+			foreach (string door in sectionHistory.Peek().specialZoneDoors) {
+				specialZoneDoors.Add(door);
+			}
+			
+			mackCounter = sectionHistory.Peek().mackCounter;
+			mackDoomed0 = sectionHistory.Peek().mackDoomed0;
+			mackDoomed1 = sectionHistory.Peek().mackDoomed1;
+			mackDoomed2 = sectionHistory.Peek().mackDoomed2;
+			mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
+			justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
+			boatSunk = sectionHistory.Peek().boatSunk;
+			pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
+			fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
+			bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
+			spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
+			skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
+			tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
+			zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
+        }
+		else {
+			previousIndex = 1;
+			previousChoices = new int[0] {};
+			zoneChipIndex = 0;
+			gameOver = false;
 		
-		mackCounter = 0;
-		mackDoomed0 = false;
-		mackDoomed1 = false;
-		mackDoomed2 = false;
-		mackDoomCounter = 0;
-		boatSunk = false;
-		pinballSecondChanceUsed = false;
-		fakTorEeeLocation = "Bottle Bank";
-		bottleBankDestroyed = false;
-		spineFieldsDestroyed = false;
-		skyChaseMethod = "Hovering";
-		specialZoneDoors = new HashSet<string>();
-		tailsInSpecialZone = false;
-		zonikCrashLanded = false;
+			mackCounter = 0;
+			mackDoomed0 = false;
+			mackDoomed1 = false;
+			mackDoomed2 = false;
+			mackDoomCounter = 0;
+			boatSunk = false;
+			pinballSecondChanceUsed = false;
+			fakTorEeeLocation = "";
+			bottleBankDestroyed = false;
+			spineFieldsDestroyed = false;
+			skyChaseMethod = "";
+			specialZoneDoors = new HashSet<string>();
+			tailsInSpecialZone = false;
+			zonikCrashLanded = false;
+		}
 	}
 	
 	private void ForceToIndex(int newIndex) {

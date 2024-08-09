@@ -3544,7 +3544,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723871139}
   m_HandleRect: {fileID: 723871138}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10290,6 +10290,7 @@ MonoBehaviour:
   TurnToSection: {fileID: 1723348224}
   ButtonBack: {fileID: 482478586}
   SonicsStuff: {fileID: 1487960840}
+  ImageManager: {fileID: 1943967942}
   MusicManager: {fileID: 1667284219}
   SVZLogicScript: {fileID: 1263561707}
   TextObject: {fileID: 117401062}

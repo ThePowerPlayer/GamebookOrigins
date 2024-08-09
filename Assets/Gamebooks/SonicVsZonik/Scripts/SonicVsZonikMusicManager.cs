@@ -84,7 +84,6 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 	private static Dictionary<AudioClip, int[]> Section = new Dictionary<AudioClip, int[]>();
 	
 	// Song dictionary: Input is a section number, output is its corresponding song
-	// TODO: Update this to include every section
 	private static Dictionary<int, AudioClip> Song = new Dictionary<int, AudioClip>();
 	
 	void Start() {
@@ -134,6 +133,7 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 	
 	public void PlaySongForSection(int section) {
 		if (Song.ContainsKey(section) && Song[section] != audioSource.clip) {
+			SonicVsZonikGame.mostRecentMusic = section;
 			audioSource.Stop();
 			audioSource.clip = Song[section];
 			if (audioSource.clip == GameOver || audioSource.clip == GameOverSpinball || audioSource.clip == GameComplete) {
