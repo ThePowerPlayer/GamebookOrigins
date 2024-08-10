@@ -12,6 +12,13 @@ public class ScrollArrowHorizontal : MonoBehaviour
 	private const int height = 10;
 	RectTransform ArrowRect;
 	private UnityEngine.UI.Image iRenderer;
+	private bool hasHistory;
+	
+	void OnEnable()
+	{
+		hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+	}
 	
     void Start()
     {
@@ -32,8 +39,8 @@ public class ScrollArrowHorizontal : MonoBehaviour
 		
 		// Specific code for SonicVsZonikMenu scene
 		if (SonicVsZonikMenu.index >= 2) {
-			if (OptionsGlobal.options["customVitalStatistics"] == false
-				&& SonicVsZonikMenu.allStatsAssigned) {
+			if (hasHistory || (OptionsGlobal.options["customVitalStatistics"] == false
+				&& SonicVsZonikMenu.allStatsAssigned)) {
 				iRenderer.enabled = false;
 			}
 			else {

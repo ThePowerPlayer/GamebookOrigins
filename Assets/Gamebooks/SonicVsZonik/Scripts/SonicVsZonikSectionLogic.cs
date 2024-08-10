@@ -114,21 +114,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	}
 	
 	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
-
-    private Stack<T> ReadStackFromJson<T>(string filePath)
-    {
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            Stack<T> stack = JsonConvert.DeserializeObject<Stack<T>>(json);
-            Debug.Log($"Stack read from {filePath}");
-            return stack;
-        }
-        else
-        {
-            return new Stack<T>();
-        }
-    }
 	
 	public static void SaveSVZData(string filePath) {
 		AllSaveData SVZData = new AllSaveData() {
@@ -151,7 +136,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		};
 		string json = JsonConvert.SerializeObject(SVZData);
         File.WriteAllText(filePath, json);
-		Debug.Log($"Sonic vs. Zonik save data written to {filePath}");
 	}
 	
 	public static void LoadSVZData(string filePath) {
@@ -200,18 +184,13 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
 			tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
 			zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
-			
-			Debug.Log($"Sonic vs. Zonik save data read from {filePath}");
-        }
-        else
-        {
-            Debug.LogWarning("Sonic vs. Zonik save data not found");
         }
 	}
 	
 	void Start() {
-		if (SonicVsZonikSectionLogic.sectionHistory != null
-			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
+		bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+		if (hasHistory) {
             SVZStats.lives = sectionHistory.Peek().lives;
 			SVZStats.rings = sectionHistory.Peek().rings;
 			SVZStats.credits = sectionHistory.Peek().credits;
@@ -353,7 +332,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		}
 		
 		// Add items to Sonic's Stuff
-		Debug.Log("index = " + index);
 		if (SVZText.sectionLibrary[index].items != null
 			&& SVZText.sectionLibrary[index].items.Length > 0) {
 			if (index != 1) {
@@ -473,11 +451,8 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			abilityChange *= -1;
 		}
 		
-		Debug.Log("SVZStats.abilities.ContainsKey(ability) = " + SVZStats.abilities.ContainsKey(ability));
 		if (SVZStats.abilities.ContainsKey(ability)) {
-			Debug.Log(ability + " = " + SVZStats.abilities[ability]);
 			SVZStats.abilities[ability] += abilityChange;
-			Debug.Log(ability + " = " + SVZStats.abilities[ability]);
 		}
 	}
 	

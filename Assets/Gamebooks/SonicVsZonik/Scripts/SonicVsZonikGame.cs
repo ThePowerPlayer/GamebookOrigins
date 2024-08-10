@@ -37,7 +37,6 @@ public class SonicVsZonikGame : MonoBehaviour
 	[SerializeField] private TMP_Text ButtonSectionDText;
 	
 	void OnEnable() {
-		Debug.Log("Returning to game...");
 		returningToGame = true;
 	}
 	
@@ -52,12 +51,8 @@ public class SonicVsZonikGame : MonoBehaviour
 			maxPoints = 100;
 		}
 		
-		Debug.Log("Section history: " + SonicVsZonikSectionLogic.sectionHistory);
-		Debug.Log("Section history count: " + SonicVsZonikSectionLogic.sectionHistory.Count);
-		
 		if (SonicVsZonikSectionLogic.sectionHistory != null
 			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
-			Debug.Log("index = " + SonicVsZonikSectionLogic.sectionHistory.Peek().index);
 			index = SonicVsZonikSectionLogic.sectionHistory.Peek().index;
 			loadedSave = true;
 		}
@@ -91,15 +86,13 @@ public class SonicVsZonikGame : MonoBehaviour
 				SonicVsZonikVitalStatistics.rings -= 10;
 			}
 			
-			Debug.Log("mostRecentIndex = " + mostRecentIndex + "; index = " + index);
+			//Debug.Log("mostRecentIndex = " + mostRecentIndex + "; index = " + index);
 			mostRecentIndex = index;
 			VisitIndex();
 		}
 	}
 	
-	private void VisitIndex() {		
-		Debug.Log("Visiting index " + index + "...");
-		
+	private void VisitIndex() {
 		if (!backButtonPressed) {
 			if (loadedSave) {
 				ImageManager.SwitchImage(mostRecentImage);

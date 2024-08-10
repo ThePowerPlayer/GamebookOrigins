@@ -15,13 +15,16 @@ public class AssignVitalStatistics : MonoBehaviour
 	
     void Awake()
     {
-        SetAssignmentsFalse();
-		
-		if (OptionsGlobal.options["customVitalStatistics"]) {
-			description.text = "Click the arrows to increase or decrease Sonic's abilities.";
+		if (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
+			SetAssignments(true);
 		}
 		else {
-			description.text = "Click to assign Sonic's strongest ability (5 points).";
+			SetAssignments(false);
+		}
+        
+		if (OptionsGlobal.options["customVitalStatistics"]) {
+			description.text = "Click the arrows to increase or decrease Sonic's abilities.";
 		}
     }
 	
@@ -43,17 +46,17 @@ public class AssignVitalStatistics : MonoBehaviour
 		}
 	}
 	
-	private void SetAssignmentsFalse() {
-		stat1Assigned = false;
-		stat2Assigned = false;
-		stat3Assigned = false;
+	private void SetAssignments(bool assign) {
+		stat1Assigned = assign;
+		stat2Assigned = assign;
+		stat3Assigned = assign;
 		
-		assignments["Speed"] = false;
-		assignments["Agility"] = false;
-		assignments["Strength"] = false;
-		assignments["Coolness"] = false;
-		assignments["Quick Wits"] = false;
-		assignments["Good Looks"] = false;
+		assignments["Speed"] = assign;
+		assignments["Agility"] = assign;
+		assignments["Strength"] = assign;
+		assignments["Coolness"] = assign;
+		assignments["Quick Wits"] = assign;
+		assignments["Good Looks"] = assign;
 	}
 	
 	public void SetRemainingStatistics() {
@@ -69,7 +72,7 @@ public class AssignVitalStatistics : MonoBehaviour
 	}
 	
     public void ResetStatistics() {
-		SetAssignmentsFalse();
+		SetAssignments(false);
 		
 		if (gamebook == "SonicVsZonik") {
 			SonicVsZonikMenu.allStatsAssigned = false;

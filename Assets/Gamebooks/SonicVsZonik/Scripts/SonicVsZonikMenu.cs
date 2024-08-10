@@ -51,7 +51,9 @@ public class SonicVsZonikMenu : MonoBehaviour
 		}
 		
 		// Prevent progressing until all Vital Statistics have been assigned
-		if (OptionsGlobal.options["customVitalStatistics"] == false) {
+		bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+		if (!hasHistory && !OptionsGlobal.options["customVitalStatistics"]) {
 			if (index >= 2 && index <= 6) {
 				ButtonNext.GetComponent<Button>().interactable = allStatsAssigned;
 			}

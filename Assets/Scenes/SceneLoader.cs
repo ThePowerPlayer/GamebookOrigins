@@ -94,15 +94,19 @@ public class SceneLoader : MonoBehaviour
     }
 	
 	void ChangeAlpha(ref float alpha, bool increasing) {
-		float multiplier = 1;
+		// Make screen fade in more slowly than fade out
+		float multiplier = 0.7f;
 		// Sign of alpha change (it either increases or decreases)
 		if (!increasing) {
-			multiplier *= -1;
+			multiplier = -1f;
 		}
+		
+		/*
 		// Greatly slow down fadeout when screen is almost black
 		if (alpha >= 0.99) {
 			multiplier *= 0.1f;
 		}
+		*/
 		
 		alpha += (Time.deltaTime * fadeSpeed * multiplier);
 		

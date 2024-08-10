@@ -31,28 +31,28 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 	
     void Start()
     {
+		bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+		if (!hasHistory) {
+			lives = 3;
+			rings = 0;
+			credits = 0;
+			points = 0;
+			
+			abilities["Speed"] = 0;
+			abilities["Agility"] = 0;
+			abilities["Strength"] = 0;
+			abilities["Coolness"] = 0;
+			abilities["Quick Wits"] = 0;
+			abilities["Good Looks"] = 0;
+			abilities["Section 31"] = 7;
+		}
 		if (OptionsGlobal.options["infiniteLives"]) {
 			lives = int.MaxValue;
-		}
-		else {
-			lives = 3;
 		}
 		if (OptionsGlobal.options["infiniteRings"]) {
 			rings = int.MaxValue;
 		}
-		else {
-			rings = 0;
-		}
-		credits = 0;
-		points = 0;
-		
-		abilities["Speed"] = 0;
-		abilities["Agility"] = 0;
-		abilities["Strength"] = 0;
-		abilities["Coolness"] = 0;
-		abilities["Quick Wits"] = 0;
-		abilities["Good Looks"] = 0;
-		abilities["Section 31"] = 7;
     }
 	
 	void Update()

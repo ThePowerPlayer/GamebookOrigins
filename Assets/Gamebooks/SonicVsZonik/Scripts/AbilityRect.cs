@@ -11,7 +11,9 @@ public class AbilityRect : MonoBehaviour, IPointerDownHandler
 	
     void Awake() {
 		if (!OptionsGlobal.options["customVitalStatistics"]) {
-			if (gamebook == "SonicVsZonik") {
+			bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+				&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+			if (!hasHistory && gamebook == "SonicVsZonik") {
 				SonicVsZonikVitalStatistics.abilities[ability] = 0;
 			}
 		}

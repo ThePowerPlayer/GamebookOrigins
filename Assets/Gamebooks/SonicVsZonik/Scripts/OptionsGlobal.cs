@@ -17,10 +17,9 @@ public class OptionsGlobal : MonoBehaviour
 		{"enableTurnToSection", true},
 		{"enableBackButton", true},
 		{"markVisitedSections", true},
-		// DEBUG: Set these 5 options to false on release.
-		{"easierFights", true},
-		{"speedrunTimer", true},
-		{"customVitalStatistics", true},
+		{"easierFights", false},
+		{"speedrunTimer", false},
+		{"customVitalStatistics", false},
 		{"infiniteLives", false},
 		{"infiniteRings", false},
 		// Sonic vs. Zonik options
@@ -33,8 +32,8 @@ public class OptionsGlobal : MonoBehaviour
 		{"fixSkyChase", true},
 		{"fixCloudSkimmer", true},
 		{"alwaysGetZoneChip", true},
-		{"useZoneChipForFree", true}, // DEBUG: set to false on release
-		{"reEnterSpecialZoneDoors", true} // DEBUG: set to false on release
+		{"reEnterSpecialZoneDoors", true},
+		{"useZoneChipForFree", false}
 	};
 	
 	public class OptionsClass
@@ -71,7 +70,6 @@ public class OptionsGlobal : MonoBehaviour
 		data.options = options;
 		string json = JsonConvert.SerializeObject(data);
         File.WriteAllText(filePath, json);
-		Debug.Log($"Options written to {filePath}");
 	}
 	
 	public static void LoadOptions(string filePath) {
@@ -80,11 +78,6 @@ public class OptionsGlobal : MonoBehaviour
             string json = File.ReadAllText(filePath);
             OptionsClass data = JsonConvert.DeserializeObject<OptionsClass>(json);
 			options = data.options;
-			Debug.Log($"Options read from {filePath}");
-        }
-        else
-        {
-            Debug.LogWarning("Saved options not found");
         }
 	}
 }

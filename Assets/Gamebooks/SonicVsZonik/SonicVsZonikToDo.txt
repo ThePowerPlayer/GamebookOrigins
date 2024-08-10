@@ -62,9 +62,8 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Add autosaving capabilities (Make the game write to a file every time a section is visited. In the file, store visited sections and chosen options. Load the file every time the game is started.)
 [✓] Save the most recently used music and image
 [✓] Fix issue where speed and size of title screen particles depends on size of the game window
-[] Only allow the screen to transition 0.5 seconds after the current scene has loaded in
-[] Fix the screen fadeout speed for Windows builds
-[] Toggle off certain options that were previously enabled
-[] Remove all debug messages
-[] Make a trailer for the game and upload it to YouTube
-[] Make the final build of the game and publish it to itch.io, archive.org, and a Sonic fangame website of your choice
+[✓] Only allow the screen to transition 0.5 seconds after the current scene has loaded in
+[✓] Toggle off certain options that were previously enabled
+[✓] Remove all debug messages
+[✓] Make a trailer for the game and upload it to YouTube
+[✓] Make the final build of the game and publish it to itch.io, archive.org, and a Sonic fangame website of your choice

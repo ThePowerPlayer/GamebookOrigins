@@ -361,10 +361,6 @@ public class DiceRollManager : MonoBehaviour
 			ComparisonSymbol.GetComponent<TMP_Text>().text = "<";
 		}
 		
-		if (fightMode) {
-			Debug.Log("Current enemy HP = " + SVZText.sectionLibrary[mostRecentIndex].enemyList.Peek().hp);
-		}
-		
 		if (enemyTurn || mostRecentIndex == 171) {
 			rollSuccess = !rollSuccess;
 			ThumbsUpScript.thumbPointsUp = !ThumbsUpScript.thumbPointsUp;
@@ -429,7 +425,6 @@ public class DiceRollManager : MonoBehaviour
 			
 			// Pass by value, NOT by reference
 			// (so that enemy HP is automatically reset upon leaving the section)
-			Debug.Log("Setting first dice roll...");
 			if (SVZText.sectionLibrary[mostRecentIndex].enemyList != null
 				&& SVZText.sectionLibrary[mostRecentIndex].enemyList.Count > 0) {
 				currentEnemyList = NewQueue(SVZText.sectionLibrary[mostRecentIndex].enemyList);
