@@ -67,3 +67,18 @@ As of May 3, 2024, here are the remaining things to do during development of Son
 [✓] Remove all debug messages
 [✓] Make a trailer for the game and upload it to YouTube
 [✓] Make the final build of the game and publish it to itch.io, archive.org, and a Sonic fangame website of your choice
+[✓] Reduce the score for the "Lenient Pinball Score" options from 70 to 60
+[✓] Fix future Game Overs not being initiated if the Free Play option is used to bypass the first Game Over
+[✓] Set Game Over to false when visiting a new section, not just when using the back button
+[✓] Fix choice between energy gun and glue on Section 268
+[✓] Add an option for a scrolling background in the Sonic vs. Zonik menu and game scenes
+[✓] Add an animation for the ring sprite
+[✓] Add text notifying the player that they can click to skip the die roll animation
+[✓] Fix Section 211 potentially showing the Game Over text and a new section choice at the same time
+[✓] Stop Game Over themes from being played other than on their own sections
+[✓] Always perform section logic when returning after a save is reloaded
+[✓] Create better sprites for the inventory bag and checkboxes
+[✓] Add option to reset options to default
+[✓] Add option to erase save data
+Long-term goals:
+[] Decrease size of save file by making it less bloated (track more variables globally, instead of separately for each section)

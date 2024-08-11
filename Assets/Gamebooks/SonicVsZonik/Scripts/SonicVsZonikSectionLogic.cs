@@ -115,6 +115,40 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	
 	public static Stack<SectionSave> sectionHistory = new Stack<SectionSave>();
 	
+	private void UseDefaultGlobalFlags() {
+		mackCounter = 0;
+		mackDoomed0 = false;
+		mackDoomed1 = false;
+		mackDoomed2 = false;
+		mackDoomCounter = 0;
+		boatSunk = false;
+		pinballSecondChanceUsed = false;
+		fakTorEeeLocation = "";
+		bottleBankDestroyed = false;
+		spineFieldsDestroyed = false;
+		skyChaseMethod = "";
+		specialZoneDoors = new HashSet<string>();
+		tailsInSpecialZone = false;
+		zonikCrashLanded = false;
+	}
+	
+	private void UseSavedGlobalFlags() {
+		mackCounter = sectionHistory.Peek().mackCounter;
+		mackDoomed0 = sectionHistory.Peek().mackDoomed0;
+		mackDoomed1 = sectionHistory.Peek().mackDoomed1;
+		mackDoomed2 = sectionHistory.Peek().mackDoomed2;
+		mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
+		justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
+		boatSunk = sectionHistory.Peek().boatSunk;
+		pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
+		fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
+		bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
+		spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
+		skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
+		tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
+		zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
+	}
+	
 	public static void SaveSVZData(string filePath) {
 		AllSaveData SVZData = new AllSaveData() {
 			speed = SVZStats.abilities["Speed"],
@@ -169,22 +203,15 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			previousChoices = SVZData.previousChoices;
 			zoneChipIndex = SVZData.zoneChipIndex;
 			gameOver = SVZData.gameOver;
-			
-			mackCounter = sectionHistory.Peek().mackCounter;
-			mackDoomed0 = sectionHistory.Peek().mackDoomed0;
-			mackDoomed1 = sectionHistory.Peek().mackDoomed1;
-			mackDoomed2 = sectionHistory.Peek().mackDoomed2;
-			mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
-			justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
-			boatSunk = sectionHistory.Peek().boatSunk;
-			pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
-			fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
-			bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
-			spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
-			skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
-			tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
-			zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
         }
+	}
+	
+	public static void EraseSVZData() {
+		string filePath = Application.persistentDataPath + "/SonicVsZonik.json";
+		if (File.Exists(filePath)) {
+			File.Delete(filePath);
+		}
+		sectionHistory.Clear();
 	}
 	
 	void Start() {
@@ -205,20 +232,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				specialZoneDoors.Add(door);
 			}
 			
-			mackCounter = sectionHistory.Peek().mackCounter;
-			mackDoomed0 = sectionHistory.Peek().mackDoomed0;
-			mackDoomed1 = sectionHistory.Peek().mackDoomed1;
-			mackDoomed2 = sectionHistory.Peek().mackDoomed2;
-			mackDoomCounter = sectionHistory.Peek().mackDoomCounter;
-			justLeftMackDoom = sectionHistory.Peek().justLeftMackDoom;
-			boatSunk = sectionHistory.Peek().boatSunk;
-			pinballSecondChanceUsed = sectionHistory.Peek().pinballSecondChanceUsed;
-			fakTorEeeLocation = sectionHistory.Peek().fakTorEeeLocation;
-			bottleBankDestroyed = sectionHistory.Peek().bottleBankDestroyed;
-			spineFieldsDestroyed = sectionHistory.Peek().spineFieldsDestroyed;
-			skyChaseMethod = sectionHistory.Peek().skyChaseMethod;
-			tailsInSpecialZone = sectionHistory.Peek().tailsInSpecialZone;
-			zonikCrashLanded = sectionHistory.Peek().zonikCrashLanded;
+			UseSavedGlobalFlags();
         }
 		else {
 			previousIndex = 1;
@@ -226,20 +240,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			zoneChipIndex = 0;
 			gameOver = false;
 		
-			mackCounter = 0;
-			mackDoomed0 = false;
-			mackDoomed1 = false;
-			mackDoomed2 = false;
-			mackDoomCounter = 0;
-			boatSunk = false;
-			pinballSecondChanceUsed = false;
-			fakTorEeeLocation = "";
-			bottleBankDestroyed = false;
-			spineFieldsDestroyed = false;
-			skyChaseMethod = "";
-			specialZoneDoors = new HashSet<string>();
-			tailsInSpecialZone = false;
-			zonikCrashLanded = false;
+			UseDefaultGlobalFlags();
 		}
 	}
 	
@@ -277,9 +278,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 		OptionsLogic();
 		BoomLogic();
 		
-		if (gameOverSections.Contains(index)) {
-			gameOver = true;
-		}
+		gameOver = (gameOverSections.Contains(index));
 	}
 	
 	public void UpdateInventory() {
@@ -484,7 +483,7 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 			SFXAudioSource.clip = LoseLife;
 			SFXAudioSource.Play();
 			SVZStats.lives--;
-			if (SVZStats.lives == 0) {
+			if (SVZStats.lives <= 0) {
 				MusicManager.PlaySongForSection(54);
 				gameOver = true;
 			}
@@ -585,14 +584,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].choices = new int[1] {134};
 			}
 		}
-		if (index == 268) {
-			if (canUseGlue) {
-				SVZText.sectionLibrary[index].choices = new int[4] {14, 230, 107, 53};
-			}
-			else {
-				SVZText.sectionLibrary[index].choices = new int[3] {14, 230, 53};
-			}
-		}
 		if ((index == 107 || index == 212) && canUseGlue) {
 			SVZStats.SonicsStuff.Remove("Tube of glue");
 		}
@@ -622,7 +613,6 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 	
 	private void EnergyGunLogic() {
 		bool canUseEnergyGun = (SVZStats.rings >= 10 && SVZStats.SonicsStuff.Contains("Energy gun"));
-		bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
 		
 		// Special logic for sections 158 and 263
 		// (Energy gun AND sky net)
@@ -650,6 +640,24 @@ public class SonicVsZonikSectionLogic : MonoBehaviour
 				SVZText.sectionLibrary[index].choicesDiceLose = new int[1] {220};
 			}
 			return;
+		}
+		
+		// Special logic for section 268
+		// (Energy gun AND tube of glue)
+		if (index == 268) {
+			bool canUseGlue = (SVZStats.SonicsStuff.Contains("Tube of glue"));
+			if (canUseEnergyGun && canUseGlue) {
+				SVZText.sectionLibrary[index].choices = new int[4] {14, 230, 107, 53};
+			}
+			else if (canUseEnergyGun && !canUseGlue) {
+				SVZText.sectionLibrary[index].choices = new int[3] {14, 230, 53};
+			}
+			else if (!canUseEnergyGun && canUseGlue) {
+				SVZText.sectionLibrary[index].choices = new int[3] {14, 107, 53};
+			}
+			else {
+				SVZText.sectionLibrary[index].choices = new int[2] {14, 53};
+			}
 		}
 		
 		int[] choicesWithEnergyGun = new int[0] {};

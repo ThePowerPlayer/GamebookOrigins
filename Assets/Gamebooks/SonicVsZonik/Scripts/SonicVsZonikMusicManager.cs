@@ -133,7 +133,9 @@ public class SonicVsZonikMusicManager : MonoBehaviour
 	
 	public void PlaySongForSection(int section) {
 		if (Song.ContainsKey(section) && Song[section] != audioSource.clip) {
-			SonicVsZonikGame.mostRecentMusic = section;
+			if (audioSource.clip != GameOver && audioSource.clip != GameOverSpinball) {
+				SonicVsZonikGame.mostRecentMusic = section;
+			}
 			audioSource.Stop();
 			audioSource.clip = Song[section];
 			if (audioSource.clip == GameOver || audioSource.clip == GameOverSpinball || audioSource.clip == GameComplete) {

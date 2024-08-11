@@ -318,7 +318,7 @@ public class DiceRollManager : MonoBehaviour
 			FirstPlus.SetActive(false);
 			SecondPlus.SetActive(false);
 			UpdatePosX(MonitorDice, -140);
-			UpdatePosX(EqualsObj, -30);
+			UpdatePosX(EqualsObj, -45);
 			UpdatePosX(Sum, 50);
 			UpdatePosX(ThumbsUp, 50);
 			UpdatePosX(GoalValueSprite, 50);
@@ -508,9 +508,6 @@ public class DiceRollManager : MonoBehaviour
 		bool enemyDefeated = (fightMode && currentEnemyList.Peek().hp == 0);
 		SVZLogicScript.EndOfDiceRollLogic(mostRecentIndex, rollSuccess, sum, enemyDefeated);
 		if (SonicVsZonikSectionLogic.gameOver) {
-			fightMode = false;
-			enemyTurn = false;
-			numEnemyAttacks = 0;
 			DiceRoll.SetActive(false);
 		}
 		
@@ -548,9 +545,9 @@ public class DiceRollManager : MonoBehaviour
 			currentEnemyList.Dequeue();
 			enemyTurn = false;
 			numEnemyAttacks = 0;
-		}
-		if (currentEnemyList.Count == 0) {
-			allEnemiesDefeated = true;
+			if (currentEnemyList.Count == 0) {
+				allEnemiesDefeated = true;
+			}
 		}
 		
 		// Leave dice mode and show available section buttons
@@ -574,11 +571,12 @@ public class DiceRollManager : MonoBehaviour
     void Update()
     {	
 		if (SVZGame.index != mostRecentIndex) {
+			SVZText.sectionLibrary[mostRecentIndex].rollComplete = false;
+			SVZText.sectionLibrary[mostRecentIndex].rollSuccess = false;
 			mostRecentIndex = SVZGame.index;
 			diceMode = false;
 			fightMode = false;
 			chooseAbilityMode = false;
-			enemyTurn = false;
 			if (SVZText.sectionLibrary[mostRecentIndex].chooseAbility) {
 				OpenAbilityMenu();
 			}

@@ -45,8 +45,8 @@ public class SonicVsZonikVitalStatistics : MonoBehaviour
 			abilities["Coolness"] = 0;
 			abilities["Quick Wits"] = 0;
 			abilities["Good Looks"] = 0;
-			abilities["Section 31"] = 7;
 		}
+		abilities["Section 31"] = 7;
 		if (OptionsGlobal.options["infiniteLives"]) {
 			lives = int.MaxValue;
 		}

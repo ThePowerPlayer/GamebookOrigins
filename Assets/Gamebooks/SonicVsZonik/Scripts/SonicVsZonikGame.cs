@@ -45,7 +45,7 @@ public class SonicVsZonikGame : MonoBehaviour
 		TurnToSection.SetActive(OptionsGlobal.options["enableTurnToSection"]);
 		ButtonBack.SetActive(OptionsGlobal.options["enableBackButton"]);
 		if (OptionsGlobal.options["lenientPinball"]) {
-			maxPoints = 70;
+			maxPoints = 60;
 		}
 		else {
 			maxPoints = 100;
@@ -94,25 +94,30 @@ public class SonicVsZonikGame : MonoBehaviour
 	
 	private void VisitIndex() {
 		if (!backButtonPressed) {
-			if (loadedSave) {
+			if (loadedSave || returningToGame) {
 				ImageManager.SwitchImage(mostRecentImage);
 				MusicManager.PlaySongForSection(mostRecentMusic);
 				loadedSave = false;
 				returningToGame = false;
+				
+				bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+					&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+				if (hasHistory) {
+					// Go back one section, then forward again.
+					int currentIndex = index;
+					SVZLogicScript.RemoveFromHistory();
+					index = currentIndex;
+				}
 			}
 			else {
-				if (returningToGame) {
-					ImageManager.SwitchImage(mostRecentImage);
-					MusicManager.PlaySongForSection(mostRecentMusic);
-					returningToGame = false;
-				}
-				else {
-					ImageManager.SwitchImage(index);
-					MusicManager.PlaySongForSection(index);
-				}
-				SVZLogicScript.SectionLogic();
-				SVZLogicScript.AddToHistory();
+				ImageManager.SwitchImage(index);
+				MusicManager.PlaySongForSection(index);
 			}
+			
+			// Unless the back button was pressed,
+			// always perform section logic.
+			SVZLogicScript.SectionLogic();
+			SVZLogicScript.AddToHistory();
 			
 			// Mark the section as having been visited at any point
 			// (independent of SonicVsZonikSectionLogic.sectionHistory).

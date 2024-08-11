@@ -15,8 +15,9 @@ public class AssignVitalStatistics : MonoBehaviour
 	
     void Awake()
     {
-		if (SonicVsZonikSectionLogic.sectionHistory != null
-			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0) {
+		bool hasHistory = (SonicVsZonikSectionLogic.sectionHistory != null
+			&& SonicVsZonikSectionLogic.sectionHistory.Count > 0);
+		if (hasHistory) {
 			SetAssignments(true);
 		}
 		else {

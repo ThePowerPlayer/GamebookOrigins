@@ -11,34 +11,43 @@ public class OptionsGlobal : MonoBehaviour
 	public static float musicVolume;
 	public static float sfxVolume;
 	
-	public static Dictionary<string, bool> options = new Dictionary<string, bool>
-	{
-		// Options for all gamebooks
-		{"enableTurnToSection", true},
-		{"enableBackButton", true},
-		{"markVisitedSections", true},
-		{"easierFights", false},
-		{"speedrunTimer", false},
-		{"customVitalStatistics", false},
-		{"infiniteLives", false},
-		{"infiniteRings", false},
-		// Sonic vs. Zonik options
-		{"easierRiverEscape", true},
-		{"variedTreasure", true},
-		{"fixFruitMachine", true},
-		{"lenientPinball", true},
-		{"fixRexonEncounter", true},
-		{"fixWhiffyLiquid", true},
-		{"fixSkyChase", true},
-		{"fixCloudSkimmer", true},
-		{"alwaysGetZoneChip", true},
-		{"reEnterSpecialZoneDoors", true},
-		{"useZoneChipForFree", false}
-	};
+	public static Dictionary<string, bool> options = new Dictionary<string, bool>();
 	
 	public class OptionsClass
 	{
 		public Dictionary<string, bool> options = new Dictionary<string, bool>();
+	}
+	
+	public static void ResetOptions() {
+		string filePath = Application.persistentDataPath + "/Options.json";
+		if (File.Exists(filePath)) {
+			File.Delete(filePath);
+		}
+		options = new Dictionary<string, bool>
+		{
+			// Global options
+			{"enableTurnToSection", true},
+			{"enableBackButton", true},
+			{"scrollingBG", true},
+			{"markVisitedSections", true},
+			{"easierFights", false},
+			{"speedrunTimer", false},
+			{"customVitalStatistics", false},
+			{"infiniteLives", false},
+			{"infiniteRings", false},
+			// Sonic vs. Zonik options
+			{"easierRiverEscape", true},
+			{"variedTreasure", true},
+			{"fixFruitMachine", true},
+			{"lenientPinball", true},
+			{"fixRexonEncounter", true},
+			{"fixWhiffyLiquid", true},
+			{"fixSkyChase", true},
+			{"fixCloudSkimmer", true},
+			{"alwaysGetZoneChip", true},
+			{"reEnterSpecialZoneDoors", true},
+			{"useZoneChipForFree", false}
+		};
 	}
 	
 	public static OptionsGlobal instance { get; private set; }
@@ -48,6 +57,12 @@ public class OptionsGlobal : MonoBehaviour
 	{
 		musicVolume = 0;
 		sfxVolume = 0;
+		
+		string filePath = Application.persistentDataPath + "/Options.json";
+		if (!File.Exists(filePath)) {
+			ResetOptions();
+		}
+		
 		if (instance == null)
         {
             instance = this;
